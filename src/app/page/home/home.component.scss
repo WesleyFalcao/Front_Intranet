@@ -1,0 +1,10 @@
+.div-lista{
+    @apply   lg:grid-cols-3 lg:mx-auto align-middle ;
+
+    @media(min-width: theme("screens.md")){       
+        @apply  gap-6 grid grid-cols-3 w-10/12
+    } 
+}
+
+
+
