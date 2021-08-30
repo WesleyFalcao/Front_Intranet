@@ -1,16 +1,133 @@
-<div class="flex w-screen h-screen pr-8 justify-end space-x-8 just ">
+<!-- <div class="flex w-screen h-screen pr-8 justify-end space-x-8 just ">
 
-    <div class="space-y-6">
-      <div class="flex justify-center items-center mt-32 text-center h-7 w-48 ml-1 p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">SGQ</div>
-      <div class="flex justify-center items-center mt-32 text-center h-7 w-48 ml-1 p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">SGQ</div>
-      <div class="flex justify-center items-center mt-32 text-center h-7 w-48 ml-1 p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">SGQ</div>
-      <div class="flex justify-center items-center mt-32 text-center h-7 w-48 ml-1 p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">SGQ</div>
-      <div class="flex justify-center items-center mt-32 text-center h-7 w-48 ml-1 p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">SGQ</div>
-      <div class="flex justify-center items-center mt-32 text-center h-7 w-48 ml-1 p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">SGQ</div>
-      <div class="flex justify-center items-center mt-32 text-center h-7 w-48 ml-1 p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">SGQ</div>
-    </div>
-    <div class="w-2/3 h-2/3 flex bg-white text-black p-6 mt-40 shadow-md rounded-2xl">
-      <div class="mr-6"></div>
-      .
-    </div>
+  <div class="space-y-6 hidden md:block">
+    <div
+      class="flex justify-center items-center mt-32 text-center h-7 w-48 ml-1 p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
+      SGQ</div>
+    <div
+      class="flex justify-center items-center mt-32 text-center h-7 w-48 ml-1 p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
+      SGQ</div>
+    <div
+      class="flex justify-center items-center mt-32 text-center h-7 w-48 ml-1 p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
+      SGQ</div>
+    <div
+      class="flex justify-center items-center mt-32 text-center h-7 w-48 ml-1 p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
+      SGQ</div>
+    <div
+      class="flex justify-center items-center mt-32 text-center h-7 w-48 ml-1 p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
+      SGQ</div>
+    <div
+      class="flex justify-center items-center mt-32 text-center h-7 w-48 ml-1 p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
+      SGQ</div>
+    <div
+      class="flex justify-center items-center mt-32 text-center h-7 w-48 ml-1 p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
+      SGQ</div>
   </div>
+  <div class="w-full h-full flex bg-white text-black p-6 mt-16 shadow-md rounded-2xl">
+    <div class="mr-6"></div>
+    <ul class="w-full flex flex-col">
+      <li class="w-full grid grid-cols-5 ">
+        <div>
+          Nome
+        </div>
+        <div>
+          Processos
+        </div>
+        <div>
+          Código
+        </div>
+        <div>
+          Revisão
+        </div>
+        <div>
+          Data
+        </div>
+      </li>
+    </ul>
+  </div>
+</div> -->
+
+<div class="h-screen w-full bg-white relative flex overflow-hidden">
+
+  <!-- Sidebar -->
+  <aside class="h-full hidden w-72 pl-4 flex-col pt-32 space-y-2 relative bg-gray-800 text-white md:flex">
+    <ul class= "w-full flex flex-col space-y-2 ">
+
+      <li class=" flex w-full justify-start " *ngFor="let item of ArrayLista; let i = index;" >
+        <svg class="nx-2 h-6 w-6 top-2 left-2" width="40" height="41" viewBox="0 0 43 41" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                      d=" M30.5044 25.9043H28.6179L27.9492 25.2791C30.2895 22.6393 31.6984 19.2122 31.6984 15.4841C31.6984 7.17107 24.7492 0.432648 16.1761 0.432648C7.60303 0.432648 0.653809 7.17107 0.653809 15.4841C0.653809 23.7971 7.60303 30.5356 16.1761 30.5356C20.0209 30.5356 23.5552 29.1694 26.2776 26.9001L26.9223 27.5484V29.3778L38.8626 40.9326L42.4208 37.4824L30.5044 25.9043V25.9043ZM16.1761 25.9043C10.2299 25.9043 5.42991 21.25 5.42991 15.4841C5.42991 9.71824 10.2299 5.06387 16.1761 5.06387C22.1224 5.06387 26.9223 9.71824 26.9223 15.4841C26.9223 21.25 22.1224 25.9043 16.1761 25.9043Z"
+                      fill="white " />
+              </svg>
+              
+          {{item.nome}}
+
+      </li>
+      
+    </ul>
+  </aside>
+
+  
+ 
+  <div class="w-full h-full flex flex-col justify-between">
+    <!-- Header -->
+    <header class="h-24 w-full items-center relative px-5 space-x-10 bg-unimed-pink">
+      <!-- Informação -->
+      <div class="flex flex-shrink-0 items-center justify-end pr-20 pt-1 space-x-4 text-white">
+        
+        <div class="w-96 relative mt-1">
+          <input type="text" id="password"
+              class="w-full rounded-full pl-6 pr-10 py-5 border-2 border-gray-200 hover:border-gray-300 focus:outline-none focus:border-white transition-colors "
+              placeholder="Digite o que procura...">
+
+          <div class="absolute right-2 top-2 rounded-full w-14 h-14 bg-unimed-purpe">
+              <svg class="relative top-2 left-2" width="40" height="41" viewBox="0 0 43 41" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                      d=" M30.5044 25.9043H28.6179L27.9492 25.2791C30.2895 22.6393 31.6984 19.2122 31.6984 15.4841C31.6984 7.17107 24.7492 0.432648 16.1761 0.432648C7.60303 0.432648 0.653809 7.17107 0.653809 15.4841C0.653809 23.7971 7.60303 30.5356 16.1761 30.5356C20.0209 30.5356 23.5552 29.1694 26.2776 26.9001L26.9223 27.5484V29.3778L38.8626 40.9326L42.4208 37.4824L30.5044 25.9043V25.9043ZM16.1761 25.9043C10.2299 25.9043 5.42991 21.25 5.42991 15.4841C5.42991 9.71824 10.2299 5.06387 16.1761 5.06387C22.1224 5.06387 26.9223 9.71824 26.9223 15.4841C26.9223 21.25 22.1224 25.9043 16.1761 25.9043Z"
+                      fill="white " />
+              </svg>
+          </div>
+      </div>
+        
+        <!-- Foto -->
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="max-w-full h-full flex relative overflow-y-hidden">
+      <!-- Container -->
+      <ul class="h-full w-full m-4 flex flex-col  items-start justify-start rounded-tl grid-flow-col auto-cols-max gap-4 overflow-y-scroll">
+        <!-- Container -->
+        <li class=" grid grid-cols-6 w-full h-16 rounded-lg flex-shrink-0 flex-grow " *ngFor="let documento of ArrayDocumentos">
+         
+          <div>
+            {{documento.nm_Codigo}}
+          </div>
+          <div>
+            {{documento.nm_Processo}}
+          </div>
+          <div>
+          {{documento.nm_Documento}}
+          </div>
+          <div>
+            {{documento.nr_Revisao}}
+          </div>
+          <div>
+            {{documento.dt_Revisao}}
+          </div>
+          <div>
+            <svg class="relative top-2 left-2" width="40" height="41" viewBox="0 0 43 41" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                      d=" M30.5044 25.9043H28.6179L27.9492 25.2791C30.2895 22.6393 31.6984 19.2122 31.6984 15.4841C31.6984 7.17107 24.7492 0.432648 16.1761 0.432648C7.60303 0.432648 0.653809 7.17107 0.653809 15.4841C0.653809 23.7971 7.60303 30.5356 16.1761 30.5356C20.0209 30.5356 23.5552 29.1694 26.2776 26.9001L26.9223 27.5484V29.3778L38.8626 40.9326L42.4208 37.4824L30.5044 25.9043V25.9043ZM16.1761 25.9043C10.2299 25.9043 5.42991 21.25 5.42991 15.4841C5.42991 9.71824 10.2299 5.06387 16.1761 5.06387C22.1224 5.06387 26.9223 9.71824 26.9223 15.4841C26.9223 21.25 22.1224 25.9043 16.1761 25.9043Z"
+                      fill="white " />
+              </svg>
+          </div>
+        </li>
+      </ul>
+    </main>
+  </div>
+
+</div>
