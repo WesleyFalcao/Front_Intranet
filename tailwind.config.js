@@ -18,7 +18,7 @@ module.exports = {
 
         },
       },
-
+      
       backgroundImage: theme => ({
         'imagem-fundo': "url('assets/imagens/background.svg')"
 

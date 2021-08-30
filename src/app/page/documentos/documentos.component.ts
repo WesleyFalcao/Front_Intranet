@@ -32,6 +32,15 @@ export class DocumentosComponent implements OnInit {
 
   ]
 
+  ArrayTitulos = [
+
+    { nm_Titulo: "Nome"},
+    { nm_Titulo: "Processos"},
+    { nm_Titulo: "Código"},
+    { nm_Titulo: "Revisão"},
+    { nm_Titulo: "Data"},
+  ]
+
   constructor() { }
 
   ngOnInit(): void {
