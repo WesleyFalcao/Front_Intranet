@@ -9,11 +9,11 @@ import { HomeModule } from './page/home/home.module';
 import { ShellModule } from './components/shell/shell.module';
 import { ListaModule } from './components/lista/lista.module';
 import { DocumentosComponent } from './page/documentos/documentos.component';
+import { DocumentosModule } from './page/documentos/documentos.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DocumentosComponent,
 
   ],
   imports: [
@@ -21,7 +21,7 @@ import { DocumentosComponent } from './page/documentos/documentos.component';
     AppRoutingModule,
     HomeModule,
     ShellModule,
-    
+    DocumentosModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -21,14 +21,15 @@ export class DocumentosComponent implements OnInit {
 
   ArrayDocumentos = [
 
-    { nm_Processo: " Tecnologia da Informação ", nm_Documento: "Gerenciamento de Demandas de TI", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "IT-NF-001" },
-    { nm_Processo: " Tecnologia da Informação ", nm_Documento: "Sistemática de Backup", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "PR-NF-004" },
-    { nm_Processo: " Tecnologia da Informação ", nm_Documento: "Aquisição de Equipamentos na Modalidade Leasing Operacional - Tecnologia de Informação", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "IT-NF-004" },
-    { nm_Processo: " Tecnologia da Informação ", nm_Documento: "Tabela de Registro: Tecnologia de Informação", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "OD-NF-001" },
-    { nm_Processo: " Tecnologia da Informação ", nm_Documento: "Aquisição de Equipamentos em Regime de Leasing Operacional", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "PR-NF-005" },
-    { nm_Processo: " Tecnologia da Informação ", nm_Documento: "Plano de Continuidade de Negócio", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "IT-NF-005" },
-    { nm_Processo: " Tecnologia da Informação ", nm_Documento: "Levantamento de Requisitos (Requisição de Mudanças)", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "FM-INF-002" },
-    { nm_Processo: " Tecnologia da Informação ", nm_Documento: "Política de Segurança de Informação", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "POL-DIR-007" },
+    { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/pdf.svg", nm_Documento: "Gerenciamento de Demandas de TI", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "IT-NF-001" },
+    { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/pdf.svg", nm_Documento: "Sistemática de Backup", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "PR-NF-004" },
+    { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/pdf.svg", nm_Documento: "Aquisição de Equipamentos na Modalidade Leasing Operacional - Tecnologia da Informação", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "IT-NF-004" },
+    { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/pdf.svg", nm_Documento: "Tabela de Registro: Tecnologia de Informação", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "OD-NF-001" },
+    { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/pdf.svg", nm_Documento: "Aquisição de Equipamentos em Regime de Leasing Operacional", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "PR-NF-005" },
+    { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/pdf.svg", nm_Documento: "Plano de Continuidade de Negócio", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "IT-NF-005" },
+    { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/icondoc.svg", nm_Documento: "Levantamento de Requisitos (Requisição de Mudanças)", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "FM-INF-002" },
+    { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/pdf.svg", nm_Documento: "Política de Segurança de Informação", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "POL-DIR-007" },
+
 
   ]
 
