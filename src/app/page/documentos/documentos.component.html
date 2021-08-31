@@ -47,13 +47,16 @@
   </div>
 </div> -->
 
-<div class="h-screen w-full bg-white relative flex overflow-hidden">
+<div class="h-screen w-full  relative flex overflow-hidden">
 
   <!-- Sidebar -->
-  <aside class="h-full hidden w-80 pl-4 flex-col pt-36 relative bg-white text-black md:flex">
-    <ul class="w-full flex flex-col space-y-8">
-      <li class=" flex w-full justify-start " *ngFor="let item of ArrayLista; let i = index;">
-        <svg width="20" height="20" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+  <aside class=" h-full hidden w-80 pl-4 flex-col pt-36 relative  text-black-700 md:flex ">
+    <ul class="w-full flex flex-col space-y-12 font-normal cursor-pointer">
+      <li class=" flex w-full justify-start transition transform hover:-translate-y-px "
+        *ngFor="let item of ArrayLista; let i = index;">
+        <svg class=" inline-block mr-2" width="20" height="20" viewBox="0 0 35 35" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
           <path
             d="M20.4168 2.91669H8.75016C7.97661 2.91669 7.23475 3.22398 6.68777 3.77096C6.14079 4.31794 5.8335 5.05981 5.8335 5.83335V29.1667C5.8335 29.9402 6.14079 30.6821 6.68777 31.2291C7.23475 31.7761 7.97661 32.0834 8.75016 32.0834H26.2502C27.0237 32.0834 27.7656 31.7761 28.3126 31.2291C28.8595 30.6821 29.1668 29.9402 29.1668 29.1667V11.6667L20.4168 2.91669Z"
             stroke="#00995D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -65,22 +68,37 @@
             stroke-linejoin="round" />
         </svg>
         {{item.nome}}
+
       </li>
     </ul>
   </aside>
 
+
+  <!-- Barra de Pesquisa -->
+
   <div class="w-full h-full flex flex-col justify-between">
-    <!-- Header -->
-    <header class="h-24 w-full items-center relative px-5 space-x-10 bg-unimed-green">
-      <!-- Informação -->
+
+    <header class="h-28 pt-2 w-full items-center relative px-5 space-x-10 ">
+
       <div class="flex flex-shrink-0 items-center justify-end pr-20 pt-1 space-x-4 text-white">
 
-        <div class="w-96 relative mt-1">
+        <!-- Filtro-->
+        <div class=" transition transform hover:-translate-y-px cursor-pointer">
+          <svg width="62" height="62" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M4.25018 5.61C6.27018 8.2 10.0002 13 10.0002 13V19C10.0002 19.55 10.4502 20 11.0002 20H13.0002C13.5502 20 14.0002 19.55 14.0002 19V13C14.0002 13 17.7202 8.2 19.7402 5.61C20.2502 4.95 19.7802 4 18.9502 4H5.04018C4.21018 4 3.74018 4.95 4.25018 5.61Z"
+              fill="#A3238E" />
+          </svg>
+        </div>
+
+        <div class="w-2/5 relative mt-1 transition transform hover:-translate-y-1">
           <input type="text" id="password"
-            class="w-full rounded-full pl-6 pr-10 py-5 border-2 border-gray-200 hover:border-gray-300 focus:outline-none focus:border-white transition-colors "
+            class="w-full rounded-full pl-6 pr-10 py-5 border-2 border-gray-200  focus:ring-unimed-purpe focus:border-transparent"
             placeholder="Digite o que procura...">
 
-          <div class="absolute right-2 top-2 rounded-full w-14 h-14 bg-unimed-purpe">
+          <!-- icone pesquisa-->
+
+          <div class="absolute right-2 top-2 rounded-full w-14 h-14 bg-unimed-purpe cursor-pointer">
             <svg class="relative top-2 left-2" width="40" height="41" viewBox="0 0 43 41" fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <path
@@ -89,8 +107,6 @@
             </svg>
           </div>
         </div>
-
-        <!-- Foto -->
       </div>
     </header>
 
@@ -98,35 +114,48 @@
     <main class=" max-w-full h-full flex relative overflow-y-hidden ">
       <!-- Container -->
 
-      <ul class=" h-full w-full rounded-tl-xl bg-unimed-purpe flex flex-col items-start gap-2 overflow-y-scroll ">
-
-        <li class=" grid grid-cols-5 w-full h-16 space-x-12 p-12" *ngFor="let objeto of ArrayTitulos">
-          <div>
-            {{objeto.nm_Titulo}}
+      <table>
+        <ul class=" h-full w-full rounded-tl-xl bg-white gap-2 overflow-y-scroll">
+          <div class="flex flex-row space-x-4 text-center font-semibold">
+            <li class=" w-full h-16 pt-12" *ngFor="let objeto of ArrayTitulos">
+              <div>
+                {{objeto.nm_Titulo}}
+              </div>
+            </li>
           </div>
-        </li>
-
-        <li class="grid grid-cols-5 w-full h-16 space-x-12 flex-shrink-0 flex-grow p-12"
-          *ngFor="let documento of ArrayDocumentos ">
-          <div>
-            {{documento.nm_Codigo}}
+          <div class=" space-y-8">
+            <li
+              class="grid grid-cols-6 w-full h-32 pt-32 text-center cursor-pointer transition transform hover:-translate-y-px"
+              *ngFor="let documento of ArrayDocumentos">
+              <div class="pl-12 ">
+                <svg class="inline-block justify-start" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M20 2H8C6.9 2 6 2.9 6 4V16C6 17.1 6.9 18 8 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM11.5 9.5C11.5 10.33 10.83 11 10 11H9V13H7.5V7H10C10.83 7 11.5 7.67 11.5 8.5V9.5ZM16.5 11.5C16.5 12.33 15.83 13 15 13H12.5V7H15C15.83 7 16.5 7.67 16.5 8.5V11.5ZM20.5 8.5H19V9.5H20.5V11H19V13H17.5V7H20.5V8.5ZM9 9.5H10V8.5H9V9.5ZM4 6H2V20C2 21.1 2.9 22 4 22H18V20H4V6ZM14 11.5H15V8.5H14V11.5Z"
+                    fill="#FF0000" />
+                </svg>
+              </div>
+              <div>
+                {{documento.nm_Codigo}}
+              </div>
+              <div>
+                {{documento.nm_Processo}}
+              </div>
+              <div>
+                {{documento.nm_Documento}}
+              </div>
+              <div>
+                {{documento.nr_Revisao}}
+              </div>
+              <div>
+                {{documento.dt_Revisao}}
+              </div>
+              <div>
+              </div>
+            </li>
           </div>
-          <div>
-            {{documento.nm_Processo}}
-          </div>
-          <div>
-            {{documento.nm_Documento}}
-          </div>
-          <div>
-            {{documento.nr_Revisao}}
-          </div>
-          <div>
-            {{documento.dt_Revisao}}
-          </div>
-          <div>
-          </div>
-        </li>
-      </ul>
+        </ul>
+      </table>
     </main>
   </div>
 </div>
