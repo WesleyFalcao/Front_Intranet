@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DocumentosComponent implements OnInit {
 
+  nm_search: string 
+
   ArrayLista = [
 
     { nome: "Documentos do SGQ", }, 
@@ -34,17 +36,42 @@ export class DocumentosComponent implements OnInit {
   ]
 
   ArrayTitulos = [
-
-    { nm_Titulo: "Código"},
-    { nm_Titulo: "Processos"},
-    { nm_Titulo: "Nome"},
-    { nm_Titulo: "Revisão"},
-    { nm_Titulo: "Data"},
+    { nm_Titulo: "", nm_Classe: "md:w-1/12"},
+    { nm_Titulo: "Nome", nm_Classe: "md:w-6/12"},
+    { nm_Titulo: "Processos", nm_Classe: "md:w-2/12"},
+    { nm_Titulo: "Data", nm_Classe: "md:w-1/12"},
+    { nm_Titulo: "Código", nm_Classe: "md:w-2/12"},
+    
   ]
+
+  lista = [
+    { nm_Documento: "SGQ" },
+    { nm_Documento: "Linha de Cuidados" },
+    { nm_Documento: "Mapa de processos HU" },
+    { nm_Documento: "Documentos de Acreditação" },
+    { nm_Documento: "Protocolos Médicos" },
+    { nm_Documento: "Normas de Especialidade" },
+    { nm_Documento: "Segurança do Paciente" }
+  ];
+
+  lista2 = [
+    { nm_Documento: "Unimed Matriz" },
+    { nm_Documento: "Hospital Unimed" }
+  ]
+
+  lista3 = [
+    {nm_Documento: "Objetivos Operacionais"}
+  ]
+
+  sm_Mostrarmodal: boolean = true
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  buscar() { 
+    console.log(this.nm_search)
+    this.ArrayDocumentos = this.ArrayDocumentos.filter(doc=> doc.nm_Documento.toUpperCase().indexOf(this.nm_search.toUpperCase())>0)
+  }
 }

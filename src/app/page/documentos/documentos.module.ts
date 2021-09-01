@@ -4,7 +4,8 @@ import { DocumentosComponent } from './documentos.component';
 import { ShellModule } from 'src/app/components/shell/shell.module';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
-
+import { FormsModule } from '@angular/forms';
+import { ListaModule } from 'src/app/components/lista/lista.module';
 
 
 @NgModule({
@@ -12,8 +13,11 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     ShellModule,
+    FormsModule,
     HttpClientModule,
-    AngularSvgIconModule.forRoot()
+    AngularSvgIconModule.forRoot(),
+    ListaModule
+
   ],
   exports: [
     DocumentosComponent

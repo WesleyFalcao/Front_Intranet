@@ -10,6 +10,8 @@ import { ShellModule } from './components/shell/shell.module';
 import { ListaModule } from './components/lista/lista.module';
 import { DocumentosComponent } from './page/documentos/documentos.component';
 import { DocumentosModule } from './page/documentos/documentos.module';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { DocumentosModule } from './page/documentos/documentos.module';
     HomeModule,
     ShellModule,
     DocumentosModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
