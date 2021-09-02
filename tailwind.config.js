@@ -48,6 +48,8 @@ module.exports = {
           yellow: '#FFCB08',
 
           black: '#000000',
+          
+          purpeconecta: '#5E1995',
         },
       },
       
