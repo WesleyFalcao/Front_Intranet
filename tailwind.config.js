@@ -9,17 +9,18 @@ module.exports = {
 
   darkMode: 'class', // or 'media' or 'class'
   theme: {
-    screens:{
-      'motoG4':'360px',
-      'pixel02':'411px',
-      'iPhone5/SE':'320px',
-      'iPhone5/6/7/X':'375px',
-      'iPhone6/7/8plus':'414px',
-      'iPadPro':'1024px',
-      'SurfaceDuo':'540px',
-      'GalaxyFold':'280px',
-    },
+    
     extend: {
+      screens:{
+        'motoG4':'360px',
+        'pixel02':'411px',
+        'iPhone5/SE':'320px',
+        'iPhone5/6/7/X':'375px',
+        'iPhone6/7/8plus':'414px',
+        'iPadPro':'1024px',
+        'SurfaceDuo':'540px',
+        'GalaxyFold':'280px',
+      },
       colors: {
         unimed: {
           green: '#00995D',
