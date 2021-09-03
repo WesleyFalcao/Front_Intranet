@@ -51,218 +51,60 @@
 
   <!-- Sidebar -->
 
-  <aside class="relative h-full hidden w-1/6 pl-4 flex-col pt-24 text-sm  text-black xl:flex ">
-    <ul class="w-full flex flex-col space-y-12 font-normal text-sm cursor-pointer">
-      <li class=" flex w-full justify-start transition transform hover:-translate-y-px "
-        *ngFor="let item of lista; let i = index;">
-        <svg width="30" height="30" viewBox="0 0 100 125" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M92.5 40H85V22.5C85 21.837 84.737 21.201 84.268 20.732L69.268 5.732C68.799 5.263 68.163 5 67.5 5H17.5C16.119 5 15 6.119 15 7.5V40H7.5C6.119 40 5 41.119 5 42.5V77.5C5 78.881 6.119 80 7.5 80H15V92.5C15 93.881 16.119 95 17.5 95H82.5C83.881 95 85 93.881 85 92.5V80H92.5C93.881 80 95 78.881 95 77.5V42.5C95 41.119 93.881 40 92.5 40ZM70 13.536L76.464 20H70V13.536ZM20 10H65V25H80V40H20V10ZM80 90H20V80H80V90ZM90 75H10V45H90V75Z"
-            fill="#5E1995" />
-          <g filter="url(#filter0_d)">
-            <path
-              d="M30 65H32.5C36.636 65 40 61.636 40 57.5C40 53.364 36.636 50 32.5 50H27.5C26.119 50 25 51.119 25 52.5V70H30V65ZM30 55H32.5C33.878 55 35 56.122 35 57.5C35 58.878 33.878 60 32.5 60H30V55Z"
-              fill="#5E1995" />
-          </g>
-          <g filter="url(#filter1_d)">
-            <path
-              d="M57 62.5V57.5C57 53.364 53.636 50 49.5 50H42V70H49.5C53.636 70 57 66.636 57 62.5ZM47 55H49.5C50.878 55 52 56.121 52 57.5V62.5C52 63.879 50.878 65 49.5 65H47V55Z"
-              fill="#5E1995" />
-          </g>
-          <g filter="url(#filter2_d)">
-            <path d="M65 62.5H72.5V57.5H65V55H75V50H62.5C61.119 50 60 51.119 60 52.5V57.5V62.5V70H65V62.5Z"
-              fill="#5E1995" />
-          </g>
-          <defs>
-            <filter id="filter0_d" x="21" y="50" width="23" height="28" filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                result="hardAlpha" />
-              <feOffset dy="4" />
-              <feGaussianBlur stdDeviation="2" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
-              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
-            </filter>
-            <filter id="filter1_d" x="38" y="50" width="23" height="28" filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                result="hardAlpha" />
-              <feOffset dy="4" />
-              <feGaussianBlur stdDeviation="2" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
-              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
-            </filter>
-            <filter id="filter2_d" x="56" y="50" width="23" height="28" filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                result="hardAlpha" />
-              <feOffset dy="4" />
-              <feGaussianBlur stdDeviation="2" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
-              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
-            </filter>
-          </defs>
-        </svg>
+  <aside class="relative h-full hidden w-3/12 pl-4 flex-col pt-40 text-black xl:flex ">
+    <ul class="w-full flex flex-col space-y-12 text-lg font-normal cursor-pointer">
 
+      <li class=" flex w-full justify-start transition transform hover:-translate-y-1 "(click)="item.open=!item.open" *ngFor="let item of lista; let i = index;">
+        <div class=" pr-4">
+          <svg class = "transition: transform 0.35s ease transform-origin: 0.5em 50% " width="20" height="15" viewBox="0 0 90 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M45.2811 44.9983C46.1723 44.9428 47.0194 44.5908 47.6874 43.9983L87.6874 7.99834C88.0811 7.64592 88.4015 7.21924 88.63 6.74278C88.8586 6.26633 88.9908 5.74952 89.0193 5.22185C89.0477 4.69418 88.9717 4.16608 88.7956 3.66783C88.6196 3.16959 88.3469 2.71096 87.9933 2.31829C87.6397 1.92561 87.2121 1.6066 86.7349 1.3795C86.2578 1.1524 85.7405 1.02168 85.2128 0.99486C84.685 0.968045 84.1572 1.04563 83.6594 1.22319C83.1617 1.40076 82.704 1.67484 82.3124 2.02965L44.9998 35.6233L7.68733 2.02965C7.29573 1.67483 6.83796 1.40076 6.34025 1.22319C5.84254 1.04562 5.31469 0.968046 4.78693 0.99486C4.25918 1.02167 3.74191 1.15234 3.26476 1.37944C2.78761 1.60654 2.35998 1.92561 2.00636 2.31829C1.65274 2.71096 1.38009 3.16959 1.20404 3.66783C1.02799 4.16608 0.952 4.69412 0.980424 5.22179C1.00885 5.74946 1.14113 6.26633 1.36968 6.74278C1.59824 7.21924 1.91857 7.64592 2.31233 7.99834L42.3123 43.9983C42.7144 44.3561 43.1846 44.6292 43.6948 44.801C44.2049 44.9728 44.7444 45.0399 45.2811 44.9983V44.9983Z" fill="#5E1995"/>
+          </svg>
+        </div>
         {{item.nm_Documento}}
+        <ul *ngIf="item.open">
+          <li *ngFor="let sub of item.items" >
+            {{sub.nm_Documento}}
+          </li>
+        </ul>
       </li>
-      <li class=" flex w-full justify-start transition transform hover:-translate-y-px "
+      <li class=" flex w-full justify-start transition transform hover:-translate-y-1 "
         *ngFor="let item of lista2; let i = index;">
-        <svg width="30" height="30" viewBox="0 0 100 125" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="pr-4">
+        <svg width="25" height="25" viewBox="0 0 100 125" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
-            d="M92.5 40H85V22.5C85 21.837 84.737 21.201 84.268 20.732L69.268 5.732C68.799 5.263 68.163 5 67.5 5H17.5C16.119 5 15 6.119 15 7.5V40H7.5C6.119 40 5 41.119 5 42.5V77.5C5 78.881 6.119 80 7.5 80H15V92.5C15 93.881 16.119 95 17.5 95H82.5C83.881 95 85 93.881 85 92.5V80H92.5C93.881 80 95 78.881 95 77.5V42.5C95 41.119 93.881 40 92.5 40ZM70 13.536L76.464 20H70V13.536ZM20 10H65V25H80V40H20V10ZM80 90H20V80H80V90ZM90 75H10V45H90V75Z"
+            d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
             fill="#5E1995" />
-          <g filter="url(#filter0_d)">
-            <path
-              d="M30 65H32.5C36.636 65 40 61.636 40 57.5C40 53.364 36.636 50 32.5 50H27.5C26.119 50 25 51.119 25 52.5V70H30V65ZM30 55H32.5C33.878 55 35 56.122 35 57.5C35 58.878 33.878 60 32.5 60H30V55Z"
-              fill="#5E1995" />
-          </g>
-          <g filter="url(#filter1_d)">
-            <path
-              d="M57 62.5V57.5C57 53.364 53.636 50 49.5 50H42V70H49.5C53.636 70 57 66.636 57 62.5ZM47 55H49.5C50.878 55 52 56.121 52 57.5V62.5C52 63.879 50.878 65 49.5 65H47V55Z"
-              fill="#5E1995" />
-          </g>
-          <g filter="url(#filter2_d)">
-            <path d="M65 62.5H72.5V57.5H65V55H75V50H62.5C61.119 50 60 51.119 60 52.5V57.5V62.5V70H65V62.5Z"
-              fill="#5E1995" />
-          </g>
-          <defs>
-            <filter id="filter0_d" x="21" y="50" width="23" height="28" filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                result="hardAlpha" />
-              <feOffset dy="4" />
-              <feGaussianBlur stdDeviation="2" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
-              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
-            </filter>
-            <filter id="filter1_d" x="38" y="50" width="23" height="28" filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                result="hardAlpha" />
-              <feOffset dy="4" />
-              <feGaussianBlur stdDeviation="2" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
-              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
-            </filter>
-            <filter id="filter2_d" x="56" y="50" width="23" height="28" filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                result="hardAlpha" />
-              <feOffset dy="4" />
-              <feGaussianBlur stdDeviation="2" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
-              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
-            </filter>
-          </defs>
         </svg>
-
+      </div>
         {{item.nm_Documento}}
 
       </li>
       <li class=" flex w-full justify-start transition transform hover:-translate-y-1"
         *ngFor="let item of lista3; let i = index;">
-        <svg width="30" height="30" viewBox="0 0 100 125" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="pr-4">
+        <svg width="25" height="25" viewBox="0 0 100 125" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
-            d="M92.5 40H85V22.5C85 21.837 84.737 21.201 84.268 20.732L69.268 5.732C68.799 5.263 68.163 5 67.5 5H17.5C16.119 5 15 6.119 15 7.5V40H7.5C6.119 40 5 41.119 5 42.5V77.5C5 78.881 6.119 80 7.5 80H15V92.5C15 93.881 16.119 95 17.5 95H82.5C83.881 95 85 93.881 85 92.5V80H92.5C93.881 80 95 78.881 95 77.5V42.5C95 41.119 93.881 40 92.5 40ZM70 13.536L76.464 20H70V13.536ZM20 10H65V25H80V40H20V10ZM80 90H20V80H80V90ZM90 75H10V45H90V75Z"
+            d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
             fill="#5E1995" />
-          <g filter="url(#filter0_d)">
-            <path
-              d="M30 65H32.5C36.636 65 40 61.636 40 57.5C40 53.364 36.636 50 32.5 50H27.5C26.119 50 25 51.119 25 52.5V70H30V65ZM30 55H32.5C33.878 55 35 56.122 35 57.5C35 58.878 33.878 60 32.5 60H30V55Z"
-              fill="#5E1995" />
-          </g>
-          <g filter="url(#filter1_d)">
-            <path
-              d="M57 62.5V57.5C57 53.364 53.636 50 49.5 50H42V70H49.5C53.636 70 57 66.636 57 62.5ZM47 55H49.5C50.878 55 52 56.121 52 57.5V62.5C52 63.879 50.878 65 49.5 65H47V55Z"
-              fill="#5E1995" />
-          </g>
-          <g filter="url(#filter2_d)">
-            <path d="M65 62.5H72.5V57.5H65V55H75V50H62.5C61.119 50 60 51.119 60 52.5V57.5V62.5V70H65V62.5Z"
-              fill="#5E1995" />
-          </g>
-          <defs>
-            <filter id="filter0_d" x="21" y="50" width="23" height="28" filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                result="hardAlpha" />
-              <feOffset dy="4" />
-              <feGaussianBlur stdDeviation="2" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
-              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
-            </filter>
-            <filter id="filter1_d" x="38" y="50" width="23" height="28" filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                result="hardAlpha" />
-              <feOffset dy="4" />
-              <feGaussianBlur stdDeviation="2" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
-              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
-            </filter>
-            <filter id="filter2_d" x="56" y="50" width="23" height="28" filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                result="hardAlpha" />
-              <feOffset dy="4" />
-              <feGaussianBlur stdDeviation="2" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
-              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
-            </filter>
-          </defs>
         </svg>
-
+      </div>
         {{item.nm_Documento}}
+
       </li>
     </ul>
   </aside>
 
   <!-- Barra de Pesquisa -->
 
-  <div class=" lg:w-full lg:h-full ">
+  <div class=" w-full h-full ">
 
     <header class="sm:h-24 lg:h-28 w-full items-center relative px-5 space-x-10 ">
 
-      <div class="flex flex-shrink-0 items-center justify-end md:pr-12 space-x-4">
-
-        <!-- Filtro-->
-        <div
-          class="relative mb-2 transform hover:-translate-y-1 cursor-pointer md:right-12 md:top-8 md:mb-8 lg:relative lg:pb-4 xl:hidden">
-          <svg width="45" height="45" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg"
-            (click)="b_Mostrar_Modal=true">
-            <path d="M60.5 0.166687H0.5L24.5 31.7V53.5L36.5 60.1667V31.7L60.5 0.166687Z" fill="#5E1995" />
-          </svg>
-        </div>
+      <div class="flex flex-row flex-shrink-0 items-center justify-start md:pr-12 space-x-4">
 
         <!-- barra de pesquisa -->
         <div
-          class="pr-0 relative mb-4 rounded-full shadow-lg transition transform hover:-translate-y-1 md:w-6/12 md:top-4 lg:w-6/12 lg:">
+          class="pr-0 flex-grow relative mb-4 rounded-full shadow-lg transition transform hover:-translate-y-1 md:w-6/12 md:top-4 xl:flex-grow-0 lg:w-8/12">
           <input type="text" [(ngModel)]="nm_search" name="nm_search"
             class="w-full rounded-full pl-6 pr-10 py-5 border-2 border-gray-200  focus:ring-unimed-purpeconecta focus:border-transparent"
             placeholder="Pesquise...">
@@ -279,40 +121,54 @@
             </svg>
           </div>
         </div>
+
+        <!-- Filtro-->
+        <div
+          class="relative mb-2 transform hover:-translate-y-1 cursor-pointer md: md:top-8 md:mb-8 lg:relative lg:pb-4 xl:hidden">
+          <svg width="45" height="45" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg"
+            (click)="b_Mostrar_Modal=true">
+            <path d="M60.5 0.166687H0.5L24.5 31.7V53.5L36.5 60.1667V31.7L60.5 0.166687Z" fill="#5E1995" />
+          </svg>
+        </div>
+
       </div>
     </header>
 
     <!-- Main -->
 
-    <main class=" max-w-full h-full flex relative overflow-y-hidden ">
+    <main class="w-full h-full flex relative overflow-y-hidden ">
 
       <!-- Container -->
 
       <ul class="w-full flex flex-col gap-1 pb-28 mt-4 px-4 overflow-x-hidden ">
 
-        <!-- titulo -->
+        <!-- titulo dos documentos -->
 
-        <li class="justify-center flex-col hidden w-full lg:flex md:flex-row">
+        <li class="z-10 gap-x-8 justify-end hidden w-full  lg:flex lg:pl-44">
           <div class="text-center font-bold text-xl pb-4 pt-8" [ngClass]="objeto.nm_Classe"
             *ngFor="let objeto of ArrayTitulos">
             {{objeto.nm_Titulo}}
           </div>
         </li>
+        <li class="mt-8">
 
-        <li
-          class=" relative mb-4 flex font-medium flex-col w-full lg:flex-row transition transform hover:-translate-y-1 cursor-pointer md:mt-4 bg-white rounded-lg shadow-lg "
+        </li>
+
+        <!-- listagem documentos -->
+
+        <li class=" relative mb-4 flex font-medium flex-col w-full lg:flex-row transition transform hover:-translate-y-1 cursor-pointer bg-white rounded-lg shadow-lg "
           *ngFor="let documento of ArrayDocumentos">
 
-          <div class=" w-1/12 sm:absolute sm:right-0 lg:relative md:right-0 md:top-0 md:absolute m-4 ">
+          <div class=" w-1/12 sm:absolute  sm:right-0 lg:relative md:right-0 md:top-0 md:absolute m-4 ">
             <svg-icon [src]="documento.nm_Caminho_Imagem " [svgStyle]="{ 'width.px':60, 'height.px':60 }"></svg-icon>
           </div>
-          <div class="pl-4 pt-4 pr-40 lg:w-6/12 ">
+          <div class="pl-4 mr-20 pt-4 relative lg:w-6/12 ">
             {{documento.nm_Documento}}
           </div>
           <div class="pl-4 pt-4 lg:w-2/12 w-full ">
             {{documento.nm_Processo}}
           </div>
-          <div class="pl-4 lg:pl-8 w-full pt-4 lg:w-1/12">
+          <div class="pl-4 xl:pl-8 w-full pt-4 lg:w-1/12">
             {{documento.dt_Revisao | date: 'dd/MM/yyyy'}}
           </div>
           <div class="pl-4 lg:pl-16 pt-4 w-full lg:w-2/12 pb-4">
@@ -360,51 +216,91 @@
 
 <!-- modal -->
 
-<div style="transition: all 0.15s easy 0s;" class="w-screen h-screen bg-white absolute inset-0 "
+<div style="transition: all 0.15s easy 0s;" class="w-screen h-screen bg-white absolute inset-0 flex flex-col z-10"
   *ngIf="b_Mostrar_Modal">
-  <button (click)="b_Mostrar_Modal=false">
-    <svg class="mb-4 mt-4 ml-4" width="42" height="42" viewBox="0 0 68 68" fill="none"
-      xmlns="http://www.w3.org/2000/svg">
-      <path d="M68 29.75H16.2775L40.035 5.9925L34 0L0 34L34 68L39.9925 62.0075L16.2775 38.25H68V29.75Z"
-        fill="#411564" />
-    </svg>
-  </button>
+  <div class="fixed top-0 left-0 right-0 bg-white z-20 ">
+    <button (click)="b_Mostrar_Modal=false">
+      <div class=" h-12 w-full ">
+        <svg class=" mt-4 ml-4" width="42" height="42" viewBox="0 0 68 68" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M68 29.75H16.2775L40.035 5.9925L34 0L0 34L34 68L39.9925 62.0075L16.2775 38.25H68V29.75Z"
+            fill="#411564" />
+        </svg>
+      </div>
+    </button>
+  </div>
   <div
-    class="h-full px-4 flex flex-col w-full justify-center mt-12 absolute md:transform -translate-y-1/2 md:top-1/2  md:flex-row gap-4 pt-1 bg-white ">
+    class=" px-4 flex flex-col w-full justify-center absolute md:transform md:top-1/2  md:flex-row gap-4 pt-1 bg-white ">
 
-    <ul class=" md:w-1/4 md:h-1/3 rounded-3xl shadow-lg">
+    <ul class="mt-20 md:w-1/4 md:h-1/3 rounded-3xl shadow-lg">
+      <h3 class="justify-center flex pt-4 mb-4 font-semibold text-left">Documentos da Qualidade</h3>
       <li
-        class=" pt-4 pb-4 transition transform hover:-translate-y-1 cursor-pointer lg:hover:bg-unimed-gray lg:hover:shadow-lg"
+        class="pb-4 font transition lg:transform hover:-translate-y-1 cursor-pointer lg:hover:bg-unimed-gray lg:hover:shadow-lg"
         *ngFor="let objeto of lista">
-        <svg-icon class="pl-9 pt-1 absolute" src="assets/imagens/file-text.svg" [svgStyle]="{ 'width.px':36 }">
-        </svg-icon>
+        <svg class="absolute mt-4 ml-8 " width="40" height="40" viewBox="0 0 100 125" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M92.5 40H85V22.5C85 21.837 84.737 21.201 84.268 20.732L69.268 5.732C68.799 5.263 68.163 5 67.5 5H17.5C16.119 5 15 6.119 15 7.5V40H7.5C6.119 40 5 41.119 5 42.5V77.5C5 78.881 6.119 80 7.5 80H15V92.5C15 93.881 16.119 95 17.5 95H82.5C83.881 95 85 93.881 85 92.5V80H92.5C93.881 80 95 78.881 95 77.5V42.5C95 41.119 93.881 40 92.5 40ZM70 13.536L76.464 20H70V13.536ZM20 10H65V25H80V40H20V10ZM80 90H20V80H80V90ZM90 75H10V45H90V75Z"
+            fill="#5E1995" />
+          <path
+            d="M30 65H32.5C36.636 65 40 61.636 40 57.5C40 53.364 36.636 50 32.5 50H27.5C26.119 50 25 51.119 25 52.5V70H30V65ZM30 55H32.5C33.878 55 35 56.122 35 57.5C35 58.878 33.878 60 32.5 60H30V55Z"
+            fill="#5E1995" />
+          <path
+            d="M57 62.5V57.5C57 53.364 53.636 50 49.5 50H42V70H49.5C53.636 70 57 66.636 57 62.5ZM47 55H49.5C50.878 55 52 56.121 52 57.5V62.5C52 63.879 50.878 65 49.5 65H47V55Z"
+            fill="#5E1995" />
+          <path d="M65 62.5H72.5V57.5H65V55H75V50H62.5C61.119 50 60 51.119 60 52.5V57.5V62.5V70H65V62.5Z"
+            fill="#5E1995" />
+        </svg>
         <h3 class="text-black font-semibold mb-1 pl-24 p-3 hover:text-white">{{objeto.nm_Documento}}</h3>
-        <hr class="w-8/12 absolute border-0 bg-black right-0 h-px m-0 opacity-25">
+        <hr class="w-8/12 right-0 md:w-9/12 w-full border-0 bg-black h-px m-0 opacity-25">
       </li>
     </ul>
 
     <ul class="md:w-1/4 md:h-1/3 rounded-3xl shadow-lg">
+      <h3 class="justify-center flex pt-4  mb-4 font-semibold text-left">Obj. Estratégicos Qualidade</h3>
       <li
-        class=" pb-4 relative pt-4 transition transform hover:-translate-y-1 cursor-pointer lg:hover:bg-unimed-gray lg:hover:shadow-lg"
+        class=" pb-4 relative pt-4 lg:transition transform hover:-translate-y-1 cursor-pointer lg:hover:bg-unimed-gray lg:hover:shadow-lg"
         *ngFor="let objeto of lista2">
-        <svg-icon class="pl-9 pt-1 absolute" src="assets/imagens/file-text.svg" [svgStyle]="{ 'width.px':36 }">
-        </svg-icon>
+        <svg class="absolute ml-8 " width="40" height="40" viewBox="0 0 100 125" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M92.5 40H85V22.5C85 21.837 84.737 21.201 84.268 20.732L69.268 5.732C68.799 5.263 68.163 5 67.5 5H17.5C16.119 5 15 6.119 15 7.5V40H7.5C6.119 40 5 41.119 5 42.5V77.5C5 78.881 6.119 80 7.5 80H15V92.5C15 93.881 16.119 95 17.5 95H82.5C83.881 95 85 93.881 85 92.5V80H92.5C93.881 80 95 78.881 95 77.5V42.5C95 41.119 93.881 40 92.5 40ZM70 13.536L76.464 20H70V13.536ZM20 10H65V25H80V40H20V10ZM80 90H20V80H80V90ZM90 75H10V45H90V75Z"
+            fill="#5E1995" />
+          <path
+            d="M30 65H32.5C36.636 65 40 61.636 40 57.5C40 53.364 36.636 50 32.5 50H27.5C26.119 50 25 51.119 25 52.5V70H30V65ZM30 55H32.5C33.878 55 35 56.122 35 57.5C35 58.878 33.878 60 32.5 60H30V55Z"
+            fill="#5E1995" />
+          <path
+            d="M57 62.5V57.5C57 53.364 53.636 50 49.5 50H42V70H49.5C53.636 70 57 66.636 57 62.5ZM47 55H49.5C50.878 55 52 56.121 52 57.5V62.5C52 63.879 50.878 65 49.5 65H47V55Z"
+            fill="#5E1995" />
+          <path d="M65 62.5H72.5V57.5H65V55H75V50H62.5C61.119 50 60 51.119 60 52.5V57.5V62.5V70H65V62.5Z"
+            fill="#5E1995" />
+        </svg>
         <h3 class="text-black font-semibold mb-1 pl-24 p-3 hover:text-white">{{objeto.nm_Documento}}</h3>
-        <hr class="w-8/12 absolute border-0 bg-black right-0 h-px m-0 opacity-25">
+        <hr class="w-8/12 right-0 md:w-9/12 absolute border-0 bg-black h-px m-0 opacity-25">
       </li>
     </ul>
 
     <ul class="md:w-1/4 md:h-1/3 rounded-3xl shadow-lg">
-      <li
-        class="pb-4 relative pt-4 transition transform hover:-translate-y-1 cursor-pointer lg:hover:bg-unimed-gray lg:hover:shadow-lg"
+      <h3 class="justify-center flex pt-4 mb-4 font-semibold text-left">Obj. Operacional</h3>
+      <li class="pb-4 relative pt-4 lg:hover:-translate-y-1 cursor-pointer lg:hover:bg-unimed-gray lg:hover:shadow-lg"
         *ngFor="let objeto of lista3">
-
-        <svg-icon class="pl-9 pt-8 absolute" src="assets/imagens/file-text.svg" [svgStyle]="{ 'width.px':36 }">
-        </svg-icon>
         <!-- titulo dos documentos-->
-        <h3 class="justify-center flex font-semibold mx-auto">Obj. Operacional</h3>
+        <svg class="absolute ml-8 " width="40" height="40" viewBox="0 0 100 125" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M92.5 40H85V22.5C85 21.837 84.737 21.201 84.268 20.732L69.268 5.732C68.799 5.263 68.163 5 67.5 5H17.5C16.119 5 15 6.119 15 7.5V40H7.5C6.119 40 5 41.119 5 42.5V77.5C5 78.881 6.119 80 7.5 80H15V92.5C15 93.881 16.119 95 17.5 95H82.5C83.881 95 85 93.881 85 92.5V80H92.5C93.881 80 95 78.881 95 77.5V42.5C95 41.119 93.881 40 92.5 40ZM70 13.536L76.464 20H70V13.536ZM20 10H65V25H80V40H20V10ZM80 90H20V80H80V90ZM90 75H10V45H90V75Z"
+            fill="#5E1995" />
+          <path
+            d="M30 65H32.5C36.636 65 40 61.636 40 57.5C40 53.364 36.636 50 32.5 50H27.5C26.119 50 25 51.119 25 52.5V70H30V65ZM30 55H32.5C33.878 55 35 56.122 35 57.5C35 58.878 33.878 60 32.5 60H30V55Z"
+            fill="#5E1995" />
+          <path
+            d="M57 62.5V57.5C57 53.364 53.636 50 49.5 50H42V70H49.5C53.636 70 57 66.636 57 62.5ZM47 55H49.5C50.878 55 52 56.121 52 57.5V62.5C52 63.879 50.878 65 49.5 65H47V55Z"
+            fill="#5E1995" />
+          <path d="M65 62.5H72.5V57.5H65V55H75V50H62.5C61.119 50 60 51.119 60 52.5V57.5V62.5V70H65V62.5Z"
+            fill="#5E1995" />
+        </svg>
         <h3 class="text-black font-semibold mb-1 pl-24 p-3 hover:text-white">{{objeto.nm_Documento}}</h3>
-        <hr class="w-8/12 absolute border-0 bg-black right-0 h-px m-0 opacity-25">
+        <hr class="w-8/12 right-0 md:w-9/12 absolute border-0 bg-black  h-px m-0 opacity-25">
       </li>
     </ul>
   </div>
