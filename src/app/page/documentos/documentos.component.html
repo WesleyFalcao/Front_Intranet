@@ -47,12 +47,12 @@
   </div>
 </div> -->
 
-<div class="h-screen w-full pt-4 bg-fixed relative flex overflow-hidden">
+<div class="h-screen w-full  bg-fixed relative flex overflow-hidden">
 
   <!-- Sidebar -->
 
   <aside class="shadow-lg relative h-full rounded-xl hidden w-3/12 pl-4 flex-col pt-40 text-black xl:flex ">
-    <ul class="w-full flex flex-col space-y-12 text-lg font-normal cursor-pointer">
+    <ul class="w-full flex flex-col space-y-12  font-medium text-base cursor-pointer">
       <li class=" flex w-full justify-start transition transform hover:-translate-y-1" (click)="mudar_estado(item)"
         *ngFor="let item of lista; let i = index;">
         <div class=" flex flex-row">
@@ -119,7 +119,7 @@
 
     <header class="sm:h-24 lg:h-20 w-full items-center relative px-5 space-x-10 ">
 
-      <div class="flex flex-row flex-shrink-0 items-center justify-start space-x-4">
+      <div class="flex flex-row pt-4 flex-shrink-0 items-center justify-start space-x-4">
 
         <!-- barra de pesquisa -->
         <div
@@ -165,7 +165,7 @@
 
         <div class="">
           <ul class="fixed w-full z-20 xl:pr-8">
-            <li class="hidden md:mb-4 lg:justify-end lg:w-full xl:w-10/12 z-10 lg:flex">
+            <li class="hidden md:mb-4 lg:justify-end lg:w-full xl:w-10/12  lg:flex">
               <div class="font-bold text-xl ml-12 pb-4 pt-8 {{objeto.nm_Classe}}" 
                 *ngFor="let objeto of ArrayTitulos">
                 {{objeto.nm_Titulo}}
@@ -244,7 +244,7 @@
 
 
   <!--header-->
-  <header class="fixed flex justify-between items-center pr-4 right-0 w-full z-20">
+  <header class="fixed flex justify-between items-center pr-4 right-0 w-full z-10">
     <button class="pr-4" (click)="b_Mostrar_Modal=false">
       <div class=" h-16">
         <svg class="flex mt-4 md:mt-0 ml-4 transition transform hover:-translate-y-px" width="36" height="36" viewBox="0 0 68 68" fill="none"
