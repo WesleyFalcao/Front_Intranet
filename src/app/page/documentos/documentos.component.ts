@@ -1,3 +1,4 @@
+import { importExpr } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +9,6 @@ import { Component, OnInit } from '@angular/core';
 export class DocumentosComponent implements OnInit {
 
   nm_search: string
-
 
 
   ArrayDocumentos = [
@@ -160,12 +160,10 @@ export class DocumentosComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  mudar_estado(item: any) {
-    if (item.items.length != 0) {
-      console.log(item)
-      item.open = !item.open
+  mudar_estado(item: any){
+    if(item.items.length !=0){
+      item.open =!item.open
     }
-
   }
 
   buscar() {
