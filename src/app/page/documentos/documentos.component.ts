@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DocumentosComponent implements OnInit {
 
-  nm_search: string 
+  nm_search: string
+
 
 
   ArrayDocumentos = [
@@ -25,106 +26,117 @@ export class DocumentosComponent implements OnInit {
   ]
 
   ArrayTitulos = [
-    { nm_Titulo: "", nm_Classe: "md:w-1/12"},
-    { nm_Titulo: "Nome", nm_Classe: "md:w-6/12"},
-    { nm_Titulo: "Processos", nm_Classe: "md:w-2/12"},
-    { nm_Titulo: "Data", nm_Classe: "md:w-1/12"},
-    { nm_Titulo: "Código", nm_Classe: "md:w-2/12"},
-    
+    { nm_Titulo: "", nm_Classe: "md:w-1/12" },
+    { nm_Titulo: "Nome", nm_Classe: "md:w-6/12" },
+    { nm_Titulo: "Processos", nm_Classe: "md:w-2/12" },
+    { nm_Titulo: "Data", nm_Classe: "md:w-1/12" },
+    { nm_Titulo: "Código", nm_Classe: "md:w-2/12" },
+
   ]
 
   lista = [
-    { nm_Documento: "SGQ", open:false, items:[
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-   
-    ]
-  },
-    { nm_Documento: "Linha de Cuidados", open:false, items:[
-      { nm_Documento: "teste" },
-    ] },
-    { nm_Documento: "Mapa de processos HU" },
-    { nm_Documento: "Documentos de Acreditação", open:false, items:[
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },   
-    ] },
-    { nm_Documento: "Protocolos Médicos", open:false, items:[
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },
-      { nm_Documento: "teste" },   
-    ] },
-    { nm_Documento: "Normas de Especialidade", open:false, items:[
-      { nm_Documento: "teste" },
-    ] },
-    { nm_Documento: "Segurança do Paciente" }
+    {
+      nm_Documento: "SGQ", open: false, items: [
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+
+      ]
+    },
+    {
+      nm_Documento: "Linha de Cuidados", open: false, items: [
+        { nm_Documento: "teste" },
+      ]
+    },
+
+    { nm_Documento: "Mapa de processos HU", open: false, items: [] },
+
+    {
+      nm_Documento: "Documentos de Acreditação", open: false, items: [
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+      ]
+    },
+    {
+      nm_Documento: "Protocolos Médicos", open: false, items: [
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+        { nm_Documento: "teste" },
+      ]
+    },
+    {
+      nm_Documento: "Normas de Especialidade", open: false, items: [
+        { nm_Documento: "teste" },
+      ]
+    },
+    { nm_Documento: "Segurança do Paciente", open: false, items: []}
   ];
 
   lista2 = [
@@ -133,7 +145,7 @@ export class DocumentosComponent implements OnInit {
   ]
 
   lista3 = [
-    {nm_Documento: "Objetivos Operacionais"}
+    { nm_Documento: "Objetivos Operacionais" }
   ]
 
   b_Mostrar_Modal: boolean = false
@@ -143,8 +155,15 @@ export class DocumentosComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  buscar() { 
+  mudar_estado(item: any) {
+    if(item.items.length!= 0){
+    console.log(item)
+    item.open = !item.open}
+
+  }
+
+  buscar() {
     console.log(this.nm_search)
-    this.ArrayDocumentos = this.ArrayDocumentos.filter(doc=> doc.nm_Documento.toUpperCase().indexOf(this.nm_search.toUpperCase())>0)
+    this.ArrayDocumentos = this.ArrayDocumentos.filter(doc => doc.nm_Documento.toUpperCase().indexOf(this.nm_search.toUpperCase()) > 0)
   }
 }

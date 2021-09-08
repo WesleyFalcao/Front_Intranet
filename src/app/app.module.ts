@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './page/home/home.component';
@@ -13,9 +12,13 @@ import { DocumentosModule } from './page/documentos/documentos.module';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+import { RouterModule } from '@angular/router';
+import { NgBodyScrollLockModule, NgBodyScrollLockService } from 'ng-body-scroll-lock';
+
 @NgModule({
   declarations: [
     AppComponent,
+    
 
   ],
   imports: [
@@ -24,9 +27,11 @@ import { CommonModule } from '@angular/common';
     HomeModule,
     ShellModule,
     DocumentosModule,
-    CommonModule
+    CommonModule,
+    NgBodyScrollLockModule,
+
   ],
-  providers: [],
+  providers: [NgBodyScrollLockService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
