@@ -75,13 +75,12 @@ export class DocumentosComponent implements OnInit {
 
       ]
     },
+
     {
       nm_Documento: "Linha de Cuidados", open: false, items: [
         { nm_Documento: "teste" },
       ]
     },
-
-    { nm_Documento: "Mapa de processos HU", open: false, items: [] },
 
     {
       nm_Documento: "Documentos de Acreditação", open: false, items: [
@@ -117,6 +116,7 @@ export class DocumentosComponent implements OnInit {
         { nm_Documento: "teste" },
       ]
     },
+
     {
       nm_Documento: "Protocolos Médicos", open: false, items: [
         { nm_Documento: "teste" },
@@ -131,12 +131,17 @@ export class DocumentosComponent implements OnInit {
         { nm_Documento: "teste" },
       ]
     },
+
     {
       nm_Documento: "Normas de Especialidade", open: false, items: [
         { nm_Documento: "teste" },
       ]
     },
-    { nm_Documento: "Segurança do Paciente", open: false, items: []}
+
+
+    { nm_Documento: "Mapa de processos HU", open: false, items: [] },
+
+    { nm_Documento: "Segurança do Paciente", open: false, items: [] }
   ];
 
   lista2 = [
@@ -156,9 +161,10 @@ export class DocumentosComponent implements OnInit {
   }
 
   mudar_estado(item: any) {
-    if(item.items.length!= 0){
-    console.log(item)
-    item.open = !item.open}
+    if (item.items.length != 0) {
+      console.log(item)
+      item.open = !item.open
+    }
 
   }
 

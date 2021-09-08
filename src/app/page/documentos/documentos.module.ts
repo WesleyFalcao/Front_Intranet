@@ -6,7 +6,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ListaModule } from 'src/app/components/lista/lista.module';
-import { NgBodyScrollLockService } from 'ng-body-scroll-lock';
+
 
 
 @NgModule({

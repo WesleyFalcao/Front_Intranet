@@ -11,9 +11,8 @@ import { DocumentosComponent } from './page/documentos/documentos.component';
 import { DocumentosModule } from './page/documentos/documentos.module';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
 import { RouterModule } from '@angular/router';
-import { NgBodyScrollLockModule, NgBodyScrollLockService } from 'ng-body-scroll-lock';
+
 
 @NgModule({
   declarations: [
@@ -28,10 +27,10 @@ import { NgBodyScrollLockModule, NgBodyScrollLockService } from 'ng-body-scroll-
     ShellModule,
     DocumentosModule,
     CommonModule,
-    NgBodyScrollLockModule,
+    
 
   ],
-  providers: [NgBodyScrollLockService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
