@@ -190,16 +190,16 @@
 							<svg-icon [src]="documento.nm_Caminho_Imagem "
 								[svgStyle]="{ 'width.px':60, 'height.px':60 }"></svg-icon>
 						</div>
-						<div class="pl-4 mr-20 pt-4 relative lg:w-6/12">
+						<div class="pt-4 pl-4 mr-20 lg:pt-7 relative lg:w-6/12">
 							{{documento.nm_Documento}}
 						</div>
 						<div class="pl-4 pt-4 lg:w-2/12 w-full">
 							{{documento.nm_Processo}}
 						</div>
-						<div class="pl-4 md:pl-4 xl:pl-8 w-full pt-4 lg:w-1/12">
+						<div class="pt-4 pl-4 md:pl-4 xl:pl-8 w-full lg:pt-6 lg:w-1/12">
 							{{documento.dt_Revisao | date: 'dd/MM/yyyy'}}
 						</div>
-						<div class="pl-4 md:pl-4 lg:pl-12 xl:pr-4 pt-4 w-full xl:pl-12 lg:w-2/12 pb-4">
+						<div class="pt-4 pl-4 md:pl-4 lg:pl-12 xl:pr-4 lg:pt-6 w-full xl:pl-12 lg:w-2/12 pb-4">
 							{{documento.nm_Codigo}} - rev {{documento.nr_Revisao}}
 						</div>
 					</li>
@@ -266,9 +266,9 @@
 
 		<!-- pesquisa-->
 
-		<div class="w-full md:pl-24 lg:pl-36 h-full pt-4 flex md:pt-8 mx-auto">
+		<div class="w-full md:pl-28 lg:pl-36 h-full pt-4 flex md:pt-8 mx-auto">
 			<div
-				class="flex flex-grow h-16 md:flex-grow-0 md:w-9/12 mb-4 rounded-full shadow-lg md:transition transform hover:-translate-y-1  lg:items-center">
+				class="flex flex-grow h-16 md:flex-grow-0 md:w-11/12 mb-4 rounded-full shadow-lg md:transition transform hover:-translate-y-1  ">
 				<input type="text" [(ngModel)]="nm_search" name="nm_search"
 					class="w-full rounded-full pl-6 pr-10 py-5 border-2 border-gray-200  focus:ring-unimed-purpeconecta focus:border-transparent"
 					placeholder="Pesquise...">
@@ -287,7 +287,7 @@
 		</div>
 	</header>
 
-	<div class="div-lista-documento flex flex-col gap-12 w-full h-full  pb-8 justify-center pl-4 md:pl-8 md:my-auto overflow-y-auto">
+	<div class= " div-lista-documento flex flex-col gap-12 w-full h-full  pb-8 justify-center pl-4 md:pl-8 md:my-auto overflow-y-auto">
 
 		<ul class="pb-2 bg-white rounded-3xl shadow-lg md:mx-auto w-full md:w-2/3 xl:h-full xl:mt-0">
 			<h3 class="justify-center flex pt-4 mb-4 font-semibold text-left">Documentos da Qualidade</h3>

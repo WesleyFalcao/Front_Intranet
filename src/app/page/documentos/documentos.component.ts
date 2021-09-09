@@ -153,7 +153,7 @@ export class DocumentosComponent implements OnInit {
     { nm_Documento: "Objetivos Operacionais" }
   ]
 
-  b_Mostrar_Modal: boolean = false
+  b_Mostrar_Modal: boolean = true
 
   constructor() { }
 
