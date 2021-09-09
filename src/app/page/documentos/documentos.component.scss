@@ -1,0 +1,13 @@
+.div-lista-documento{
+    height: calc(100% - 128px);
+    padding-top: 32rem;
+    
+    @screen md{
+        @apply pt-36;
+        height: calc(100% - 8rem)
+    }
+
+    @screen lg{
+        @apply pt-0;
+    }
+}
