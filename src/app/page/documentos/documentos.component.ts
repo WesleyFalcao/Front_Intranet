@@ -1,3 +1,4 @@
+import { transition } from '@angular/animations';
 import { importExpr } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 
@@ -28,8 +29,8 @@ export class DocumentosComponent implements OnInit {
   ArrayTitulos = [
     { nm_Titulo: "", nm_Classe: "md:w-1/12" },
     { nm_Titulo: "Nome", nm_Classe: "md:w-6/12" },
-    { nm_Titulo: "Processos", nm_Classe: "md:pl-8 lg:pr-14 xl:pl-12 md:w-2/12" },
-    { nm_Titulo: "Data", nm_Classe: "xl:mr-2 md:w-1/12" },
+    { nm_Titulo: "Processos", nm_Classe: "md:pl-8 lg:pr-14 xl:pl-20 md:w-2/12" },
+    { nm_Titulo: "Data", nm_Classe: "xl:pl-2 md:w-1/12" },
     { nm_Titulo: "Código", nm_Classe: "lg:pr-8 md:w-2/12" },
 
   ]
@@ -153,9 +154,9 @@ export class DocumentosComponent implements OnInit {
     { nm_Documento: "Objetivos Operacionais" }
   ]
 
-  b_Mostrar_Modal: boolean = true
+  b_Mostrar_Modal: boolean = false
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
   }
@@ -165,6 +166,7 @@ export class DocumentosComponent implements OnInit {
       item.open =!item.open
     }
   }
+  
 
   buscar() {
     console.log(this.nm_search)

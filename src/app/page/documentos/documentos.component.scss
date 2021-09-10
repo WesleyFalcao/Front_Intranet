@@ -1,48 +1,62 @@
+
+.main-documentos{
+    height: calc(100% - 6rem);
+}
+
 .div-lista-documento{
+    height: calc(100% - 6rem);
+
+    @screen md{
+        height: calc(100% - 8rem);
+    }
     
-    @media only screen and(max-width: 280px) {
-        height: calc(100% - 8rem);
-        padding-top: 36rem;    
-    }
+    // padding-top: 32rem;
+    // padding-bottom: 8rem;
 
-    @media only screen and(min-width: 320px) {
-        height: calc(100% - 8rem);
-        padding-top: 34rem;    
-    }
 
-    @media only screen and(min-width: 360px) {
-        height: calc(100% - 5rem);
-        padding-top: 32rem;    
-    }
+    // @media only screen and(max-width: 280px) {
+    //     height: calc(100% - 8rem);
+    //     padding-top: 36rem;    
+    // }
 
-    @media only screen and(min-width: 375px) {
-        height: calc(100% - 5rem);
-        padding-top: 20rem;    
-    }
+    // @media only screen and(min-width: 320px) {
+    //     height: calc(100% - 8rem);
+    //     padding-top: 34rem;    
+    // }
 
-    @media only screen and(min-width: 411px) {
-        height: calc(100% - 5rem);
-        padding-top: 26rem;    
-    }
+    // @media only screen and(min-width: 360px) {
+    //     height: calc(100% - 5rem);
+    //     padding-top: 32rem;    
+    // }
 
-    @media only screen and(min-width: 411px) {
-        height: calc(100% - 5rem);
-        padding-top: 26rem;    
-    }
+    // @media only screen and(min-width: 375px) {
+    //     height: calc(100% - 5rem);
+    //     padding-top: 20rem;    
+    // }
 
-    @media only screen and(min-width: 768px) {
-        height: calc(100% - 8rem);
-        padding-top: 8rem;    
-    }
+    // @media only screen and(min-width: 411px) {
+    //     height: calc(100% - 5rem);
+    //     padding-top: 26rem;    
+    // }
 
-    @media only screen and(min-width: 1024px) {
-        height: calc(100% - 18rem);
-        padding-top: 8rem;    
-    }
-    @media only screen and(min-width: 1270px) {
-        height: calc(100% - 2rem);
-        padding-top: 12rem;    
-    }
+    // @media only screen and(min-width: 411px) {
+    //     height: calc(100% - 5rem);
+    //     padding-top: 26rem;    
+    // }
+
+    // @media only screen and(min-width: 768px) {
+    //     height: calc(100% - 8rem);
+    //     padding-top: 8rem;    
+    // }
+
+    // @media only screen and(min-width: 1024px) {
+    //     height: calc(100% - 18rem);
+    //     padding-top: 8rem;    
+    // }
+    // @media only screen and(min-width: 1800px) {
+    //     height: calc(100% - 10rem);
+    //     padding-top: 14rem;    
+    // }
 
 
         

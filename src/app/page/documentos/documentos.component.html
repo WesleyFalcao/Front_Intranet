@@ -51,12 +51,14 @@
 
 	<!-- Sidebar -->
 
-	<aside class="shadow-lg relative h-full rounded-xl hidden w-3/12 pl-4 flex-col pt-40 text-black xl:flex ">
-		<ul class="w-full flex flex-col space-y-12 font-medium text-base cursor-pointer">
-			<li class=" flex w-full justify-start transition transform hover:-translate-y-1"
-				(click)="mudar_estado(item)" *ngFor="let item of lista; let i = index;">
+	<aside class="shadow-lg overflow-y-auto rounded-xl hidden w-3/12 pl-4 flex-col pt-32 text-black xl:flex ">
+		<ul class=" w-full flex flex-col space-y-12 font-medium text-base cursor-pointer">
+			<li class=" flex flex-col w-full justify-start" (click)="mudar_estado(item)"
+
+				*ngFor="let item of lista; let i = index;">
 				<div class=" flex flex-row">
-					<div class="pr-4" *ngIf="item.items.length ==0">
+					<div class=" relative top-1" *ngIf="item.items.length ==0">
+						
 						<svg width="20" height="20" viewBox="0 0 100 125" fill="none"
 							xmlns="http://www.w3.org/2000/svg">
 							<path
@@ -64,58 +66,57 @@
 								fill="#5E1995" />
 						</svg>
 					</div>
-
-					<div *ngIf="item.items?.length !=0 "
-						class=" pr-4 {{item.open? 'mt-2':'origin-center transform -rotate-90 '}}">
-						<svg class="" width="20" height="15" viewBox="0 0 90 46" fill="none"
-							xmlns="http://www.w3.org/2000/svg">
-							<path
-								d="M45.2811 44.9983C46.1723 44.9428 47.0194 44.5908 47.6874 43.9983L87.6874 7.99834C88.0811 7.64592 88.4015 7.21924 88.63 6.74278C88.8586 6.26633 88.9908 5.74952 89.0193 5.22185C89.0477 4.69418 88.9717 4.16608 88.7956 3.66783C88.6196 3.16959 88.3469 2.71096 87.9933 2.31829C87.6397 1.92561 87.2121 1.6066 86.7349 1.3795C86.2578 1.1524 85.7405 1.02168 85.2128 0.99486C84.685 0.968045 84.1572 1.04563 83.6594 1.22319C83.1617 1.40076 82.704 1.67484 82.3124 2.02965L44.9998 35.6233L7.68733 2.02965C7.29573 1.67483 6.83796 1.40076 6.34025 1.22319C5.84254 1.04562 5.31469 0.968046 4.78693 0.99486C4.25918 1.02167 3.74191 1.15234 3.26476 1.37944C2.78761 1.60654 2.35998 1.92561 2.00636 2.31829C1.65274 2.71096 1.38009 3.16959 1.20404 3.66783C1.02799 4.16608 0.952 4.69412 0.980424 5.22179C1.00885 5.74946 1.14113 6.26633 1.36968 6.74278C1.59824 7.21924 1.91857 7.64592 2.31233 7.99834L42.3123 43.9983C42.7144 44.3561 43.1846 44.6292 43.6948 44.801C44.2049 44.9728 44.7444 45.0399 45.2811 44.9983V44.9983Z"
-								fill="#5E1995" />
-						</svg>
+					<div class=" pr-4">
+						<div *ngIf="item.items?.length !=0 "
+							class="relative {{item.open? 'mt-2 -top-1':'origin-center transform -rotate-90 top-1 '}}">
+							<svg class="" width="20" height="15" viewBox="0 0 90 46" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M45.2811 44.9983C46.1723 44.9428 47.0194 44.5908 47.6874 43.9983L87.6874 7.99834C88.0811 7.64592 88.4015 7.21924 88.63 6.74278C88.8586 6.26633 88.9908 5.74952 89.0193 5.22185C89.0477 4.69418 88.9717 4.16608 88.7956 3.66783C88.6196 3.16959 88.3469 2.71096 87.9933 2.31829C87.6397 1.92561 87.2121 1.6066 86.7349 1.3795C86.2578 1.1524 85.7405 1.02168 85.2128 0.99486C84.685 0.968045 84.1572 1.04563 83.6594 1.22319C83.1617 1.40076 82.704 1.67484 82.3124 2.02965L44.9998 35.6233L7.68733 2.02965C7.29573 1.67483 6.83796 1.40076 6.34025 1.22319C5.84254 1.04562 5.31469 0.968046 4.78693 0.99486C4.25918 1.02167 3.74191 1.15234 3.26476 1.37944C2.78761 1.60654 2.35998 1.92561 2.00636 2.31829C1.65274 2.71096 1.38009 3.16959 1.20404 3.66783C1.02799 4.16608 0.952 4.69412 0.980424 5.22179C1.00885 5.74946 1.14113 6.26633 1.36968 6.74278C1.59824 7.21924 1.91857 7.64592 2.31233 7.99834L42.3123 43.9983C42.7144 44.3561 43.1846 44.6292 43.6948 44.801C44.2049 44.9728 44.7444 45.0399 45.2811 44.9983V44.9983Z"
+									fill="#5E1995" />
+							</svg>
+						</div>
 					</div>
-					<div class="fixed pl-10">
-						{{item.nm_Documento}}
-					</div>
+				
+					{{item.nm_Documento}}
+					
 				</div>
 
-				<ul class="flex flex-col max-h-96 overflow-y-auto gap-y-4 text-lg font-normal cursor-pointer w-full mt-12"
+				<ul class="flex flex-col max-h-96 overflow-y-auto gap-y-6 text-lg font-normal cursor-pointer w-full mt-8 pl-8"
 					*ngIf="item.open">
-					<li class="flex flex-row w-full transition transform hover:-translate-y-1 "
-						*ngFor="let sub of item.items">
+					<li class="flex flex-row w-full " *ngFor="let sub of item.items">
 						<svg class="mt-2" width="20" height="20" viewBox="0 0 100 125" fill="none"
 							xmlns="http://www.w3.org/2000/svg">
 							<path
 								d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
 								fill="#5E1995" />
 						</svg>
-						<span class="justify-items-start ml-2 px-1">{{sub.nm_Documento}}</span>
+						<span
+							class="justify-items-start ml-2 px-1 hover:text-unimed-purpeconecta">{{sub.nm_Documento}}</span>
 					</li>
 				</ul>
 			</li>
-			<li class=" flex w-full justify-start transition transform hover:-translate-y-1 "
-        *ngFor="let item of lista2; let i = index;">
-        <div class="pr-4">
-          <svg width="20" height="20" viewBox="0 0 100 125" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
-              fill="#5E1995" />
-          </svg>
-        </div>
-        {{item.nm_Documento}}
+			<li class=" flex w-full justify-start" *ngFor="let item of lista2; let i = index;">
+				<div class="pr-4 relative top-1">
+					<svg width="20" height="20" viewBox="0 0 100 125" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
+							fill="#5E1995" />
+					</svg>
+				</div>
+				<div class="hover:text-unimed-purpeconecta">{{item.nm_Documento}}</div>
 
-      </li>
-      <li class=" flex w-full justify-start transition transform hover:-translate-y-1"
-        *ngFor="let item of lista3; let i = index;">
-        <div class="pr-4">
-          <svg width="20" height="20" viewBox="0 0 100 125" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
-              fill="#5E1995" />
-          </svg>
-        </div>
-        {{item.nm_Documento}}
-      </li>
+			</li>
+			<li class=" flex w-full justify-start" *ngFor="let item of lista3; let i = index;">
+				<div class="pr-4 relative top-1">
+					<svg width="20" height="20" viewBox="0 0 100 125" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
+							fill="#5E1995" />
+					</svg>
+				</div>
+				<div class="hover:text-unimed-purpeconecta">{{item.nm_Documento}}</div>
+			</li>
 		</ul>
 	</aside>
 
@@ -123,7 +124,7 @@
 
 	<div class=" w-full h-full ">
 
-		<header class="sm:h-24 lg:h-24 w-full items-center relative px-5 space-x-10 ">
+		<header class="h-24 w-full items-center relative px-5 space-x-10 ">
 
 			<div class="flex flex-row pt-4 flex-shrink-0 items-center justify-start space-x-4">
 
@@ -160,11 +161,11 @@
 
 		<!-- Main -->
 
-		<main class="w-full h-screen flex relative ">
+		<main class="main-documentos w-full flex relative ">
 
 			<!-- Container -->
 
-			<ul class="w-full flex flex-col gap-1 pb-28 mt-4 pl-4 pr-1">
+			<ul class="w-full flex flex-col gap-1 pl-2">
 
 				<!-- titulo dos documentos -->
 
@@ -182,7 +183,7 @@
 
 				<!-- listagem documentos -->
 
-				<ul class="pt-4 lg:text-sm xl:text-base lg:mt-24 overflow-y-auto">
+				<ul class="pt-4 lg:text-sm xl:text-base lg:mt-24 md:mr-0.5 lg:mr-1.5 xl:mr-0 overflow-y-auto">
 					<li class="relative mb-4 flex font-medium flex-col w-full lg:flex-row transition transform hover:-translate-y-1 cursor-pointer bg-white rounded-lg shadow-lg "
 						*ngFor="let documento of ArrayDocumentos">
 
@@ -245,7 +246,7 @@
 <!-- modal -->
 
 <div style=" background-image: url('assets/imagens/background-purpe-claro.svg'); transition: all 0.15s easy 0s;"
-	class="bg-cover bg-center w-full h-screen absolute top-0 left-0 z-30" *ngIf="b_Mostrar_Modal">
+	class="bg-cover bg-center w-full h-screen absolute top-0 left-0 z-30 " *ngIf="b_Mostrar_Modal">
 
 
 
@@ -253,22 +254,20 @@
 
 	<!-- botão de voltar -->
 
-	<header class="relative md:h-32 flex justify-between items-center pr-4 right-0 w-full z-10">
-		<button class="pr-4" (click)="b_Mostrar_Modal=false">
-			<div class=" h-16">
-				<svg class="flex mt-4 md:mt-0 ml-4 transition transform hover:-translate-y-px" width="36" height="36"
-					viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M68 29.75H16.2775L40.035 5.9925L34 0L0 34L34 68L39.9925 62.0075L16.2775 38.25H68V29.75Z"
-						fill="#411564" />
-				</svg>
-			</div>
+	<header class="relative flex justify-between  pr-4 w-full h-24 md:h-32">
+		<button class="pr-4 md:pb-10" (click)="b_Mostrar_Modal=false">
+			<svg class="flex mt-2 md:mt-0 ml-4 md:left-0 md:top-0" width="36" height="36" viewBox="0 0 68 68"
+				fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M68 29.75H16.2775L40.035 5.9925L34 0L0 34L34 68L39.9925 62.0075L16.2775 38.25H68V29.75Z"
+					fill="#411564" />
+			</svg>
 		</button>
 
 		<!-- pesquisa-->
 
-		<div class="w-full md:pl-28 lg:pl-36 h-full pt-4 flex md:pt-8 mx-auto">
+		<div class="w-full xl:w-10/12 md:items-center lg:pl-10 md:ml-16 xl:pl-72 pt-4 flex md:pt-8 mx-auto">
 			<div
-				class="flex flex-grow h-16 md:flex-grow-0 md:w-11/12 mb-4 rounded-full shadow-lg md:transition transform hover:-translate-y-1  ">
+				class="flex flex-grow h-16 md:flex-grow-0 md:w-10/12 mb-4 rounded-full shadow-lg md:transition transform hover:-translate-y-1 ">
 				<input type="text" [(ngModel)]="nm_search" name="nm_search"
 					class="w-full rounded-full pl-6 pr-10 py-5 border-2 border-gray-200  focus:ring-unimed-purpeconecta focus:border-transparent"
 					placeholder="Pesquise...">
@@ -287,12 +286,13 @@
 		</div>
 	</header>
 
-	<div class= " div-lista-documento flex flex-col gap-12 w-full h-full  pb-8 justify-center pl-4 md:pl-8 md:my-auto overflow-y-auto">
+	<div
+		class="div-lista-documento px-auto pt-4 pl-2 pb-4 md:pb-16 md:pt-8 flex flex-col gap-12 lg:pt-20 xl:pt-14 w-full overflow-y-auto xl:w-8/12 xl:mx-auto">
 
-		<ul class="pb-2 bg-white rounded-3xl shadow-lg md:mx-auto w-full md:w-2/3 xl:h-full xl:mt-0">
-			<h3 class="justify-center flex pt-4 mb-4 font-semibold text-left">Documentos da Qualidade</h3>
+		<ul class="relative pb-2 bg-white rounded-3xl shadow-lg w-full md:w-2/3 md:mx-auto ">
+			<h3 class="w-full pt-4 pb-4 text-center font-semibold">Documentos da Qualidade</h3>
 			<li class="pb-4 relative cursor-pointer" *ngFor="let objeto of lista">
-				<svg class="absolute ml-8 opacity-80 pt-4" width="36" height="36" viewBox="0 0 100 125" fill="none"
+				<svg class="absolute ml-8 pt-4" width="36" height="36" viewBox="0 0 100 125" fill="none"
 					xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
@@ -300,14 +300,15 @@
 				</svg>
 				<h3 class="text-black font-medium mb-1 pl-24 p-3 hover:text-unimed-purpeconecta">{{objeto.nm_Documento}}
 				</h3>
-				<hr class="w-9/12 right-0 md:w-9/12 lg:w-10/12 absolute border-0 bg-black h-px m-0 opacity-25">
+				<hr
+					class="w-9/12 right-0 md:w-9/12 lg:w-10/12 xl:w-10/12 absolute border-0 bg-black h-px m-0 opacity-25">
 			</li>
 		</ul>
 
 		<ul class=" pb-2 bg-white rounded-3xl shadow-lg w-full md:w-2/3 md:mx-auto  xl:h-full">
 			<h3 class="justify-center flex mt-4 mb-4 font-semibold text-left">Obj. Estratégicos Qualidade</h3>
 			<li class=" pb-4 relative cursor-pointer" *ngFor="let objeto of lista2">
-				<svg class="absolute ml-8 opacity-80 pt-4" width="36" height="36" viewBox="0 0 100 125" fill="none"
+				<svg class="absolute ml-8  pt-4" width="36" height="36" viewBox="0 0 100 125" fill="none"
 					xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
@@ -324,7 +325,7 @@
 			<li class="pb-4 relative cursor-pointer" *ngFor="let objeto of lista3">
 
 				<!-- titulo dos documentos-->
-				<svg class="absolute ml-8 opacity-80 pt-4" width="36" height="36" viewBox="0 0 100 125" fill="none"
+				<svg class="absolute ml-8  pt-4" width="36" height="36" viewBox="0 0 100 125" fill="none"
 					xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
