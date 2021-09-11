@@ -29,9 +29,9 @@ export class DocumentosComponent implements OnInit {
   ArrayTitulos = [
     { nm_Titulo: "", nm_Classe: "md:w-1/12" },
     { nm_Titulo: "Nome", nm_Classe: "md:w-6/12" },
-    { nm_Titulo: "Processos", nm_Classe: "md:pl-8 lg:pr-14 xl:pl-20 md:w-2/12" },
-    { nm_Titulo: "Data", nm_Classe: "xl:pl-2 md:w-1/12" },
-    { nm_Titulo: "Código", nm_Classe: "lg:pr-8 md:w-2/12" },
+    { nm_Titulo: "Processos", nm_Classe: "md:pl-8 lg:pl-14 xl:pl-8 md:w-2/12" },
+    { nm_Titulo: "Data", nm_Classe: "lg:pl-4 xl:pl-2 md:w-1/12 "},
+    { nm_Titulo: "Código", nm_Classe: "md:w-2/12" },
 
   ]
 
