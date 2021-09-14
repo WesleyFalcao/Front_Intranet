@@ -172,4 +172,8 @@ export class DocumentosComponent implements OnInit {
     console.log(this.nm_search)
     this.ArrayDocumentos = this.ArrayDocumentos.filter(doc => doc.nm_Documento.toUpperCase().indexOf(this.nm_search.toUpperCase()) > 0)
   }
+
+  Mostrar_Modal(){
+    this.b_Mostrar_Modal=true
+  }
 }

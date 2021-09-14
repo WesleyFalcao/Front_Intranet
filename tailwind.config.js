@@ -54,6 +54,7 @@ module.exports = {
   variants: {
     extend: {
       transitionProperty: ['hover', 'focus'],
+      scale: ['active'],
     },
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
