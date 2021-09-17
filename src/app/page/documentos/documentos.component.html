@@ -51,7 +51,8 @@
 
 	<!-- Sidebar -->
 
-	<aside class="shadow-lg overflow-y-auto h-5/6 rounded-xl hidden w-3/12 pl-4 flex-col mt-32 text-black xl:flex ">
+	<aside
+		class="shadow-lg pb-14 overflow-y-auto h-5/6 rounded-xl hidden w-3/12 pl-4 flex-col mt-32 text-black xl:flex ">
 		<div class="absolute top-6 left-6 ">
 			<svg class="cursor-pointer" width="100" height="48" viewBox="0 0 100 48" fill="none"
 				xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -65,12 +66,12 @@
 				</defs>
 			</svg>
 		</div>
-		<ul class=" w-full flex flex-col space-y-12 font-medium text-base cursor-pointer">
-			<li class=" flex flex-col w-full justify-start {{item.items.length ==0? 'transform active:scale-95 translate duration-300':''}}" (click)="mudar_estado(item)"
-				*ngFor="let item of lista; let i = index;">
+		<ul class=" w-full flex flex-col space-y-10 font-medium lg:text-sm cursor-pointer">
+			<li class=" flex flex-col w-full justify-start {{item.items.length ==0? 'transform active:scale-95 translate duration-300':''}}"
+				(click)="mudar_estado(item)" *ngFor="let item of lista; let i = index;">
 				<div class=" flex flex-row">
 					<div class=" relative top-1" *ngIf="item.items.length ==0">
-						
+
 						<svg width="20" height="20" viewBox="0 0 100 125" fill="none"
 							xmlns="http://www.w3.org/2000/svg">
 							<path
@@ -262,25 +263,29 @@
 	</div>
 </div>
 
+
+
+
 <!-- modal -->
 
 <div style=" background-image: url('assets/imagens/background-purpe-claro.svg'); transition: all 0.15s easy 0s;"
 	class="bg-cover bg-center w-full h-screen absolute top-0 left-0 z-30 " *ngIf="b_Mostrar_Modal">
 
-
-
 	<!--header-->
 
 	<!-- botão de voltar -->
 
-	<header class="relative flex justify-between  pr-4 w-full h-24 md:h-32">
+	<header class="relative flex justify-between pr-4 w-full h-24 md:h-32">
+
 		<button class="pr-4 md:pb-10 transform cursor-pointer active:scale-90 transition duration-300"
 			(click)="b_Mostrar_Modal=false">
+
 			<svg class="flex mt-2 md:mt-0 ml-4 md:left-0 md:top-0" width="36" height="36" viewBox="0 0 68 68"
 				fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M68 29.75H16.2775L40.035 5.9925L34 0L0 34L34 68L39.9925 62.0075L16.2775 38.25H68V29.75Z"
 					fill="#411564" />
 			</svg>
+
 		</button>
 
 		<!-- pesquisa-->

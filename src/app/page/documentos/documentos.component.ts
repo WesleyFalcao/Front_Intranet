@@ -165,7 +165,7 @@ export class DocumentosComponent implements OnInit {
     if(item.items.length !=0){
       item.open =!item.open
     }
-  }
+  } 
   
 
   buscar() {
