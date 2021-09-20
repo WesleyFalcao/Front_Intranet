@@ -70,6 +70,7 @@
 			<li class=" flex flex-col w-full justify-start {{item.items.length ==0? 'transform active:scale-95 translate duration-300':''}}"
 				(click)="mudar_estado(item)" *ngFor="let item of lista; let i = index;">
 				<div class=" flex flex-row">
+
 					<div class=" relative top-1" *ngIf="item.items.length ==0">
 
 						<svg width="20" height="20" viewBox="0 0 100 125" fill="none"
@@ -79,6 +80,7 @@
 								fill="#5E1995" />
 						</svg>
 					</div>
+					
 					<div class=" pr-4">
 
 						<div *ngIf="item.items?.length !=0 "
@@ -110,6 +112,7 @@
 							{{sub.nm_Documento}}</span>
 					</li>
 				</ul>
+				
 			</li>
 			<li class=" flex w-full justify-start" *ngFor="let item of lista2; let i = index;">
 				<div class="flex w-full justify-start transform active:scale-95 translate duration-300">
