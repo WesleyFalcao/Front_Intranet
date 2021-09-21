@@ -23,15 +23,26 @@ export class DocumentosComponent implements OnInit {
     { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/Doc-Purpe.svg", nm_Documento: "Levantamento de Requisitos (Requisição de Mudanças)", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "FM-INF-002" },
     { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/PDF-purpe.svg", nm_Documento: "Política de Segurança de Informação", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "POL-DIR-007" },
 
+    { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/PDF-purpe.svg", nm_Documento: "Política de Segurança de Informação", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "POL-DIR-007" },
+    { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/PDF-purpe.svg", nm_Documento: "Política de Segurança de Informação", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "POL-DIR-007" },
+    { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/PDF-purpe.svg", nm_Documento: "Política de Segurança de Informação", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "POL-DIR-007" },
+    { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/PDF-purpe.svg", nm_Documento: "Política de Segurança de Informação", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "POL-DIR-007" },
+    { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/PDF-purpe.svg", nm_Documento: "Política de Segurança de Informação", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "POL-DIR-007" },
+    { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/PDF-purpe.svg", nm_Documento: "Política de Segurança de Informação", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "POL-DIR-007" },
+    { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/PDF-purpe.svg", nm_Documento: "Política de Segurança de Informação", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "POL-DIR-007" },
+    { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/PDF-purpe.svg", nm_Documento: "Política de Segurança de Informação", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "POL-DIR-007" },
+    { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/PDF-purpe.svg", nm_Documento: "Política de Segurança de Informação", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "POL-DIR-007" },
+    { nm_Processo: " Tecnologia da Informação ", nm_Caminho_Imagem: "assets/imagens/PDF-purpe.svg", nm_Documento: "Política de Segurança de Informação", nr_Revisao: 0, dt_Revisao: "2021-08-30", nm_Codigo: "POL-DIR-007" },
+    
 
   ]
 
   ArrayTitulos = [
-    { nm_Titulo: "", nm_Classe: "md:w-1/12" },
-    { nm_Titulo: "Nome", nm_Classe: "md:w-6/12" },
-    { nm_Titulo: "Processos", nm_Classe: "md:pl-8 lg:pl-14 xl:pl-8 md:w-2/12" },
-    { nm_Titulo: "Data", nm_Classe: "lg:pl-4 xl:pl-2 md:w-1/12 "},
-    { nm_Titulo: "Código", nm_Classe: "md:w-2/12" },
+    { nm_Titulo: "", nm_Classe: "w-1/12"},
+    { nm_Titulo: "Nome", nm_Classe: "w-6/12 lg:pl-16 xl:pl-20"},
+    { nm_Titulo: "Processos", nm_Classe: "w-2/12 lg:pl-1"},
+    { nm_Titulo: "Data", nm_Classe: "w-1/12 xl:mr-4"},
+    { nm_Titulo: "Código", nm_Classe: "w-2/12 lg:pl-9 xl:mr-9"},
 
   ]
 
