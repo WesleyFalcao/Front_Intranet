@@ -1,0 +1,20 @@
+.main-documentos{
+    height: calc(100% - 7rem);
+
+    @screen md{
+        height: calc(100% - 9rem);
+    }
+
+    @screen lg{
+        height: calc(100% - 10rem);
+    }
+
+    @screen xl{
+        height: calc(100% - 16rem);
+    }
+}
+
+.scroll-suave{
+    
+    scroll-behavior: smooth;
+}

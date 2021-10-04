@@ -1,0 +1,261 @@
+<main class="w-full h-screen">
+
+    <!-- Icone Unimed-->
+    <div class="hidden xl:flex absolute top-10 left-10">
+        <svg width="100" height="48" viewBox="0 0 100 48" fill="none" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink">
+            <rect width="100" height="47.8723" fill="url(#pattern0)" />
+            <defs>
+                <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                    <use xlink:href="#image0" transform="translate(-0.00531855) scale(0.00531914 0.0111111)" />
+                </pattern>
+                <image id="image0" width="190" height="90"
+                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAL4AAABaCAYAAAAGoewJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkRENEY5RUU2NTEyRDExRTc4NEM0QUVGRDEzQjdEMDAzIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkRENEY5RUU3NTEyRDExRTc4NEM0QUVGRDEzQjdEMDAzIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6REQ0RjlFRTQ1MTJEMTFFNzg0QzRBRUZEMTNCN0QwMDMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6REQ0RjlFRTU1MTJEMTFFNzg0QzRBRUZEMTNCN0QwMDMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5XgiRJAAATn0lEQVR42uyd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" />
+            </defs>
+        </svg>
+    </div>
+
+    <header class="relative md:pt-2 lg:pt-4 mb-4 h-14 md:h-24 lg:h-16 items-center px-5">
+
+        <div class="flex flex-row pt-4 md:pt-6 lg:pt-4 items-center">
+
+            <div class="w-full mx-auto md:w-11/12 xl:w-8/12">
+                <div class="flex-grow relative rounded-full shadow-lg">
+
+                    <input
+                        class="relative w-full flex rounded-full pl-16 md:pl-20 py-3 border-2 md:py-4 lg:py-6 lg:pl-28 xl:py-3.5 xl:pl-12 border-gray-200 focus:ring-unimed-purpeconecta focus:border-transparent"
+                        placeholder="Pesquise...">
+
+                    <!-- icone de filtro -->
+                    <div class="absolute top-0 md:-top-0.5 left-2 transform active:scale-90 duration-300">
+                        <svg class="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:hidden" viewBox="0 0 128 128"
+                            fill="none" xmlns="http://www.w3.org/2000/svg" (click)="Mostrar_Modal()">
+                            <path
+                                d="M34.4954 51H92.5046C93.3146 51 94 49.8542 94 48.5C94 47.1458 93.3146 46 92.5046 46H34.4954C33.6854 46 33 47.1458 33 48.5C33 49.8542 33.6854 51 34.4954 51Z"
+                                fill="black" />
+                            <path
+                                d="M92.5008 61H34.4953C33.6853 61 33 62.1458 33 63.5C33 64.8542 33.6853 66 34.4953 66H92.5008C93.3107 66 93.9961 64.8542 93.9961 63.5C94.0584 62.1458 93.373 61 92.5008 61Z"
+                                fill="black" />
+                            <mask id="path-3-inside-1" fill="white">
+                                <path
+                                    d="M92.5046 76H34.4954C33.6854 76 33 77.1458 33 78.5C33 79.8542 33.6854 81 34.4954 81H92.5046C93.3146 81 94 79.8542 94 78.5C94 77.1458 93.3769 76 92.5046 76Z" />
+                            </mask>
+                            <path
+                                d="M92.5046 76H34.4954C33.6854 76 33 77.1458 33 78.5C33 79.8542 33.6854 81 34.4954 81H92.5046C93.3146 81 94 79.8542 94 78.5C94 77.1458 93.3769 76 92.5046 76Z"
+                                fill="black" />
+                            <path
+                                d="M92.5046 67H34.4954V85H92.5046V67ZM34.4954 67C29.5653 67 26.7711 70.3653 25.7203 72.1222C24.5081 74.1486 24 76.4118 24 78.5H42C42 79.2341 41.8345 80.2473 41.1676 81.3622C40.662 82.2076 38.6155 85 34.4954 85V67ZM24 78.5C24 80.5882 24.5081 82.8514 25.7202 84.8778C26.7711 86.6346 29.5653 90 34.4954 90V72C38.6155 72 40.662 74.7924 41.1676 75.6378C41.8346 76.7527 42 77.7659 42 78.5H24ZM34.4954 90H92.5046V72H34.4954V90ZM92.5046 90C97.4347 90 100.229 86.6346 101.28 84.8778C102.492 82.8514 103 80.5882 103 78.5H85C85 77.7659 85.1655 76.7527 85.8324 75.6378C86.338 74.7924 88.3845 72 92.5046 72V90ZM103 78.5C103 76.5715 102.578 74.3142 101.361 72.2205C100.202 70.225 97.3548 67 92.5046 67V85C88.5267 85 86.4276 82.3479 85.7978 81.2639C85.1108 80.0817 85 79.0743 85 78.5H103Z"
+                                fill="black" mask="url(#path-3-inside-1)" />
+                        </svg>
+                    </div>
+
+                    <!-- icone pesquisa-->
+                    <div
+                        class="absolute right-2 top-2 rounded-full w-9 h-9 md:w-12 md:h-12 md:top-1.5 lg:w-14 lg:h-14 lg:top-2.5 lg:right-2.5 xl:w-11 xl:h-11 xl:top-1.5 xl:right-2 bg-unimed-green transform cursor-pointer active:scale-90 transition duration-300 ">
+                        <svg class="w-5 h-5 relative top-2 left-2 md:w-7 md:h-7 md:left-2.5 md:top-2.5 lg:w-8 lg:h-8 lg:left-3 xl:w-6 xl:h-6 xl:left-2.5 xl:top-2.5"
+                            viewBox="0 0 43 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d=" M30.5044 25.9043H28.6179L27.9492 25.2791C30.2895 22.6393 31.6984 19.2122 31.6984 15.4841C31.6984 7.17107 24.7492 0.432648 16.1761 0.432648C7.60303 0.432648 0.653809 7.17107 0.653809 15.4841C0.653809 23.7971 7.60303 30.5356 16.1761 30.5356C20.0209 30.5356 23.5552 29.1694 26.2776 26.9001L26.9223 27.5484V29.3778L38.8626 40.9326L42.4208 37.4824L30.5044 25.9043V25.9043ZM16.1761 25.9043C10.2299 25.9043 5.42991 21.25 5.42991 15.4841C5.42991 9.71824 10.2299 5.06387 16.1761 5.06387C22.1224 5.06387 26.9223 9.71824 26.9223 15.4841C26.9223 21.25 22.1224 25.9043 16.1761 25.9043Z"
+                                fill="white " />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- iniciais lateral -->
+    <div class="xl:mt-10">
+        <div class="justify-center pt-1 hidden mx-auto h-12 w-5/12 overflow-x-auto xl:flex flex-row" scroll>
+
+            <!-- <div class="relative border-opacity-25 border-gray-700 h-full border-2"></div> -->
+            <!-- right timeline -->
+            <div class="relative justify-center flex text-center" *ngFor="let i of objArrayIniciais; let index = index "
+                #letras>
+
+                <h1 #teste
+                    [ngClass]="'relative cursor-pointer font-semibold text-black  rounded-full ' + (objInicialSelecionada == i.inicial ? 'w-11 h-11 text-lg pt-2 bg-unimed-green text-white':'w-6 h-6 text-sm pt-0.5')"
+                    style="transition: all 1s ease" (click)="Clickar_Aside(i, index)">
+
+                    <div>{{i.inicial}}</div>
+                </h1>
+                <!-- <ng-template #bolinha>
+                <div class=" w-2 h-2 rounded-full bg-unimed-green">
+                </div>
+
+                *ngIf ="Incial_Selecionada == i.inicial;else bolinha"
+            </ng-template> -->
+            </div>
+        </div>
+    </div>
+    <div class=" w-8/12 relative mx-auto top-11 mb-4 xl:px-20 ">
+
+        <ul class="flex mb-4">
+            <li class="text-center hidden xl:block font-medium {{documento.nm_Classe}}"
+                *ngFor="let documento of objArrayTitulos">
+                <div>
+                    {{documento.nm_titulo}}
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <body #variavelpailista class="lg:mt-14 overflow-y-auto main-documentos" scroll (setScroll)="Scrolar_aside($event)">
+
+        <div class="h-full px-5 md:px-20 lg:px-20 pt-4 lg:pt-8 w-full lg:w-11/12 xl:w-8/12 mx-auto">
+
+            <ul class=" bg-white py-2 mb-4 md:py-2.5 lg:py-0 md:mb-6 lg:pb-4 rounded-lg shadow-lg font-medium transform cursor-pointer active:scale-95 transition duration-300 "
+                (click)="expandir(pessoa)" *ngFor="let pessoa of objArrayNomes" #variavelLocal>
+
+                <!-- essa Li está estiliando os nomes que estão vindo do ngFor -->
+
+                <li class="flex flex-row lg:ml-0 md:text-lg lg:text-base lg:pl-0 lg:pt-5">
+                    <div class="w-1/12 xl:hidden pl-4">
+                        <div
+                            class="rounded-full xl:hidden bg-unimed-green w-8 h-8 md:w-9 md:h-9 md:top-1 lg:w-11 lg:h-11 ">
+                            <div class="pt-1 md:pt-0.5 text-center md:text-xl lg:text-2xl lg:pt-1.5 text-white">
+
+                                {{pessoa.inicial}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="w-11/12 lg:w-full text-sm lg:text-xl xl:text-base gap-x-12 flex gap-y-2 flex-col xl:flex-row">
+
+                        <div class="pl-10 xl:w-4/12 lg:pl-12 xl:pl pt-1.5 xl:pt-0 overflow-hidden overflow-ellipsis">
+                            {{pessoa.nome}}</div>
+
+                        <ng-container *ngIf="pessoa.open">
+                            <span
+                                class="xl:w-3/12 pt-2 md:pt-3 -ml-2 lg:-ml-2 xl:m-0 xl:pt-0 overflow-hidden overflow-ellipsis">
+                                <b class="xl:hidden">Setor:</b>
+                                {{pessoa.setor}}
+                            </span>
+
+                            <span class="xl:w-2/12 -ml-2 lg:-ml-2 xl:mr-10">
+                                <b class="xl:hidden">Ramal(s):</b>
+                                {{pessoa.ramal}}
+                            </span>
+
+                            <span class="mr-4 -ml-2 xl:w-3/12 lg:-ml-2 mb-4.5 overflow-hidden overflow-ellipsis">
+                                <b class="xl:hidden">Email:</b>
+                                {{pessoa.email}}
+                            </span>
+                        </ng-container>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+
+        
+        <!-- Modal Aside -->
+
+        <ul class="absolute z-30 w-9/12 h-full bg-white inset-y-0 left-0 xl:bg-transparent xl:w-1/6 "
+            style="transition: all 2s ease" *ngIf="b_Mostrar_Modal">
+
+            <li class="flex pt-4 md:pt-2 xl:mt-36 transform active:scale-95 cursor-pointer duration-300">
+
+                <!-- icone HU modal -->
+                <div class="pl-4 md:pt-8">
+
+                    <svg class="w-12 h-12 md:w-20 md:h-20 lg:w-20 lg:h-20 xl:w-16 xl:h-16" viewBox="0 0 128 128"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M17.2479 114H111.752C112.441 114 113 113.385 113 112.627V105.921C113 105.163 112.441 104.548 111.752 104.548H105.042V83.2278V83.2261V58.4706V58.4681V51.0716H107.567C108.256 51.0716 108.815 50.4568 108.815 49.6986V34.3714C108.815 33.6132 108.256 32.9984 107.567 32.9984H63.3971V15.373C63.3971 14.6148 62.8384 14 62.1492 14H49.5252C49.2656 14 49.0127 14.0892 48.8013 14.2548L21.0861 35.9677C20.757 36.2251 20.562 36.6421 20.562 37.0859V104.548H17.2479C16.5588 104.548 16 105.163 16 105.921V112.627C16 113.385 16.5588 114 17.2479 114ZM62.1492 35.7451L62.1523 35.7444H106.319V48.3256H62.1523L62.1492 48.3249L62.1462 48.3256H38.2941V35.7444H62.1462L62.1492 35.7451ZM77.8351 70.784C78.0386 71.3036 78.4987 71.6146 78.9819 71.6146C79.1464 71.6146 79.314 71.5784 79.4748 71.502L102.546 60.5656V69.3516L90.8772 75.1075C90.2483 75.4179 89.9668 76.2305 90.2489 76.9224C90.4567 77.4319 90.9119 77.7342 91.3884 77.7342C91.559 77.7342 91.7327 77.6954 91.8984 77.6136L102.546 72.3614V82.3145L83.1174 91.321C82.4819 91.6153 82.1845 92.4205 82.452 93.1191C82.6525 93.644 83.1156 93.9598 83.6024 93.9598C83.7639 93.9598 83.9284 93.9249 84.0862 93.8512L102.546 85.2938V104.548H63.3971V51.0716H102.546V57.5756L78.4877 68.9799C77.8546 69.2802 77.5628 70.0881 77.8351 70.784ZM23.0578 37.7939L49.9243 16.746H60.9013V32.9984H37.0462C36.357 32.9984 35.7983 33.6132 35.7983 34.3714V49.6986C35.7983 50.4568 36.357 51.0716 37.0462 51.0716H60.9013V88.4074H33.2604C32.5713 88.4074 32.0125 89.0221 32.0125 89.7804C32.0125 90.5386 32.5713 91.1534 33.2604 91.1534H60.9013V96.7005H47.7051C47.016 96.7005 46.4572 97.3152 46.4572 98.0735C46.4572 98.8317 47.016 99.4465 47.7051 99.4465H60.9013V104.548H23.0578V37.7939ZM18.4958 107.294H110.504V111.254H18.4958V107.294Z"
+                            fill="black" />
+                        <path
+                            d="M32.1278 69.9777H36.5963V74.9388C36.5963 75.6468 37.1133 76.2208 37.751 76.2208H42.6413C43.279 76.2208 43.796 75.6468 43.796 74.9388V69.9777H48.2645C48.9022 69.9777 49.4193 69.4037 49.4193 68.6957V63.2663C49.4193 62.5583 48.9022 61.9843 48.2645 61.9843H43.796V57.0232C43.796 56.3152 43.279 55.7412 42.6413 55.7412H37.751C37.1133 55.7412 36.5963 56.3152 36.5963 57.0232V61.9843H32.1278C31.49 61.9843 30.973 62.5583 30.973 63.2663V68.6957C30.973 69.4037 31.49 69.9777 32.1278 69.9777ZM33.2825 64.5484H37.751C38.3887 64.5484 38.9058 63.9744 38.9058 63.2663V58.3053H41.4865V63.2663C41.4865 63.9744 42.0036 64.5484 42.6413 64.5484H47.1098V67.4136H42.6413C42.0036 67.4136 41.4865 67.9877 41.4865 68.6957V73.6567H38.9058V68.6957C38.9058 67.9877 38.3887 67.4136 37.751 67.4136H33.2825V64.5484V64.5484Z"
+                            fill="black" />
+                        <path
+                            d="M42.0763 90.6877H40.1964C39.5587 90.6877 39.0417 91.2618 39.0417 91.9698C39.0417 92.6778 39.5587 93.2518 40.1964 93.2518H42.0763C42.714 93.2518 43.2311 92.6778 43.2311 91.9698C43.2311 91.2618 42.714 90.6877 42.0763 90.6877Z"
+                            fill="black" />
+                        <path
+                            d="M72.0572 88.5675L70.4965 89.298C69.909 89.5728 69.6332 90.3247 69.8813 90.9776C70.0674 91.4671 70.4954 91.762 70.9459 91.762C71.0953 91.762 71.2475 91.7294 71.3941 91.6605L72.9549 90.93C73.5424 90.6552 73.8181 89.9034 73.57 89.2504C73.3225 88.5988 72.6453 88.2901 72.0572 88.5675Z"
+                            fill="black" />
+                    </svg>
+
+                </div>
+                <div class="relative pl-3 top-4 text-sm md:text-lg md:top-16 lg:text-xl lg:top-14">Hospital Unimed
+                </div>
+            </li>
+
+            <!-- icone operadora modal -->
+
+            <li class="flex transform active:scale-95 cursor-pointer duration-300 ">
+                <div class="pt-4 pl-4 lg:pt-8">
+                    <svg class="w-12 h-12 md:w-20 md:h-20 lg:w-20 lg:h-20 xl:w-16 xl:h-16" viewBox="0 0 128 128"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M110.752 106.291H108.744V66.9491C108.744 66.4014 108.351 65.9245 107.794 65.7938L94.5672 62.6965V20.7464C94.5672 20.0894 94.0084 19.5567 93.3193 19.5567H80.4378C80.0524 16.4371 77.2939 14 73.9195 14H53.0805C49.7061 14 46.9476 16.4371 46.5622 19.5567H33.6808C32.9916 19.5567 32.4328 20.0894 32.4328 20.7464V62.6965L19.2062 65.7938C18.6487 65.9245 18.2562 66.4014 18.2562 66.9491V106.291H16.2479C15.5588 106.291 15 106.823 15 107.48V113.29C15 113.947 15.5588 114.48 16.2479 114.48H110.752C111.441 114.48 112 113.947 112 113.29V107.48C112 106.823 111.441 106.291 110.752 106.291ZM94.5672 65.1467L106.248 67.882V106.291H94.5672V65.1467ZM48.9803 20.7493C48.9803 20.7483 48.981 20.7474 48.981 20.7464C48.981 20.7453 48.9803 20.7445 48.9803 20.7435V20.288C48.9803 18.133 50.8199 16.3793 53.0805 16.3793H73.9195C76.1801 16.3793 78.0197 18.133 78.0197 20.288V40.1548C78.0197 42.3099 76.1801 44.063 73.9195 44.063H53.0805C50.8199 44.063 48.9803 42.3099 48.9803 40.1548V20.7493V20.7493ZM34.9287 21.936H46.4845V40.1548C46.4845 43.6215 49.4434 46.4423 53.0805 46.4423H73.9195C77.5566 46.4423 80.5155 43.6215 80.5155 40.1548V21.936H92.0713V106.291H34.9287V21.936ZM20.752 67.882L32.4328 65.1467V106.291H20.752V67.882ZM109.504 112.101H17.4958V108.67H109.504V112.101V112.101Z"
+                            fill="black" />
+                        <path
+                            d="M85.6283 77.825H41.3717C40.6825 77.825 40.1238 78.3577 40.1238 79.0146V87.3567C40.1238 88.0136 40.6825 88.5463 41.3717 88.5463H85.6283C86.3174 88.5463 86.8762 88.0136 86.8762 87.3567V79.0146C86.8762 78.3577 86.3174 77.825 85.6283 77.825ZM51.1879 86.167H42.6196V80.2043H51.1879V86.167ZM62.2521 86.167H53.6837V80.2043H62.2521V86.167ZM73.3162 86.167H64.7479V80.2043H73.3162V86.167ZM84.3804 86.167H75.812V80.2043H84.3804V86.167Z"
+                            fill="black" />
+                        <path
+                            d="M85.6283 92.1008H41.3717C40.6825 92.1008 40.1238 92.6334 40.1238 93.2904V101.632C40.1238 102.289 40.6825 102.822 41.3717 102.822H85.6283C86.3174 102.822 86.8762 102.289 86.8762 101.632V93.2904C86.8762 92.6334 86.3174 92.1008 85.6283 92.1008ZM51.1879 100.443H42.6196V94.4801H51.1879V100.443ZM62.2521 100.443H53.6837V94.4801H62.2521V100.443ZM73.3162 100.443H64.7479V94.4801H73.3162V100.443ZM84.3804 100.443H75.812V94.4801H84.3804V100.443Z"
+                            fill="black" />
+                        <path
+                            d="M85.6283 49.2735H41.3717C40.6825 49.2735 40.1238 49.8062 40.1238 50.4631V58.8052C40.1238 59.4622 40.6825 59.9948 41.3717 59.9948H85.6283C86.3174 59.9948 86.8762 59.4622 86.8762 58.8052V50.4631C86.8762 49.8062 86.3174 49.2735 85.6283 49.2735ZM51.1879 57.6155H42.6196V51.6528H51.1879V57.6155ZM62.2521 57.6155H53.6837V51.6528H62.2521V57.6155ZM73.3162 57.6155H64.7479V51.6528H73.3162V57.6155ZM84.3804 57.6155H75.812V51.6528H84.3804V57.6155Z"
+                            fill="black" />
+                        <path
+                            d="M85.6283 63.5493H41.3717C40.6825 63.5493 40.1238 64.0819 40.1238 64.7389V73.081C40.1238 73.7379 40.6825 74.2706 41.3717 74.2706H85.6283C86.3174 74.2706 86.8762 73.7379 86.8762 73.081V64.7389C86.8762 64.0819 86.3174 63.5493 85.6283 63.5493ZM51.1879 71.8913H42.6196V65.9286H51.1879V71.8913ZM62.2521 71.8913H53.6837V65.9286H62.2521V71.8913ZM73.3162 71.8913H64.7479V65.9286H73.3162V71.8913ZM84.3804 71.8913H75.812V65.9286H84.3804V71.8913Z"
+                            fill="black" />
+                        <path
+                            d="M54.3406 34.0567H59.4766V38.9535C59.4766 39.6105 60.0354 40.1432 60.7245 40.1432H66.2755C66.9646 40.1432 67.5234 39.6105 67.5234 38.9535V34.0567H72.6594C73.3485 34.0567 73.9073 33.524 73.9073 32.867V27.5752C73.9073 26.9182 73.3485 26.3856 72.6594 26.3856H67.5234V21.4893C67.5234 20.8323 66.9646 20.2997 66.2755 20.2997H60.7245C60.0354 20.2997 59.4766 20.8323 59.4766 21.4893V26.3856H54.3406C53.6514 26.3856 53.0927 26.9182 53.0927 27.5752V32.867C53.0927 33.524 53.6514 34.0567 54.3406 34.0567ZM55.5885 28.7648H60.7245C61.4137 28.7648 61.9724 28.2322 61.9724 27.5752V22.6789H65.0276V27.5752C65.0276 28.2322 65.5863 28.7648 66.2755 28.7648H71.4115V31.6774H66.2755C65.5863 31.6774 65.0276 32.2101 65.0276 32.867V37.7639H61.9724V32.867C61.9724 32.2101 61.4137 31.6774 60.7245 31.6774H55.5885V28.7648Z"
+                            fill="black" />
+                    </svg>
+                </div>
+                <div class="relative pl-4 top-8 text-sm md:top-10 md:text-lg lg:text-xl lg:top-14">Operadora</div>
+            </li>
+
+            <!-- icone contatos Úteis -->
+
+            <li class="flex transform active:scale-95 cursor-pointer duration-300">
+                <div class="pt-4 pl-4 lg:pt-8">
+                    <svg class="w-12 h-12 md:w-20 md:h-20 lg:w-20 lg:h-20 xl:w-16 xl:h-16" viewBox="0 0 128 128"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M40.25 14H20.85C19.5637 14 18.3301 14.6321 17.4205 15.7574C16.511 16.8826 16 18.4087 16 20V108C16 109.591 16.511 111.117 17.4205 112.243C18.3301 113.368 19.5637 114 20.85 114H40.25C41.5363 114 42.7699 113.368 43.6795 112.243C44.589 111.117 45.1 109.591 45.1 108V20C45.1 18.4087 44.589 16.8826 43.6795 15.7574C42.7699 14.6321 41.5363 14 40.25 14ZM41.8667 108C41.8667 108.53 41.6963 109.039 41.3932 109.414C41.09 109.789 40.6788 110 40.25 110H20.85C20.4212 110 20.01 109.789 19.7068 109.414C19.4037 109.039 19.2333 108.53 19.2333 108V20C19.2333 19.4696 19.4037 18.9609 19.7068 18.5858C20.01 18.2107 20.4212 18 20.85 18H40.25C40.6788 18 41.09 18.2107 41.3932 18.5858C41.6963 18.9609 41.8667 19.4696 41.8667 20V108Z"
+                            fill="black" />
+                        <path
+                            d="M98.45 51.9999V35.9999C98.45 35.4695 98.2797 34.9608 97.9765 34.5857C97.6733 34.2107 97.2621 33.9999 96.8333 33.9999H58.0333C57.6046 33.9999 57.1934 34.2107 56.8902 34.5857C56.587 34.9608 56.4167 35.4695 56.4167 35.9999V51.9999C56.4167 52.5304 56.587 53.0391 56.8902 53.4141C57.1934 53.7892 57.6046 53.9999 58.0333 53.9999H96.8333C97.2621 53.9999 97.6733 53.7892 97.9765 53.4141C98.2797 53.0391 98.45 52.5304 98.45 51.9999ZM95.2167 49.9999H59.65V37.9999H95.2167V49.9999Z"
+                            fill="black" />
+                        <path d="M35.4 33.9999H25.7V37.9999H35.4V33.9999Z" fill="black" />
+                        <path d="M35.4 42H25.7V46H35.4V42Z" fill="black" />
+                        <path d="M80.6667 64H74.2V68H80.6667V64Z" fill="black" />
+                        <path d="M80.6667 78H74.2V82H80.6667V78Z" fill="black" />
+                        <path d="M80.6667 92H74.2V96H80.6667V92Z" fill="black" />
+                        <path d="M67.7333 64H61.2667V68H67.7333V64Z" fill="black" />
+                        <path d="M67.7333 78H61.2667V82H67.7333V78Z" fill="black" />
+                        <path d="M67.7333 92H61.2667V96H67.7333V92Z" fill="black" />
+                        <path d="M93.6 64H87.1334V68H93.6V64Z" fill="black" />
+                        <path d="M93.6 78H87.1334V82H93.6V78Z" fill="black" />
+                        <path d="M93.6 92H87.1334V96H93.6V92Z" fill="black" />
+                        <path
+                            d="M106.533 20H49.95C49.5212 20 49.11 20.2107 48.8068 20.5858C48.5037 20.9608 48.3333 21.4696 48.3333 22C48.3333 22.5304 48.5037 23.0391 48.8068 23.4142C49.11 23.7893 49.5212 24 49.95 24H106.533C107.391 24 108.213 24.4214 108.82 25.1716C109.426 25.9217 109.767 26.9391 109.767 28V104C109.767 105.061 109.426 106.078 108.82 106.828C108.213 107.579 107.391 108 106.533 108H49.95C49.5212 108 49.11 108.211 48.8068 108.586C48.5037 108.961 48.3333 109.47 48.3333 110C48.3333 110.53 48.5037 111.039 48.8068 111.414C49.11 111.789 49.5212 112 49.95 112H106.533C108.248 112 109.893 111.157 111.106 109.657C112.319 108.157 113 106.122 113 104V28C113 25.8783 112.319 23.8434 111.106 22.3431C109.893 20.8428 108.248 20 106.533 20V20Z"
+                            fill="black" />
+                    </svg>
+                </div>
+                <div class=" relative pl-4 top-8 text-sm md:top-10 md:text-lg lg:text-xl lg:top-14">Contatos Úteis
+                </div>
+            </li>
+        </ul>
+
+        <!-- Modal de Sobreposição -->
+        <div class="absolute inset-0 z-10 bg-black opacity-70 xl:hidden" *ngIf="b_Mostrar_Modal"
+            (click)="b_Mostrar_Modal=false">
+        </div>
+
+    </body>
+
+</main>
+
+
+<!-- pegar a altura da div ~60, depois ver quantos items de cada letra tem e multiplcar pelo tamanho (~60), logo após fazer um ponto de quebra
+
+para a proxima letra-->
+
+
+<!-- eu quero que quando clickar na bolinha na lateral a listagem rolar até o começo da inical selecionada de forma suave -->

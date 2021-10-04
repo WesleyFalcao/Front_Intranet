@@ -147,7 +147,7 @@
 
 	<div class=" w-full h-full ">
 
-		<header class="h-24 xl:h-14 w-full items-center relative px-5">
+		<header class="h-24 xl:h-14 w-full items-center md:mb-6 lg:mb-0 relative px-5">
 
 			<div class="flex flex-row pt-4 md:pt-6 lg:pt-4 items-center justify-start space-x-4">
 
@@ -159,7 +159,7 @@
 
 					<!-- icone pesquisa-->
 					<div class="absolute right-2 rounded-full w-14 h-14 top-1.5 xl:w-11 xl:h-11 bg-unimed-purpeconecta transform active:scale-95 transition duration-300 cursor-pointer"
-						(click)="buscar()">
+						(click)="Buscar()">
 						<svg class="w-8 h-8 relative top-3 left-3 xl:top-2 xl:left-2 xl:w-7 xl:h-7" viewBox="0 0 43 41"
 							fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path
@@ -187,10 +187,9 @@
 
 			<!-- Container -->
 
-			<ul class="w-full flex flex-col gap-1 pl-2">
+			<div class="w-full flex flex-col gap-1 pl-2">
 
 				<!-- titulo dos documentos -->
-
 
 				<ul class="fixed w-full">
 					<li class="hidden md:mb-4 lg:flex lg:justify-end lg:w-full xl:w-10/12 ">
@@ -212,16 +211,16 @@
 
 						<div
 							class=" w-1/12 sm:absolute right-0 lg:relative md:right-0 md:top-1 md:absolute m-4 xl:pl-4">
-							<svg-icon [src]="documento.nm_Caminho_Imagem "
-								[svgStyle]="{ 'width.px':55, 'height.px':55 }"></svg-icon>
+							<!-- <svg-icon [src]="documento.nm_Caminho_Imagem"
+								[svgStyle]="{ 'width.px':55, 'height.px':55 }"></svg-icon> -->
 						</div>
 						<div class="pt-3 pb-2 pl-3 mr-4 md:mr-20 lg:pt-0 lg:my-auto relative lg:w-6/12 xl:4/12">
 							{{documento.nm_Documento}}
 						</div>
 						<div class="pl-3 pb-2 pt-4 lg:w-3/12 lg:pt-0 lg:my-auto lg:text-center xl:w-3/12 w-full">
-							{{documento.nm_Processo}}
+							{{documento.nr_Processo}}
 						</div>
-						<div class="pt-3 pb-2 pl-4 md:pl-4 lg:pt-0 lg:my-auto xl:pl-8 lg:w-1/12">
+						<div class="pt-3 pb-2 pl-4 md:pl-4 lg:pt-0 lg:my-auto xl:pl-14 lg:w-1/12">
 							{{documento.dt_Revisao | date: 'dd/MM/yyyy'}}
 						</div>
 						<div class="pt-3 pl-4 md:pl-4 lg:pt-0 lg:my-auto lg:w-3/12 lg:text-center pb-2">
@@ -229,7 +228,7 @@
 						</div>
 					</li>
 				</ul>
-			</ul>
+			</div>
 			<!-- <table class="w-full bg-white rounded-t-2xl">
         <tr class="">
           <th>
@@ -269,10 +268,10 @@
 
 
 
-
 <!-- modal -->
 
-<div style=" background-image: url('assets/imagens/background-purpe-claro.svg'); transition: all 0.15s easy 0s;"
+
+<div style=" background-image: url('assets/imagens/SVG_Background_Full_White.svg');  transition: all 0.15s easy 0s;"
 	class="bg-cover bg-center w-full h-screen absolute top-0 left-0 z-30 " *ngIf="b_Mostrar_Modal">
 
 	<!--header-->
@@ -303,7 +302,7 @@
 
 				<!-- icone pesquisa-->
 				<div class="fixed right-2 top-2 rounded-full w-12 h-12 bg-unimed-purpeconecta transform cursor-pointer active:scale-90 transition duration-300 "
-					(click)="buscar()">
+					(click)="Buscar()">
 					<svg class="relative top-2 left-2" width="32" height="32" viewBox="0 0 43 41" fill="none"
 						xmlns="http://www.w3.org/2000/svg">
 						<path

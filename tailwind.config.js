@@ -42,6 +42,8 @@ module.exports = {
           black: '#000000',
           
           purpeconecta: '#5E1995',
+
+          bege_claro: '#FFF7E2',
         },
       },
       
