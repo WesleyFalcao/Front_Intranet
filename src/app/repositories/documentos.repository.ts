@@ -30,5 +30,15 @@ export class DocumentosRepository {
         return response.documentos
     }
 
+    async Get_Listagem() {
+        this.subjectService.subject_Exibindo_Loading.next(true)
+
+        const query = this.documentosQuery.Get_Listagem()
+        const response = await this.apiService.Query([query], null, this.httpOptions)
+
+        this.subjectService.subject_Exibindo_Loading.next(false)
+
+        return response.documentos
+    }
 
 }

@@ -9,7 +9,7 @@ export class DataService {
     // Valores para armazenar em memória
     nm_Session: string = environment.SESSION_NAME;
 
-    constructor() { }
+    constructor() {}
 
     Get_Local(nm_Chave: string) {
         return JSON.parse(window.localStorage.getItem(this.nm_Session + "_" + nm_Chave) ?? "")

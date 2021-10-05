@@ -1,7 +1,7 @@
 import { FormControl, FormGroup } from "@angular/forms";
 
 export function Get_Primeiro_Nome(nm_Pessoa: string) {
-    if (!nm_Pessoa || nm_Pessoa.split(" ").length <= 1) return
+    if (!nm_Pessoa || nm_Pessoa.split(" ").length <= 1) return null
 
     return nm_Pessoa.split(" ")[0].charAt(0).toUpperCase() + nm_Pessoa.split(" ")[0].slice(1).toLowerCase()
 }

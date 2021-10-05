@@ -11,12 +11,14 @@ import { DataService } from "./data.service";
     providedIn: "root"
 })
 export class ApiService {
+
     httpOptions = {};
 
     constructor(
         private apollo: Apollo, private data: DataService,
         private http: HttpClient,
-    ) {
+    )
+    {
         this.Preparar_HttpOptions();
     }
 
@@ -44,7 +46,8 @@ export class ApiService {
     * @param querys Array de strings com as querys GraphQL
     * @param objHeaders Objeto de headers HTTP
     */
-    async Query(querys: QueryModel[], objVariables: any, objHeaders = null) {
+
+    async Query(querys: QueryModel[], objVariables: any, objHeaders: any) {
         this.Preparar_HttpOptions(objHeaders);
         let ds_Header = "query"
 
@@ -60,7 +63,7 @@ export class ApiService {
                 }
             }
 
-            ds_Header += objArrayQuery.map(element => element.field + ":" + element.type).join(" ")
+            ds_Header += objArrayQuery.map(element => element.field + ":" + element.type).join("")
             ds_Header += ")"
         }
 
@@ -81,7 +84,8 @@ export class ApiService {
      * @param {*} [objHeaders=null]
      * @return {*} 
      */
-    async Mutation(mutations: QueryModel[], objVariables: any, objHeaders = null) {
+
+    async Mutation(mutations: QueryModel[], objVariables: any, objHeaders: any) {
         this.Preparar_HttpOptions(objHeaders);
         let ds_Header = "mutation"
 
@@ -111,7 +115,7 @@ export class ApiService {
 
     }
 
-    Post({ url, body }: { url: string, body: any }) {
+    Post({ url, body }: { url: string, body: any }){
         this.Preparar_HttpOptions()
 
         return this.http.post<any>(environment.CONS_URL_APIBASE + url, body).toPromise()

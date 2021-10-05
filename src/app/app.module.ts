@@ -14,12 +14,12 @@ import { ListagemComponent } from './page/listagem/listagem.component';
 import { ListagemModule } from './page/listagem/listagem.module';
 import { GraphQLModule } from './graphql.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,  
 
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
