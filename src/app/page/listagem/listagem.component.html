@@ -24,10 +24,10 @@
 
                     <input
                         class="relative w-full flex rounded-full pl-16 md:pl-20 py-3 border-2 md:py-4 lg:py-6 lg:pl-28 xl:py-3.5 xl:pl-12 border-gray-200 focus:ring-unimed-purpeconecta focus:border-transparent"
-                        placeholder="Pesquise...">
+                        placeholder="Pesquise..." >
 
                     <!-- icone de filtro -->
-                    <div class="absolute top-0 md:-top-0.5 left-2 transform active:scale-90 duration-300">
+                    <div class="absolute top-0 md:-top-0.5 left-2 transform active:scale-90 duration-300" (click)="Buscar_Ramais()">
                         <svg class="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:hidden" viewBox="0 0 128 128"
                             fill="none" xmlns="http://www.w3.org/2000/svg" (click)="Mostrar_Modal()">
                             <path
@@ -105,7 +105,7 @@
         <div class="h-full px-5 md:px-20 lg:px-20 pt-4 lg:pt-8 w-full lg:w-11/12 xl:w-8/12 mx-auto">
 
             <ul class=" bg-white py-2 mb-4 md:py-2.5 lg:py-0 md:mb-6 lg:pb-4 rounded-lg shadow-lg font-medium transform cursor-pointer active:scale-95 transition duration-300 "
-                (click)="expandir(pessoa)" *ngFor="let pessoa of objArrayNomes" #variavelLocal>
+                (click)="expandir(pessoa)" *ngFor="let pessoa of objArrayRamais" #variavelLocal>
 
                 <!-- essa Li está estiliando os nomes que estão vindo do ngFor -->
 
@@ -114,7 +114,6 @@
                         <div
                             class="rounded-full xl:hidden bg-unimed-green w-8 h-8 md:w-9 md:h-9 md:top-1 lg:w-11 lg:h-11 ">
                             <div class="pt-1 md:pt-0.5 text-center md:text-xl lg:text-2xl lg:pt-1.5 text-white">
-
                                 {{pessoa.inicial}}
                             </div>
                         </div>
@@ -124,23 +123,23 @@
                         class="w-11/12 lg:w-full text-sm lg:text-xl xl:text-base gap-x-12 flex gap-y-2 flex-col xl:flex-row">
 
                         <div class="pl-10 xl:w-4/12 lg:pl-12 xl:pl pt-1.5 xl:pt-0 overflow-hidden overflow-ellipsis">
-                            {{pessoa.nome}}</div>
+                            {{pessoa.nm_Colaborador}}</div>
 
                         <ng-container *ngIf="pessoa.open">
                             <span
                                 class="xl:w-3/12 pt-2 md:pt-3 -ml-2 lg:-ml-2 xl:m-0 xl:pt-0 overflow-hidden overflow-ellipsis">
                                 <b class="xl:hidden">Setor:</b>
-                                {{pessoa.setor}}
+                                {{pessoa.cd_Setor}}
                             </span>
 
                             <span class="xl:w-2/12 -ml-2 lg:-ml-2 xl:mr-10">
                                 <b class="xl:hidden">Ramal(s):</b>
-                                {{pessoa.ramal}}
+                                {{pessoa.nr_Ramal}}
                             </span>
 
                             <span class="mr-4 -ml-2 xl:w-3/12 lg:-ml-2 mb-4.5 overflow-hidden overflow-ellipsis">
                                 <b class="xl:hidden">Email:</b>
-                                {{pessoa.email}}
+                                {{pessoa.ds_Email}}
                             </span>
                         </ng-container>
                     </div>

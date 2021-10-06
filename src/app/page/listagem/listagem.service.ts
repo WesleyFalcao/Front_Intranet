@@ -1,18 +1,19 @@
 import { Injectable } from "@angular/core";
-import { DocumentosRepository } from "src/app/repositories/documentos.repository";
+import { RamaisRepository } from "src/app/repositories/ramais.repository";
 import { DataService } from "src/app/services/data.service";
+
 
 @Injectable({
     providedIn: "root"
 })
-export class DocumentosService {
+export class RamaisService {
 
     constructor(
-        private documentosRepository : DocumentosRepository
+        private ramaisRepository : RamaisRepository
     ) {
     }
 
-    Get_Listagem() {
-        return this.documentosRepository.Get_Listagem()
+    Get_Ramais() {
+        return this.ramaisRepository.Get_Ramais()
     }
 }

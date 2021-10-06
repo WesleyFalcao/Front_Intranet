@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { DocumentosQuery } from "../queries/documentos.query";
+import { RamaisQuery } from "../queries/ramais.query";
 import { ApiService } from "../services/api.service";
 import { SubjectService } from "../services/subject.service";
 
@@ -7,7 +8,7 @@ import { SubjectService } from "../services/subject.service";
     providedIn: "root"
 })
 
-export class DocumentosRepository {
+export class RamaisRepository {
 
     /** @description Options da Requisição */
     httpOptions: any;
@@ -15,20 +16,20 @@ export class DocumentosRepository {
     constructor(
         private subjectService: SubjectService,
         private apiService: ApiService,
-        private documentosQuery: DocumentosQuery
-    ) {
+        private ramaisQuery: RamaisQuery
+    ) 
+    {
     }
 
-    async Get_Documentos() {
+    async Get_Ramais() {
         this.subjectService.subject_Exibindo_Loading.next(true)
 
-        const query = this.documentosQuery.Get_Documentos()
+        const query = this.ramaisQuery.Get_Ramais()
         const response = await this.apiService.Query([query], null, this.httpOptions)
 
         this.subjectService.subject_Exibindo_Loading.next(false)
 
-        return response.documentos
+        return response.ramais
     }
 
-    
 }

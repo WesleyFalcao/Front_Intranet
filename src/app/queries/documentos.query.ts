@@ -31,23 +31,6 @@ export class DocumentosQuery{
 
     }
 
-    Get_Listagem(){
-        return{
-            header: [
-
-            ],
-            query: `
-            ramais: intranet_test_Pessoa {
-                cd_Ramal: id
-                nm_Colaborador: nome
-                nr_Ramal:ramal
-                ds_Email:email
-                cd_Setor:departamento
-              }
-            `
-        }
-    }
-    
 
 
 }

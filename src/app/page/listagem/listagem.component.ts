@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ScrollDirective } from 'src/app/directives/scroll/scroll.directive';
+import { RamaisService } from './listagem.service';
 
 
 @Component({
@@ -18,61 +19,7 @@ export class ListagemComponent implements OnInit {
 
   ]
 
-  objArrayNomes = [
-
-    { nome: "Aesley Falcao Andrade", inicial: "A", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Aesley Falcao Andrade", inicial: "A", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Aesley Falcao Andrade", inicial: "A", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Aesley Falcao Andrade", inicial: "A", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Aesley Falcao Andrade", inicial: "A", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Aesley Falcao Andrade", inicial: "A", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Aesley Falcao Andrade", inicial: "A", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Aesley Falcao Andrade", inicial: "A", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Aesley Falcao Andrade", inicial: "A", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Besley Falcao Andrade", inicial: "B", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Besley Falcao Andrade", inicial: "B", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Besley Falcao Andrade", inicial: "B", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Besley Falcao Andrade", inicial: "B", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Besley Falcao Andrade", inicial: "B", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Besley Falcao Andrade", inicial: "B", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Besley Falcao Andrade", inicial: "B", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Besley Falcao Andrade", inicial: "B", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Cesley Falcao Andrade", inicial: "C", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Cesley Falcao Andrade", inicial: "C", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Cesley Falcao Andrade", inicial: "C", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Cesley Falcao Andrade", inicial: "C", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Cesley Falcao Andrade", inicial: "C", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Cesley Falcao Andrade", inicial: "C", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Cesley Falcao Andrade", inicial: "C", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Cesley Falcao Andrade", inicial: "C", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Cesley Falcao Andrade", inicial: "C", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Cesley Falcao Andrade", inicial: "C", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Jesley Falcao Andrade", inicial: "J", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Jesley Falcao Andrade", inicial: "J", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Jesley Falcao Andrade", inicial: "J", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Jesley Falcao Andrade", inicial: "J", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Jesley Falcao Andrade", inicial: "J", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Jesley Falcao Andrade", inicial: "J", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Jesley Falcao Andrade", inicial: "J", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Jesley Falcao Andrade", inicial: "J", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Jesley Falcao Andrade", inicial: "J", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Wesley Falcao Andrade", inicial: "W", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Wesley Falcao Andrade", inicial: "W", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Wesley Falcao Andrade", inicial: "W", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Wesley Falcao Andrade", inicial: "W", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Wesley Falcao Andrade", inicial: "W", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Wesley Falcao Andrade", inicial: "W", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Wesley Falcao Andrade", inicial: "W", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Wesley Falcao Andrade", inicial: "W", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Wesley Falcao Andrade", inicial: "W", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Wesley Falcao Andrade", inicial: "W", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Wesley Falcao Andrade", inicial: "W", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Wesley Falcao Andrade", inicial: "W", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Wesley Falcao Andrade", inicial: "W", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Wesley Falcao Andrade", inicial: "W", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    { nome: "Wesley Falcao Andrade", inicial: "W", open: false, setor: "Tec. Informação", ramal: "6237 6240 4311", email: "unimedsulcapixaba@outlook.com" },
-    
-  ]
+  objArrayRamais = []
 
   objArrayTitulos = [
     { nm_titulo: "Nome", nm_Classe: "pr-20 lg:w-4/12 overflow-hidden overflow-ellipsis" },
@@ -94,19 +41,25 @@ export class ListagemComponent implements OnInit {
   objInicialSelecionada: string = "A"
   Inicial: string
   nr_Ultimo_Item: number = 0
-
+  nm_Search: string
 
   // @ViewChild Variavel_Ligacao : HTMLElement
 
-  constructor() { }
+  constructor(  
+  private ramaisService : RamaisService) {   
+  } 
 
-  ngOnInit(): void {
+  async ngOnInit(){
+
+    await this.Buscar_Ramais()
+
     if (window.innerWidth > 1280) {
-      this.objArrayNomes.forEach(a => a.open = true)
+      
+      this.objArrayRamais.forEach(a => a.open = true)
       this.b_Mostrar_Modal = true
       // this.b_Text_Row_Lg = true
     }
-
+      
   }
 
   expandir(documento: any) {
@@ -137,8 +90,9 @@ export class ListagemComponent implements OnInit {
       return false
     }) 
 
-    this.objInicialSelecionada = this.objArrayNomes[nr_Index].inicial
+    this.objInicialSelecionada = this.objArrayRamais[nr_Index].inicial
 
+    
 
     // let nrIndex_2 = this.objArrayIniciais.findIndex(i => i.inicial == this.objInicialSelecionada)
 
@@ -158,6 +112,11 @@ export class ListagemComponent implements OnInit {
     // this.nr_Ultimo_Item = nrIndex_2
   }
 
+  async Buscar_Ramais() {
+    console.log(this.nm_Search)
+    this.objArrayRamais = await this.ramaisService.Get_Ramais()
+    
+  }
   // FindIndex(f: Function) {
   //   let index = 0
 
@@ -178,7 +137,7 @@ export class ListagemComponent implements OnInit {
 
     this.nr_Ultimo_Item = nr_Index
 
-    const nr_Index_Nome = this.objArrayNomes.findIndex(i => i.inicial == objInicial.inicial)
+    const nr_Index_Nome = this.objArrayRamais.findIndex(i => i.inicial == objInicial.inicial)
 
     const obgItem_Filho = this.objArrayItemLista.find((item_list, index_item) => nr_Index_Nome == index_item)?.nativeElement
 
