@@ -22,12 +22,12 @@
             <div class="w-full mx-auto md:w-11/12 xl:w-8/12">
                 <div class="flex-grow relative rounded-full shadow-lg">
 
-                    <input
+                    <input id="input_search" [(ngModel)]="searchString" (ngModelChange)="Buscar_Ramais()"
                         class="relative w-full flex rounded-full pl-16 md:pl-20 py-3 border-2 md:py-4 lg:py-6 lg:pl-28 xl:py-3.5 xl:pl-12 border-gray-200 focus:ring-unimed-purpeconecta focus:border-transparent"
-                        placeholder="Pesquise..." >
-
+                        placeholder="Pesquise...">
                     <!-- icone de filtro -->
-                    <div class="absolute top-0 md:-top-0.5 left-2 transform active:scale-90 duration-300" (click)="Buscar_Ramais()">
+                    <div class="absolute top-0 md:-top-0.5 left-2 transform active:scale-90 duration-300"
+                        (click)="Buscar_Ramais()">
                         <svg class="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:hidden" viewBox="0 0 128 128"
                             fill="none" xmlns="http://www.w3.org/2000/svg" (click)="Mostrar_Modal()">
                             <path
@@ -146,9 +146,39 @@
                 </li>
             </ul>
 
+            <div class="flex">
+                <div *ngIf='page > 1' (click)='anterior()'>
+                    <button
+                        class=" border border-teal-500 bg-teal-500 bg-white text-black rounded-full font-bold py-4 px-6 ml-2 flex items-center transform active:scale-95 cursor-pointer duration-300">
+                        <svg class="h-5 w-5 mr-2 fill-current" version="1.1" id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                            y="0px" viewBox="-49 141 512 512" style="enable-background:new -49 141 512 512;"
+                            xml:space="preserve">
+                            <path id="XMLID_10_"
+                                d="M438,372H36.355l72.822-72.822c9.763-9.763,9.763-25.592,0-35.355c-9.763-9.764-25.593-9.762-35.355,0 l-115.5,115.5C-46.366,384.01-49,390.369-49,397s2.634,12.989,7.322,17.678l115.5,115.5c9.763,9.762,25.593,9.763,35.355,0 c9.763-9.763,9.763-25.592,0-35.355L36.355,422H438c13.808,0,25-11.193,25-25S451.808,372,438,372z">
+                            </path>
+                        </svg>
+                        Página Anterior
+                    </button>
+                </div>
+                <div (click)="proxima()">
+                    <button
+                        class="border border-teal-500 bg-teal-500 bg-white text-black rounded-full font-bold py-4 px-6 ml-2 flex items-center transform active:scale-95 cursor-pointer duration-300">
+                        Próxima Página
+                        <svg class="h-5 w-5 ml-2 fill-current" clasversion="1.1" id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                            y="0px" viewBox="-49 141 512 512" style="enable-background:new -49 141 512 512;"
+                            xml:space="preserve">
+                            <path id="XMLID_11_"
+                                d="M-24,422h401.645l-72.822,72.822c-9.763,9.763-9.763,25.592,0,35.355c9.763,9.764,25.593,9.762,35.355,0
+                        l115.5-115.5C460.366,409.989,463,403.63,463,397s-2.634-12.989-7.322-17.678l-115.5-115.5c-9.763-9.762-25.593-9.763-35.355,0
+                        c-9.763,9.763-9.763,25.592,0,35.355l72.822,72.822H-24c-13.808,0-25,11.193-25,25S-37.808,422-24,422z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
 
-        
         <!-- Modal Aside -->
 
         <ul class="absolute z-30 w-9/12 h-full bg-white inset-y-0 left-0 xl:bg-transparent xl:w-1/6 "

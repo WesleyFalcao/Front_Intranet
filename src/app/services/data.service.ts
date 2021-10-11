@@ -6,10 +6,11 @@ import { environment } from "src/environments/environment";
     providedIn: "root"
 })
 export class DataService {
+
     // Valores para armazenar em memória
     nm_Session: string = environment.SESSION_NAME;
 
-    constructor() {}
+    constructor(){}
 
     Get_Local(nm_Chave: string) {
         return JSON.parse(window.localStorage.getItem(this.nm_Session + "_" + nm_Chave) ?? "")
@@ -18,6 +19,7 @@ export class DataService {
     Set_Local(nm_Chave: string, objValue: any) {
         window.localStorage.setItem(this.nm_Session + "_" + nm_Chave, JSON.stringify(objValue))
     }
+
 
     // Get_Token_Values() {
     //     if (!this.Get_Session("token")) return null

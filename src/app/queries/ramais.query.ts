@@ -10,7 +10,7 @@ export class RamaisQuery{
 
     constructor() { }
 
-    Get_Ramais() {
+    Get_Ramais(page: number, pageLenght: number, searchString: string) {
         return {
 
             header: [
@@ -20,12 +20,12 @@ export class RamaisQuery{
                 // }
             ],
             query: `
-            ramais: intranet_test_Pessoa {
+            ramais: intranet_test_Pessoa(limit: ${pageLenght}, offset: ${(page-1) * pageLenght}, where: {nome: {_like: "%${searchString}%"}}) {
                 cd_Ramal: id
                 nm_Colaborador: nome
-                nr_Ramal:ramal
-                ds_Email:email
-                cd_Setor:departamento
+                nr_Ramal: ramal
+                ds_Email: email
+                cd_Setor: departamento
               }
             `
         }

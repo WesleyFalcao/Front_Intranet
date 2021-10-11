@@ -1,4 +1,6 @@
+import { fn } from '@angular/compiler/src/output/output_ast';
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { timer } from 'rxjs';
 import { ScrollDirective } from 'src/app/directives/scroll/scroll.directive';
 import { RamaisService } from './listagem.service';
 
@@ -8,6 +10,7 @@ import { RamaisService } from './listagem.service';
   templateUrl: './listagem.component.html',
   styleUrls: ['./listagem.component.scss'],
 })
+
 export class ListagemComponent implements OnInit {
 
 
@@ -43,23 +46,43 @@ export class ListagemComponent implements OnInit {
   nr_Ultimo_Item: number = 0
   nm_Search: string
 
+  page: number = 1
+  pageLenght: number = 6
+  searchString = ""
+
   // @ViewChild Variavel_Ligacao : HTMLElement
 
-  constructor(  
-  private ramaisService : RamaisService) {   
-  } 
+  constructor(
+    private ramaisService: RamaisService) {
+  }
 
-  async ngOnInit(){
+  async ngOnInit() {
+
+    let search = document.getElementById('input_search')
+    let counter = 0,
+    timer = null; 
+
+    search.addEventListener('keypress', function(){
+      counter ++
+      console.log(counter)
+      clearTimeout(timer);
+      
+      timer = setTimeout(function () {
+      }, 2000);
+
+      //observable subscription
+    })
+
 
     await this.Buscar_Ramais()
 
     if (window.innerWidth > 1280) {
-      
+
       this.objArrayRamais.forEach(a => a.open = true)
       this.b_Mostrar_Modal = true
       // this.b_Text_Row_Lg = true
     }
-      
+
   }
 
   expandir(documento: any) {
@@ -76,23 +99,20 @@ export class ListagemComponent implements OnInit {
 
   Scrolar_aside(scroll: number) {
 
-    
-    const nr_Pixel =  scroll + this.objArrayItemLista.first.nativeElement.offsetTop
+
+    const nr_Pixel = scroll + this.objArrayItemLista.first.nativeElement.offsetTop
 
     let nr_Index = 0
 
-    this.objArrayItemLista.find((i,index) => {
-      if (i.nativeElement.offsetTop >= nr_Pixel)
-      {
+    this.objArrayItemLista.find((i, index) => {
+      if (i.nativeElement.offsetTop >= nr_Pixel) {
         nr_Index = index
         return true
       }
       return false
-    }) 
+    })
 
     this.objInicialSelecionada = this.objArrayRamais[nr_Index].inicial
-
-    
 
     // let nrIndex_2 = this.objArrayIniciais.findIndex(i => i.inicial == this.objInicialSelecionada)
 
@@ -112,11 +132,28 @@ export class ListagemComponent implements OnInit {
     // this.nr_Ultimo_Item = nrIndex_2
   }
 
+
   async Buscar_Ramais() {
-    console.log(this.nm_Search)
-    this.objArrayRamais = await this.ramaisService.Get_Ramais()
-    
+    this.page = 1;
+    this.objArrayRamais = await this.ramaisService.Get_Ramais(this.page, this.pageLenght, this.searchString)
+    this.objArrayRamais.forEach(a => a.open = true)
+    console.log(this.nm_Search, this.objArrayRamais);
   }
+
+  async proxima() {
+    this.page++;
+    this.objArrayRamais = await this.ramaisService.Get_Ramais(this.page, this.pageLenght, this.searchString)
+    this.objArrayRamais.forEach(a => a.open = true)
+    console.log(this.nm_Search, this.objArrayRamais);
+  }
+
+  async anterior() {
+    this.page--;
+    this.objArrayRamais = await this.ramaisService.Get_Ramais(this.page, this.pageLenght, this.searchString)
+    this.objArrayRamais.forEach(a => a.open = true)
+    console.log(this.nm_Search, this.objArrayRamais);
+  }
+
   // FindIndex(f: Function) {
   //   let index = 0
 
@@ -151,7 +188,6 @@ export class ListagemComponent implements OnInit {
 
   //index_2 está pegando o index da incial que estou agora 
 
-
   //if index for divisível por 4 ou index se a distancia enrte os index for >6, scrollar, se for ==2 não scrollar
 
   //this.scroll.last.scrolar(scroll)
@@ -180,7 +216,6 @@ export class ListagemComponent implements OnInit {
 // Funcao - Selecionar_Beneficiario()
 // Descricao - ds_Produto
 // css - div-letra
-
 
 
 
