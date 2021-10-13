@@ -39,7 +39,7 @@ export class DataService {
         window.sessionStorage.setItem(this.nm_Session + "_" + nm_Chave, JSON.stringify(objValue))
     }
 
-    Limpar_Session() {
+    Limpar_Session(){
         window.sessionStorage.clear()
     }
 }

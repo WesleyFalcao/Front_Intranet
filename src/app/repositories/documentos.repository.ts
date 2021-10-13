@@ -20,6 +20,7 @@ export class DocumentosRepository {
     }
 
     async Get_Documentos() {
+        
         this.subjectService.subject_Exibindo_Loading.next(true)
 
         const query = this.documentosQuery.Get_Documentos()

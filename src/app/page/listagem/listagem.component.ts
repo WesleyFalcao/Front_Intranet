@@ -1,8 +1,14 @@
 import { fn } from '@angular/compiler/src/output/output_ast';
-import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { timer } from 'rxjs';
+import { Component, ElementRef, EventEmitter, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { interval, timer } from 'rxjs';
 import { ScrollDirective } from 'src/app/directives/scroll/scroll.directive';
 import { RamaisService } from './listagem.service';
+import { Subject, Subscription } from "rxjs";
+import { debounceTime, distinctUntilChanged } from "rxjs/operators";
+import { FormControl } from '@angular/forms';
+
+
+
 
 
 @Component({
@@ -25,10 +31,10 @@ export class ListagemComponent implements OnInit {
   objArrayRamais = []
 
   objArrayTitulos = [
-    { nm_titulo: "Nome", nm_Classe: "pr-20 lg:w-4/12 overflow-hidden overflow-ellipsis" },
-    { nm_titulo: "Setor", nm_Classe: "pr-28 lg:w-3/12 xl:pr-40 overflow-hidden overflow-ellipsis" },
-    { nm_titulo: "Ramal(s)", nm_Classe: "pr-6 lg:w-2/12 xl:pr-24 overflow-hidden overflow-ellipsis" },
-    { nm_titulo: "Email", nm_Classe: "pr-6 lg:w-3/12 overflow-hidden overflow-ellipsis" }
+    { nm_titulo: "Nome", nm_Classe: "pr-20 lg:w-4/12"},
+    { nm_titulo: "Setor", nm_Classe: "pr-28 lg:w-3/12 xl:pr-40"},
+    { nm_titulo: "Ramal(s)", nm_Classe: "pr-6 lg:w-2/12 xl:pr-24"},
+    { nm_titulo: "Email", nm_Classe: "pr-6 lg:w-3/12"}
   ]
 
   @ViewChildren(ScrollDirective)
@@ -46,46 +52,38 @@ export class ListagemComponent implements OnInit {
   nr_Ultimo_Item: number = 0
   nm_Search: string
 
+  
   page: number = 1
   pageLenght: number = 6
-  searchString = ""
+  searchString: string = ""
 
-  // @ViewChild Variavel_Ligacao : HTMLElement
+
+  modelChanged = new FormControl()
 
   constructor(
-    private ramaisService: RamaisService) {
-  }
+    private ramaisService: RamaisService) {}
 
   async ngOnInit() {
 
-    let search = document.getElementById('input_search')
-    let counter = 0,
-    timer = null; 
-
-    search.addEventListener('keypress', function(){
-      counter ++
-      console.log(counter)
-      clearTimeout(timer);
+    this.modelChanged.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async(input) =>{
       
-      timer = setTimeout(function () {
-      }, 2000);
+      this.searchString = input 
+      console.log(this.searchString)
+    } 
+  )
 
-      //observable subscription
-    })
+  await this.Buscar_Ramais()
 
+  if (window.innerWidth > 1280) {
 
-    await this.Buscar_Ramais()
-
-    if (window.innerWidth > 1280) {
-
-      this.objArrayRamais.forEach(a => a.open = true)
-      this.b_Mostrar_Modal = true
-      // this.b_Text_Row_Lg = true
-    }
-
+    this.objArrayRamais.forEach(a => a.open = true)
+    this.b_Mostrar_Modal = true
+    // this.b_Text_Row_Lg = true
   }
 
-  expandir(documento: any) {
+}
+
+  expandir(documento: any): void {
     if (window.innerWidth < 1280) {
       documento.open = !documento.open
 
@@ -98,7 +96,6 @@ export class ListagemComponent implements OnInit {
   }
 
   Scrolar_aside(scroll: number) {
-
 
     const nr_Pixel = scroll + this.objArrayItemLista.first.nativeElement.offsetTop
 
@@ -133,7 +130,7 @@ export class ListagemComponent implements OnInit {
   }
 
 
-  async Buscar_Ramais() {
+  async Buscar_Ramais(){
     this.page = 1;
     this.objArrayRamais = await this.ramaisService.Get_Ramais(this.page, this.pageLenght, this.searchString)
     this.objArrayRamais.forEach(a => a.open = true)

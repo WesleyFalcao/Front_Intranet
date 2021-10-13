@@ -1,6 +1,8 @@
 import { transition } from '@angular/animations';
 import { importExpr } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { debounce, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { DocumentosService } from './documentos.service';
 
 @Component({
@@ -11,11 +13,9 @@ import { DocumentosService } from './documentos.service';
 export class DocumentosComponent implements OnInit {
 
   nm_search: string
+  nm_searchInput = new FormControl()
 
-
-  ArrayDocumentos = [
-
-  ]
+  ArrayDocumentos = []
 
   ArrayTitulos = [
     { nm_Titulo: "", nm_Classe: "w-1/12"},
@@ -152,8 +152,11 @@ export class DocumentosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.Buscar()
-  }
+
+    this.nm_searchInput.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async(input) =>{
+      this.Buscar()
+    }
+    )}
 
   mudar_estado(item: any){
     if(item.items.length !=0){
@@ -161,7 +164,6 @@ export class DocumentosComponent implements OnInit {
     }
   } 
   
-
   async Buscar() {
     console.log(this.nm_search)
     this.ArrayDocumentos = await this.documentosService.Get_Documentos()
@@ -171,7 +173,5 @@ export class DocumentosComponent implements OnInit {
   Mostrar_Modal(){
     this.b_Mostrar_Modal=true
   }
-
-    
-  
+ 
 }

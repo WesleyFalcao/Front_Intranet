@@ -22,7 +22,7 @@
             <div class="w-full mx-auto md:w-11/12 xl:w-8/12">
                 <div class="flex-grow relative rounded-full shadow-lg">
 
-                    <input id="input_search" [(ngModel)]="searchString" (ngModelChange)="Buscar_Ramais()"
+                    <input [formControl]="modelChanged" 
                         class="relative w-full flex rounded-full pl-16 md:pl-20 py-3 border-2 md:py-4 lg:py-6 lg:pl-28 xl:py-3.5 xl:pl-12 border-gray-200 focus:ring-unimed-purpeconecta focus:border-transparent"
                         placeholder="Pesquise...">
                     <!-- icone de filtro -->
@@ -127,12 +127,12 @@
 
                         <ng-container *ngIf="pessoa.open">
                             <span
-                                class="xl:w-3/12 pt-2 md:pt-3 -ml-2 lg:-ml-2 xl:m-0 xl:pt-0 overflow-hidden overflow-ellipsis">
+                                class="xl:w-3/12 pt-2 lg:text-center md:pt-3 -ml-2 lg:-ml-2 xl:m-0 xl:pt-0 overflow-hidden overflow-ellipsis">
                                 <b class="xl:hidden">Setor:</b>
                                 {{pessoa.cd_Setor}}
                             </span>
 
-                            <span class="xl:w-2/12 -ml-2 lg:-ml-2 xl:mr-10">
+                            <span class="xl:w-2/12 lg:text-center -ml-2 lg:-ml-2 xl:mr-10">
                                 <b class="xl:hidden">Ramal(s):</b>
                                 {{pessoa.nr_Ramal}}
                             </span>
@@ -163,7 +163,7 @@
                 </div>
                 <div (click)="proxima()">
                     <button
-                        class="border border-teal-500 bg-teal-500 bg-white text-black rounded-full font-bold py-4 px-6 ml-2 flex items-center transform active:scale-95 cursor-pointer duration-300">
+                    class=" border border-teal-500 bg-teal-500 bg-white text-black rounded-full font-bold py-4 px-6 ml-2 flex items-center transform active:scale-95 cursor-pointer duration-300">
                         Próxima Página
                         <svg class="h-5 w-5 ml-2 fill-current" clasversion="1.1" id="Layer_1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"

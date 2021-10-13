@@ -4,7 +4,7 @@ import { DocumentosComponent } from './documentos.component';
 import { ShellModule } from 'src/app/components/shell/shell.module';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListaModule } from 'src/app/components/lista/lista.module';
 
 
@@ -18,8 +18,8 @@ import { ListaModule } from 'src/app/components/lista/lista.module';
     HttpClientModule,
     AngularSvgIconModule.forRoot(),
     ListaModule,
+    ReactiveFormsModule,
     
-
   ],
   exports: [
     DocumentosComponent
