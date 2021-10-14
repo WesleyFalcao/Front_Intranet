@@ -8,9 +8,6 @@ import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { FormControl } from '@angular/forms';
 
 
-
-
-
 @Component({
   selector: 'app-listagem',
   templateUrl: './listagem.component.html',
@@ -31,10 +28,10 @@ export class ListagemComponent implements OnInit {
   objArrayRamais = []
 
   objArrayTitulos = [
-    { nm_titulo: "Nome", nm_Classe: "pr-20 lg:w-4/12"},
-    { nm_titulo: "Setor", nm_Classe: "pr-28 lg:w-3/12 xl:pr-40"},
-    { nm_titulo: "Ramal(s)", nm_Classe: "pr-6 lg:w-2/12 xl:pr-24"},
-    { nm_titulo: "Email", nm_Classe: "pr-6 lg:w-3/12"}
+    { nm_titulo: "Nome", nm_Classe: "pr-20 lg:w-4/12" },
+    { nm_titulo: "Setor", nm_Classe: "pr-28 lg:w-3/12 xl:pr-40" },
+    { nm_titulo: "Ramal(s)", nm_Classe: "pr-6 lg:w-2/12 xl:pr-24" },
+    { nm_titulo: "Email", nm_Classe: "pr-6 lg:w-3/12" }
   ]
 
   @ViewChildren(ScrollDirective)
@@ -47,41 +44,40 @@ export class ListagemComponent implements OnInit {
 
   b_Mostrar_Modal: boolean = false
   b_Text_Row_Lg: boolean = false
-  objInicialSelecionada: string = "A"
+  nm_Inicial_Selecionada: string = "A"
   Inicial: string
   nr_Ultimo_Item: number = 0
   nm_Search: string
 
-  
+
   page: number = 1
   pageLenght: number = 6
   searchString: string = ""
 
-
+  
   modelChanged = new FormControl()
 
-  constructor(
-    private ramaisService: RamaisService) {}
+  constructor( private ramaisService: RamaisService) { }
 
   async ngOnInit() {
 
-    this.modelChanged.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async(input) =>{
-      
-      this.searchString = input 
+    this.modelChanged.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async (input) => {
+      this.page = 1
+      this.searchString = input
+      await this.Buscar_Ramais()
       console.log(this.searchString)
-    } 
-  )
+    })
 
-  await this.Buscar_Ramais()
+    await this.Buscar_Ramais()
 
-  if (window.innerWidth > 1280) {
+    if (window.innerWidth > 1280) {
 
-    this.objArrayRamais.forEach(a => a.open = true)
-    this.b_Mostrar_Modal = true
-    // this.b_Text_Row_Lg = true
+      this.objArrayRamais.forEach(a => a.open = true)
+      this.b_Mostrar_Modal = true
+      // this.b_Text_Row_Lg = true
+    }
+
   }
-
-}
 
   expandir(documento: any): void {
     if (window.innerWidth < 1280) {
@@ -109,7 +105,7 @@ export class ListagemComponent implements OnInit {
       return false
     })
 
-    this.objInicialSelecionada = this.objArrayRamais[nr_Index].inicial
+    this.nm_Inicial_Selecionada = this.objArrayRamais[nr_Index].inicial
 
     // let nrIndex_2 = this.objArrayIniciais.findIndex(i => i.inicial == this.objInicialSelecionada)
 
@@ -130,25 +126,21 @@ export class ListagemComponent implements OnInit {
   }
 
 
-  async Buscar_Ramais(){
-    this.page = 1;
-    this.objArrayRamais = await this.ramaisService.Get_Ramais(this.page, this.pageLenght, this.searchString)
+  async Buscar_Ramais(b_Letra: boolean = true ) {
+  
+    this.objArrayRamais = await this.ramaisService.Get_Ramais(this.page, this.pageLenght, b_Letra ? this.searchString + "%" : "%" + this.searchString + "%")
     this.objArrayRamais.forEach(a => a.open = true)
     console.log(this.nm_Search, this.objArrayRamais);
   }
 
   async proxima() {
     this.page++;
-    this.objArrayRamais = await this.ramaisService.Get_Ramais(this.page, this.pageLenght, this.searchString)
-    this.objArrayRamais.forEach(a => a.open = true)
-    console.log(this.nm_Search, this.objArrayRamais);
+    await this.Buscar_Ramais()
   }
 
   async anterior() {
     this.page--;
-    this.objArrayRamais = await this.ramaisService.Get_Ramais(this.page, this.pageLenght, this.searchString)
-    this.objArrayRamais.forEach(a => a.open = true)
-    console.log(this.nm_Search, this.objArrayRamais);
+    await this.Buscar_Ramais()
   }
 
   // FindIndex(f: Function) {
@@ -165,17 +157,22 @@ export class ListagemComponent implements OnInit {
   //   return -1
   // }
 
-  Clickar_Aside(objInicial: any, nr_Index: number) {
+  async Clickar_Inicial_Acima(objInicial: any, nr_Index: number) {
 
-    this.objInicialSelecionada = objInicial.inicial
+    this.nm_Inicial_Selecionada = objInicial.inicial
 
-    this.nr_Ultimo_Item = nr_Index
+    // this.nr_Ultimo_Item = nr_Index
 
-    const nr_Index_Nome = this.objArrayRamais.findIndex(i => i.inicial == objInicial.inicial)
+    // const nr_Index_Nome = this.objArrayRamais.findIndex(i => i.inicial == objInicial.inicial)
 
-    const obgItem_Filho = this.objArrayItemLista.find((item_list, index_item) => nr_Index_Nome == index_item)?.nativeElement
+    // const obgItem_Filho = this.objArrayItemLista.find((item_list, index_item) => nr_Index_Nome == index_item)?.nativeElement
 
-    obgItem_Filho.scrollIntoView()
+    // obgItem_Filho.scrollIntoView()
+
+    this.searchString = this.nm_Inicial_Selecionada
+
+    await this.Buscar_Ramais(true)
+
 
     // var bodyRect = this.variavelpailista.nativeElement.getBoundingClientRect(),
     // elemRect = item_filho.getBoundingClientRect(),

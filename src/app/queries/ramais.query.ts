@@ -20,7 +20,7 @@ export class RamaisQuery{
                 // }
             ],
             query: `
-            ramais: intranet_test_Pessoa(limit: ${pageLenght}, offset: ${(page-1) * pageLenght}, where: {nome: {_like: "%${searchString}%"}}) {
+            ramais: intranet_test_Pessoa(limit: ${pageLenght}, offset: ${(page-1) * pageLenght}, where: {nome: {_like: "${searchString}"}}) {
                 cd_Ramal: id
                 nm_Colaborador: nome
                 nr_Ramal: ramal

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,11 +13,13 @@ import { RouterModule } from '@angular/router';
 import { ListagemComponent } from './page/listagem/listagem.component';
 import { ListagemModule } from './page/listagem/listagem.module';
 import { GraphQLModule } from './graphql.module';
+import { CamelCasePipe } from './pipes/camel-case.pipe';
+import { FirstLetterNamePipe } from './pipes/first-letter-name.pipe';
+
 
 @NgModule({
   declarations: [
-    AppComponent,  
-
+    AppComponent,
   ],
   
   imports: [
@@ -28,8 +30,14 @@ import { GraphQLModule } from './graphql.module';
     CommonModule,
     ListagemModule,
     GraphQLModule,
+    
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-BR'
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

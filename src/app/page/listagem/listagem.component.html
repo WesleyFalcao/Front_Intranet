@@ -64,7 +64,7 @@
         </div>
     </header>
 
-    <!-- iniciais lateral -->
+    <!-- iniciais acima -->
     <div class="xl:mt-10">
         <div class="justify-center pt-1 hidden mx-auto h-12 w-5/12 overflow-x-auto xl:flex flex-row" scroll>
 
@@ -74,8 +74,8 @@
                 #letras>
 
                 <h1 #teste
-                    [ngClass]="'relative cursor-pointer font-semibold text-black  rounded-full ' + (objInicialSelecionada == i.inicial ? 'w-11 h-11 text-lg pt-2 bg-unimed-green text-white':'w-6 h-6 text-sm pt-0.5')"
-                    style="transition: all 1s ease" (click)="Clickar_Aside(i, index)">
+                    [ngClass]="'relative cursor-pointer font-semibold text-black rounded-full ' + (nm_Inicial_Selecionada == i.inicial ? 'w-11 h-11 text-lg pt-2 bg-unimed-green text-white':'w-6 h-6 text-sm pt-0.5')"
+                    style="transition: all 1s ease" (click)="Clickar_Inicial_Acima(i, index)" >
 
                     <div>{{i.inicial}}</div>
                 </h1>
@@ -105,7 +105,7 @@
         <div class="h-full px-5 md:px-20 lg:px-20 pt-4 lg:pt-8 w-full lg:w-11/12 xl:w-8/12 mx-auto">
 
             <ul class=" bg-white py-2 mb-4 md:py-2.5 lg:py-0 md:mb-6 lg:pb-4 rounded-lg shadow-lg font-medium transform cursor-pointer active:scale-95 transition duration-300 "
-                (click)="expandir(pessoa)" *ngFor="let pessoa of objArrayRamais" #variavelLocal>
+                (click)="expandir(pessoa)" *ngFor="let pessoa of objArrayRamais " #variavelLocal>
 
                 <!-- essa Li está estiliando os nomes que estão vindo do ngFor -->
 
@@ -123,12 +123,12 @@
                         class="w-11/12 lg:w-full text-sm lg:text-xl xl:text-base gap-x-12 flex gap-y-2 flex-col xl:flex-row">
 
                         <div class="pl-10 xl:w-4/12 lg:pl-12 xl:pl pt-1.5 xl:pt-0 overflow-hidden overflow-ellipsis">
-                            {{pessoa.nm_Colaborador}}</div>
+                            {{pessoa.nm_Colaborador | camelcase}}</div>
 
                         <ng-container *ngIf="pessoa.open">
                             <span
                                 class="xl:w-3/12 pt-2 lg:text-center md:pt-3 -ml-2 lg:-ml-2 xl:m-0 xl:pt-0 overflow-hidden overflow-ellipsis">
-                                <b class="xl:hidden">Setor:</b>
+                                <b class="xl:hidden"> Setor:</b>
                                 {{pessoa.cd_Setor}}
                             </span>
 
