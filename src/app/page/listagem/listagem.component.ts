@@ -55,13 +55,13 @@ export class ListagemComponent implements OnInit {
   searchString: string = ""
 
   
-  modelChanged = new FormControl()
+  obj_modelChanged = new FormControl()
 
   constructor( private ramaisService: RamaisService) { }
 
   async ngOnInit() {
 
-    this.modelChanged.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async (input) => {
+    this.obj_modelChanged.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async (input) => {
       this.page = 1
       this.searchString = input
       await this.Buscar_Ramais()
