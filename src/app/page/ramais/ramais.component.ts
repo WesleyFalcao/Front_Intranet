@@ -142,7 +142,7 @@ export class RamaisComponent implements OnInit {
   }
 
   async Buscar_Ramais(b_Letra: boolean = true) {
-    const objParams: RamaisParams = {page: this.page, pageLenght: this.pageLength, searchString: b_Letra ? this.searchString + "%" : "%" + this.searchString + "%"}
+    const objParams: RamaisParams = {page: this.page, pageLength: this.pageLength, searchString: b_Letra ? this.searchString + "%" : "%" + this.searchString + "%"}
     this.objArrayRamais = await this.ramaisService.Get_Ramais(objParams)
     this.redefine()
     console.log(this.nm_Search, this.objArrayRamais);
@@ -159,17 +159,17 @@ export class RamaisComponent implements OnInit {
   }
 
   async Contatosuteis(b_Letra: boolean = true){
-    const objParams: RamaisParams = {page: this.page, pageLenght: this.pageLength, searchString: b_Letra ? this.searchString + "%" : "%" + this.searchString + "%"}
+    const objParams: RamaisParams = {page: this.page, pageLength: this.pageLength, searchString: b_Letra ? this.searchString + "%" : "%" + this.searchString + "%"}
     this.objArrayRamais = await this.ramaisService.Get_RamaisUteis(objParams)
   }
 
   async FilialHospitalUnimed(b_Letra: boolean = true){
-    const objParams: RamaisParams = {page: this.page, pageLenght: this.pageLength, searchString: b_Letra ? this.searchString + "%" : "%" + this.searchString + "%"}
+    const objParams: RamaisParams = {page: this.page, pageLength: this.pageLength, searchString: b_Letra ? this.searchString + "%" : "%" + this.searchString + "%"}
     this.objArrayRamais = await this.ramaisService.Get_Ramais(objParams)
   }
 
   async FilialOperadora(b_Letra: boolean = true){
-    const objParams: RamaisParams = {page: this.page, pageLenght: this.pageLength, searchString: b_Letra ? this.searchString + "%" : "%" + this.searchString + "%"}
+    const objParams: RamaisParams = {page: this.page, pageLength: this.pageLength, searchString: b_Letra ? this.searchString + "%" : "%" + this.searchString + "%"}
     this.objArrayRamais = await this.ramaisService.Get_Ramais(objParams)
   }
 

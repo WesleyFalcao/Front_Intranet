@@ -16,20 +16,20 @@ export class RamaisQuery{
 
             header: [
                 {
-                    field: '$limit',
+                    field: '$pageLength',
                     type: 'Int!',
                 },
                 {
-                    field: '$offset',
+                    field: '$page',
                     type: 'Int!',
                 },
                 {
-                    field: '$like',
+                    field: '$searchString',
                     type: 'String!'
                 }
             ],
             query: `
-                ramais: intranet_test_Pessoa(limit: $limit, offset: $offset, where: {nome: {_like: $like}}) {
+                ramais: intranet_test_Pessoa(limit: $pageLength, offset: $page, where: {nome: {_like: $searchString}}) {
                 cd_Ramal: id
                 nm_Colaborador: nome
                 nr_Ramal: ramal

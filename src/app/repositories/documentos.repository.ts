@@ -24,6 +24,7 @@ export class DocumentosRepository {
         this.subjectService.subject_Exibindo_Loading.next(true)
 
         const query = this.documentosQuery.Get_Documentos()
+        
         const response = await this.apiService.Query([query], null, this.httpOptions)
 
         this.subjectService.subject_Exibindo_Loading.next(false)

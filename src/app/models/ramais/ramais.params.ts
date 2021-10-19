@@ -1,5 +1,5 @@
 export class RamaisParams{
    page: number; 
-   pageLenght: number; 
+   pageLength: number; 
    searchString: string;
 }
