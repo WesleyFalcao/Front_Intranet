@@ -4,17 +4,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShellComponent } from './components/shell/shell.component';
 import { ShellModule } from './components/shell/shell.module';
-import { ListaModule } from './components/lista/lista.module';
 import { DocumentosComponent } from './page/documentos/documentos.component';
 import { DocumentosModule } from './page/documentos/documentos.module';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ListagemComponent } from './page/listagem/listagem.component';
-import { ListagemModule } from './page/listagem/listagem.module';
+import { RamaisComponent } from './page/ramais/ramais.component';
+import { RamaisModule } from './page/ramais/ramais.module';
 import { GraphQLModule } from './graphql.module';
 import { CamelCasePipe } from './pipes/camel-case.pipe';
 import { FirstLetterNamePipe } from './pipes/first-letter-name.pipe';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+
 
 
 @NgModule({
@@ -28,8 +29,9 @@ import { FirstLetterNamePipe } from './pipes/first-letter-name.pipe';
     ShellModule,
     DocumentosModule,
     CommonModule,
-    ListagemModule,
     GraphQLModule,
+    ScrollingModule,
+    RamaisModule,
     
   ],
   providers: [

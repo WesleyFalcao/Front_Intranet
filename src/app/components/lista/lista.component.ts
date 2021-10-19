@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Documento } from 'src/app/models/documento/documento';
+import { Documento } from 'src/app/models/documento/documento.model';
+
 
 @Component({
   selector: 'app-lista',

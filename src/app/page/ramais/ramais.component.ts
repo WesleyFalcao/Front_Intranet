@@ -2,19 +2,20 @@ import { fn } from '@angular/compiler/src/output/output_ast';
 import { Component, ElementRef, EventEmitter, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { interval, timer } from 'rxjs';
 import { ScrollDirective } from 'src/app/directives/scroll/scroll.directive';
-import { RamaisService } from './listagem.service';
+import { RamaisService } from './ramais.service';
 import { Subject, Subscription } from "rxjs";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { FormControl } from '@angular/forms';
+import { RamaisParams } from 'src/app/models/ramais/ramais.params';
 
 
 @Component({
-  selector: 'app-listagem',
-  templateUrl: './listagem.component.html',
-  styleUrls: ['./listagem.component.scss'],
+  selector: 'app-ramais',
+  templateUrl: './ramais.component.html',
+  styleUrls: ['./ramais.component.scss'],
 })
 
-export class ListagemComponent implements OnInit {
+export class RamaisComponent implements OnInit {
 
 
   objArrayIniciais = [
@@ -28,10 +29,10 @@ export class ListagemComponent implements OnInit {
   objArrayRamais = []
 
   objArrayTitulos = [
-    { nm_titulo: "Nome", nm_Classe: "pr-20 lg:w-4/12" },
-    { nm_titulo: "Setor", nm_Classe: "pr-28 lg:w-3/12 xl:pr-40" },
-    { nm_titulo: "Ramal(s)", nm_Classe: "pr-6 lg:w-2/12 xl:pr-24" },
-    { nm_titulo: "Email", nm_Classe: "pr-6 lg:w-3/12" }
+    { nm_titulo: "Nome", nm_Classe: "pr-20 lg:w-4/12"},
+    { nm_titulo: "Setor", nm_Classe: "pr-28 lg:w-3/12 xl:pl-10"},
+    { nm_titulo: "Ramal(s)", nm_Classe: "pr-6 lg:w-2/12 xl:pr-16"},
+    { nm_titulo: "Email", nm_Classe: "pr-6 lg:w-3/12"}
   ]
 
   @ViewChildren(ScrollDirective)
@@ -51,17 +52,17 @@ export class ListagemComponent implements OnInit {
 
 
   page: number = 1
-  pageLenght: number = 6
+  pageLength: number = 9
   searchString: string = ""
 
-  
+
   modelChanged = new FormControl()
 
-  constructor( private ramaisService: RamaisService) { }
+  constructor(private ramaisService: RamaisService) { }
 
   async ngOnInit() {
 
-    this.modelChanged.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async (input) => {
+      this.modelChanged.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async (input) => {
       this.page = 1
       this.searchString = input
       await this.Buscar_Ramais()
@@ -70,11 +71,14 @@ export class ListagemComponent implements OnInit {
 
     await this.Buscar_Ramais()
 
+
     if (window.innerWidth > 1280) {
 
       this.objArrayRamais.forEach(a => a.open = true)
       this.b_Mostrar_Modal = true
       // this.b_Text_Row_Lg = true
+    } else {
+      this.objArrayRamais.forEach(a => a.open = false)
     }
 
   }
@@ -125,11 +129,21 @@ export class ListagemComponent implements OnInit {
     // this.nr_Ultimo_Item = nrIndex_2
   }
 
+  redefine() {
+    if (window.innerWidth > 1280) {
 
-  async Buscar_Ramais(b_Letra: boolean = true ) {
-  
-    this.objArrayRamais = await this.ramaisService.Get_Ramais(this.page, this.pageLenght, b_Letra ? this.searchString + "%" : "%" + this.searchString + "%")
-    this.objArrayRamais.forEach(a => a.open = true)
+      this.objArrayRamais.forEach(a => a.open = true)
+      this.b_Mostrar_Modal = true
+      // this.b_Text_Row_Lg = true
+    } else {
+      this.objArrayRamais.forEach(a => a.open = false)
+    }
+  }
+
+  async Buscar_Ramais(b_Letra: boolean = true) {
+    const objParams: RamaisParams = {page: this.page, pageLenght: this.pageLength, searchString: b_Letra ? this.searchString + "%" : "%" + this.searchString + "%"}
+    this.objArrayRamais = await this.ramaisService.Get_Ramais(objParams)
+    this.redefine()
     console.log(this.nm_Search, this.objArrayRamais);
   }
 
@@ -141,6 +155,21 @@ export class ListagemComponent implements OnInit {
   async anterior() {
     this.page--;
     await this.Buscar_Ramais()
+  }
+
+  async Contatosuteis(b_Letra: boolean = true){
+    const objParams: RamaisParams = {page: this.page, pageLenght: this.pageLength, searchString: b_Letra ? this.searchString + "%" : "%" + this.searchString + "%"}
+    this.objArrayRamais = await this.ramaisService.Get_RamaisUteis(objParams)
+  }
+
+  async FilialHospitalUnimed(b_Letra: boolean = true){
+    const objParams: RamaisParams = {page: this.page, pageLenght: this.pageLength, searchString: b_Letra ? this.searchString + "%" : "%" + this.searchString + "%"}
+    this.objArrayRamais = await this.ramaisService.Get_Ramais(objParams)
+  }
+
+  async FilialOperadora(b_Letra: boolean = true){
+    const objParams: RamaisParams = {page: this.page, pageLenght: this.pageLength, searchString: b_Letra ? this.searchString + "%" : "%" + this.searchString + "%"}
+    this.objArrayRamais = await this.ramaisService.Get_Ramais(objParams)
   }
 
   // FindIndex(f: Function) {
