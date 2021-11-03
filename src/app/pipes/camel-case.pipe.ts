@@ -22,4 +22,5 @@ export class CamelCasePipe implements PipeTransform {
     value.substr(1).toLowerCase();
   }
 
+  
 }

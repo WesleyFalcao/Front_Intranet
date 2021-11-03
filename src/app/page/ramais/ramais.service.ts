@@ -16,7 +16,7 @@ export class RamaisService {
     }
     
     Get_Ramais(objParams: RamaisParams) {
-        return this.ramaisRepository.Get_Ramais(objParams)
+        return this.ramaisRepository.Get_Ramais({page:objParams.page, pageLength:(objParams.pageLength-1) * objParams.page, nm_Search: objParams.nm_Search})
     }
 
     Get_RamaisUteis(objParams: RamaisParams){

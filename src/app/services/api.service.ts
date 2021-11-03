@@ -3,7 +3,6 @@ import { Injectable } from "@angular/core";
 import { Apollo, gql } from "apollo-angular";
 import { environment } from "src/environments/environment";
 import { QueryModel } from "../models/query/query.model";
-
 import { Copy } from "../utils/utils";
 import { DataService } from "./data.service";
 
@@ -22,7 +21,7 @@ export class ApiService {
         this.Preparar_HttpOptions();
     }
 
-    Preparar_HttpOptions(objHeaders: any = null) {
+    Preparar_HttpOptions(objHeaders: any = null){
         // let token = this.data.Get_Session("token");
 
         if (objHeaders == null) {
@@ -85,7 +84,7 @@ export class ApiService {
      * @return {*} 
      */
 
-    async Mutation(mutations: QueryModel[], objVariables: any, objHeaders: any) {
+        async Mutation(mutations: QueryModel[], objVariables: any, objHeaders: any) {
         this.Preparar_HttpOptions(objHeaders);
         let ds_Header = "mutation"
 

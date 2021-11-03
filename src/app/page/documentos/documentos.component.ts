@@ -1,6 +1,6 @@
 import { transition } from '@angular/animations';
 import { importExpr } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounce, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { DocumentosService } from './documentos.service';
@@ -12,6 +12,7 @@ import { DocumentosService } from './documentos.service';
 })
 export class DocumentosComponent implements OnInit {
 
+  @ViewChild('wesley')  teste: HTMLElement
   nm_search: string
   nm_searchInput = new FormControl()
 

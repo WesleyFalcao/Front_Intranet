@@ -16,26 +16,22 @@ export class RamaisQuery{
 
             header: [
                 {
-                    field: '$pageLength',
-                    type: 'Int!',
-                },
-                {
                     field: '$page',
-                    type: 'Int!',
+                    type: 'Float',
                 },
                 {
-                    field: '$searchString',
-                    type: 'String!'
+                    field: '$pageLength',
+                    type: 'Float',
+                },
+                {
+                    field: '$nm_Search',
+                    type: 'String'
                 }
             ],
             query: `
-                ramais: intranet_test_Pessoa(limit: $pageLength, offset: $page, where: {nome: {_like: $searchString}}) {
-                cd_Ramal: id
-                nm_Colaborador: nome
-                nr_Ramal: ramal
-                ds_Email: email
-                cd_Setor: departamento
-              }
+                ramais:Ramal(objParam:{page:$page, pageLength:$pageLength,nm_Search:$nm_Search})
+  
+                {nm_Pessoa, ds_Email, nr_Ramal, nr_Telefone, nm_Departamento},
             `
         }
     }

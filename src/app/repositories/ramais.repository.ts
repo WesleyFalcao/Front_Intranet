@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { RamaisParams } from "../models/ramais/ramais.params";
 import { DocumentosQuery } from "../queries/documentos.query";
 import { RamaisQuery } from "../queries/ramais.query";
 import { ApiService } from "../services/api.service";
@@ -21,15 +22,14 @@ export class RamaisRepository {
     {
     }
 
-    async Get_Ramais(objParams) {
-        this.subjectService.subject_Exibindo_Loading.next(true)
+    async Get_Ramais(objParams: RamaisParams){
 
+        this.subjectService.subject_Exibindo_Loading.next(true)
         const query = this.ramaisQuery.Get_Ramais()
         const response = await this.apiService.Query([query], objParams, this.httpOptions)
-
         this.subjectService.subject_Exibindo_Loading.next(false)
-
         return response.ramais
+        
     }
 
 }

@@ -21,7 +21,6 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
         }
     });
 
-
     return {
         link: ApolloLink.from([auth, httpLink.create({ uri })]),
         cache: new InMemoryCache(),

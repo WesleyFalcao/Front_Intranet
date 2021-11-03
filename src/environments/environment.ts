@@ -3,8 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-    CONS_URL_APIBASE: "http://10.1.2.36:8089/v1/",
-    CONS_URL_GRAPH_ENDPOINT: "graphql/",
+    
+    CONS_URL_APIBASE: "http://localhost:3000/",
+    CONS_URL_GRAPH_ENDPOINT: "graphql",
     CONS_URL_AUTH_ENDPOINT: "auth",
     SESSION_NAME: "Intranet",
     production: false
