@@ -67,7 +67,7 @@
 
     <!-- iniciais acima -->
     <div class="xl:mt-10">
-        <div class="justify-center pt-1 hidden mx-auto h-12 w-5/12 overflow-x-auto xl:flex flex-row" scroll>
+        <div class="justify-center pt-1 hidden mx-auto h-12 w-6/12 overflow-x-auto xl:flex flex-row" scroll>
 
             <div class="relative justify-center flex text-center" *ngFor="let i of objArrayIniciais; let index = index "
                 #letras>
@@ -109,7 +109,7 @@
                         <div
                             class="rounded-full xl:hidden bg-unimed-green w-8 h-8 md:w-9 md:h-9 md:top-1 lg:w-11 lg:h-11 ">
                             <div class="pt-1 md:pt-0.5 text-center md:text-xl lg:text-2xl lg:pt-1.5 text-white">
-                                {{pessoa.inicial}}
+                                {{pessoa.nm_Pessoa | firstLetterName}}
                             </div>
                         </div>
                     </div>
@@ -117,22 +117,22 @@
                     <div
                         class="w-11/12 lg:w-full text-sm lg:text-xl xl:text-base gap-x-12 flex gap-y-2 flex-col xl:flex-row">
 
-                        <div class="pl-10 xl:w-4/12 lg:pl-12 xl:pl pt-1.5 xl:pt-0 overflow-hidden overflow-ellipsis">
+                        <div class="pl-10 xl:w-4/12 lg:pl-12 xl:pl pt-1.5 xl:pt-0 overflow-hidden overflow-ellipsis whitespace-nowrap">
                             {{pessoa.nm_Pessoa | camelcase}}</div>
 
                         <ng-container *ngIf="pessoa.open">
                             <span
-                                class="xl:w-3/12 pt-2 lg:text-center md:pt-3 -ml-2 lg:-ml-2 xl:m-0 xl:pt-0 overflow-hidden overflow-ellipsis">
+                                class="xl:w-3/12 pt-2 md:pt-3 -ml-2 lg:-ml-2 xl:m-0 xl:pt-0 overflow-hidden overflow-ellipsis xl:text-center whitespace-nowrap">
                                 <b class="xl:hidden"> Setor:</b>
-                                {{pessoa.nm_Departamento}}
+                                {{pessoa.nm_Departamento | camelcase}}
                             </span>
 
-                            <span class="xl:w-2/12 lg:text-center -ml-2 lg:-ml-2 xl:mr-10">
+                            <span class="xl:w-2/12 -ml-2 xl:mr-10 xl:text-center whitespace-nowrap">
                                 <b class="xl:hidden">Ramal(s):</b>
                                 {{pessoa.nr_Ramal}}
                             </span>
 
-                            <span class="mr-4 -ml-2 xl:w-3/12 lg:-ml-2 mb-4.5 overflow-hidden overflow-ellipsis">
+                            <span class="mr-4 -ml-2 xl:w-3/12 lg:-ml-2 mb-4.5 overflow-hidden overflow-ellipsis whitespace-nowrap">
                                 <b class="xl:hidden">Email:</b>
                                 {{pessoa.ds_Email}}
                             </span>
@@ -145,7 +145,7 @@
             <!-- SVG caso não tenha informação -->
 
             <div *ngIf='objArrayRamais.length == 0'>
-                <div class="mx-auto pt-11 w-11/12 h-11/12 lg:w-6/12 lg:h-6/12">
+                <div class="mx-auto pt-11 lg:pt-0 w-8/12 h-11/12 lg:w-6/12 lg:h-6/12">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1009.5 789.9">
                         <defs>
                             <linearGradient id="a" x1="318.2" y1="488.4" x2="630.4" y2="488.4"
@@ -301,13 +301,14 @@
                             opacity=".2" />
                     </svg>
                 </div>
+                <div class="text-base text-center mt-4 md:text-2xl md:font-normal"> Não foram encontrados os contatos </div>
             </div>
 
             <div class="flex">
-                <div *ngIf='page > 1 && objArrayRamais.length != 0' (click)='anterior()'> 
+                <div *ngIf='nr_Page > 1 && objArrayRamais.length != 0' (click)='anterior()'> 
                     <!-- && objArrayRamais.length != 0  -->
                     <button
-                        class="border border-teal-500 bg-teal-500 bg-white text-black rounded-full text-xs md:mt-8 lg:text-base font-bold py-3 px-3 ml-2 flex items-center transform active:scale-95 cursor-pointer duration-300">
+                        class="border border-teal-500 bg-teal-500 bg-white text-black rounded-full text-xs md:mt-2 lg:text-base font-bold py-3 px-3 ml-2 flex items-center transform active:scale-95 cursor-pointer duration-300 whitespace-nowrap">
                         <svg class="h-5 w-4 mr-2 fill-current" version="1.1" id="Layer_1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
                             y="0px" viewBox="-49 141 512 512" style="enable-background:new -49 141 512 512;"
@@ -316,12 +317,12 @@
                                 d="M438,372H36.355l72.822-72.822c9.763-9.763,9.763-25.592,0-35.355c-9.763-9.764-25.593-9.762-35.355,0 l-115.5,115.5C-46.366,384.01-49,390.369-49,397s2.634,12.989,7.322,17.678l115.5,115.5c9.763,9.762,25.593,9.763,35.355,0 c9.763-9.763,9.763-25.592,0-35.355L36.355,422H438c13.808,0,25-11.193,25-25S451.808,372,438,372z">
                             </path>
                         </svg>
-                        Página Anterior
+                        Página Anterior 
                     </button>
                 </div>
-                <div *ngIf='objArrayRamais.length >= 1' (click)="proxima()">
+                <div *ngIf='objArrayRamais.length >= 7' (click)="proxima()">
                     <button
-                        class="border border-teal-500 bg-teal-500 bg-white text-black rounded-full text-xs md:mt-8 lg:text-base font-bold py-3 ml-2 px-3 flex items-center transform active:scale-95 cursor-pointer duration-300">
+                        class="border border-teal-500 bg-teal-500 bg-white text-black rounded-full text-xs md:mt-2 lg:text-base font-bold py-3 ml-2 px-3 flex items-center transform active:scale-95 cursor-pointer duration-300 whitespace-nowrap">
                         Próxima Página
                         <svg class="h-5 w-4 ml-2 fill-current" clasversion="1.1" id="Layer_1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
@@ -331,7 +332,7 @@
                                 d="M-24,422h401.645l-72.822,72.822c-9.763,9.763-9.763,25.592,0,35.355c9.763,9.764,25.593,9.762,35.355,0
                         l115.5-115.5C460.366,409.989,463,403.63,463,397s-2.634-12.989-7.322-17.678l-115.5-115.5c-9.763-9.762-25.593-9.763-35.355,0
                         c-9.763,9.763-9.763,25.592,0,35.355l72.822,72.822H-24c-13.808,0-25,11.193-25,25S-37.808,422-24,422z" />
-                        </svg>
+                        </svg>                                            
                     </button>
                 </div>
             </div>
@@ -342,13 +343,13 @@
         <ul class="absolute z-30 w-9/12 h-full bg-white inset-y-0 left-0 xl:bg-transparent xl:w-1/6 "
             style="transition: all 2s ease" *ngIf="b_Mostrar_Modal">
 
-            <li class="flex pt-4 md:pt-2 xl:mt-36 transform active:scale-95 cursor-pointer duration-300">
+            <li class="flex pt-4 md:pt-2 xl:mt-36 transform active:scale-95 cursor-pointer duration-300" (click)="Get_Filtro_Page_Ramais(2)">
 
                 <!-- icone HU modal -->
-                <div class="pl-4 md:pt-8">
+                <div class="pl-4 md:pt-8" >
 
                     <svg class="w-12 h-12 md:w-20 md:h-20 lg:w-20 lg:h-20 xl:w-16 xl:h-16" viewBox="0 0 128 128"
-                        fill="none" xmlns="http://www.w3.org/2000/svg" (click)="Get_Filtro_Page_Ramais(2)">
+                        fill="none" xmlns="http://www.w3.org/2000/svg" >
                         <path
                             d="M17.2479 114H111.752C112.441 114 113 113.385 113 112.627V105.921C113 105.163 112.441 104.548 111.752 104.548H105.042V83.2278V83.2261V58.4706V58.4681V51.0716H107.567C108.256 51.0716 108.815 50.4568 108.815 49.6986V34.3714C108.815 33.6132 108.256 32.9984 107.567 32.9984H63.3971V15.373C63.3971 14.6148 62.8384 14 62.1492 14H49.5252C49.2656 14 49.0127 14.0892 48.8013 14.2548L21.0861 35.9677C20.757 36.2251 20.562 36.6421 20.562 37.0859V104.548H17.2479C16.5588 104.548 16 105.163 16 105.921V112.627C16 113.385 16.5588 114 17.2479 114ZM62.1492 35.7451L62.1523 35.7444H106.319V48.3256H62.1523L62.1492 48.3249L62.1462 48.3256H38.2941V35.7444H62.1462L62.1492 35.7451ZM77.8351 70.784C78.0386 71.3036 78.4987 71.6146 78.9819 71.6146C79.1464 71.6146 79.314 71.5784 79.4748 71.502L102.546 60.5656V69.3516L90.8772 75.1075C90.2483 75.4179 89.9668 76.2305 90.2489 76.9224C90.4567 77.4319 90.9119 77.7342 91.3884 77.7342C91.559 77.7342 91.7327 77.6954 91.8984 77.6136L102.546 72.3614V82.3145L83.1174 91.321C82.4819 91.6153 82.1845 92.4205 82.452 93.1191C82.6525 93.644 83.1156 93.9598 83.6024 93.9598C83.7639 93.9598 83.9284 93.9249 84.0862 93.8512L102.546 85.2938V104.548H63.3971V51.0716H102.546V57.5756L78.4877 68.9799C77.8546 69.2802 77.5628 70.0881 77.8351 70.784ZM23.0578 37.7939L49.9243 16.746H60.9013V32.9984H37.0462C36.357 32.9984 35.7983 33.6132 35.7983 34.3714V49.6986C35.7983 50.4568 36.357 51.0716 37.0462 51.0716H60.9013V88.4074H33.2604C32.5713 88.4074 32.0125 89.0221 32.0125 89.7804C32.0125 90.5386 32.5713 91.1534 33.2604 91.1534H60.9013V96.7005H47.7051C47.016 96.7005 46.4572 97.3152 46.4572 98.0735C46.4572 98.8317 47.016 99.4465 47.7051 99.4465H60.9013V104.548H23.0578V37.7939ZM18.4958 107.294H110.504V111.254H18.4958V107.294Z"
                             fill="black" />
@@ -364,16 +365,16 @@
                     </svg>
 
                 </div>
-                <div class="relative pl-3 top-4 text-sm md:text-lg md:top-16 lg:text-xl lg:top-14 focus:bold">Hospital Unimed
+                <div class="relative pl-3 top-4 text-sm md:text-lg md:top-16 lg:text-xl lg:top-16 focus:bold whitespace-nowrap {{cd_Origem == 2? 'font-bold': ''}}">Hospital Unimed
                 </div>
             </li>
 
             <!-- icone Operadora modal -->
 
-            <li class="flex transform active:scale-95 cursor-pointer duration-300 ">
+            <li class="flex transform active:scale-95 cursor-pointer duration-300 " (click)="Get_Filtro_Page_Ramais(1)">
                 <div class="pt-4 pl-4 lg:pt-8">
                     <svg class="w-12 h-12 md:w-20 md:h-20 lg:w-20 lg:h-20 xl:w-16 xl:h-16" viewBox="0 0 128 128"
-                        fill="none" xmlns="http://www.w3.org/2000/svg" (click)="Get_Filtro_Page_Ramais(1)">
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M110.752 106.291H108.744V66.9491C108.744 66.4014 108.351 65.9245 107.794 65.7938L94.5672 62.6965V20.7464C94.5672 20.0894 94.0084 19.5567 93.3193 19.5567H80.4378C80.0524 16.4371 77.2939 14 73.9195 14H53.0805C49.7061 14 46.9476 16.4371 46.5622 19.5567H33.6808C32.9916 19.5567 32.4328 20.0894 32.4328 20.7464V62.6965L19.2062 65.7938C18.6487 65.9245 18.2562 66.4014 18.2562 66.9491V106.291H16.2479C15.5588 106.291 15 106.823 15 107.48V113.29C15 113.947 15.5588 114.48 16.2479 114.48H110.752C111.441 114.48 112 113.947 112 113.29V107.48C112 106.823 111.441 106.291 110.752 106.291ZM94.5672 65.1467L106.248 67.882V106.291H94.5672V65.1467ZM48.9803 20.7493C48.9803 20.7483 48.981 20.7474 48.981 20.7464C48.981 20.7453 48.9803 20.7445 48.9803 20.7435V20.288C48.9803 18.133 50.8199 16.3793 53.0805 16.3793H73.9195C76.1801 16.3793 78.0197 18.133 78.0197 20.288V40.1548C78.0197 42.3099 76.1801 44.063 73.9195 44.063H53.0805C50.8199 44.063 48.9803 42.3099 48.9803 40.1548V20.7493V20.7493ZM34.9287 21.936H46.4845V40.1548C46.4845 43.6215 49.4434 46.4423 53.0805 46.4423H73.9195C77.5566 46.4423 80.5155 43.6215 80.5155 40.1548V21.936H92.0713V106.291H34.9287V21.936ZM20.752 67.882L32.4328 65.1467V106.291H20.752V67.882ZM109.504 112.101H17.4958V108.67H109.504V112.101V112.101Z"
                             fill="black" />
@@ -394,15 +395,15 @@
                             fill="black" />
                     </svg>
                 </div>
-                <div class="relative pl-4 top-8 text-sm md:top-10 md:text-lg lg:text-xl lg:top-14 focus:bold">Operadora</div>
+                <div class="relative pl-4 top-8 text-sm md:top-10 md:text-lg lg:text-xl lg:top-14 {{cd_Origem == 1? 'font-bold': ''}}" >Operadora</div>
             </li>
 
             <!-- icone contatos Úteis -->
 
-            <li class="flex transform active:scale-95 cursor-pointer duration-300">
+            <li class="flex transform active:scale-95 cursor-pointer duration-300" (click)="Get_Filtro_Page_Ramais(0)">
                 <div class="pt-4 pl-4 lg:pt-8">
                     <svg class="w-12 h-12 md:w-20 md:h-20 lg:w-20 lg:h-20 xl:w-16 xl:h-16" viewBox="0 0 128 128"
-                        fill="none" xmlns="http://www.w3.org/2000/svg" (click)="Get_Filtro_Page_Ramais(0)">
+                        fill="none" xmlns="http://www.w3.org/2000/svg" >
                         <path
                             d="M40.25 14H20.85C19.5637 14 18.3301 14.6321 17.4205 15.7574C16.511 16.8826 16 18.4087 16 20V108C16 109.591 16.511 111.117 17.4205 112.243C18.3301 113.368 19.5637 114 20.85 114H40.25C41.5363 114 42.7699 113.368 43.6795 112.243C44.589 111.117 45.1 109.591 45.1 108V20C45.1 18.4087 44.589 16.8826 43.6795 15.7574C42.7699 14.6321 41.5363 14 40.25 14ZM41.8667 108C41.8667 108.53 41.6963 109.039 41.3932 109.414C41.09 109.789 40.6788 110 40.25 110H20.85C20.4212 110 20.01 109.789 19.7068 109.414C19.4037 109.039 19.2333 108.53 19.2333 108V20C19.2333 19.4696 19.4037 18.9609 19.7068 18.5858C20.01 18.2107 20.4212 18 20.85 18H40.25C40.6788 18 41.09 18.2107 41.3932 18.5858C41.6963 18.9609 41.8667 19.4696 41.8667 20V108Z"
                             fill="black" />
@@ -425,15 +426,19 @@
                             fill="black" />
                     </svg>
                 </div>
-                <div class=" relative pl-4 top-8 text-sm md:top-10 md:text-lg lg:text-xl lg:top-14 " >Contatos Úteis</div>
+                <div class=" relative pl-4 top-8 text-sm md:top-10 md:text-lg lg:text-xl lg:top-14 whitespace-nowrap {{cd_Origem == 0? 'font-bold': ''}}">Contatos Úteis</div>
+ 
             </li>
+            <a role="button" class="bg-unimed-green px-10 absolute mt-4 lg:mt-6 text-white text-sm ml-5 lg:px-20 py-2 border rounded-full transform active:scale-95 cursor-pointer duration-300" (click)="Limpar_Filtros()">
+                Limpar Filtros
+            </a>
         </ul>
 
         <!-- Modal de Sobreposição -->
         <div class="absolute inset-0 z-10 bg-black opacity-70 xl:hidden" *ngIf="b_Mostrar_Modal"
             (click)="b_Mostrar_Modal=false">
         </div>
-
+        
     </body>
 </main>
 

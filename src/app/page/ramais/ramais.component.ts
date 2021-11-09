@@ -7,6 +7,7 @@ import { Subject, Subscription } from "rxjs";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { FormControl } from '@angular/forms';
 import { RamaisParams } from 'src/app/models/ramais/ramais.params';
+import { SubjectService } from 'src/app/services/subject.service';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class RamaisComponent implements OnInit {
   objArrayRamais = []
 
   objArrayTitulos = [
+
     { nm_titulo: "Nome", nm_Classe: "pr-20 lg:w-4/12" },
     { nm_titulo: "Setor", nm_Classe: "pr-28 lg:w-3/12 xl:pl-10" },
     { nm_titulo: "Ramal(s)", nm_Classe: "pr-6 lg:w-2/12 xl:pr-16" },
@@ -50,33 +52,33 @@ export class RamaisComponent implements OnInit {
   Inicial: string
   nr_Ultimo_Item: number = 0
   nm_Search: string = ""
-  cd_Origem: number = null
-  
+  cd_Origem: number = 3
+  nm_Inicial: String
 
-  page: number = 1
-  pageLength: number = 9
-  searchString: string = ""
+  nr_Page: number = 1
+  nr_Page_Length: number = window.innerWidth < 1280 ? 25 : 7
 
-  
+
   modelChanged = new FormControl()
 
 
-  constructor(private ramaisService: RamaisService) { }
+  constructor(private ramaisService: RamaisService, private subjectService: SubjectService) { }
 
   async ngOnInit() {
-      this.Buscar_Ramais()
-      this.modelChanged.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async (input) => {
-      this.page = 1
-      this.searchString = input
+    this.Buscar_Ramais()
+    this.modelChanged.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async (input) => {
+      this.nr_Page = 1
+      this.nm_Search = input
+      if (this.nm_Search != null && this.nm_Search.length > 1) {
+        this.nm_Inicial_Selecionada = null;
+      }
       await this.Buscar_Ramais()
     })
-    
   }
 
   expandir(documento: any): void {
     if (window.innerWidth < 1280) {
       documento.open = !documento.open
-
       // this.scroll.first.reset()
     }
   }
@@ -85,41 +87,7 @@ export class RamaisComponent implements OnInit {
     this.b_Mostrar_Modal = true
   }
 
-  // Scrolar_aside(scroll: number) {
-
-  //   const nr_Pixel = scroll + this.objArrayItemLista.first.nativeElement.offsetTop
-
-  //   let nr_Index = 0
-
-  //   this.objArrayItemLista.find((i, index) => {
-  //     if (i.nativeElement.offsetTop >= nr_Pixel) {
-  //       nr_Index = index
-  //       return true
-  //     }
-  //     return false
-  //   })
-
-  //   this.nm_Inicial_Selecionada = this.objArrayRamais[nr_Index].inicial
-
-  //   // let nrIndex_2 = this.objArrayIniciais.findIndex(i => i.inicial == this.objInicialSelecionada)
-
-  //   // if (nrIndex_2 >= 6) {
-
-  //   //   const objLetra = this.objArrayLetras.find((item_list, index_item) => nrIndex_2 == index_item)?.nativeElement
-
-  //   //   objLetra.scrollIntoView()
-
-  //   // } else if (this.nr_Ultimo_Item > nrIndex_2){
-
-  //   //   const objLetra = this.objArrayLetras.find((item_list, index_item) => nrIndex_2 == index_item)?.nativeElement
-
-  //   //   objLetra.scrollIntoView()
-  //   // }
-
-  //   // this.nr_Ultimo_Item = nrIndex_2
-  // }
-
-  redefine() {
+  Redefinir() {
     if (window.innerWidth > 1280) {
 
       this.objArrayRamais.forEach(a => a.open = true)
@@ -130,88 +98,65 @@ export class RamaisComponent implements OnInit {
     }
   }
 
-  async Buscar_Ramais(b_Letra: boolean = true) {
-    const objParams: RamaisParams = { page: this.page, pageLength: this.pageLength, nm_Search: b_Letra ? this.nm_Search + "%" : "%" + this.nm_Search + "%" }
+  async Buscar_Ramais() {
+    const objParams: RamaisParams = { nr_Page: this.nr_Page, nr_Page_Length: this.nr_Page_Length, nm_Search: this.nm_Search, cd_Origem: this.cd_Origem, nm_Inicial_Selecionada: this.nm_Inicial_Selecionada }
     this.objArrayRamais = await this.ramaisService.Get_Ramais(objParams)
-    this.redefine()
+    this.Redefinir()
   }
 
+  async proxima() {
 
-  async proxima(){
-    this.page++;
-    this.listaRamais.nativeElement.scrollTo(0,0)
+    this.Rollar_Topo()
+    let objProximo = this.objArrayRamais
+    await this.Buscar_Ramais()
+    if (this.objArrayRamais.length == 0) {
+      this.objArrayRamais = objProximo
+      this.subjectService.subject_Exibindo_Snackbar.next({ message: 'Todas as informações já foram trazidas' })
+    } else {
+      this.nr_Page++;
+    }
+  }
+
+  Rollar_Topo() {
+    this.listaRamais.nativeElement.scrollTo(0, 0)
+  }
+
+  async anterior() {
+    this.nr_Page--;
     await this.Buscar_Ramais()
   }
 
-  
-  async anterior(){
-    this.page--;
-    await this.Buscar_Ramais()
-    
+  async Get_Filtro_Page_Ramais(cd_Origem: number, b_Letra: boolean = true) {
+    this.nr_Page = 1
+    this.cd_Origem = cd_Origem
+    this.Buscar_Ramais()
+    if (window.innerWidth < 1280) {
+      this.b_Mostrar_Modal = false
+    }
+    this.Rollar_Topo()
+
   }
 
-  async Get_Filtro_Page_Ramais(cd_Origem: number, b_Letra: boolean = true){
-    const objParams: RamaisParams = { page: this.page, pageLength: this.pageLength, nm_Search: b_Letra ? this.nm_Search + "%" : "%" + this.nm_Search + "%", cd_Origem }
-    this.objArrayRamais = await this.ramaisService.Get_Ramais(objParams)
+  async Limpar_Filtros() {
+
+    this.nr_Page = 1
+    this.cd_Origem = 3
+    if (window.innerWidth < 1280) {
+      this.b_Mostrar_Modal = false
+    }
+    this.nm_Inicial_Selecionada = ""
+    this.modelChanged.setValue(this.nm_Inicial_Selecionada)
+    await this.Buscar_Ramais()
   }
 
   async Clickar_Inicial_Acima(objInicial: any, nr_Index: number) {
 
     this.nm_Inicial_Selecionada = objInicial.inicial
+    this.modelChanged.setValue("")
+    this.Buscar_Ramais()
 
-    this.modelChanged.setValue(this.nm_Inicial_Selecionada)
-    //this.modelChanged = ""
-
-    // this.nr_Ultimo_Item = nr_Index
-
-    // const nr_Index_Nome = this.objArrayRamais.findIndex(i => i.inicial == objInicial.inicial)
-
-    // const obgItem_Filho = this.objArrayItemLista.find((item_list, index_item) => nr_Index_Nome == index_item)?.nativeElement
-
-    // obgItem_Filho.scrollIntoView()
-
-    
-    // this.modelChanged.setValue(null)
-    
-    // await this.Buscar_Ramais(true)
-
-
-    // var bodyRect = this.variavelpailista.nativeElement.getBoundingClientRect(),
-    // elemRect = item_filho.getBoundingClientRect(),
-    // offset   = elemRect.top - bodyRect.top;
-    // this.scroll.first.scrolar(offset)
   }
-
-  //index_2 está pegando o index da incial que estou agora 
-
-  //if index for divisível por 4 ou index se a distancia enrte os index for >6, scrollar, se for ==2 não scrollar
-
-  //this.scroll.last.scrolar(scroll)
-
-  //inicial selecionada é maior g? ent começa a scrolar
-
-  //qual a estrategia pra chegar no pixel da letra m pelo index
 }
-
-  // let div = document.querySelector('div');
-  // var pos = $(div).position().top;
-  // var alturaTela = window.innerHeight
-  // $(document).scroll(function () {
-  //     var posicaoScroll = $(document).scrollTop();
-  //     this.ativar = pos < posicaoScroll + (alturaTela/2);
-
-
-  // });
-
-
-// Nomes - nm_Beneficiario
-// Boolean - b_Mostrar_Modal
-// Numero - nr_CNPJ
-// Objeto - objAgluamCoisa
-// Lista/array - objArrayAlgumaCoisa / objLstAlgumaCoisa
-// Funcao - Selecionar_Beneficiario()
-// Descricao - ds_Produto
-// css - div-letra
 
 
 

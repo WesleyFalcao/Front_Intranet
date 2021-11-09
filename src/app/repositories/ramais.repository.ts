@@ -22,14 +22,12 @@ export class RamaisRepository {
     {
     }
 
-    async Get_Ramais(objParams: RamaisParams){
+    async Get_Ramais(objParam: RamaisParams){
 
         this.subjectService.subject_Exibindo_Loading.next(true)
         const query = this.ramaisQuery.Get_Ramais()
-        const response = await this.apiService.Query([query], objParams, this.httpOptions)
+        const response = await this.apiService.Query([query], {objParam}, this.httpOptions)
         this.subjectService.subject_Exibindo_Loading.next(false)
         return response.ramais
-        
     }
-
 }

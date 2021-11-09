@@ -1,0 +1,14 @@
+<uni-modal-background nm_Icone="error-modal" (onCloseModal)="Voltar()">
+    <div class="aviso-critica">
+
+        <div class="body">
+            <h1 class="title">Críticas encontradas</h1>
+
+            <ul class="ul-list">
+                <li *ngFor="let erro of criticas">
+                    {{ erro }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</uni-modal-background>

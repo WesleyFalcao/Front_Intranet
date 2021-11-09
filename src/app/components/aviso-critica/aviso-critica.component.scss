@@ -1,0 +1,15 @@
+.aviso-critica {
+    @apply p-8;
+}
+
+.title {
+    @apply font-bold;
+}
+
+.button-close {
+    @apply absolute right-4 top-4 w-4 h-4 cursor-pointer;
+}
+
+.ul-list {
+    @apply mt-4 list-disc pl-12;
+}

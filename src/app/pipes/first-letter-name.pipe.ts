@@ -6,17 +6,14 @@ import { filter } from 'rxjs/operators';
 })
 export class FirstLetterNamePipe implements PipeTransform {
 
-  transform(value: any[], args: string ): any {
-    if (args){
-      let arrayfilter = value.filter(a => this.capitalize(a.nm_Colaborador) == args)
-      return arrayfilter
+  transform(value: string ): any {
+    if (value){
+      return value.substring(0,1)
 
     }else{
       return value
     }
-    
   }
-
   capitalize(value: string) {
     return value.substr(0, 1).toUpperCase()
   }

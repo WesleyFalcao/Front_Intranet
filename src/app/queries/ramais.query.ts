@@ -15,21 +15,15 @@ export class RamaisQuery{
         return {
 
             header: [
+
                 {
-                    field: '$page',
-                    type: 'Float',
+                    field: '$objParam',
+                    type: 'RamalParams!',
                 },
-                {
-                    field: '$pageLength',
-                    type: 'Float',
-                },
-                {
-                    field: '$nm_Search',
-                    type: 'String'
-                }
+               
             ],
             query: `
-                ramais:Ramal(objParam:{page:$page, pageLength:$pageLength,nm_Search:$nm_Search})
+                ramais:Ramal(objParam:$objParam)
   
                 {nm_Pessoa, ds_Email, nr_Ramal, nr_Telefone, nm_Departamento},
             `

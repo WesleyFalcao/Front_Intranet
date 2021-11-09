@@ -11,6 +11,7 @@ module.exports = {
   theme: {
     
     extend: {
+      
       screens:{
       },
       colors: {
@@ -57,6 +58,7 @@ module.exports = {
     extend: {
       transitionProperty: ['hover', 'focus'],
       scale: ['active'],
+      
     },
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],

@@ -1,6 +1,8 @@
 export class RamaisParams{
-   page: number; 
-   pageLength: number; 
+   
+   nr_Page: number; 
+   nr_Page_Length: number; 
    nm_Search: string;
-   cd_Origem?: number;
+   cd_Origem?: number = 3;
+   nm_Inicial_Selecionada: string
 }
