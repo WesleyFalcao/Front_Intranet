@@ -3,6 +3,7 @@ import { Directive, Output, ElementRef, HostListener, EventEmitter } from "@angu
 @Directive({
     selector: '[scroll]'
 })
+
 export class ScrollDirective {
     @Output() setScroll = new EventEmitter();
 

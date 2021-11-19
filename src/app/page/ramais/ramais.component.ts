@@ -1,19 +1,21 @@
-import { fn } from '@angular/compiler/src/output/output_ast';
-import { Component, ElementRef, EventEmitter, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { fn, THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Component, ElementRef, EventEmitter, NgZone, OnInit, Output, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { interval, timer } from 'rxjs';
 import { ScrollDirective } from 'src/app/directives/scroll/scroll.directive';
 import { RamaisService } from './ramais.service';
 import { Subject, Subscription } from "rxjs";
-import { debounceTime, distinctUntilChanged } from "rxjs/operators";
+import { debounceTime, distinctUntilChanged, filter, map, pairwise, throttleTime } from "rxjs/operators";
 import { FormControl } from '@angular/forms';
 import { RamaisParams } from 'src/app/models/ramais/ramais.params';
 import { SubjectService } from 'src/app/services/subject.service';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 
 @Component({
   selector: 'app-ramais',
   templateUrl: './ramais.component.html',
   styleUrls: ['./ramais.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class RamaisComponent implements OnInit {
@@ -31,16 +33,16 @@ export class RamaisComponent implements OnInit {
 
   objArrayTitulos = [
 
-    { nm_titulo: "Nome", nm_Classe: "pr-20 lg:w-4/12" },
-    { nm_titulo: "Setor", nm_Classe: "pr-28 lg:w-3/12 xl:pl-10" },
-    { nm_titulo: "Ramal(s)", nm_Classe: "pr-6 lg:w-2/12 xl:pr-16" },
-    { nm_titulo: "Email", nm_Classe: "pr-6 lg:w-3/12" }
+    { nm_titulo: "Nome", nm_Classe: "lg:w-4/12 text-center"},
+    { nm_titulo: "Setor", nm_Classe: "lg:w-3/12 text-center"},
+    { nm_titulo: "Contato(s)", nm_Classe: "lg:w-2/12 text-center"},
+    { nm_titulo: "Email", nm_Classe: "lg:w-3/12 text-center"}
   ]
 
   // @ViewChildren(ScrollDirective)
   // scroll: QueryList<ScrollDirective>;
 
-
+  @ViewChild( CdkVirtualScrollViewport, {static: true}) scroller: CdkVirtualScrollViewport;
   @ViewChildren('variavelLocal') objArrayItemLista: QueryList<ElementRef>
   @ViewChild('listaRamais') listaRamais: ElementRef
   @ViewChildren('letras') objArrayLetras: QueryList<ElementRef>
@@ -48,31 +50,48 @@ export class RamaisComponent implements OnInit {
 
   b_Mostrar_Modal: boolean = false
   b_Text_Row_Lg: boolean = false
-  nm_Inicial_Selecionada: string = "A"
+  nm_Inicial_Selecionada: string = ""
   Inicial: string
   nr_Ultimo_Item: number = 0
   nm_Search: string = ""
   cd_Origem: number = 3
   nm_Inicial: String
+  dt_Ultima_Pesquisa = new Date()
 
   nr_Page: number = 1
-  nr_Page_Length: number = window.innerWidth < 1280 ? 25 : 7
+  nr_Page_Length: number = 100
 
 
   modelChanged = new FormControl()
 
 
-  constructor(private ramaisService: RamaisService, private subjectService: SubjectService) { }
+  constructor(private ramaisService: RamaisService, private subjectService: SubjectService, private ngZone: NgZone) { }
 
   async ngOnInit() {
+
     this.Buscar_Ramais()
     this.modelChanged.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async (input) => {
       this.nr_Page = 1
       this.nm_Search = input
       if (this.nm_Search != null && this.nm_Search.length > 1) {
         this.nm_Inicial_Selecionada = null;
+        this.objArrayRamais = []
       }
       await this.Buscar_Ramais()
+    })
+    
+    this.scroller.elementScrolled().pipe(
+      map(() => this.scroller.measureScrollOffset('bottom')),
+      filter((epic) => (new Date().getTime() - this.dt_Ultima_Pesquisa.getTime()) > 300),
+      pairwise(),
+      filter(([y1, y2]) => (y2 < y1 && y2 < 140)),
+      throttleTime(200)
+    ).subscribe(() => {
+      this.ngZone.run(async() => {
+        this.dt_Ultima_Pesquisa = new Date()
+        this.nr_Page++
+        await this.Buscar_Ramais();
+      });
     })
   }
 
@@ -88,7 +107,7 @@ export class RamaisComponent implements OnInit {
   }
 
   Redefinir() {
-    if (window.innerWidth > 1280) {
+    if (window.innerWidth > 1024) {
 
       this.objArrayRamais.forEach(a => a.open = true)
       this.b_Mostrar_Modal = true
@@ -100,48 +119,32 @@ export class RamaisComponent implements OnInit {
 
   async Buscar_Ramais() {
     const objParams: RamaisParams = { nr_Page: this.nr_Page, nr_Page_Length: this.nr_Page_Length, nm_Search: this.nm_Search, cd_Origem: this.cd_Origem, nm_Inicial_Selecionada: this.nm_Inicial_Selecionada }
-    this.objArrayRamais = await this.ramaisService.Get_Ramais(objParams)
+    this.objArrayRamais = [...this.objArrayRamais, ...await this.ramaisService.Get_Ramais(objParams)]
     this.Redefinir()
   }
 
-  async proxima() {
-
-    this.Rollar_Topo()
-    let objProximo = this.objArrayRamais
-    await this.Buscar_Ramais()
-    if (this.objArrayRamais.length == 0) {
-      this.objArrayRamais = objProximo
-      this.subjectService.subject_Exibindo_Snackbar.next({ message: 'Todas as informações já foram trazidas' })
-    } else {
-      this.nr_Page++;
-    }
-  }
 
   Rollar_Topo() {
     this.listaRamais.nativeElement.scrollTo(0, 0)
   }
 
-  async anterior() {
-    this.nr_Page--;
-    await this.Buscar_Ramais()
-  }
-
   async Get_Filtro_Page_Ramais(cd_Origem: number, b_Letra: boolean = true) {
+    
+    this.objArrayRamais = []
     this.nr_Page = 1
     this.cd_Origem = cd_Origem
     this.Buscar_Ramais()
-    if (window.innerWidth < 1280) {
+    if (window.innerWidth < 1024) {
       this.b_Mostrar_Modal = false
     }
     this.Rollar_Topo()
-
   }
 
-  async Limpar_Filtros() {
-
+  async Trazer_Todos() {
+    this.objArrayRamais = []
     this.nr_Page = 1
     this.cd_Origem = 3
-    if (window.innerWidth < 1280) {
+    if (window.innerWidth < 1024) {
       this.b_Mostrar_Modal = false
     }
     this.nm_Inicial_Selecionada = ""
@@ -150,11 +153,11 @@ export class RamaisComponent implements OnInit {
   }
 
   async Clickar_Inicial_Acima(objInicial: any, nr_Index: number) {
-
+    this.objArrayRamais = []
+    this.nr_Page = 1
     this.nm_Inicial_Selecionada = objInicial.inicial
     this.modelChanged.setValue("")
     this.Buscar_Ramais()
-
   }
 }
 

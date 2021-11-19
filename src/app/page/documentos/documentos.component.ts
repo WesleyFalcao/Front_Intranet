@@ -20,10 +20,10 @@ export class DocumentosComponent implements OnInit {
 
   ArrayTitulos = [
     { nm_Titulo: "", nm_Classe: "w-1/12"},
-    { nm_Titulo: "Nome", nm_Classe: "w-6/12 lg:pl-16 xl:pl-20"},
-    { nm_Titulo: "Processos", nm_Classe: "w-2/12 lg:pl-1"},
-    { nm_Titulo: "Data", nm_Classe: "w-1/12 xl:mr-4"},
-    { nm_Titulo: "Código", nm_Classe: "w-2/12 lg:pl-9 xl:mr-9"},
+    { nm_Titulo: "Nome", nm_Classe: "w-6/12"},
+    { nm_Titulo: "Processos", nm_Classe: "w-2/12"},
+    { nm_Titulo: "Data", nm_Classe: "w-1/12"},
+    { nm_Titulo: "Código", nm_Classe: "w-2/12"},
 
   ]
 

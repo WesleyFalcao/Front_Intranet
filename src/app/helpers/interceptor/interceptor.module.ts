@@ -46,6 +46,11 @@ export class InterceptorService implements HttpInterceptor {
                         const errors = event.body.errors
 
                         if (errors) {
+
+                            let criticas = []
+                            let statusCode = 200
+                            let b_Status = true
+
                             this.subjectService.subject_Exibindo_Loading.next(false)
 
                             this.modalService.closeAll()
@@ -53,15 +58,56 @@ export class InterceptorService implements HttpInterceptor {
                             let errorCode = errors[0].extensions.statusCode;
 
                             if (errorCode == 200) {
+
                                 errors.find(err => {
                                     errorCode = err.extensions.statusCode;
 
                                     return errorCode != 200
                                 });
-                            }
+                                errors.forEach(query => {
 
-                            //NAO AUTENTICADO OU TOKEN ESTA EXPIRADO
-                            if (errorCode == 401) {
+                                    query.extensions.motivos_Critica?.forEach(motivos_Critica => {
+                                        if (motivos_Critica.propriedade == "" || motivos_Critica.propriedade == null) {
+                                            criticas.push(motivos_Critica.criticas[0])
+                                        }
+                                    });
+
+                                    b_Status = false
+
+                                    statusCode = query.extensions.statusCode
+                                })
+
+                                if (!b_Status && criticas.length > 0) {
+
+                                    this.subjectService.subject_Exibindo_Loading.next(false)
+
+                                    this.modalService.closeAll()
+
+                                    if (window.innerWidth >= 768) {
+
+                                        this.nr_Tamanho_Model = 750;
+                                    } else {
+                                        
+                                        this.nr_Tamanho_Model = 350;
+                                    }
+
+                                    if (statusCode == 405) {
+                                        this.subjectService.subject_Exibindo_Snackbar.next({ message: criticas[0] })
+                                    } else {
+
+                                        this.modalService.open(
+                                            AvisoCriticaComponent,
+                                            criticas
+                                        )
+                                    }
+
+                                    throw ""
+                                    // throw errors
+                                }
+
+                            } else if
+
+                                (errorCode == 401) {
 
                                 // Limpa dados da sessão
                                 this.dataService.Limpar_Session();
@@ -92,51 +138,6 @@ export class InterceptorService implements HttpInterceptor {
                             }
 
                             throw "Erro na Requisição"
-                        } else if (event.body.data) {
-                            const data = event.body.data
-                            let criticas = []
-                            let b_Status = true
-                            let status_Code
-
-                            Object.keys(data).forEach(query => {
-                                if (!data[query].status) {
-                                    data[query].motivos_Critica?.forEach(motivos_Critica => {
-                                        if (motivos_Critica.propriedade == "" || motivos_Critica.propriedade == null) {
-                                            criticas.push(motivos_Critica.criticas[0])
-                                        }
-                                    });
-
-                                    b_Status = false
-                                }
-                                status_Code = data[query].statusCode
-                            })
-
-                            if (!b_Status && criticas.length > 0) {
-                                this.subjectService.subject_Exibindo_Loading.next(false)
-
-                                this.modalService.closeAll()
-
-
-                                if (window.innerWidth >= 768) {
-                                    this.nr_Tamanho_Model = 750;
-                                } else {
-                                    this.nr_Tamanho_Model = 350;
-                                }
-
-                                if (status_Code == 405) {
-                                    this.subjectService.subject_Exibindo_Snackbar.next({ message: criticas[0] })
-                                } else {
-
-                                    this.modalService.open(
-                                        AvisoCriticaComponent,
-                                        criticas
-                                    )
-                                }
-
-                                throw "Erro de Lógica na API"
-                            } else if (!b_Status) {
-                                throw event.body.data
-                            }
                         }
                     }
                 },

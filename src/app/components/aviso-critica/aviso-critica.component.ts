@@ -17,7 +17,7 @@ export class AvisoCriticaComponent implements OnModal {
     modalInstance: ModalRef;
 
     constructor() {
-
+    console.log("123")
     }
 
     Voltar() {

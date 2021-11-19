@@ -1,12 +1,12 @@
-.main-documentos{
+.body-documentos{
     height: calc(100% - 7rem);
 
     @screen md{
-        height: calc(100% - 9rem);
+        height: calc(100% - 8rem);
     }
-
+    
     @screen lg{
-        height: calc(100% - 10rem);
+        height: calc(100% - 8rem);
     }
 
     @screen xl{
@@ -14,7 +14,47 @@
     }
 }
 
-.scroll-suave{
-    
-    scroll-behavior: smooth;
+.trazer-tudo{
+    @screen lg {
+        width: 5rem;
+        height: 5rem;
+    }
+}
+
+.inicias{
+    @screen lg {
+        display: flex;
+    }
+}
+
+.largura-pessoa{
+    width: 74%;
+    @screen md{
+        width: 100%
+    }
+}
+
+.largura-items{
+    @apply w-full;
+
+    @screen md{
+        width: 100%
+    }
+
+}
+
+.cdk-virtual-scroll-content-wrapper {
+    position: relative !important;
+}
+
+// .virtual-scroll{
+//     width: calc(100% - 1rem);
+// }
+
+.largura-menu-laral{
+    @media (min-width: 1400px) {
+        
+        width: 16.666667%;
+        
+    }
 }
