@@ -24,8 +24,8 @@
 			</div>
 
 			<ul class=" w-full flex flex-col space-y-10 font-medium lg:text-sm cursor-pointer">
-				<li class=" flex flex-col w-full justify-start {{item.items.length ==0? 'transform active:scale-95 translate duration-300':''}}"
-					(click)="mudar_estado(item)" *ngFor="let item of lista; let i = index;">
+				<!-- <li class=" flex flex-col w-full justify-start {{ item.items.length == 0? 'transform active:scale-95 translate duration-300':''}}"
+					(click)="mudar_estado(item)" *ngFor="let item of objListaLateral">
 					<div class=" flex flex-row">
 
 						<div class=" relative top-1" *ngIf="item.items.length ==0">
@@ -49,7 +49,6 @@
 							</div>
 						</div>
 						{{item.nm_Documento}}
-
 					</div>
 
 					<ul class="flex flex-col max-h-96 overflow-y-auto gap-y-6 text-base font-normal cursor-pointer w-full mt-8 pl-8"
@@ -62,13 +61,25 @@
 									d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
 									fill="#5E1995" />
 							</svg>
-							<span class="justify-items-start ml-2 px-1 ">
+							<span class="justify-items-start ml-2 px-1">
 								{{sub.nm_Documento}}</span>
 						</li>
 					</ul>
+				</li> -->
+				<li class=" flex w-full justify-start" *ngFor="">
+					<div class="flex w-full justify-start transform active:scale-95 translate duration-300">
+						<div class="pr-4 relative top-1">
+							<svg width="15" height="15" viewBox="0 0 100 125" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
+									fill="#5E1995" />
+							</svg>
+						</div>
 
+					</div>
 				</li>
-				<li class=" flex w-full justify-start" *ngFor="let item of lista2; let i = index;">
+				<li class="flex w-full justify-start" *ngFor="">
 					<div class="flex w-full justify-start transform active:scale-95 translate duration-300">
 						<div class="pr-4 relative top-1">
 							<svg width="15" height="15" viewBox="0 0 100 125" fill="none"
@@ -77,22 +88,9 @@
 									d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
 									fill="#5E1995" />
 							</svg>
-						</div>
-						{{item.nm_Documento}}
+						</div>	
 					</div>
-				</li>
-				<li class="flex w-full justify-start" *ngFor="let item of lista3; let i = index;">
-					<div class="flex w-full justify-start transform active:scale-95 translate duration-300">
-						<div class="pr-4 relative top-1">
-							<svg width="15" height="15" viewBox="0 0 100 125" fill="none"
-								xmlns="http://www.w3.org/2000/svg">
-								<path
-									d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
-									fill="#5E1995" />
-							</svg>
-						</div>
-						{{item.nm_Documento}}
-					</div>
+
 				</li>
 			</ul>
 		</aside>
@@ -102,7 +100,7 @@
 
 		<!-- barra de pesquisa -->
 
-		<div class="flex flex-row gap-4 md:gap-6 mx-2 md:mx-10">
+		<div class="flex flex-row gap-4 md:gap-6 mx-2 md:mx-10 ">
 
 			<!-- Filtro-->
 			<div
@@ -111,38 +109,23 @@
 					(click)="Mostrar_Modal()">
 					<path d="M60.5 0.166687H0.5L24.5 31.7V53.5L36.5 60.1667V31.7L60.5 0.166687Z" fill="#5E1995" />
 				</svg>
-
 			</div>
 
-			<div class="mt-4 flex flex-grow relative rounded-full md:top-5 shadow-lg md:w-6/12 xl:flex-grow-0 lg:w-full">
-				<input type="text" [formControl]="nm_searchInput"
-					class="w-full rounded-full pl-6 pr-10 py-5 border-2 xl:py-3.5  border-gray-200  focus:ring-unimed-purpeconecta focus:border-transparent"
-					placeholder="Pesquise...">
-
-				<!-- icone pesquisa-->
-
-				<div class="absolute right-2 rounded-full w-14 h-14 top-1.5 xl:w-11 xl:h-11 bg-unimed-purpeconecta transform active:scale-95 transition duration-300 cursor-pointer"
-					(click)="Buscar()">
-					<svg class="w-8 h-8 relative top-3 left-3 xl:top-2 xl:left-2 xl:w-7 xl:h-7" viewBox="0 0 43 41"
-						fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path
-							d=" M30.5044 25.9043H28.6179L27.9492 25.2791C30.2895 22.6393 31.6984 19.2122 31.6984 15.4841C31.6984 7.17107 24.7492 0.432648 16.1761 0.432648C7.60303 0.432648 0.653809 7.17107 0.653809 15.4841C0.653809 23.7971 7.60303 30.5356 16.1761 30.5356C20.0209 30.5356 23.5552 29.1694 26.2776 26.9001L26.9223 27.5484V29.3778L38.8626 40.9326L42.4208 37.4824L30.5044 25.9043V25.9043ZM16.1761 25.9043C10.2299 25.9043 5.42991 21.25 5.42991 15.4841C5.42991 9.71824 10.2299 5.06387 16.1761 5.06387C22.1224 5.06387 26.9223 9.71824 26.9223 15.4841C26.9223 21.25 22.1224 25.9043 16.1761 25.9043Z"
-							fill="white " />
-					</svg>
-				</div>
-			</div>
+			<!-- barra de pesquisa -->
+			<uni-search-bar class="w-full md:w-11/12" [control]="modelChanged">
+			
+			</uni-search-bar>
 		</div>
 
 		<div class="main-documentos w-full flex relative ">
 
 			<!-- Container -->
-
 			<div class="w-full flex flex-col gap-1 pl-2">
 
 				<!-- titulo dos documentos -->
 
 				<ul class="fixed w-full">
-					<li class="hidden md:mb-4 lg:flex lg:justify-end lg:w-full xl:w-10/12 ">
+					<li class="hidden md:mb-4 lg:flex lg:justify-end">
 						<div class="font-semibold text text-lg pt-16 {{objeto.nm_Classe}}"
 							*ngFor="let objeto of ArrayTitulos">
 							{{objeto.nm_Titulo}}
@@ -151,13 +134,12 @@
 					<li class="mt-8"></li>
 				</ul>
 
-
 				<!-- listagem documentos -->
 
 				<ul
 					class="pt-6 md:pt-12 lg:pt-6 lg:text-sm xl:text-sm lg:mt-24 md:mr-0.5 lg:mr-1.5 xl:mr-0 overflow-y-auto">
 					<li class="relative mb-4 flex font-medium flex-col w-full lg:flex-row transform cursor-pointer active:scale-95 transition duration-300 bg-white rounded-lg shadow-lg "
-						*ngFor="let documento of ArrayDocumentos">
+						*ngFor="let documento of objArrayDocumentos">
 
 						<div
 							class=" w-1/12 sm:absolute right-0 lg:relative md:right-0 md:top-1 md:absolute m-4 xl:pl-4">
@@ -166,23 +148,20 @@
 							{{documento.nm_Documento}}
 						</div>
 						<div class="pl-3 pb-2 pt-4 lg:w-3/12 lg:pt-0 lg:my-auto lg:text-center xl:w-3/12 w-full">
-							{{documento.nr_Processo}}
+							{{documento.nm_Processo}}
 						</div>
 						<div class="pt-3 pb-2 pl-4 md:pl-4 lg:pt-0 lg:my-auto xl:pl-14 lg:w-1/12">
-							{{documento.dt_Revisao | date: 'dd/MM/yyyy'}}
+							{{documento.dt_Documento}}
 						</div>
 						<div class="pt-3 pl-4 md:pl-4 lg:pt-0 lg:my-auto lg:w-3/12 lg:text-center pb-2">
-							{{documento.nm_Codigo}} - rev {{documento.nr_Revisao}}
+							{{documento.cd_Processo}} - rev {{documento.nr_Revisao}}
 						</div>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</main>
-
 </div>
-
-
 
 <!-- modal -->
 
@@ -190,15 +169,15 @@
 	class="bg-cover bg-center w-full h-screen absolute top-0 left-0 z-30 " *ngIf="b_Mostrar_Modal">
 
 	<!--header-->
-
+	
 	<!-- botão de voltar -->
 
-	<header class="relative flex justify-between pr-4 w-full h-24 md:h-32">
+	<header class="flex flex-row gap-3 md:gap-5 mx-2 md:mx-10">
 
-		<button class="pr-4 md:pb-10 transform cursor-pointer active:scale-90 transition duration-300"
+		<button class="transform cursor-pointer active:scale-90 transition duration-300"
 			(click)="b_Mostrar_Modal=false">
 
-			<svg class="flex mt-2 md:mt-0 ml-4 md:left-0 md:top-0" width="36" height="36" viewBox="0 0 68 68"
+			<svg class="relative flex mt-2 top-4.5 md:top-6" width="36" height="36" viewBox="0 0 68 68"
 				fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M68 29.75H16.2775L40.035 5.9925L34 0L0 34L34 68L39.9925 62.0075L16.2775 38.25H68V29.75Z"
 					fill="#411564" />
@@ -208,25 +187,10 @@
 
 		<!-- pesquisa-->
 
-		<div class="w-full xl:w-10/12 md:items-center lg:pl-10 md:ml-16 xl:pl-72 pt-4 flex md:pt-8 mx-auto">
-			<div
-				class="flex flex-grow h-16 md:flex-grow-0 md:w-10/12 mb-4 rounded-full shadow-lg md:transition transform  ">
-				<input type="text" [(ngModel)]="nm_search" name="nm_search"
-					class="w-full rounded-full pl-6 pr-10 py-5 border-2 border-gray-200  focus:ring-unimed-purpeconecta focus:border-transparent"
-					placeholder="Pesquise...">
-
-				<!-- icone pesquisa-->
-				<div class="fixed right-2 top-2 rounded-full w-12 h-12 bg-unimed-purpeconecta transform cursor-pointer active:scale-90 transition duration-300 "
-					(click)="Buscar()">
-					<svg class="relative top-2 left-2" width="32" height="32" viewBox="0 0 43 41" fill="none"
-						xmlns="http://www.w3.org/2000/svg">
-						<path
-							d=" M30.5044 25.9043H28.6179L27.9492 25.2791C30.2895 22.6393 31.6984 19.2122 31.6984 15.4841C31.6984 7.17107 24.7492 0.432648 16.1761 0.432648C7.60303 0.432648 0.653809 7.17107 0.653809 15.4841C0.653809 23.7971 7.60303 30.5356 16.1761 30.5356C20.0209 30.5356 23.5552 29.1694 26.2776 26.9001L26.9223 27.5484V29.3778L38.8626 40.9326L42.4208 37.4824L30.5044 25.9043V25.9043ZM16.1761 25.9043C10.2299 25.9043 5.42991 21.25 5.42991 15.4841C5.42991 9.71824 10.2299 5.06387 16.1761 5.06387C22.1224 5.06387 26.9223 9.71824 26.9223 15.4841C26.9223 21.25 22.1224 25.9043 16.1761 25.9043Z"
-							fill="white " />
-					</svg>
-				</div>
-			</div>
-		</div>
+		<uni-search-bar class="w-full md:w-11/12" [control]="modelChanged">
+			
+		</uni-search-bar>
+		
 	</header>
 
 	<div
@@ -234,7 +198,7 @@
 
 		<ul class="relative pb-2 bg-white rounded-3xl shadow-lg w-full md:w-2/3 md:mx-auto ">
 			<h3 class="w-full pt-4 pb-4 text-center font-semibold">Documentos da Qualidade</h3>
-			<li class="pb-4 relative transform " *ngFor="let objeto of lista">
+			<li class="pb-4 relative transform " *ngFor="">
 				<div class="transform cursor-pointer active:scale-95 transition duration-300">
 					<svg class="absolute ml-8 pt-4 " width="36" height="36" viewBox="0 0 100 125" fill="none"
 						xmlns="http://www.w3.org/2000/svg">
@@ -243,18 +207,16 @@
 							fill="#5E1995" />
 					</svg>
 					<h3 class="text-black font-medium mb-1 pl-24 p-3 transform">
-						{{objeto.nm_Documento}}
+						<!-- {{objeto.nm_Documento}} -->
 
 					</h3>
 				</div>
-
 			</li>
-
 		</ul>
 
 		<ul class=" pb-2 bg-white rounded-3xl shadow-lg w-full md:w-2/3 md:mx-auto  xl:h-full">
 			<h3 class="justify-center flex mt-4 mb-4 font-semibold text-left">Obj. Estratégicos Qualidade</h3>
-			<li class=" pb-4 relative cursor-pointer" *ngFor="let objeto of lista2">
+			<li class=" pb-4 relative cursor-pointer" *ngFor="">
 				<div class="transform active:scale-95 transition duration-300">
 					<svg class="absolute ml-8  pt-4" width="36" height="36" viewBox="0 0 100 125" fill="none"
 						xmlns="http://www.w3.org/2000/svg">
@@ -262,7 +224,8 @@
 							d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
 							fill="#5E1995" />
 					</svg>
-					<h3 class="text-black font-medium mb-1 pl-24 p-3 ">{{objeto.nm_Documento}}
+					<h3 class="text-black font-medium mb-1 pl-24 p-3 ">
+						<!-- {{objeto.nm_Documento}} -->
 					</h3>
 				</div>
 			</li>
@@ -270,7 +233,7 @@
 
 		<ul class="pb-2 bg-white rounded-3xl shadow-lg w-full md:w-2/3 md:mx-auto xl:h-full">
 			<h3 class="justify-center flex pt-4 mb-4 font-semibold text-left">Obj. Operacional</h3>
-			<li class="pb-4 relative cursor-pointer" *ngFor="let objeto of lista3">
+			<li class="pb-4 relative cursor-pointer" *ngFor="">
 
 				<!-- titulo dos documentos-->
 				<div class="transform active:scale-95 transition duration-300">
@@ -280,7 +243,8 @@
 							d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
 							fill="#5E1995" />
 					</svg>
-					<h3 class="text-black font-medium mb-1 pl-24 p-3 ">{{objeto.nm_Documento}}
+					<h3 class="text-black font-medium mb-1 pl-24 p-3 ">
+						<!-- {{objeto.nm_Documento}} -->
 					</h3>
 				</div>
 			</li>

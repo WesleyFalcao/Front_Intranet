@@ -1,4 +1,5 @@
-export class Documento{
-
-    nm_Documento: string
+export class DocumentosParams{
+    nr_Page: number;
+    nr_Page_Length: number; 
+    nm_Search: string;
 }

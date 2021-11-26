@@ -4,7 +4,7 @@ import { Injectable } from "@angular/core";
     providedIn: "root"
 })
 
-export class DocumentosQuery{
+export class DocumentosQuery {
 
     constructor() { }
 
@@ -12,21 +12,26 @@ export class DocumentosQuery{
         return {
 
             header: [
-                // {
-                //     // field: '$nr_CPF',
-                //     // type: 'String!'
-                // }
+                {
+                    field: '$objParam',
+                    type: 'DocumentosParams'
+                }
             ],
             query: `
-                documentos: intranet_test_DocumentosCEQ(limit: 1, offset: 20, where: {}) {
-                cd_Documento: id
-                nr_Documento: codigo
-                nm_Documento: nome
-                cd_Processo: processo
-              }
-            `
-        }
+                documentos_qualidade(objParam:$objParam)
 
+                { nm_Documento, nm_Arquivo, dt_Documento, nr_Revisao, cd_Processo, nm_Processo, cd_Filial, nr_Grupo, cd_Setor }  
+            `
+        }  //cd_Documento,
     }
 
+    Get_GrupoCEQ(){
+        return{
+            header: [],
+            
+            query: `
+                grupoceq{cd_Grupo_CEQ, cd_Grupo_Pai, nm_Grupo_CEQ}
+            `
+        }
+    }
 }

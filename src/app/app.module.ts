@@ -8,13 +8,14 @@ import { CommonModule } from '@angular/common';
 import { RamaisModule } from './page/ramais/ramais.module';
 import { GraphQLModule } from './graphql.module';
 import { AvisoCriticaModule } from './components/aviso-critica/aviso-critica.module';
-import { LoadingModule } from './loading/loading.module';
+import { LoadingModule } from './components/loading/loading.module';
 import { ErrorModule } from './page/error/error.module';
 import { SnackbarModule } from './components/snackbar/snackbar.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './helpers/interceptor/interceptor.module';
 import { ModalBackgroundModule } from './components/modal-service/modal-background/modal-background.module';
 import { ModalServiceModule } from './components/modal-service/modal-service.module';
+import { SearchBarModule } from './components/search-bar/searchbar.module';
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import { ModalServiceModule } from './components/modal-service/modal-service.mod
     ErrorModule,
     SnackbarModule,
     ModalServiceModule,
-    
+    SearchBarModule, 
   ],
   providers: [
     {

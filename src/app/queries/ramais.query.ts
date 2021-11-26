@@ -18,12 +18,12 @@ export class RamaisQuery{
 
                 {
                     field: '$objParam',
-                    type: 'RamalParams!',
+                    type: 'RamalParams',
                 },
                
             ],
             query: `
-                ramais:Ramal(objParam:$objParam)
+                ramais:ramais(objParam:$objParam)
   
                 {nm_Pessoa, ds_Email, nr_Ramal, nr_Telefone, nm_Departamento},
             `

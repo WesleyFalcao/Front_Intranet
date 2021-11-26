@@ -4,6 +4,7 @@ import { DocumentosComponent } from './documentos.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchBarModule } from 'src/app/components/search-bar/searchbar.module';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     AngularSvgIconModule.forRoot(),
     ReactiveFormsModule,
+    SearchBarModule
     
   ],
   exports: [

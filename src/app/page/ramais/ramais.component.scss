@@ -10,7 +10,7 @@
     }
 
     @screen xl{
-        height: calc(100% - 16rem);
+        height: calc(100% - 8rem);
     }
 }
 
@@ -55,6 +55,13 @@
     @media (min-width: 1400px) {
         
         width: 16.666667%;
+        
+    }
+}
+
+.acima-xl{
+    @media (min-width: 1400px) {
+        display: flexbox;
         
     }
 }

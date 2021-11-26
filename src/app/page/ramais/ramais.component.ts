@@ -64,7 +64,6 @@ export class RamaisComponent implements OnInit {
 
   modelChanged = new FormControl()
 
-
   constructor(private ramaisService: RamaisService, private subjectService: SubjectService, private ngZone: NgZone) { }
 
   async ngOnInit() {
@@ -99,6 +98,7 @@ export class RamaisComponent implements OnInit {
     if (window.innerWidth < 1280) {
       documento.open = !documento.open
       // this.scroll.first.reset()
+
     }
   }
 
@@ -122,7 +122,6 @@ export class RamaisComponent implements OnInit {
     this.objArrayRamais = [...this.objArrayRamais, ...await this.ramaisService.Get_Ramais(objParams)]
     this.Redefinir()
   }
-
 
   Rollar_Topo() {
     this.listaRamais.nativeElement.scrollTo(0, 0)
