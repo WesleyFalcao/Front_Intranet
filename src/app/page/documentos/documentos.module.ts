@@ -5,6 +5,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchBarModule } from 'src/app/components/search-bar/searchbar.module';
+import { ItemsCEQModule } from 'src/app/components/itens-ceq/itens-ceq.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SearchBarModule } from 'src/app/components/search-bar/searchbar.module'
     HttpClientModule,
     AngularSvgIconModule.forRoot(),
     ReactiveFormsModule,
-    SearchBarModule
+    SearchBarModule,
+    ItemsCEQModule
     
   ],
   exports: [

@@ -23,38 +23,19 @@
 				</svg>
 			</div>
 
+
 			<ul class=" w-full flex flex-col space-y-10 font-medium lg:text-sm cursor-pointer">
-				<!-- <li class=" flex flex-col w-full justify-start {{ item.items.length == 0? 'transform active:scale-95 translate duration-300':''}}"
-					(click)="mudar_estado(item)" *ngFor="let item of objListaLateral">
-					<div class=" flex flex-row">
+				<li class=" flex flex-col w-full justify-start" *ngFor="let item of objArrayGrupoCEQ">
 
-						<div class=" relative top-1" *ngIf="item.items.length ==0">
-							<svg width="15" height="15" viewBox="0 0 100 125" fill="none"
-								xmlns="http://www.w3.org/2000/svg">
-								<path
-									d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
-									fill="#5E1995" />
-							</svg>
-						</div>
+					<itens-ceq [subgrupos]="item.subgrupos" [nm_Item]="subfilho.nm_Grupo_CEQ" [item]="item"
+						*ngFor="let subfilho of item.subgrupos">
 
-						<div class=" pr-4">
-							<div *ngIf="item.items?.length !=0 "
-								class="relative {{item.open? 'mt-2 -top-1':'origin-center transform -rotate-90 top-1 '}}">
-								<svg class="" width="15" height="10" viewBox="0 0 90 46" fill="none"
-									xmlns="http://www.w3.org/2000/svg">
-									<path
-										d="M45.2811 44.9983C46.1723 44.9428 47.0194 44.5908 47.6874 43.9983L87.6874 7.99834C88.0811 7.64592 88.4015 7.21924 88.63 6.74278C88.8586 6.26633 88.9908 5.74952 89.0193 5.22185C89.0477 4.69418 88.9717 4.16608 88.7956 3.66783C88.6196 3.16959 88.3469 2.71096 87.9933 2.31829C87.6397 1.92561 87.2121 1.6066 86.7349 1.3795C86.2578 1.1524 85.7405 1.02168 85.2128 0.99486C84.685 0.968045 84.1572 1.04563 83.6594 1.22319C83.1617 1.40076 82.704 1.67484 82.3124 2.02965L44.9998 35.6233L7.68733 2.02965C7.29573 1.67483 6.83796 1.40076 6.34025 1.22319C5.84254 1.04562 5.31469 0.968046 4.78693 0.99486C4.25918 1.02167 3.74191 1.15234 3.26476 1.37944C2.78761 1.60654 2.35998 1.92561 2.00636 2.31829C1.65274 2.71096 1.38009 3.16959 1.20404 3.66783C1.02799 4.16608 0.952 4.69412 0.980424 5.22179C1.00885 5.74946 1.14113 6.26633 1.36968 6.74278C1.59824 7.21924 1.91857 7.64592 2.31233 7.99834L42.3123 43.9983C42.7144 44.3561 43.1846 44.6292 43.6948 44.801C44.2049 44.9728 44.7444 45.0399 45.2811 44.9983V44.9983Z"
-										fill="#5E1995" />
-								</svg>
-							</div>
-						</div>
-						{{item.nm_Documento}}
-					</div>
+					</itens-ceq>
 
 					<ul class="flex flex-col max-h-96 overflow-y-auto gap-y-6 text-base font-normal cursor-pointer w-full mt-8 pl-8"
 						*ngIf="item.open">
 						<li class="flex flex-row w-full  transform active:scale-95 transition duration-300 cursor-pointer"
-							*ngFor="let sub of item.items">
+							*ngFor="let sub of objArrayGrupoCEQ ">
 							<svg class="mt-2" width="15" height="15" viewBox="0 0 100 125" fill="none"
 								xmlns="http://www.w3.org/2000/svg">
 								<path
@@ -65,7 +46,9 @@
 								{{sub.nm_Documento}}</span>
 						</li>
 					</ul>
-				</li> -->
+				</li>
+
+
 				<li class=" flex w-full justify-start" *ngFor="">
 					<div class="flex w-full justify-start transform active:scale-95 translate duration-300">
 						<div class="pr-4 relative top-1">
@@ -88,7 +71,7 @@
 									d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
 									fill="#5E1995" />
 							</svg>
-						</div>	
+						</div>
 					</div>
 
 				</li>
@@ -113,7 +96,7 @@
 
 			<!-- barra de pesquisa -->
 			<uni-search-bar class="w-full md:w-11/12" [control]="modelChanged">
-			
+
 			</uni-search-bar>
 		</div>
 
@@ -136,24 +119,23 @@
 
 				<!-- listagem documentos -->
 
-				<ul
-					class="pt-6 md:pt-12 lg:pt-6 lg:text-sm xl:text-sm lg:mt-24 md:mr-0.5 lg:mr-1.5 xl:mr-0 overflow-y-auto">
+				<ul class="pt-6 md:pt-12 lg:pt-6 lg:text-sm xl:text-sm lg:mt-24 overflow-y-auto">
 					<li class="relative mb-4 flex font-medium flex-col w-full lg:flex-row transform cursor-pointer active:scale-95 transition duration-300 bg-white rounded-lg shadow-lg "
 						*ngFor="let documento of objArrayDocumentos">
 
 						<div
 							class=" w-1/12 sm:absolute right-0 lg:relative md:right-0 md:top-1 md:absolute m-4 xl:pl-4">
 						</div>
-						<div class="pt-3 pb-2 pl-3 mr-4 md:mr-20 lg:pt-0 lg:my-auto relative lg:w-6/12 xl:4/12">
+						<div class="pt-3 pb-2 md:mr-20 lg:pt-0 lg:my-auto relative lg:w-6/12 xl:4/12">
 							{{documento.nm_Documento}}
 						</div>
-						<div class="pl-3 pb-2 pt-4 lg:w-3/12 lg:pt-0 lg:my-auto lg:text-center xl:w-3/12 w-full">
+						<div class="pb-2 pt-4 lg:w-3/12 lg:pt-0 lg:my-auto lg:text-center xl:w-3/12 w-full">
 							{{documento.nm_Processo}}
 						</div>
-						<div class="pt-3 pb-2 pl-4 md:pl-4 lg:pt-0 lg:my-auto xl:pl-14 lg:w-1/12">
+						<div class="pt-3 pb-2 lg:pt-0 lg:my-auto lg:w-1/12">
 							{{documento.dt_Documento}}
 						</div>
-						<div class="pt-3 pl-4 md:pl-4 lg:pt-0 lg:my-auto lg:w-3/12 lg:text-center pb-2">
+						<div class="pt-3 lg:pt-0 lg:my-auto lg:w-3/12 lg:text-center pb-2">
 							{{documento.cd_Processo}} - rev {{documento.nr_Revisao}}
 						</div>
 					</li>
@@ -169,7 +151,7 @@
 	class="bg-cover bg-center w-full h-screen absolute top-0 left-0 z-30 " *ngIf="b_Mostrar_Modal">
 
 	<!--header-->
-	
+
 	<!-- botão de voltar -->
 
 	<header class="flex flex-row gap-3 md:gap-5 mx-2 md:mx-10">
@@ -177,8 +159,8 @@
 		<button class="transform cursor-pointer active:scale-90 transition duration-300"
 			(click)="b_Mostrar_Modal=false">
 
-			<svg class="relative flex mt-2 top-4.5 md:top-6" width="36" height="36" viewBox="0 0 68 68"
-				fill="none" xmlns="http://www.w3.org/2000/svg">
+			<svg class="relative flex mt-2 top-4.5 md:top-6" width="36" height="36" viewBox="0 0 68 68" fill="none"
+				xmlns="http://www.w3.org/2000/svg">
 				<path d="M68 29.75H16.2775L40.035 5.9925L34 0L0 34L34 68L39.9925 62.0075L16.2775 38.25H68V29.75Z"
 					fill="#411564" />
 			</svg>
@@ -188,9 +170,9 @@
 		<!-- pesquisa-->
 
 		<uni-search-bar class="w-full md:w-11/12" [control]="modelChanged">
-			
+
 		</uni-search-bar>
-		
+
 	</header>
 
 	<div

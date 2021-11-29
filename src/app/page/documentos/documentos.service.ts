@@ -10,8 +10,8 @@ export class DocumentosService {
 
     constructor(
         private documentosRepository : DocumentosRepository
-
-    ) {
+        
+    ) {    
     }
 
     Get_Documentos(objParams: DocumentosParams) {
@@ -22,5 +22,4 @@ export class DocumentosService {
     {
        return this.documentosRepository.Get_GrupoCEQ()
     }
-
 }

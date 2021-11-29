@@ -16,6 +16,7 @@ import { InterceptorService } from './helpers/interceptor/interceptor.module';
 import { ModalBackgroundModule } from './components/modal-service/modal-background/modal-background.module';
 import { ModalServiceModule } from './components/modal-service/modal-service.module';
 import { SearchBarModule } from './components/search-bar/searchbar.module';
+import { ItemsCEQModule } from './components/itens-ceq/itens-ceq.module';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { SearchBarModule } from './components/search-bar/searchbar.module';
     ErrorModule,
     SnackbarModule,
     ModalServiceModule,
-    SearchBarModule, 
+    SearchBarModule,
+    ItemsCEQModule,
   ],
   providers: [
     {
