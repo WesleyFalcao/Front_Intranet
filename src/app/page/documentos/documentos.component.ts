@@ -35,7 +35,7 @@ export class DocumentosComponent implements OnInit {
     nr_Page: number = 1
     nr_Page_Length: number = 100
     nm_Search: string = ""
-
+    
     modelChanged = new FormControl()
 
     constructor(
@@ -58,7 +58,7 @@ export class DocumentosComponent implements OnInit {
     }
     
     async Buscar_Documentos() {
-        const objParams: PaginatedFormParams = { nr_Page: this.nr_Page, nr_Page_Length: this.nr_Page_Length, nm_Search: this.nm_Search }
+        const objParams: DocumentosParams = { nr_Page: this.nr_Page, nr_Page_Length: this.nr_Page_Length, nm_Search: this.nm_Search }
         this.objArrayDocumentos = await this.documentosService.Get_Documentos(objParams)
     }
 
@@ -79,7 +79,7 @@ export class DocumentosComponent implements OnInit {
                 }
 
                 if (pai.cd_Grupo_CEQ == filho.cd_Grupo_Pai) {
-                    pai.subgrupos.push(filho)       
+                    pai.subgrupos.push(filho)     
                 }
             }
         }

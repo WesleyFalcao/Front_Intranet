@@ -4,12 +4,11 @@
 
 	<div class="resolucao-acima-ipad-pro hidden w-3/12 h-screen">
 
-		<aside class="pb-14 overflow-y-auto rounded-xl w-full pl-4 flex-col mt-32 ">
+		<aside class=" overflow-y-auto w-full pl-4 flex-col">
 
 			<!-- icone-Unimed-lateral-acima -->
 
-			<div class="absolute hidden xl:flex top-6 left-6">
-
+			<div class="relative mx-auto hidden xl:flex">
 				<svg class="cursor-pointer" width="100" height="48" viewBox="0 0 100 48" fill="none"
 					xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 					<rect width="100" height="47.8723" fill="url(#pattern0)" />
@@ -23,17 +22,35 @@
 				</svg>
 			</div>
 
+			<ul class=" w-full flex flex-col space-y-10 pt-16 font-medium lg:text-sm cursor-pointer">
 
-			<ul class=" w-full flex flex-col space-y-10 font-medium lg:text-sm cursor-pointer">
-				<li class=" flex flex-col w-full justify-start" *ngFor="let item of objArrayGrupoCEQ">
+				<li class=" flex flex-col w-full justify-start" *ngFor="let pai of objArrayGrupoCEQ">
 
-					<itens-ceq [subgrupos]="item.subgrupos" [nm_Item]="subfilho.nm_Grupo_CEQ" [item]="item"
-						*ngFor="let subfilho of item.subgrupos">
+					<itens-ceq [subgrupos]="pai.subgrupos" [nm_Item]="pai.nm_Grupo_CEQ">
 
 					</itens-ceq>
 
+					<div class="pt-2" *ngFor="let filho of pai.subgrupos">
+
+						<itens-ceq (onClick)="filho._open = $event" [subgrupos]="filho.subgrupos"
+							[nm_Item]="filho.nm_Grupo_CEQ">
+
+						</itens-ceq>
+
+						<ng-container *ngIf="filho._open">
+
+							<div class="pl-5 pt-2" *ngFor="let neto of filho.subgrupos">
+								<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ">
+
+								</itens-ceq>
+							</div>
+
+						</ng-container>
+
+					</div>
+
 					<ul class="flex flex-col max-h-96 overflow-y-auto gap-y-6 text-base font-normal cursor-pointer w-full mt-8 pl-8"
-						*ngIf="item.open">
+						*ngIf="pai.open">
 						<li class="flex flex-row w-full  transform active:scale-95 transition duration-300 cursor-pointer"
 							*ngFor="let sub of objArrayGrupoCEQ ">
 							<svg class="mt-2" width="15" height="15" viewBox="0 0 100 125" fill="none"
@@ -73,7 +90,6 @@
 							</svg>
 						</div>
 					</div>
-
 				</li>
 			</ul>
 		</aside>
@@ -119,8 +135,8 @@
 
 				<!-- listagem documentos -->
 
-				<ul class="pt-6 md:pt-12 lg:pt-6 lg:text-sm xl:text-sm lg:mt-24 overflow-y-auto">
-					<li class="relative mb-4 flex font-medium flex-col w-full lg:flex-row transform cursor-pointer active:scale-95 transition duration-300 bg-white rounded-lg shadow-lg "
+				<ul class="pt-6 md:pt-12 lg:pt-6 lg:text-sm xl:text-sm lg:mt-24 overflow-y-auto xl:bg-white">
+					<li class="relative mb-4 flex font-medium flex-col w-full lg:flex-row transform cursor-pointer active:scale-95 transition duration-300 rounded-lg bg-white xl:bg-transparent shadow-lg xl:shadow-none"
 						*ngFor="let documento of objArrayDocumentos">
 
 						<div
@@ -136,7 +152,7 @@
 							{{documento.dt_Documento}}
 						</div>
 						<div class="pt-3 lg:pt-0 lg:my-auto lg:w-3/12 lg:text-center pb-2">
-							{{documento.cd_Processo}} - rev {{documento.nr_Revisao}}
+							{{documento.cd_Qualidade}}
 						</div>
 					</li>
 				</ul>

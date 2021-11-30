@@ -10,13 +10,16 @@ import { Component, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output
 export class ItemsCEQComponent {
 
     @Input() subgrupos = []
-    open: boolean
+    open: boolean = false
     @Input() nm_Item: string
-    @Input() item: string
+    @Output() onClick = new EventEmitter<boolean>();
 
-    Mudar_Estado(item: any): void {
-        if (item.subgrupos != 0) {
-            item.open = !item.open
+    
+
+    Mudar_Estado(): void {
+        if (this.subgrupos.length > 0) {
+            this.open = !this.open
+            this.onClick.emit(this.open)
         }
     }
 }
