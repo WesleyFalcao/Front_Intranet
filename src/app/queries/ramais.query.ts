@@ -30,5 +30,3 @@ export class RamaisQuery{
         }
     }
 }
-
-// ${(page-1) * pageLenght

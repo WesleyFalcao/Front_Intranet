@@ -4,27 +4,17 @@
 
 	<div class="resolucao-acima-ipad-pro hidden w-3/12 h-screen">
 
-		<aside class=" overflow-y-auto w-full pl-4 flex-col">
+		<aside class=" overflow-y-auto w-full pl-4 flex-col relative">
 
 			<!-- icone-Unimed-lateral-acima -->
 
-			<div class="relative mx-auto hidden xl:flex">
-				<svg class="cursor-pointer" width="100" height="48" viewBox="0 0 100 48" fill="none"
-					xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-					<rect width="100" height="47.8723" fill="url(#pattern0)" />
-					<defs>
-						<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-							<use xlink:href="#image0" transform="translate(-0.00531855) scale(0.00531914 0.0111111)" />
-						</pattern>
-						<image id="image0" width="190" height="90"
-							xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAL4AAABaCAYAAAAGoewJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkRENEY5RUU2NTEyRDExRTc4NEM0QUVGRDEzQjdEMDAzIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkRENEY5RUU3NTEyRDExRTc4NEM0QUVGRDEzQjdEMDAzIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6REQ0RjlFRTQ1MTJEMTFFNzg0QzRBRUZEMTNCN0QwMDMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6REQ0RjlFRTU1MTJEMTFFNzg0QzRBRUZEMTNCN0QwMDMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5XgiRJAAATn0lEQVR42uydB1wUxx7Hf/RepEmXIkWKBQ2WiCBYYw1qYmKwm6YvaqLYMGKLikYTjfoSjMFCorElEmsEnw0VY5cmIKAUqdKbAm9m4c6D2wNikMAxXz8jdzt7u3t7v535zezMf2Wqq6vBYLQ35Ju4ngVJ40jyJMmRJFOS5NjpY/zLvCAplaRIksJIOkpSYlM+KNNIie9K0kqShrFzzGgjnCZpBUkRryJ8NZI2k/ShYEFhWSGuJ0QgKjUGaQVZqKh6wU4x419FUVYexpr6cDCxR29rV2goa4hmB5I0n6TipgrfrPaqcaBvHuc+wU+X9iE4KQr51VXsbDNaJVoysphk4YBpbj4w1zETLI4iaTiVcWPCp5+4SpJJFRH57gtBCLgbxgTPaFMXgG83T0x3nwpZ8rq2DdCvvvhFha9W64scnlc+h9/RNQhKjWNnktEmmWpigzXeflCQUxCU/K6itkdWZF3q6R1oSc9Ez2jrUP1SHVfVuBVq27eI5guE7ypoyFJ7w0TPkBbx/3QxSPB2Vq3O6wh/paAhSz09gyEtbLgTxulaVOcC4Vuitp8+6NJ+1pBlSBVUz1TXtQyr1TsnfG/6gvbT70+KZGeKIXVQXVN91+ItED4dhsDdnGKlPUNaS32q71q8BMKnY28QnRbLzhBDahHRt4NA+HTAGdIKMtnZYUgtqflCfZsKhM+NsiyvZGNvGNKLyNgyOYHwGYx2BxM+gwmfwWDCZzCY8BkMJnyGlLLc0Q2TjCyZ8Bnti4EOA2CjZ86Ez2BIK/Lt5YvaKirDXrMDb15CYR4iy0ul8nuP1jPiXZ5XXoaLhc+aZR+d5BVhpqLKX7LKyKCKJ6BBeVUVbhQXMOG/bryMreE/dhlv3saTWxD58IZUfu/AD77mXX4t4Touhnz7j7dP57juHbcE9kZ2YnlPcp/g+K0TmD3oY7G8avLvi4N+CE5PlA7hr+nuhSHOg3jzfrsZgq+iwoXvB2vrY+2oz3nXjUmLxeTQIFYnt3JW9x7DK/qKFxVYenwTzuZlwdnMEQPs3Orky5B/K0b74sHeBbhbWtz2ha+noYdOup1483TU6loNFXl5iesWlRUxVbVyZpjZ4d0+E3jzNp/ZxomesvjcbhwzskVHzY51awsVLQQMn4MxxwJQ1sKhLFnjlvFK9FbTgt+oBbx5Z+6fxZa4my/bUM/L4Xc8AJVVlWLrdjfvhpUuQ5nHf11E56ZjZ+j3vHkPspKZkv+mrw8YOQ+qimq8vn7JhWCx5cez0+F0bifmDpkjljfFzQf3iLVtSb/f6oUvqTemsqoKJ3IzuNfDOxjA2cASmirqKC4vwYPMJITkpNdZP62sBLfSH/Lu40lJzbQ0VzVNGKqI/5iFzytwPj+HnCwZjDEwha2uKdSUVJFXUoDwtDiEF+UJ11UnohhjZAHLDsZQkldCTnEurqQnNNiDQbc7QEsHDjrG6KCqBWUFZZRUlCKn5BkuEDFEN9LjRM/RYBMbdCQ2k8ZEis9NwbGnya/NPjTm61NfPOf9HG3f9ejUrVX4/VYvfEm9MWXPyzA48FOsHzwTb9r0E8u/nXwb809+JxRNU3p1prsMx9s9x4jlR6ZGAmf/i7Uj5sPawEos/3/RF/B56G68ZdwZC4bNgbaq+IV6OOII5oYfxQu8FKOJvAJmO3tgtMsI6GsY8B4bDfh16eEVBFzcL3bx0AvGv7snprpNFgROEvJ5zmP4Ht/Yor4+PT8d3s6eNZNaCVXE2jzOTYWFyE2xsgr+i7il/X6btjoBQ2ahb+e+vHk9OvXAyoFT8M7p//7j/SiSknvruOUw0OQXp0cXd2wjIu7buY8gbJ0Y413HIT4rSeh9e6lqYOd4P9E4j7zIyJDawK4/upo5Yvovy3Cl8GXtssF1BD7o9z7v58x1zbF9gn+L+XoK7agQ7azYdyUYF59E46OBM4gtUm10+wK/v+jmada4lQS1A5JEL8DdfgDslZT/8b5sOnaWKHoBtNaRJHoBw5y9hCX15tGf84qe2oWY9FhBBDAhtBbxH/KJ8L2nli7e7zuxwf3pquu2iK/n437Kffj/dYqzgetOfN3k/VC/3xLjhdp8r05WYcNzhR219JplP7RHIq+k4TudVLT5pfkS8011TLi/k81sYGco7pHpTZ0Z+xfC/eBKrD6+Xiy/q5kzvPVrtjGmi5vEC436/BuJf5F2QvP5ZUm+no/CsgL4ntyGotqL94fkaM7qNQWB3++mosaEL4k9l/bB6cd5OHVXctWoLK/YLPtafmwNHH+Yg8TsJInrzPvVD/0C5yC7KJs3X1Ddv2n1Bm9+QuYjYd/3r0QsfN1/blY9a6ycRTeJx7E2JAAjf9+MOQf8Xruv57t4V4VsxK2Suvdhll87hriMh02rXWr9vjKxeUz4PCTm1ER+Tsp+/d2RsXkZXMP0UcYjietcznmKbCLWJAndo7IyNU9PMtPj9/X6GnoIHjyDS996TeX8vZjtMuzM/TXWNpZ4HL89qQmlQXu9GqqBmsPX12f/lZ+xNzVBbHluVRV8Q74htVBJk7bzuvv3W1T41JeLIteAJ6a2oTVSDck9Dhm1kSpeNPK0GA1ldYkl3SBHL2HiszJ6tb69fi+OALrvdJGIGXkleS3m62mJ/tO981y7ykz+5fHRLl66LPd5Gbb9ubNV+P1m79UpKi2UmGehV3d4gpF6B4nrPivOg7RS0MA5agxVJVWhj69fkHA/qKw8J7ontX3p6krqr7wvGoGMtjfq84aaJg5M3ki2rVGvE8AWYZ/s4l4vPrwCP6XURN2mluXHccvQ2cBa4r5+OP8jlt8NbbHfoNmFn9CA7ehl2ROzzLsg8HE01503qe+7Etd9nP1YaoWfTM4Rrcrrk1OUg23nGu5+LautCZ/mZ9R/5pOQUcST70h8gEHaes3asyMovQNGfCYmelF+vnpAKHoKtX9LQjZj7+RNUFFQ4f3MTI9puPc0DocyHrdN4Z8kX3gxqdL4SiPqWdd4L8cKUlpJqqoFXEy6I7XCv554G2NcRostpyJVIo3xb+Jvi+U5KathkKktdtYG9o1KjeK6WflYMuILDEyIQDdz52Y/9tWuI+Fg7CAxPyotCssj/hD/PQufYcOJLfAfu1RC+0cWq0f7ImrvwhaZG9Hswk8mJdLey8H4cOAMies0Jnoa4FMwHEEaCU55iFnZSbDUsxAX7ciF+Lg4F49zU1BaUQoVRRUYanXkRjbSGuGb+P9w652JucJ78VDoDbf6wwKag2mmNg3eOygqL4Tvia3Cbsz67Ex6gG43f+e9O07poKaDDUM/wdjjW+rc4W4zjdu198IQFnX+lT6blpcOv3OBkGboLXm/PzZzQpEkgG5mXdHHujf3t/5wXsqRzCcIj7va6L4epD5olmOmvr6x3p01IZsanVXld+Uw4jMTJO/HqhdWdPN87b+B7Ov6YX3O7sLm01ub3J1G71SevX8W7/2yDPf+hYkJLc25vGz47FvE3Wh6VRb9GYjotGiJ+YcijuB20t1/xddLQuD3S59LtjPU77/bsVPbsjoCaFW1IeYatsdGYLyxNXqYOcK6oxW0VbVJVayAqqoqFJYVISUnBbEZ8Qh5dIfX2yXkZXJjPngb0nk1d20fZCRKXCe5MLfR7TwktoISkXRb4gSY7Ioy7u/luGtIz3va4HcPi7qAuKfxYsvrd9HS2/n0RhNthA606A57Y3voa+oK20d0/bzifKQ+S0MiaRBfS60byv0hOaZhh9ZgpqUzBtj2g3EHY84rZ5CGb2jU//Bd4n1MMrYCeL73k9zUJv+Wg/QMEZsexyU+SspL8OWNE03eHvX7/r+tRx8rF4nrOBla42DG67s/Qx/3yZmpz3/1Q3DaIzDaL2ETluFizGX4378gdd+NFgCb31kj1D2bgcVolzS71aFjzDXk5NiZbYPIycpxk2eaY0Rrc1FYWSlxYkurEv7yvt4Su6sYrR97I3tMd5/aao7n2M3f8fGlg61f+LtvncLJ6ItMQW2QJUNn42bibZx9GN5qjunpa+rha3bhR9B+3H8xQhbj1ZlXUYrswmxuYri0wxq3DNa4lRa6KKnA29oFpjrGXNSFa8n3cTiz8cFPHeXk8YnDmwiOvYa4inLedWj0N3eLrlzgrMz8TPwWf0Ns0sXfxUNTB65GnREQG/FKn2/KcTOkvMSnt9aPTdmEUS4juDFBFvoW2PbeVwjoObzRz3aQJwLy+ggdlfhHEG56YwT2TtkCRxMHVFdXwcvJE8embcU4A7N/dMw22gaY0HvcK3++seNmtIMS39u2DwpKCzAo2E84WGpe53AsGvEFdt4LQ+LzVysRp5vZchEN5h5YKryjKI/D2D90FpYN/wxH9iwUrkvHn5spKEosfUXHy1MCH8cgcO+iJh+LtYISMsjn+QaD0dK/rKqK9yn1dL+lJC+bZ0ojE34bp7K6EpoqmuhKSn5BoKeDifeRc2gFCitfYIROR+x4bx06bZ8u/Ez0rG1YGbIJd55JHhE6wnkIrsZfq3MbnQ7L+PbKQdhpGQjFvmHwLLxh2YvrE6eTvbec2Y7tZP/LiBXxdHTnJoYYaRuiqKwYX538BvvTEjDL3B4fekyD277FODFuMTILsvHe2UBOqIcmrsTlmMtY8NdJ7oklUwd8ACV5ZW77oZGhmHouSHg8C9x90Ivsmw7/PhxxFHOv/cYtn23pjE+9ZkJTWQsKZJt3ku9g9h9budB+zOpICfujryCnKBfHZu7AlfdX42vXkeina4h9RGC0pJOTlRWbK0Cn1lEhNYSVgSWiUsUHhF0tykdQahw3MG92j2Ew1DKEx/cfwWrbZJy+9ydm1vaJK5CS2MnECUGXf4b5d9MRHH4Aq8cuhiUpveXJvtUUVbltBITugptdf3xs4YBV/SfSiFJYf+sMFy2Ohtv2PbIaptumYPbPizDYaTBG6r+Mf19aUYY3dszAzH0LMNplJD61dOJqhyUjF2DXhT0w+24qvHfNhp2RLUZ1cmAlvjQRU14Gr1++xHgjK/Sx6M4FY6IWxSf+Kqac2P7K26UXTJWEceYCdtw+g113z0GFiPxtPSOokAtMS+XliMbErERuTDrl6+hwbs6CR71RiGeeZeH7sEAsJtaMPlRhyr6F3AV7PT8b3j/ORmJpEUbpGqETqTVoFAY1kYs48PpRbr5t+rNMXIq9DDebvtibFIV3g+YiuriAa5jbdjDkLhBtUisy4UsRdHJyfEEuZyFoQvgRrvG5beJXmGgeivTiZ7VfXOZvTXagIzJNOhjz9iCNtuyGwwm30ZU0UpcO/w/0NfTxKOsRN/pUTvblKc4syBK+pqU7jT+jTS4MGg5RlNNJ9/CJnCLZRgKuFtSMLtUiDfUF7h9w0drS8tIQnRojNvE9WaR3KZfUelYGVtx39Ok+FKN7jOTCntARltWoRntH6qzOR+6TuRiYovyemcJFG1BXUkXR85qhwTa141Ho2CLFJsTeoaMWBzq4w7Fez8n79v0wh1gQWhfMHzQLd5PvoQtpP7gfXIXzUXXvYBtqv5xQYkRqBR01XaQVZNcriWSwasiHuJl0C3rqeljWdSC3fIp9HziadMFgYqN67vHFwvN7uSHIKiLHbquuJXxtomOKLHKhvWfSGWNcRmHSnnnouns+JpzawQ0JZ41bKePA9SNYMWYpFEkJGf7oBtfQG+bkBSXS8DydHIUSYg9oCI6ZXT0RmvAX3nd5izd+TX12x17H2J6jsOddf+wn/vwpKVF7ECFO7v8Bdob+wPUWVZLtqimrwVpZBXaauphGGqKi0yxpXMlVRMiXHz/A5F4juZL7ROYT+HTqIlxnieObsDO0xdig+eipa4y13l8iIiWaHHMlV3uYqahBS0EBc/pO4ISvIFKjzPWYghfng+Ckb4Y3ic2Z/ctiaCgqc9HJDFU14EKOcZKTBxcOUU1JjQlfmqDRBSqOroI3adx9RkpiWq1HpkRh5s9LEVleE8yIRhqb2n8SBjl54vTds/jz/p8orChFeVU1Fxm5pFI8Lg71zpN/XYk5Pd/CxN7juZ6jrMJsrPtjI7Ym1Mxy2kIapnOI+H6ZtJ6LE//1me3w6fsO+qlr13j87CR0IRfLONexiE57iE+PrOW6JJ8RSxSZGsWNiuxn2wcbT33LzUK7lxKHrtcPYbSjB1aFH4a9kQ02vL2YWKNyhNw6yTXiNUgtJjhuWttsIvnUw6/8fR2OZaVyNUhPsg3foXSubjUuRF/k2hCCMCXtFTYRpYXwd3bHAPv+8Dy0ttUeI5uIwmAwq8NoDk49uiPxiSwMJnyp5XpxPlCcz05EK4FZHQYTPoPBrA6j3UFvuD2qjTHEhM9oN6yOvMSsDoPBhM9gMOEzGEz4DAYTPoPRloTPzTxWkmMdPIz2JXyu49a4kUfWMxjSJnzuaWJdjO3Y2WC0K+GH0Re9rV25B/oyGO1F+EfpC/rM1EkWDuyMMNqN8BNJOk3fTHPzYaU+o90In7KC/meuYwbfFnjUIoPRWoRPw/RyD5elT8OYamLDzgyjXQifMp+kKO7R6m8vxRSTzuzsMNqF8OkzV2gkplT6SPj14/2xtvsg5vkZUi98Cn16Qj9ByT/TYzrO+azjgo+yC4AhTcjUhtWpDw2ztYWkWYIFhWWFuJ4QgajUGKQVZKKCxVhntCFsdM24h2cIdC9J+AJcSVpJ0jB26hjSVOA3JnwBliR5k0T7Oh1JMiWJPcWZIfXCZzCkiv8LMACoT3VI1r1DbQAAAABJRU5ErkJggg==" />
-					</defs>
-				</svg>
+			<div class="absolute transform -translate-x-1/2 left-1/2 top-10 hidden xl:flex">
+				<img src="assets/imagens/logo-Unimed.svg">
 			</div>
 
-			<ul class=" w-full flex flex-col space-y-10 pt-16 font-medium lg:text-sm cursor-pointer">
+			<ul class="w-full flex flex-col space-y-10 pt-36 font-medium lg:text-sm cursor-pointer">
 
-				<li class=" flex flex-col w-full justify-start" *ngFor="let pai of objArrayGrupoCEQ">
+				<li class="flex flex-col w-full justify-start" *ngFor="let pai of objArrayGrupoCEQ">
 
 					<itens-ceq [subgrupos]="pai.subgrupos" [nm_Item]="pai.nm_Grupo_CEQ">
 
@@ -46,7 +36,6 @@
 							</div>
 
 						</ng-container>
-
 					</div>
 
 					<ul class="flex flex-col max-h-96 overflow-y-auto gap-y-6 text-base font-normal cursor-pointer w-full mt-8 pl-8"
@@ -60,12 +49,11 @@
 									fill="#5E1995" />
 							</svg>
 							<span class="justify-items-start ml-2 px-1">
-								{{sub.nm_Documento}}</span>
+
+							</span>
 						</li>
 					</ul>
 				</li>
-
-
 				<li class=" flex w-full justify-start" *ngFor="">
 					<div class="flex w-full justify-start transform active:scale-95 translate duration-300">
 						<div class="pr-4 relative top-1">
@@ -76,7 +64,6 @@
 									fill="#5E1995" />
 							</svg>
 						</div>
-
 					</div>
 				</li>
 				<li class="flex w-full justify-start" *ngFor="">
@@ -98,7 +85,6 @@
 	<main class="h-screen w-full xl:w-9/12">
 
 		<!-- barra de pesquisa -->
-
 		<div class="flex flex-row gap-4 md:gap-6 mx-2 md:mx-10 ">
 
 			<!-- Filtro-->
@@ -111,9 +97,7 @@
 			</div>
 
 			<!-- barra de pesquisa -->
-			<uni-search-bar class="w-full md:w-11/12" [control]="modelChanged">
-
-			</uni-search-bar>
+			<uni-search-bar class="w-full md:w-11/12" [control]="modelChanged"></uni-search-bar>
 		</div>
 
 		<div class="main-documentos w-full flex relative ">
@@ -122,7 +106,6 @@
 			<div class="w-full flex flex-col gap-1 pl-2">
 
 				<!-- titulo dos documentos -->
-
 				<ul class="fixed w-full">
 					<li class="hidden md:mb-4 lg:flex lg:justify-end">
 						<div class="font-semibold text text-lg pt-16 {{objeto.nm_Classe}}"
@@ -137,28 +120,30 @@
 
 				<ul class="pt-6 md:pt-12 lg:pt-6 lg:text-sm xl:text-sm lg:mt-24 overflow-y-auto xl:bg-white">
 					<li class="relative mb-4 flex font-medium flex-col w-full lg:flex-row transform cursor-pointer active:scale-95 transition duration-300 rounded-lg bg-white xl:bg-transparent shadow-lg xl:shadow-none"
-						*ngFor="let documento of objArrayDocumentos">
-
-						<div
-							class=" w-1/12 sm:absolute right-0 lg:relative md:right-0 md:top-1 md:absolute m-4 xl:pl-4">
+						(click)="Buscar_Arquivo(documento.cd_Documento)" *ngFor="let documento of objArrayDocumentos">
+						
+						<div class="pt-3 lg:pt-0 lg:my-auto lg:w-2/12 lg:text-center pb-2">
+							{{documento.cd_Qualidade}}
 						</div>
-						<div class="pt-3 pb-2 md:mr-20 lg:pt-0 lg:my-auto relative lg:w-6/12 xl:4/12">
+						<div class="pt-3 pb-2 md:mr-20 lg:pt-0 lg:my-auto relative lg:w-5/12 xl:4/12">
 							{{documento.nm_Documento}}
 						</div>
 						<div class="pb-2 pt-4 lg:w-3/12 lg:pt-0 lg:my-auto lg:text-center xl:w-3/12 w-full">
 							{{documento.nm_Processo}}
 						</div>
+						<div
+							class=" w-1/12 sm:absolute right-0 lg:relative md:right-0 md:top-1 md:absolute m-4 xl:pl-4">
+							{{documento.nr_Revisao}}
+						</div>
 						<div class="pt-3 pb-2 lg:pt-0 lg:my-auto lg:w-1/12">
 							{{documento.dt_Documento}}
-						</div>
-						<div class="pt-3 lg:pt-0 lg:my-auto lg:w-3/12 lg:text-center pb-2">
-							{{documento.cd_Qualidade}}
 						</div>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</main>
+
 </div>
 
 <!-- modal -->
@@ -192,60 +177,35 @@
 	</header>
 
 	<div
-		class="div-lista-documento px-auto pt-4 pl-2 pb-4 md:pb-16 md:pt-8 flex flex-col gap-12 lg:pt-20 xl:pt-14 w-full overflow-y-auto xl:w-8/12 xl:mx-auto">
+		class="div-lista-documento px-auto pt-10 pl-2 pb-4 md:pb-16 md:pt-20 flex flex-col gap-12 lg:pt-20 xl:pt-14 w-full overflow-y-auto xl:w-8/12 xl:mx-auto">
 
-		<ul class="relative pb-2 bg-white rounded-3xl shadow-lg w-full md:w-2/3 md:mx-auto ">
-			<h3 class="w-full pt-4 pb-4 text-center font-semibold">Documentos da Qualidade</h3>
-			<li class="pb-4 relative transform " *ngFor="">
-				<div class="transform cursor-pointer active:scale-95 transition duration-300">
-					<svg class="absolute ml-8 pt-4 " width="36" height="36" viewBox="0 0 100 125" fill="none"
-						xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
-							fill="#5E1995" />
-					</svg>
-					<h3 class="text-black font-medium mb-1 pl-24 p-3 transform">
-						<!-- {{objeto.nm_Documento}} -->
+		<ul class="relative pb-2 bg-white rounded-3xl shadow-lg w-full md:w-2/3 md:mx-auto"
+			*ngFor="let pai of objArrayGrupoCEQ">
 
-					</h3>
+			<itens-ceq (onClick)="pai._open = $event" [subgrupos]="pai.subgrupos" [nm_Item]="pai.nm_Grupo_CEQ">
+
+			</itens-ceq>
+
+			<div *ngIf="pai._open">
+
+				<div class="pt-2 pl-2" *ngFor="let filho of pai.subgrupos">
+
+					<itens-ceq (onClick)="filho._open = $event" [subgrupos]="filho.subgrupos"
+						[nm_Item]="filho.nm_Grupo_CEQ">
+
+					</itens-ceq>
+
+					<ng-container *ngIf="filho._open">
+
+						<div class="pl-5 pt-2" *ngFor="let neto of filho.subgrupos">
+							<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ">
+
+							</itens-ceq>
+						</div>
+
+					</ng-container>
 				</div>
-			</li>
-		</ul>
-
-		<ul class=" pb-2 bg-white rounded-3xl shadow-lg w-full md:w-2/3 md:mx-auto  xl:h-full">
-			<h3 class="justify-center flex mt-4 mb-4 font-semibold text-left">Obj. Estratégicos Qualidade</h3>
-			<li class=" pb-4 relative cursor-pointer" *ngFor="">
-				<div class="transform active:scale-95 transition duration-300">
-					<svg class="absolute ml-8  pt-4" width="36" height="36" viewBox="0 0 100 125" fill="none"
-						xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
-							fill="#5E1995" />
-					</svg>
-					<h3 class="text-black font-medium mb-1 pl-24 p-3 ">
-						<!-- {{objeto.nm_Documento}} -->
-					</h3>
-				</div>
-			</li>
-		</ul>
-
-		<ul class="pb-2 bg-white rounded-3xl shadow-lg w-full md:w-2/3 md:mx-auto xl:h-full">
-			<h3 class="justify-center flex pt-4 mb-4 font-semibold text-left">Obj. Operacional</h3>
-			<li class="pb-4 relative cursor-pointer" *ngFor="">
-
-				<!-- titulo dos documentos-->
-				<div class="transform active:scale-95 transition duration-300">
-					<svg class="absolute ml-8  pt-4" width="36" height="36" viewBox="0 0 100 125" fill="none"
-						xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
-							fill="#5E1995" />
-					</svg>
-					<h3 class="text-black font-medium mb-1 pl-24 p-3 ">
-						<!-- {{objeto.nm_Documento}} -->
-					</h3>
-				</div>
-			</li>
+			</div>
 		</ul>
 	</div>
 </div>

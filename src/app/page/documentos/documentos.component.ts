@@ -7,6 +7,7 @@ import { DocumentosParams } from 'src/app/models/documento/documento.params';
 import { PaginatedFormParams } from 'src/app/models/genericos/paginated.model';
 import { RamaisParams } from 'src/app/models/ramais/ramais.params';
 import { DocumentosRepository } from 'src/app/repositories/documentos.repository';
+import { environment } from 'src/environments/environment';
 import { DocumentosService } from './documentos.service';
 
 @Component({
@@ -35,7 +36,7 @@ export class DocumentosComponent implements OnInit {
     nr_Page: number = 1
     nr_Page_Length: number = 100
     nm_Search: string = ""
-    
+
     modelChanged = new FormControl()
 
     constructor(
@@ -60,6 +61,14 @@ export class DocumentosComponent implements OnInit {
     async Buscar_Documentos() {
         const objParams: DocumentosParams = { nr_Page: this.nr_Page, nr_Page_Length: this.nr_Page_Length, nm_Search: this.nm_Search }
         this.objArrayDocumentos = await this.documentosService.Get_Documentos(objParams)
+    }
+
+    async Buscar_Arquivo(cd_Documento: number){
+        
+        let token = await this.documentosService.Get_Token_Arquivo(cd_Documento)
+        console.log(token)
+        window.open(environment.CONS_URL_APIBASE + "Documentos?token="+token.ds_Token, '_blank')
+        
     }
 
     async Buscar_GrupoCEQ() {

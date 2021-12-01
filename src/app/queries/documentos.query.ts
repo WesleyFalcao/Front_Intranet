@@ -22,15 +22,32 @@ export class DocumentosQuery {
 
                 { nm_Documento, cd_Qualidade, cd_Documento, nm_Arquivo, dt_Documento, nr_Revisao, cd_Processo, nm_Processo, cd_Filial, nr_Grupo, cd_Setor }  
             `
-        }  //cd_Documento,
+        }
     }
 
-    Get_GrupoCEQ(){
-        return{
+    Get_GrupoCEQ() {
+        return {
             header: [],
-            
+
             query: `
                 grupoceq{cd_Grupo_CEQ, cd_Grupo_Pai, nm_Grupo_CEQ}
+            `
+        }
+    }
+
+    Get_Arquivo() {
+        return {
+            header: [
+                {
+                    field: '$cd_Documento',
+                    type: 'Float!'
+                }
+            ],
+
+            query: `
+                token_arquivo(cd_Documento:$cd_Documento)
+
+                {ds_Token}
             `
         }
     }

@@ -15,7 +15,6 @@ export class ItemsCEQComponent {
     @Output() onClick = new EventEmitter<boolean>();
 
     
-
     Mudar_Estado(): void {
         if (this.subgrupos.length > 0) {
             this.open = !this.open

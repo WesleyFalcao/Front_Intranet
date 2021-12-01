@@ -18,8 +18,11 @@ export class DocumentosService {
         return this.documentosRepository.Get_Documentos(objParams)
     }
 
-    Get_GrupoCEQ()
-    {
+    Get_GrupoCEQ(){
        return this.documentosRepository.Get_GrupoCEQ()
+    }
+
+    Get_Token_Arquivo(cd_Documento: number){
+        return this.documentosRepository.Get_Arquivo(cd_Documento)
     }
 }
