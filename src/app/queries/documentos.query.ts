@@ -19,8 +19,10 @@ export class DocumentosQuery {
             ],
             query: `
                 documentos_qualidade(objParam:$objParam)
-
-                { nm_Documento, cd_Qualidade, cd_Documento, nm_Arquivo, dt_Documento, nr_Revisao, cd_Processo, nm_Processo, cd_Filial, nr_Grupo, cd_Setor }  
+                {  
+                    data{ nm_Documento, cd_Qualidade, cd_Documento, nm_Arquivo, dt_Documento, nr_Revisao, cd_Processo, nm_Processo, cd_Filial, nr_Grupo, cd_Setor,}
+                    nr_Registros  
+                }
             `
         }
     }

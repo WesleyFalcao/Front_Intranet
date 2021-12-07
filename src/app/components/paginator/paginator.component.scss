@@ -1,0 +1,81 @@
+.paginate-buttons {
+    display: flex;
+    justify-content: center;
+    outline: none;
+    border: 1px solid var(--verde-unimed);
+    border-radius: 5px;
+
+    .counter {
+        color: var(--cinza-escuro-unimed);
+        min-width: 50px;
+        padding: 0 2px;
+        line-height: 50px;
+        font-weight: 500;
+        text-align: center;
+        cursor: pointer;
+        border-right: 1px solid var(--verde-unimed);
+
+        &.selecionado {
+            color: var(--laranja-unimed);
+            font-weight: bold;
+        }
+    }
+
+    button {
+        cursor: pointer;
+        height: 50px;
+        width: 50px;
+        font-weight: bold;
+        outline: none;
+        background: transparent;
+        border: none;
+        border-right: 1px solid var(--verde-unimed);
+
+        img {
+            height: 30px;
+            width: 30px;
+        }
+
+        &:last-child {
+            border-right: none;
+        }
+    }
+}
+
+.div-paginas {
+    height: 100px;
+    width: 160px;
+    overflow-y: auto;
+
+    .div-paginator-pagina {
+        font-weight: 500;
+        cursor: pointer;
+
+        &.selecionado {
+            color: var(--laranja-unimed);
+            font-weight: bold;
+        }
+    }
+}
+
+.hover-ellipsis{
+    @apply relative
+}
+
+.hover-ellipsis .hover-div-ballon{
+    @apply hidden;
+}
+
+.hover-ellipsis:hover .hover-div-ballon{
+
+    @apply block;
+}
+
+.div-ballon-paginated {
+    right: calc(50% - 4rem);
+
+    @apply absolute grid grid-cols-3 gap-2 h-40 w-32 bottom-12 overflow-y-auto bg-unimed-white shadow-md transition -translate-x-1/2 overflow-hidden whitespace-nowrap;
+
+}
+
+

@@ -1,7 +1,8 @@
 import { transition } from '@angular/animations';
 import { importExpr } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, Input, ViewChild, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { getDescription } from 'graphql';
 import { debounce, debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';
 import { DocumentosParams } from 'src/app/models/documento/documento.params';
 import { PaginatedFormParams } from 'src/app/models/genericos/paginated.model';
@@ -21,21 +22,23 @@ export class DocumentosComponent implements OnInit {
 
     objArrayDocumentos = []
     objArrayGrupoCEQ = []
+    objArrayRetorno = []
 
     ArrayTitulos = [
 
-        { nm_Titulo: "", nm_Classe: "w-1/12" },
-        { nm_Titulo: "Nome", nm_Classe: "w-4/12 " },
-        { nm_Titulo: "Processos", nm_Classe: "w-2/12" },
-        { nm_Titulo: "Data", nm_Classe: "w-1/12" },
-        { nm_Titulo: "Código", nm_Classe: "w-2/12" },
-
+        { nm_Titulo: "Nome", nm_Classe: "w-4/12 text-center pl-24" },
+        { nm_Titulo: "Código", nm_Classe: "w-2/12 text-center" }, 
+        { nm_Titulo: "Processos", nm_Classe: "w-3/12 text-center pl-16" },
+        { nm_Titulo: "Revisão", nm_Classe: "w-1/12 text-center pr-24" },
+        { nm_Titulo: "Data", nm_Classe: "w-2/12 text-center pr-14" },
     ]
 
     b_Mostrar_Modal: boolean = false
-    nr_Page: number = 1
-    nr_Page_Length: number = 100
+    nr_Page_Length: number = 50
     nm_Search: string = ""
+
+    nr_Page: number = 1
+    nr_Registros: number = 0
 
     modelChanged = new FormControl()
 
@@ -57,23 +60,29 @@ export class DocumentosComponent implements OnInit {
             this.Buscar_Documentos()
         })
     }
-    
-    async Buscar_Documentos() {
-        const objParams: DocumentosParams = { nr_Page: this.nr_Page, nr_Page_Length: this.nr_Page_Length, nm_Search: this.nm_Search }
-        this.objArrayDocumentos = await this.documentosService.Get_Documentos(objParams)
+
+    /** @description Avança uma pagina */
+    Mudar_Pagina(nr_Page: number){
+        this.nr_Page = nr_Page
+        this.Buscar_Documentos()
     }
 
-    async Buscar_Arquivo(cd_Documento: number){
-        
+    async Buscar_Documentos() {
+        const objParams: DocumentosParams = { nr_Page: this.nr_Page, nr_Page_Length: this.nr_Page_Length, nm_Search: this.nm_Search }
+        const objRetorno = await this.documentosService.Get_Documentos(objParams)
+        this.objArrayDocumentos = objRetorno.data
+        this.nr_Registros = objRetorno.nr_Registros
+    }
+
+    async Buscar_Arquivo(cd_Documento: number) { 
         let token = await this.documentosService.Get_Token_Arquivo(cd_Documento)
         console.log(token)
-        window.open(environment.CONS_URL_APIBASE + "Documentos?token="+token.ds_Token, '_blank')
-        
+        window.open(environment.CONS_URL_APIBASE + "Documentos?token=" + token.ds_Token, '_blank')
     }
 
     async Buscar_GrupoCEQ() {
         this.objArrayGrupoCEQ = await this.documentosService.Get_GrupoCEQ()
-        
+
         for (let pai of this.objArrayGrupoCEQ) {
             pai.subgrupos = []
 
@@ -88,12 +97,12 @@ export class DocumentosComponent implements OnInit {
                 }
 
                 if (pai.cd_Grupo_CEQ == filho.cd_Grupo_Pai) {
-                    pai.subgrupos.push(filho)     
+                    pai.subgrupos.push(filho)
                 }
             }
         }
         this.objArrayGrupoCEQ = this.objArrayGrupoCEQ.filter(f => f.cd_Grupo_Pai == 0)
-        console.log(this.objArrayGrupoCEQ)
+       
     }
 
     Mostrar_Modal() {

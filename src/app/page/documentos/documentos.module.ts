@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchBarModule } from 'src/app/components/search-bar/searchbar.module';
 import { ItemsCEQModule } from 'src/app/components/itens-ceq/itens-ceq.module';
+import { PaginatorModule } from 'src/app/components/paginator/paginator.module';
 
 
 @NgModule({
@@ -17,8 +18,8 @@ import { ItemsCEQModule } from 'src/app/components/itens-ceq/itens-ceq.module';
     AngularSvgIconModule.forRoot(),
     ReactiveFormsModule,
     SearchBarModule,
-    ItemsCEQModule
-    
+    ItemsCEQModule,
+    PaginatorModule
   ],
   exports: [
     DocumentosComponent 

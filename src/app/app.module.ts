@@ -17,6 +17,7 @@ import { ModalBackgroundModule } from './components/modal-service/modal-backgrou
 import { ModalServiceModule } from './components/modal-service/modal-service.module';
 import { SearchBarModule } from './components/search-bar/searchbar.module';
 import { ItemsCEQModule } from './components/itens-ceq/itens-ceq.module';
+import { PaginatorModule } from './components/paginator/paginator.module';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { ItemsCEQModule } from './components/itens-ceq/itens-ceq.module';
     ModalServiceModule,
     SearchBarModule,
     ItemsCEQModule,
+    PaginatorModule
   ],
   providers: [
     {

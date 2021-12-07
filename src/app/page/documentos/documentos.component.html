@@ -4,7 +4,7 @@
 
 	<div class="resolucao-acima-ipad-pro hidden w-3/12 h-screen">
 
-		<aside class=" overflow-y-auto w-full pl-4 flex-col relative">
+		<aside class="overflow-y-auto w-full pl-4 flex-col relative">
 
 			<!-- icone-Unimed-lateral-acima -->
 
@@ -16,7 +16,7 @@
 
 				<li class="flex flex-col w-full justify-start" *ngFor="let pai of objArrayGrupoCEQ">
 
-					<itens-ceq [subgrupos]="pai.subgrupos" [nm_Item]="pai.nm_Grupo_CEQ">
+					<itens-ceq class="font-semibold" [subgrupos]="pai.subgrupos" [nm_Item]="pai.nm_Grupo_CEQ">
 
 					</itens-ceq>
 
@@ -49,24 +49,11 @@
 									fill="#5E1995" />
 							</svg>
 							<span class="justify-items-start ml-2 px-1">
-
 							</span>
 						</li>
 					</ul>
 				</li>
 				<li class=" flex w-full justify-start" *ngFor="">
-					<div class="flex w-full justify-start transform active:scale-95 translate duration-300">
-						<div class="pr-4 relative top-1">
-							<svg width="15" height="15" viewBox="0 0 100 125" fill="none"
-								xmlns="http://www.w3.org/2000/svg">
-								<path
-									d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
-									fill="#5E1995" />
-							</svg>
-						</div>
-					</div>
-				</li>
-				<li class="flex w-full justify-start" *ngFor="">
 					<div class="flex w-full justify-start transform active:scale-95 translate duration-300">
 						<div class="pr-4 relative top-1">
 							<svg width="15" height="15" viewBox="0 0 100 125" fill="none"
@@ -85,70 +72,70 @@
 	<main class="h-screen w-full xl:w-9/12">
 
 		<!-- barra de pesquisa -->
-		<div class="flex flex-row gap-4 md:gap-6 mx-2 md:mx-10 ">
+		<div class="flex flex-row gap-4 md:gap-6 mx-2 md:mx-10 mb-8 lg:mb-4">
 
 			<!-- Filtro-->
 			<div
-				class="mb-2 transform relative cursor-pointer active:scale-90 transition duration-300 top-8 md:top-12 xl:hidden">
-				<svg width="45" height="45" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg"
-					(click)="Mostrar_Modal()">
-					<path d="M60.5 0.166687H0.5L24.5 31.7V53.5L36.5 60.1667V31.7L60.5 0.166687Z" fill="#5E1995" />
-				</svg>
+				class="mb-2 transform relative cursor-pointer active:scale-90 transition duration-300 top-8 md:top-12 xl:hidden" (click)="Mostrar_Modal()">
+				<img class="md:w-14 md:h-14" src="assets/imagens/SVG_Filter_Green.svg">
 			</div>
 
 			<!-- barra de pesquisa -->
-			<uni-search-bar class="w-full md:w-11/12" [control]="modelChanged"></uni-search-bar>
+			<uni-search-bar class="w-full md:w-11/12 xl:w-full" [control]="modelChanged"></uni-search-bar>
+
 		</div>
 
-		<div class="main-documentos w-full flex relative ">
+		<div class="main-documentos w-full flex relative">
 
 			<!-- Container -->
-			<div class="w-full flex flex-col gap-1 pl-2">
+			<div class="w-full flex flex-col">
 
 				<!-- titulo dos documentos -->
-				<ul class="fixed w-full">
-					<li class="hidden md:mb-4 lg:flex lg:justify-end">
-						<div class="font-semibold text text-lg pt-16 {{objeto.nm_Classe}}"
+				<ul class="w-full relative">
+					<li class="hidden md:mb-4 lg:flex">
+						<div class="font-semibold text-base text-center pt-10 xl:block {{objeto.nm_Classe}}"
 							*ngFor="let objeto of ArrayTitulos">
 							{{objeto.nm_Titulo}}
 						</div>
 					</li>
-					<li class="mt-8"></li>
 				</ul>
-
 				<!-- listagem documentos -->
+				<ul class="md:pt-12 lg:text-sm ml-2 xl:text-sm overflow-y-auto xl:bg-white">
 
-				<ul class="pt-6 md:pt-12 lg:pt-6 lg:text-sm xl:text-sm lg:mt-24 overflow-y-auto xl:bg-white">
 					<li class="relative mb-4 flex font-medium flex-col w-full lg:flex-row transform cursor-pointer active:scale-95 transition duration-300 rounded-lg bg-white xl:bg-transparent shadow-lg xl:shadow-none"
 						(click)="Buscar_Arquivo(documento.cd_Documento)" *ngFor="let documento of objArrayDocumentos">
-						
-						<div class="pt-3 lg:pt-0 lg:my-auto lg:w-2/12 lg:text-center pb-2">
-							{{documento.cd_Qualidade}}
-						</div>
-						<div class="pt-3 pb-2 md:mr-20 lg:pt-0 lg:my-auto relative lg:w-5/12 xl:4/12">
+						<div [title]="documento.nm_Documento"
+							class=" pt-2 pl-2 lg:w-5/12 xl:4/12 overflow-hidden overflow overflow-ellipsis whitespace-nowrap transform active:scale-95 translate duration-300">
 							{{documento.nm_Documento}}
 						</div>
-						<div class="pb-2 pt-4 lg:w-3/12 lg:pt-0 lg:my-auto lg:text-center xl:w-3/12 w-full">
+						<div [title]="documento.cd_Qualidade" class="pl-2 lg:w-2/12 lg:text-center transform active:scale-95 translate duration-300">
+							{{documento.cd_Qualidade}}
+						</div>
+						<div [title]="documento.nm_Processo"
+							class="pl-2 xl:px-6 lg:w-2/12 lg:text-center xl:text-right overflow-hidden overflow overflow-ellipsis whitespace-nowrap transform active:scale-95 translate duration-300">
 							{{documento.nm_Processo}}
 						</div>
-						<div
-							class=" w-1/12 sm:absolute right-0 lg:relative md:right-0 md:top-1 md:absolute m-4 xl:pl-4">
-							{{documento.nr_Revisao}}
+						<div [title]="documento.nr_Revisao" class="pl-2 w-1/12 xl:text-center transform active:scale-95 translate duration-300">
+							rev{{documento.nr_Revisao}}
 						</div>
-						<div class="pt-3 pb-2 lg:pt-0 lg:my-auto lg:w-1/12">
+						<div [title]="documento.dt_Documento" class="pl-2 pb-2 lg:w-2/12 xl:text-center transform active:scale-95 translate duration-300">
 							{{documento.dt_Documento}}
 						</div>
 					</li>
 				</ul>
+				<div class="mx-auto pt-11 lg:pt-0 w-6/12 h-6/12 lg:w-4/12 lg:h-4/12" *ngIf="objArrayDocumentos.length == 0">
+					<img src="assets/imagens/table-empty-nada-encontrado.svg">
+					<div class="text-center text-lg pt-9">Nenhum documento foi encontrado </div>
+				</div>
+				<uni-paginator class="mb-2 md:mb-10 md:mt-5 lg:mb-0" [nr_Pagina]="nr_Page" [nr_Registros]="nr_Registros" [nr_Por_Pagina]="nr_Page_Length" (onPageChange)="Mudar_Pagina($event)"></uni-paginator>
 			</div>
 		</div>
 	</main>
-
 </div>
 
 <!-- modal -->
 
-<div style=" background-image: url('assets/imagens/SVG_Background_Full_White.svg');  transition: all 0.15s easy 0s;"
+<div style=" background-image: url('assets/imagens/SVG_Background_White_Green.svg');  transition: all 0.15s easy 0s;"
 	class="bg-cover bg-center w-full h-screen absolute top-0 left-0 z-30 " *ngIf="b_Mostrar_Modal">
 
 	<!--header-->

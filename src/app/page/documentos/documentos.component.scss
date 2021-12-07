@@ -1,35 +1,32 @@
-.main-documentos{
-    height: calc(100% - 6rem);
-}
+.main-documentos {
+    height: calc(100% - 7.5rem);
 
-.div-lista-documento{
-    height: calc(100% - 6rem);
-
-    @screen md{
-        height: calc(100% - 8rem);
+    @screen md {
+        height: calc(100% - 6rem);
     }
-        
 }
 
-reset-browser{
+.div-lista-documento {
+    height: calc(100% - 6rem);
+
+}
+
+reset-browser {
     padding: 0px;
     margin: 0px;
     border: 0px;
 }
 
-.resolucao-acima-ipad-pro{
-    @media (min-width: 1300px)
-    {
+.resolucao-acima-ipad-pro {
+    @media (min-width: 1300px) {
         width: 25%;
         display: flex;
     }
 }
 
-.resolucao-acima-notebook{
-    @media (min-width: 1400px)
-    {
+.resolucao-acima-notebook {
+    @media (min-width: 1400px) {
         width: 25%;
         display: flex;
     }
 }
-
