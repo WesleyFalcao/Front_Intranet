@@ -38,6 +38,7 @@ module.exports = {
           DEFAULT: "#FFCB08",
         },
         unimed: {
+
           green: '#00995D',
 
           pink: '#ED1651',
@@ -67,6 +68,9 @@ module.exports = {
           purpeconecta: '#5E1995',
 
           bege_claro: '#FFF7E2',
+
+          verdeclaro: '#9DFFA5',
+
         },
       },
 

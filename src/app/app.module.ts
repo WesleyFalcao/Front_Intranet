@@ -18,7 +18,7 @@ import { ModalServiceModule } from './components/modal-service/modal-service.mod
 import { SearchBarModule } from './components/search-bar/searchbar.module';
 import { ItemsCEQModule } from './components/itens-ceq/itens-ceq.module';
 import { PaginatorModule } from './components/paginator/paginator.module';
-
+import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,8 @@ import { PaginatorModule } from './components/paginator/paginator.module';
     ModalServiceModule,
     SearchBarModule,
     ItemsCEQModule,
-    PaginatorModule
+    PaginatorModule,
+    PipesModule
   ],
   providers: [
     {

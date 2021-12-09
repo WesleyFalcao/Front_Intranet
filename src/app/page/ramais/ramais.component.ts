@@ -10,7 +10,6 @@ import { RamaisParams } from 'src/app/models/ramais/ramais.params';
 import { SubjectService } from 'src/app/services/subject.service';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
-
 @Component({
   selector: 'app-ramais',
   templateUrl: './ramais.component.html',
@@ -19,7 +18,6 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 })
 
 export class RamaisComponent implements OnInit {
-
 
   objArrayIniciais = [
 
@@ -47,7 +45,7 @@ export class RamaisComponent implements OnInit {
   @ViewChild('listaRamais') listaRamais: ElementRef
   @ViewChildren('letras') objArrayLetras: QueryList<ElementRef>
 
-
+  
   b_Mostrar_Modal: boolean = false
   b_Text_Row_Lg: boolean = false
   nm_Inicial_Selecionada: string = ""
@@ -60,7 +58,6 @@ export class RamaisComponent implements OnInit {
 
   nr_Page: number = 1
   nr_Page_Length: number = 100
-
 
   modelChanged = new FormControl()
 
@@ -98,7 +95,6 @@ export class RamaisComponent implements OnInit {
     if (window.innerWidth < 1280) {
       documento.open = !documento.open
       // this.scroll.first.reset()
-
     }
   }
 

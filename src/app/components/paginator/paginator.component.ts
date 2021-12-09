@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 
 @Component({
     selector: 'uni-paginator',
@@ -115,4 +115,5 @@ export class PaginatorComponent implements OnInit, OnChanges {
 
         this.onPageChange.emit(this.nr_Pagina)
     }
+
 }

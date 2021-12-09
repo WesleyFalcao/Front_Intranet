@@ -1,6 +1,6 @@
 import { transition } from '@angular/animations';
 import { importExpr } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit, Output, Input, ViewChild, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, ViewChild, EventEmitter, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { getDescription } from 'graphql';
 import { debounce, debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';
@@ -18,28 +18,24 @@ import { DocumentosService } from './documentos.service';
 })
 export class DocumentosComponent implements OnInit {
 
-    nm_search: string
-
     objArrayDocumentos = []
     objArrayGrupoCEQ = []
     objArrayRetorno = []
-
-    ArrayTitulos = [
+    objArrayTitulos = [
 
         { nm_Titulo: "Nome", nm_Classe: "w-4/12 text-center pl-24" },
-        { nm_Titulo: "Código", nm_Classe: "w-2/12 text-center" }, 
+        { nm_Titulo: "Código", nm_Classe: "w-2/12 text-center" },
         { nm_Titulo: "Processos", nm_Classe: "w-3/12 text-center pl-16" },
         { nm_Titulo: "Revisão", nm_Classe: "w-1/12 text-center pr-24" },
         { nm_Titulo: "Data", nm_Classe: "w-2/12 text-center pr-14" },
     ]
 
+    nm_search: string
     b_Mostrar_Modal: boolean = false
     nr_Page_Length: number = 50
     nm_Search: string = ""
-
     nr_Page: number = 1
     nr_Registros: number = 0
-
     modelChanged = new FormControl()
 
     constructor(
@@ -62,7 +58,7 @@ export class DocumentosComponent implements OnInit {
     }
 
     /** @description Avança uma pagina */
-    Mudar_Pagina(nr_Page: number){
+    Mudar_Pagina(nr_Page: number) {
         this.nr_Page = nr_Page
         this.Buscar_Documentos()
     }
@@ -74,7 +70,7 @@ export class DocumentosComponent implements OnInit {
         this.nr_Registros = objRetorno.nr_Registros
     }
 
-    async Buscar_Arquivo(cd_Documento: number) { 
+    async Buscar_Arquivo(cd_Documento: number) {
         let token = await this.documentosService.Get_Token_Arquivo(cd_Documento)
         console.log(token)
         window.open(environment.CONS_URL_APIBASE + "Documentos?token=" + token.ds_Token, '_blank')
@@ -102,10 +98,26 @@ export class DocumentosComponent implements OnInit {
             }
         }
         this.objArrayGrupoCEQ = this.objArrayGrupoCEQ.filter(f => f.cd_Grupo_Pai == 0)
-       
+
     }
 
     Mostrar_Modal() {
+
         this.b_Mostrar_Modal = true
+
+        this.objArrayGrupoCEQ.forEach(a => {
+
+            a._open = false
+
+            for (let filho of a.subgrupos) {
+                filho._open = false
+            }
+
+            for (let neto of a.filho.subgrupos) {
+                neto._open = false
+            }
+
+            console.log(a)
+        });
     }
 }

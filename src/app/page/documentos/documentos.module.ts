@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchBarModule } from 'src/app/components/search-bar/searchbar.module';
 import { ItemsCEQModule } from 'src/app/components/itens-ceq/itens-ceq.module';
 import { PaginatorModule } from 'src/app/components/paginator/paginator.module';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { PaginatorModule } from 'src/app/components/paginator/paginator.module';
     ReactiveFormsModule,
     SearchBarModule,
     ItemsCEQModule,
-    PaginatorModule
+    PaginatorModule,
+    PipesModule
   ],
   exports: [
     DocumentosComponent 

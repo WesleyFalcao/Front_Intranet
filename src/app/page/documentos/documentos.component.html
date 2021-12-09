@@ -2,13 +2,13 @@
 
 <div class="reset-browser flex flex-row">
 
-	<div class="resolucao-acima-ipad-pro hidden w-3/12 h-screen">
+	<div class="hidden w-3/12 h-screen lg:flex">
 
 		<aside class="overflow-y-auto w-full pl-4 flex-col relative">
 
 			<!-- icone-Unimed-lateral-acima -->
 
-			<div class="absolute transform -translate-x-1/2 left-1/2 top-10 hidden xl:flex">
+			<div class="absolute transform -translate-x-1/2 left-1/2 top-10 hidden lg:flex">
 				<img src="assets/imagens/logo-Unimed.svg">
 			</div>
 
@@ -69,19 +69,20 @@
 		</aside>
 	</div>
 
-	<main class="h-screen w-full xl:w-9/12">
+	<main class="h-screen w-full xl:w-9/12 resolucao-acima-notebook">
 
 		<!-- barra de pesquisa -->
-		<div class="flex flex-row gap-4 md:gap-6 mx-2 md:mx-10 mb-8 lg:mb-4">
+		<div class="flex flex-row gap-4 md:gap-6 mx-4 mb-8 lg:mb-4">
 
 			<!-- Filtro-->
-			<div
-				class="mb-2 transform relative cursor-pointer active:scale-90 transition duration-300 top-8 md:top-12 xl:hidden" (click)="Mostrar_Modal()">
-				<img class="md:w-14 md:h-14" src="assets/imagens/SVG_Filter_Green.svg">
+			<div class="mb-2 transform relative cursor-pointer active:scale-90 transition duration-300 top-6 md:top-9 xl:hidden"
+				(click)="Mostrar_Modal()">
+				<img class="w-8 h-8 md:w-9 md:h-9 md:ml-4" src="assets/icons/filter-three-lines.svg">
 			</div>
 
 			<!-- barra de pesquisa -->
-			<uni-search-bar class="w-full md:w-11/12 xl:w-full" [control]="modelChanged"></uni-search-bar>
+			<uni-search-bar class="flex flex-grow md:w-11/12 xl:w-full md:mr-5" [control]="modelChanged">
+			</uni-search-bar>
 
 		</div>
 
@@ -94,40 +95,45 @@
 				<ul class="w-full relative">
 					<li class="hidden md:mb-4 lg:flex">
 						<div class="font-semibold text-base text-center pt-10 xl:block {{objeto.nm_Classe}}"
-							*ngFor="let objeto of ArrayTitulos">
+							*ngFor="let objeto of objArrayTitulos">
 							{{objeto.nm_Titulo}}
 						</div>
 					</li>
 				</ul>
 				<!-- listagem documentos -->
-				<ul class="md:pt-12 lg:text-sm ml-2 xl:text-sm overflow-y-auto xl:bg-white">
+				<ul class="md:pt-12 lg:text-sm ml-5 xl:text-sm mx-4 overflow-y-auto xl:bg-white">
 
 					<li class="relative mb-4 flex font-medium flex-col w-full lg:flex-row transform cursor-pointer active:scale-95 transition duration-300 rounded-lg bg-white xl:bg-transparent shadow-lg xl:shadow-none"
 						(click)="Buscar_Arquivo(documento.cd_Documento)" *ngFor="let documento of objArrayDocumentos">
 						<div [title]="documento.nm_Documento"
-							class=" pt-2 pl-2 lg:w-5/12 xl:4/12 overflow-hidden overflow overflow-ellipsis whitespace-nowrap transform active:scale-95 translate duration-300">
-							{{documento.nm_Documento}}
+							class="pl-2 font-semibold lg:w-5/12 overflow-hidden overflow overflow-ellipsis whitespace-nowrap transform active:scale-95 translate duration-300">
+							{{documento.nm_Documento | camelcase}}
 						</div>
-						<div [title]="documento.cd_Qualidade" class="pl-2 lg:w-2/12 lg:text-center transform active:scale-95 translate duration-300">
+						<div [title]="documento.cd_Qualidade"
+							class="pl-2 lg:w-2/12 lg:text-center transform active:scale-95 translate duration-300">
 							{{documento.cd_Qualidade}}
 						</div>
 						<div [title]="documento.nm_Processo"
-							class="pl-2 xl:px-6 lg:w-2/12 lg:text-center xl:text-right overflow-hidden overflow overflow-ellipsis whitespace-nowrap transform active:scale-95 translate duration-300">
+							class="pl-2 lg:w-2/12 lg:text-center overflow-hidden overflow overflow-ellipsis whitespace-nowrap transform active:scale-95 translate duration-300">
 							{{documento.nm_Processo}}
 						</div>
-						<div [title]="documento.nr_Revisao" class="pl-2 w-1/12 xl:text-center transform active:scale-95 translate duration-300">
+						<div [title]="documento.nr_Revisao"
+							class="pl-2 w-1/12 lg:text-center transform active:scale-95 translate duration-300">
 							rev{{documento.nr_Revisao}}
 						</div>
-						<div [title]="documento.dt_Documento" class="pl-2 pb-2 lg:w-2/12 xl:text-center transform active:scale-95 translate duration-300">
+						<div [title]="documento.dt_Documento"
+							class="pl-2 pb-2 lg:w-2/12 lg:text-center transform active:scale-95 translate duration-300">
 							{{documento.dt_Documento}}
 						</div>
 					</li>
 				</ul>
-				<div class="mx-auto pt-11 lg:pt-0 w-6/12 h-6/12 lg:w-4/12 lg:h-4/12" *ngIf="objArrayDocumentos.length == 0">
+				<div class="mx-auto pt-11 lg:pt-0 w-6/12 h-6/12 lg:w-4/12 lg:h-4/12"
+					*ngIf="objArrayDocumentos.length == 0">
 					<img src="assets/imagens/table-empty-nada-encontrado.svg">
 					<div class="text-center text-lg pt-9">Nenhum documento foi encontrado </div>
 				</div>
-				<uni-paginator class="mb-2 md:mb-10 md:mt-5 lg:mb-0" [nr_Pagina]="nr_Page" [nr_Registros]="nr_Registros" [nr_Por_Pagina]="nr_Page_Length" (onPageChange)="Mudar_Pagina($event)"></uni-paginator>
+				<uni-paginator class="mb-2 md:mb-10 md:mt-5 lg:mb-0" [nr_Pagina]="nr_Page" [nr_Registros]="nr_Registros"
+					[nr_Por_Pagina]="nr_Page_Length" (onPageChange)="Mudar_Pagina($event)"></uni-paginator>
 			</div>
 		</div>
 	</main>
@@ -142,44 +148,38 @@
 
 	<!-- botão de voltar -->
 
-	<header class="flex flex-row gap-3 md:gap-5 mx-2 md:mx-10">
+	<div class="flex flex-row gap-4 md:gap-6 mx-4 lg:mb-4">
 
 		<button class="transform cursor-pointer active:scale-90 transition duration-300"
 			(click)="b_Mostrar_Modal=false">
 
-			<svg class="relative flex mt-2 top-4.5 md:top-6" width="36" height="36" viewBox="0 0 68 68" fill="none"
-				xmlns="http://www.w3.org/2000/svg">
-				<path d="M68 29.75H16.2775L40.035 5.9925L34 0L0 34L34 68L39.9925 62.0075L16.2775 38.25H68V29.75Z"
-					fill="#411564" />
-			</svg>
-
+			<img class="relative w-8 h-8 md:w-9 md:h-9 md:ml-4 top-2 md:top-6"
+				src="assets/imagens/arrow-left-green.svg">
 		</button>
 
 		<!-- pesquisa-->
 
-		<uni-search-bar class="w-full md:w-11/12" [control]="modelChanged">
+		<uni-search-bar class="flex flex-grow md:mr-5" [control]="modelChanged"></uni-search-bar>
 
-		</uni-search-bar>
-
-	</header>
+	</div>
 
 	<div
-		class="div-lista-documento px-auto pt-10 pl-2 pb-4 md:pb-16 md:pt-20 flex flex-col gap-12 lg:pt-20 xl:pt-14 w-full overflow-y-auto xl:w-8/12 xl:mx-auto">
+		class="div-lista-documento text-sm font-medium mx-4 pt-10 md:pt-20 gap-y-6 flex flex-col lg:pt-32 xl:pt-14 overflow-y-auto xl:w-8/12 xl:mx-auto">
 
-		<ul class="relative pb-2 bg-white rounded-3xl shadow-lg w-full md:w-2/3 md:mx-auto"
+		<ul class="relative bg-white rounded-2xl py-2 shadow-lg w-full md:text-lg md:w-3/4 md:mx-auto"
 			*ngFor="let pai of objArrayGrupoCEQ">
 
-			<itens-ceq (onClick)="pai._open = $event" [subgrupos]="pai.subgrupos" [nm_Item]="pai.nm_Grupo_CEQ">
+			<itens-ceq class="font-medium" (onClick)="pai._open= $event" [subgrupos]="pai.subgrupos"
+				[nm_Item]="pai.nm_Grupo_CEQ">
 
 			</itens-ceq>
 
 			<div *ngIf="pai._open">
 
-				<div class="pt-2 pl-2" *ngFor="let filho of pai.subgrupos">
+				<div class="pt-2 pl-5" *ngFor="let filho of pai.subgrupos">
 
 					<itens-ceq (onClick)="filho._open = $event" [subgrupos]="filho.subgrupos"
 						[nm_Item]="filho.nm_Grupo_CEQ">
-
 					</itens-ceq>
 
 					<ng-container *ngIf="filho._open">

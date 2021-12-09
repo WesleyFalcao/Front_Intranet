@@ -1,0 +1,44 @@
+.div-pai-pesquisa{
+
+    @apply mt-4 w-full flex flex-grow relative rounded-full shadow-lg;
+
+    @screen md{
+        @apply md:top-3;
+    }
+    @screen lg{
+        @apply lg:flex-grow-0;
+    }
+}
+
+.input-placeholder{
+
+    @apply w-full flex flex-grow rounded-full pl-6 py-3 border-2 border-gray-200 focus:ring-unimed-purpeconecta focus:border-transparent;
+
+    @screen lg{
+        @apply xl:py-3.5;
+    }
+}
+
+.circulo-pesquisa{
+
+    @apply absolute right-2 rounded-full w-10 h-10  top-1.5 bg-unimed-green transform active:scale-95 transition duration-300 cursor-pointer;
+
+    @screen md {
+        @apply md:w-16 md:h-16 md:-top-2 md:-right-1;
+    }
+    @screen lg {
+        @apply lg:w-11 lg:h-11
+    }
+}
+
+.posicao-svg-lupa{
+
+    @apply w-6 h-6 relative top-2 left-2;
+
+    @screen md{
+        @apply  md:w-8 md:h-8 md:left-4 md:top-4;
+    }
+    @screen lg{
+        @apply lg:top-2 lg:left-2 lg:w-7 xl:h-7;
+    }
+}
