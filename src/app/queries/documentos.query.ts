@@ -32,7 +32,17 @@ export class DocumentosQuery {
             header: [],
 
             query: `
-                grupoceq{cd_Grupo_CEQ, cd_Grupo_Pai, nm_Grupo_CEQ}
+                grupoceq{ cd_Grupo_CEQ, cd_Grupo_Pai, nm_Grupo_CEQ }
+            `
+        }
+    }
+
+    Get_MenuCEQ(){
+        return{
+            header: [],
+
+            query: `
+            menuceq{ cd_Grupo_CEQ, nm_Grupo_CEQ, cd_Setor_CEQ, nm_Setor_CEQ }
             `
         }
     }

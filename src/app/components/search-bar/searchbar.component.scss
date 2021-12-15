@@ -27,7 +27,7 @@
         @apply md:w-16 md:h-16 md:-top-2 md:-right-1;
     }
     @screen lg {
-        @apply lg:w-11 lg:h-11
+        @apply lg:w-11 lg:h-11 right-2.5 top-1.5
     }
 }
 
@@ -39,6 +39,6 @@
         @apply  md:w-8 md:h-8 md:left-4 md:top-4;
     }
     @screen lg{
-        @apply lg:top-2 lg:left-2 lg:w-7 xl:h-7;
+        @apply lg:top-2.5 lg:left-2.5 lg:w-6 lg:h-6;
     }
 }

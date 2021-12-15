@@ -3,7 +3,7 @@ import { importExpr } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, Output, Input, ViewChild, EventEmitter, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { getDescription } from 'graphql';
-import { debounce, debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';
+import { debounce, debounceTime, distinctUntilChanged, startWith, throttleTime } from 'rxjs/operators';
 import { DocumentosParams } from 'src/app/models/documento/documento.params';
 import { PaginatedFormParams } from 'src/app/models/genericos/paginated.model';
 import { RamaisParams } from 'src/app/models/ramais/ramais.params';
@@ -22,14 +22,14 @@ export class DocumentosComponent implements OnInit {
     objArrayGrupoCEQ = []
     objArrayRetorno = []
     objArrayTitulos = [
-
-        { nm_Titulo: "Nome", nm_Classe: "w-4/12 text-center pl-24" },
-        { nm_Titulo: "Código", nm_Classe: "w-2/12 text-center" },
-        { nm_Titulo: "Processos", nm_Classe: "w-3/12 text-center pl-16" },
-        { nm_Titulo: "Revisão", nm_Classe: "w-1/12 text-center pr-24" },
-        { nm_Titulo: "Data", nm_Classe: "w-2/12 text-center pr-14" },
+        { nm_Titulo: "Nome", nm_Classe: "w-4/12 text-center pl-24"        },
+        { nm_Titulo: "Código", nm_Classe: "w-2/12 text-center"            },
+        { nm_Titulo: "Processos", nm_Classe: "w-3/12 text-center pl-16"   },
+        { nm_Titulo: "Revisão", nm_Classe: "w-1/12 text-center pr-24"     },
+        { nm_Titulo: "Data", nm_Classe: "w-2/12 text-center pr-14"        },
     ]
 
+    b_Open_Doc: boolean = true
     nm_search: string
     b_Mostrar_Modal: boolean = false
     nr_Page_Length: number = 50
@@ -37,6 +37,7 @@ export class DocumentosComponent implements OnInit {
     nr_Page: number = 1
     nr_Registros: number = 0
     modelChanged = new FormControl()
+    cd_Setor_CEQ: number = 0
 
     constructor(
         private documentosService: DocumentosService
@@ -64,10 +65,15 @@ export class DocumentosComponent implements OnInit {
     }
 
     async Buscar_Documentos() {
-        const objParams: DocumentosParams = { nr_Page: this.nr_Page, nr_Page_Length: this.nr_Page_Length, nm_Search: this.nm_Search }
+        const objParams: DocumentosParams = { nr_Page: this.nr_Page, nr_Page_Length: this.nr_Page_Length, nm_Search: this.nm_Search, cd_Setor_CEQ: this.cd_Setor_CEQ}
         const objRetorno = await this.documentosService.Get_Documentos(objParams)
         this.objArrayDocumentos = objRetorno.data
         this.nr_Registros = objRetorno.nr_Registros
+    }
+
+    async Filter_Menu(objNeto: any){
+        this.cd_Setor_CEQ = objNeto.cd_Setor_CEQ
+        this.Buscar_Documentos()
     }
 
     async Buscar_Arquivo(cd_Documento: number) {
@@ -77,28 +83,23 @@ export class DocumentosComponent implements OnInit {
     }
 
     async Buscar_GrupoCEQ() {
-        this.objArrayGrupoCEQ = await this.documentosService.Get_GrupoCEQ()
 
-        for (let pai of this.objArrayGrupoCEQ) {
-            pai.subgrupos = []
+        const [objArrayGrupoCEQ, objArrayMenuCEQ] = await this.documentosService.Get_GrupoCEQ()
 
-            for (let filho of this.objArrayGrupoCEQ) {
-                filho.subgrupos = []
+        let objArrayAux = objArrayGrupoCEQ.filter(pai => pai.cd_Grupo_Pai == 0)
 
-                for (let neto of this.objArrayGrupoCEQ) {
-                    if (filho.cd_Grupo_CEQ == neto.cd_Grupo_Pai) {
-                        filho.subgrupos.push(neto)
-                        pai.subgrupos = pai.subgrupos.filter(f => f.cd_Grupo_Pai != neto.cd_Grupo_CEQ)
-                    }
-                }
+        objArrayAux.forEach(pai => {
 
-                if (pai.cd_Grupo_CEQ == filho.cd_Grupo_Pai) {
-                    pai.subgrupos.push(filho)
-                }
-            }
-        }
-        this.objArrayGrupoCEQ = this.objArrayGrupoCEQ.filter(f => f.cd_Grupo_Pai == 0)
+            pai.subgrupos = objArrayGrupoCEQ.filter(filho => filho.cd_Grupo_Pai == pai.cd_Grupo_CEQ)
+            pai.subgrupos.forEach(neto => {
 
+                neto.subgrupos = objArrayGrupoCEQ.filter(filho => filho.cd_Grupo_Pai == neto.cd_Grupo_CEQ)
+                objArrayMenuCEQ.forEach(nomeNeto => nomeNeto.nm_Grupo_CEQ = nomeNeto.nm_Setor_CEQ)
+                neto.subgrupos.push(...objArrayMenuCEQ.filter(menu => menu.cd_Grupo_CEQ == neto.cd_Grupo_CEQ))
+            });
+
+        })
+        this.objArrayGrupoCEQ = objArrayAux
     }
 
     Mostrar_Modal() {

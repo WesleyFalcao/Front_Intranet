@@ -33,15 +33,16 @@ export class DocumentosRepository {
         
         this.subjectService.subject_Exibindo_Loading.next(true)
         const query = this.documentosQuery.Get_GrupoCEQ()
-        const response = await this.apiService.Query([query], null, this.httpOptions)
+        const querymenuceq = this.documentosQuery.Get_MenuCEQ()
+        const response = await this.apiService.Query([query, querymenuceq], null, this.httpOptions)
         this.subjectService.subject_Exibindo_Loading.next(false)
-        return response.grupoceq
+        return [response.grupoceq, response.menuceq]
     }
 
     async Get_Arquivo(cd_Documento: number){
         this.subjectService.subject_Exibindo_Loading.next(true)
         const query = this.documentosQuery.Get_Arquivo()
-        const response = await this.apiService.Query([query], {cd_Documento}, this.httpOptions)
+        const response = await this.apiService.Query([query],  {cd_Documento}, this.httpOptions)
         this.subjectService.subject_Exibindo_Loading.next(false)
         return response.token_arquivo
     }

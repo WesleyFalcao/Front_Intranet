@@ -1,26 +1,24 @@
 <!-- menu lateral -->
-
 <div class="reset-browser flex flex-row">
 
 	<div class="hidden w-3/12 h-screen lg:flex">
 
-		<aside class="overflow-y-auto w-full pl-4 flex-col relative">
+		<aside class="scrollbar-hide overflow-y-auto w-full pl-4 flex-col relative">
 
-			<!-- icone-Unimed-lateral-acima -->
-
-			<div class="absolute transform -translate-x-1/2 left-1/2 top-10 hidden lg:flex">
+			<div class="icone-unimed-acima">
 				<img src="assets/imagens/logo-Unimed.svg">
 			</div>
 
-			<ul class="w-full flex flex-col space-y-10 pt-36 font-medium lg:text-sm cursor-pointer">
+			<ul class="menu-lateral-pai">
 
-				<li class="flex flex-col w-full justify-start" *ngFor="let pai of objArrayGrupoCEQ">
+				<li class="formatacao-menu-lateral" *ngFor="let pai of objArrayGrupoCEQ">
 
-					<itens-ceq class="font-semibold" [subgrupos]="pai.subgrupos" [nm_Item]="pai.nm_Grupo_CEQ">
+					<itens-ceq class="font-semibold" [b_Open]="b_Open_Doc" [b_Nao_Fecha]="true"
+						[subgrupos]="pai.subgrupos" [nm_Item]="pai.nm_Grupo_CEQ">
 
 					</itens-ceq>
 
-					<div class="pt-2" *ngFor="let filho of pai.subgrupos">
+					<div class="pt-2 py-2 pl-4" *ngFor="let filho of pai.subgrupos">
 
 						<itens-ceq (onClick)="filho._open = $event" [subgrupos]="filho.subgrupos"
 							[nm_Item]="filho.nm_Grupo_CEQ">
@@ -29,40 +27,12 @@
 
 						<ng-container *ngIf="filho._open">
 
-							<div class="pl-5 pt-2" *ngFor="let neto of filho.subgrupos">
-								<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ">
+							<div class="py-2 gap-y-2" *ngFor="let neto of filho.subgrupos">
+								<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ" (click)="Filter_Menu(neto)">
 
 								</itens-ceq>
 							</div>
-
 						</ng-container>
-					</div>
-
-					<ul class="flex flex-col max-h-96 overflow-y-auto gap-y-6 text-base font-normal cursor-pointer w-full mt-8 pl-8"
-						*ngIf="pai.open">
-						<li class="flex flex-row w-full  transform active:scale-95 transition duration-300 cursor-pointer"
-							*ngFor="let sub of objArrayGrupoCEQ ">
-							<svg class="mt-2" width="15" height="15" viewBox="0 0 100 125" fill="none"
-								xmlns="http://www.w3.org/2000/svg">
-								<path
-									d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
-									fill="#5E1995" />
-							</svg>
-							<span class="justify-items-start ml-2 px-1">
-							</span>
-						</li>
-					</ul>
-				</li>
-				<li class=" flex w-full justify-start" *ngFor="">
-					<div class="flex w-full justify-start transform active:scale-95 translate duration-300">
-						<div class="pr-4 relative top-1">
-							<svg width="15" height="15" viewBox="0 0 100 125" fill="none"
-								xmlns="http://www.w3.org/2000/svg">
-								<path
-									d="M88.7998 33.6C86.6998 28.6 83.5998 24.1 79.7998 20.2C75.8998 16.3 71.3998 13.3 66.3998 11.2C61.1998 8.99999 55.6998 7.79999 49.9998 7.79999C44.2998 7.79999 38.7998 8.99999 33.5998 11.2C28.5998 13.3 24.0998 16.4 20.1998 20.2C16.2998 24.1 13.2998 28.6 11.1998 33.6C8.9998 38.8 7.7998 44.3 7.7998 50C7.7998 55.7 8.9998 61.2 11.1998 66.4C13.2998 71.4 16.3998 75.9 20.1998 79.8C24.0998 83.7 28.5998 86.7 33.5998 88.8C38.7998 91 44.2998 92.1 49.9998 92.1C55.6998 92.1 61.1998 91 66.3998 88.8C71.3998 86.7 75.8998 83.6 79.7998 79.8C83.6998 75.9 86.6998 71.4 88.7998 66.4C90.9998 61.2 92.0998 55.7 92.0998 50C92.0998 44.3 90.9998 38.8 88.7998 33.6Z"
-									fill="#5E1995" />
-							</svg>
-						</div>
 					</div>
 				</li>
 			</ul>
@@ -75,20 +45,17 @@
 		<div class="flex flex-row gap-4 md:gap-6 mx-4 mb-8 lg:mb-4">
 
 			<!-- Filtro-->
-			<div class="mb-2 transform relative cursor-pointer active:scale-90 transition duration-300 top-6 md:top-9 xl:hidden"
-				(click)="Mostrar_Modal()">
+			<div class="filtro" (click)="Mostrar_Modal()">
 				<img class="w-8 h-8 md:w-9 md:h-9 md:ml-4" src="assets/icons/filter-three-lines.svg">
 			</div>
 
 			<!-- barra de pesquisa -->
-			<uni-search-bar class="flex flex-grow md:w-11/12 xl:w-full md:mr-5" [control]="modelChanged">
-			</uni-search-bar>
+			<uni-search-bar class="barra-pesquisa-fora-do-modal" [control]="modelChanged"></uni-search-bar>
 
 		</div>
 
 		<div class="main-documentos w-full flex relative">
 
-			<!-- Container -->
 			<div class="w-full flex flex-col">
 
 				<!-- titulo dos documentos -->
@@ -100,29 +67,25 @@
 						</div>
 					</li>
 				</ul>
-				<!-- listagem documentos -->
-				<ul class="md:pt-12 lg:text-sm ml-5 xl:text-sm mx-4 overflow-y-auto xl:bg-white">
 
-					<li class="relative mb-4 flex font-medium flex-col w-full lg:flex-row transform cursor-pointer active:scale-95 transition duration-300 rounded-lg bg-white xl:bg-transparent shadow-lg xl:shadow-none"
-						(click)="Buscar_Arquivo(documento.cd_Documento)" *ngFor="let documento of objArrayDocumentos">
-						<div [title]="documento.nm_Documento"
-							class="pl-2 font-semibold lg:w-5/12 overflow-hidden overflow overflow-ellipsis whitespace-nowrap transform active:scale-95 translate duration-300">
+				<!-- listagem documentos -->
+				<ul class="pai-listagem-documentos">
+
+					<li class="li-pai-listagem" (click)="Buscar_Arquivo(documento.cd_Documento)"
+						*ngFor="let documento of objArrayDocumentos">
+						<div [title]="documento.nm_Documento" class="documento-nm-documento">
 							{{documento.nm_Documento | camelcase}}
 						</div>
-						<div [title]="documento.cd_Qualidade"
-							class="pl-2 lg:w-2/12 lg:text-center transform active:scale-95 translate duration-300">
+						<div [title]="documento.cd_Qualidade" class="documento-cd-qualidade">
 							{{documento.cd_Qualidade}}
 						</div>
-						<div [title]="documento.nm_Processo"
-							class="pl-2 lg:w-2/12 lg:text-center overflow-hidden overflow overflow-ellipsis whitespace-nowrap transform active:scale-95 translate duration-300">
+						<div [title]="documento.nm_Processo" class="documento-nm-processo">
 							{{documento.nm_Processo}}
 						</div>
-						<div [title]="documento.nr_Revisao"
-							class="pl-2 w-1/12 lg:text-center transform active:scale-95 translate duration-300">
+						<div [title]="documento.nr_Revisao" class="documento-nr-revisao">
 							rev{{documento.nr_Revisao}}
 						</div>
-						<div [title]="documento.dt_Documento"
-							class="pl-2 pb-2 lg:w-2/12 lg:text-center transform active:scale-95 translate duration-300">
+						<div [title]="documento.dt_Documento" class="documento-dt-documento">
 							{{documento.dt_Documento}}
 						</div>
 					</li>
@@ -141,10 +104,8 @@
 
 <!-- modal -->
 
-<div style=" background-image: url('assets/imagens/SVG_Background_White_Green.svg');  transition: all 0.15s easy 0s;"
+<div style=" background-image: url('assets/imagens/SVG_Background_White_Green.svg'); transition: all 0.15s easy 0s;"
 	class="bg-cover bg-center w-full h-screen absolute top-0 left-0 z-30 " *ngIf="b_Mostrar_Modal">
-
-	<!--header-->
 
 	<!-- botão de voltar -->
 
@@ -163,8 +124,7 @@
 
 	</div>
 
-	<div
-		class="div-lista-documento text-sm font-medium mx-4 pt-10 md:pt-20 gap-y-6 flex flex-col lg:pt-32 xl:pt-14 overflow-y-auto xl:w-8/12 xl:mx-auto">
+	<div class="div-lista-documento">
 
 		<ul class="relative bg-white rounded-2xl py-2 shadow-lg w-full md:text-lg md:w-3/4 md:mx-auto"
 			*ngFor="let pai of objArrayGrupoCEQ">
