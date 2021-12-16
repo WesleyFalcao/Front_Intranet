@@ -18,7 +18,7 @@
 
 					</itens-ceq>
 
-					<div class="pt-2 py-2 pl-4" *ngFor="let filho of pai.subgrupos">
+					<div class="pt-2 py-2 pl-4 pb-3" *ngFor="let filho of pai.subgrupos">
 
 						<itens-ceq (onClick)="filho._open = $event" [subgrupos]="filho.subgrupos"
 							[nm_Item]="filho.nm_Grupo_CEQ">
@@ -27,7 +27,7 @@
 
 						<ng-container *ngIf="filho._open">
 
-							<div class="py-2 gap-y-2" *ngFor="let neto of filho.subgrupos">
+							<div class="py-2 gap-y-3 pl-4" *ngFor="let neto of filho.subgrupos">
 								<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ" (click)="Filter_Menu(neto)">
 
 								</itens-ceq>
@@ -145,7 +145,7 @@
 					<ng-container *ngIf="filho._open">
 
 						<div class="pl-5 pt-2" *ngFor="let neto of filho.subgrupos">
-							<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ">
+							<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ" (click)="b_Mostrar_Modal=false; Filter_Menu(neto)">
 
 							</itens-ceq>
 						</div>

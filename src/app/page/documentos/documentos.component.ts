@@ -38,6 +38,7 @@ export class DocumentosComponent implements OnInit {
     nr_Registros: number = 0
     modelChanged = new FormControl()
     cd_Setor_CEQ: number = 0
+    b_Nao_Exibir: boolean 
 
     constructor(
         private documentosService: DocumentosService
@@ -65,7 +66,7 @@ export class DocumentosComponent implements OnInit {
     }
 
     async Buscar_Documentos() {
-        const objParams: DocumentosParams = { nr_Page: this.nr_Page, nr_Page_Length: this.nr_Page_Length, nm_Search: this.nm_Search, cd_Setor_CEQ: this.cd_Setor_CEQ}
+        const objParams: DocumentosParams = {nr_Page: this.nr_Page, nr_Page_Length: this.nr_Page_Length, nm_Search: this.nm_Search, cd_Setor_CEQ: this.cd_Setor_CEQ}
         const objRetorno = await this.documentosService.Get_Documentos(objParams)
         this.objArrayDocumentos = objRetorno.data
         this.nr_Registros = objRetorno.nr_Registros
@@ -97,28 +98,11 @@ export class DocumentosComponent implements OnInit {
                 objArrayMenuCEQ.forEach(nomeNeto => nomeNeto.nm_Grupo_CEQ = nomeNeto.nm_Setor_CEQ)
                 neto.subgrupos.push(...objArrayMenuCEQ.filter(menu => menu.cd_Grupo_CEQ == neto.cd_Grupo_CEQ))
             });
-
         })
         this.objArrayGrupoCEQ = objArrayAux
     }
 
     Mostrar_Modal() {
-
         this.b_Mostrar_Modal = true
-
-        this.objArrayGrupoCEQ.forEach(a => {
-
-            a._open = false
-
-            for (let filho of a.subgrupos) {
-                filho._open = false
-            }
-
-            for (let neto of a.filho.subgrupos) {
-                neto._open = false
-            }
-
-            console.log(a)
-        });
     }
 }

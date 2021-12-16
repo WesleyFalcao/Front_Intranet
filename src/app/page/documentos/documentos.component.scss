@@ -51,7 +51,7 @@
 }
 
 .pai-listagem-documentos{
-    @apply ml-5 xl:text-sm mx-4 overflow-y-auto;
+    @apply xl:text-sm ml-3.5 mr-2 overflow-y-auto rounded-lg;
 
     @screen md{
         @apply md:pt-12;
