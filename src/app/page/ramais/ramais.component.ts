@@ -31,10 +31,10 @@ export class RamaisComponent implements OnInit {
 
   objArrayTitulos = [
 
-    { nm_titulo: "Nome", nm_Classe: "lg:w-4/12 text-center"},
-    { nm_titulo: "Setor", nm_Classe: "lg:w-3/12 text-center"},
-    { nm_titulo: "Contato(s)", nm_Classe: "lg:w-2/12 text-center"},
-    { nm_titulo: "Email", nm_Classe: "lg:w-3/12 text-center"}
+    { nm_titulo: "Nome", nm_Classe: "lg:w-4/12 text-center"         },
+    { nm_titulo: "Setor", nm_Classe: "lg:w-3/12 text-center"        },
+    { nm_titulo: "Contato(s)", nm_Classe: "lg:w-2/12 text-center"   },
+    { nm_titulo: "Email", nm_Classe: "lg:w-3/12 text-center"        }
   ]
 
   // @ViewChildren(ScrollDirective)
@@ -45,7 +45,6 @@ export class RamaisComponent implements OnInit {
   @ViewChild('listaRamais') listaRamais: ElementRef
   @ViewChildren('letras') objArrayLetras: QueryList<ElementRef>
 
-  
   b_Mostrar_Modal: boolean = false
   b_Text_Row_Lg: boolean = false
   nm_Inicial_Selecionada: string = ""
@@ -113,7 +112,7 @@ export class RamaisComponent implements OnInit {
     }
   }
 
-  async Buscar_Ramais() {
+  async Buscar_Ramais(){
     const objParams: RamaisParams = { nr_Page: this.nr_Page, nr_Page_Length: this.nr_Page_Length, nm_Search: this.nm_Search, cd_Origem: this.cd_Origem, nm_Inicial_Selecionada: this.nm_Inicial_Selecionada }
     this.objArrayRamais = [...this.objArrayRamais, ...await this.ramaisService.Get_Ramais(objParams)]
     this.Redefinir()
@@ -123,8 +122,7 @@ export class RamaisComponent implements OnInit {
     this.listaRamais.nativeElement.scrollTo(0, 0)
   }
 
-  async Get_Filtro_Page_Ramais(cd_Origem: number, b_Letra: boolean = true) {
-    
+  async Get_Filtro_Page_Ramais(cd_Origem: number, b_Letra: boolean = true) { 
     this.objArrayRamais = []
     this.nr_Page = 1
     this.cd_Origem = cd_Origem

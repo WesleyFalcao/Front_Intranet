@@ -6,6 +6,7 @@ import { getDescription } from 'graphql';
 import { debounce, debounceTime, distinctUntilChanged, startWith, throttleTime } from 'rxjs/operators';
 import { DocumentosParams } from 'src/app/models/documento/documento.params';
 import { PaginatedFormParams } from 'src/app/models/genericos/paginated.model';
+import { CamposListagem } from 'src/app/models/listagem/campos-listagem.model';
 import { RamaisParams } from 'src/app/models/ramais/ramais.params';
 import { DocumentosRepository } from 'src/app/repositories/documentos.repository';
 import { environment } from 'src/environments/environment';
@@ -21,12 +22,13 @@ export class DocumentosComponent implements OnInit {
     objArrayDocumentos = []
     objArrayGrupoCEQ = []
     objArrayRetorno = []
-    objArrayTitulos = [
-        { nm_Titulo: "Nome", nm_Classe: "w-4/12 text-center pl-24"        },
-        { nm_Titulo: "Código", nm_Classe: "w-2/12 text-center"            },
-        { nm_Titulo: "Processos", nm_Classe: "w-3/12 text-center pl-16"   },
-        { nm_Titulo: "Revisão", nm_Classe: "w-1/12 text-center pr-24"     },
-        { nm_Titulo: "Data", nm_Classe: "w-2/12 text-center pr-14"        },
+    objArrayCampos: CamposListagem[] = [
+
+        { nm_Exibicao: "Nome", nm_Classe: "w-4/12 text-center pl-24", nm_Atibruto: "nm_Documento"        },
+        { nm_Exibicao: "Código", nm_Classe: "w-2/12 text-center", nm_Atibruto: "cd_Documento"            },
+        { nm_Exibicao: "Processos", nm_Classe: "w-3/12 text-center pl-16", nm_Atibruto: "nm_Processo"    },
+        { nm_Exibicao: "Revisão", nm_Classe: "w-1/12 text-center pr-24", nm_Atibruto: "nr_Revisao"       },
+        { nm_Exibicao: "Data", nm_Classe: "w-2/12 text-center pr-14", nm_Atibruto: "dt_Documento"        },
     ]
 
     b_Open_Doc: boolean = true
@@ -38,7 +40,7 @@ export class DocumentosComponent implements OnInit {
     nr_Registros: number = 0
     modelChanged = new FormControl()
     cd_Setor_CEQ: number = 0
-    b_Nao_Exibir: boolean 
+    b_Nao_Exibir: boolean = false
 
     constructor(
         private documentosService: DocumentosService
@@ -104,5 +106,11 @@ export class DocumentosComponent implements OnInit {
 
     Mostrar_Modal() {
         this.b_Mostrar_Modal = true
+    }
+
+    Exibir_Listagem() {
+        if(window.innerWidth > 1024){
+            this.b_Nao_Exibir = true
+        }
     }
 }

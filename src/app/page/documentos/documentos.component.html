@@ -28,7 +28,8 @@
 						<ng-container *ngIf="filho._open">
 
 							<div class="py-2 gap-y-3 pl-4" *ngFor="let neto of filho.subgrupos">
-								<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ" (click)="Filter_Menu(neto)">
+								<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ"
+									(click)="Filter_Menu(neto)">
 
 								</itens-ceq>
 							</div>
@@ -53,59 +54,24 @@
 			<uni-search-bar class="barra-pesquisa-fora-do-modal" [control]="modelChanged"></uni-search-bar>
 
 		</div>
+		
+		<app-listagem-virtual [objArrayCampos]="objArrayCampos" [objArrayItems]="objArrayDocumentos"
+			(onClickRow)="Buscar_Arquivo($event)">
+		</app-listagem-virtual>
 
-		<div class="main-documentos w-full flex relative">
-
-			<div class="w-full flex flex-col">
-
-				<!-- titulo dos documentos -->
-				<ul class="w-full relative">
-					<li class="hidden md:mb-4 lg:flex">
-						<div class="font-semibold text-base text-center pt-10 xl:block {{objeto.nm_Classe}}"
-							*ngFor="let objeto of objArrayTitulos">
-							{{objeto.nm_Titulo}}
-						</div>
-					</li>
-				</ul>
-
-				<!-- listagem documentos -->
-				<ul class="pai-listagem-documentos">
-
-					<li class="li-pai-listagem" (click)="Buscar_Arquivo(documento.cd_Documento)"
-						*ngFor="let documento of objArrayDocumentos">
-						<div [title]="documento.nm_Documento" class="documento-nm-documento">
-							{{documento.nm_Documento | camelcase}}
-						</div>
-						<div [title]="documento.cd_Qualidade" class="documento-cd-qualidade">
-							{{documento.cd_Qualidade}}
-						</div>
-						<div [title]="documento.nm_Processo" class="documento-nm-processo">
-							{{documento.nm_Processo}}
-						</div>
-						<div [title]="documento.nr_Revisao" class="documento-nr-revisao">
-							rev{{documento.nr_Revisao}}
-						</div>
-						<div [title]="documento.dt_Documento" class="documento-dt-documento">
-							{{documento.dt_Documento}}
-						</div>
-					</li>
-				</ul>
-				<div class="mx-auto pt-11 lg:pt-0 w-6/12 h-6/12 lg:w-4/12 lg:h-4/12"
-					*ngIf="objArrayDocumentos.length == 0">
-					<img src="assets/imagens/table-empty-nada-encontrado.svg">
-					<div class="text-center text-lg pt-9">Nenhum documento foi encontrado </div>
-				</div>
-				<uni-paginator class="mb-2 md:mb-10 md:mt-5 lg:mb-0" [nr_Pagina]="nr_Page" [nr_Registros]="nr_Registros"
-					[nr_Por_Pagina]="nr_Page_Length" (onPageChange)="Mudar_Pagina($event)"></uni-paginator>
-			</div>
+		<div *ngIf="b_Nao_Exibir">
+			<app-listagem [objArrayCampos]="objArrayCampos" [objArrayItems]="objArrayDocumentos"
+				(onPageChange)="Mudar_Pagina($event)" (onClickRow)="Buscar_Arquivo($event)">
+			</app-listagem>
 		</div>
+
 	</main>
 </div>
 
 <!-- modal -->
 
 <div style=" background-image: url('assets/imagens/SVG_Background_White_Green.svg'); transition: all 0.15s easy 0s;"
-	class="bg-cover bg-center w-full h-screen absolute top-0 left-0 z-30 " *ngIf="b_Mostrar_Modal">
+	class=" bg-cover bg-center w-full h-screen absolute top-0 left-0 z-30 " *ngIf="b_Mostrar_Modal">
 
 	<!-- botão de voltar -->
 
@@ -145,7 +111,8 @@
 					<ng-container *ngIf="filho._open">
 
 						<div class="pl-5 pt-2" *ngFor="let neto of filho.subgrupos">
-							<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ" (click)="b_Mostrar_Modal=false; Filter_Menu(neto)">
+							<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ"
+								(click)="b_Mostrar_Modal=false; Filter_Menu(neto)">
 
 							</itens-ceq>
 						</div>

@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DocumentosModule } from './page/documentos/documentos.module';
 import { CommonModule } from '@angular/common';
 import { RamaisModule } from './page/ramais/ramais.module';
 import { GraphQLModule } from './graphql.module';
@@ -19,12 +18,13 @@ import { SearchBarModule } from './components/search-bar/searchbar.module';
 import { ItemsCEQModule } from './components/itens-ceq/itens-ceq.module';
 import { PaginatorModule } from './components/paginator/paginator.module';
 import { PipesModule } from './pipes/pipes.module';
+import { ListagemModule } from './components/listagem/listagem.module';
+import { DocumentosModule } from './page/documentos/documentos.module';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
-
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -42,7 +42,8 @@ import { PipesModule } from './pipes/pipes.module';
     SearchBarModule,
     ItemsCEQModule,
     PaginatorModule,
-    PipesModule
+    PipesModule,
+    ListagemModule,
   ],
   providers: [
     {

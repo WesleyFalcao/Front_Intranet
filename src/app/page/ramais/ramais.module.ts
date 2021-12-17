@@ -16,7 +16,7 @@ import { FirstLetterNamePipe } from 'src/app/pipes/first-letter-name.pipe';
     ReactiveFormsModule,
     PipesModule,
     ScrollingModule,
-    
+
   ],
   exports: [
     RamaisComponent

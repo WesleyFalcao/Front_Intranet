@@ -115,5 +115,4 @@ export class PaginatorComponent implements OnInit, OnChanges {
 
         this.onPageChange.emit(this.nr_Pagina)
     }
-
 }
