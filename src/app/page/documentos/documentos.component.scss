@@ -3,7 +3,7 @@
 }
 
 .icone-unimed-acima{
-    @apply absolute transform -translate-x-1/2 left-1/2 top-10 hidden;
+    @apply absolute transform -translate-x-1/2 left-1/2 top-10 hidden cursor-pointer;
 
     @screen lg {
         @apply lg:flex

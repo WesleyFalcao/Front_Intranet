@@ -1,13 +1,12 @@
 <cdk-virtual-scroll-viewport class="cdk-listagem-items" [itemSize]="144" minBufferPx="700" maxBufferPx="700">
-    <li class="li-pai-listagem list-style: none" (click)="Get_Card(item)" *cdkVirtualFor="let item of objArrayItens">
+    <li class="li-pai-listagem" (click)="Get_Card(item)" *cdkVirtualFor="let item of objArrayItens">
         <div class="item-nm-item" [title]="item[campo.nm_Atibruto]" [class]="campo.nm_Classe"
             *ngFor="let campo of objArrayCampos">
             {{ item[campo.nm_Atibruto] }}
         </div>
     </li>
+    <div class="mx-auto pt-11 lg:pt-0 w-6/12 h-6/12 lg:w-4/12 lg:h-4/12" *ngIf="objArrayItens.length == 0">
+        <img src="assets/imagens/table-empty-nada-encontrado.svg">
+        <div class="inline-block text-center w-1/2 mx-auto text-sm pt-9 whitespace-nowrap left-10">Nenhum item foi encontrado</div>
+    </div>
 </cdk-virtual-scroll-viewport>
-
-<div class="mx-auto pt-11 lg:pt-0 w-6/12 h-6/12 lg:w-4/12 lg:h-4/12" *ngIf="objArrayItens.length == 0">
-    <img src="assets/imagens/table-empty-nada-encontrado.svg">
-    <div class="text-center text-lg pt-9">Nenhum item foi encontrado</div>
-</div>

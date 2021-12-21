@@ -22,7 +22,8 @@ export class ListagemComponent implements OnInit {
   @Output() onClickRow = new EventEmitter()
 
   Get_Card(item: any){
-    this.onClickRow.emit(item)
+    this.onClickRow.emit(item.cd_Documento)
+    this.nr_Page = 1
   }
 
   /** @description Avança uma pagina */
@@ -30,4 +31,5 @@ export class ListagemComponent implements OnInit {
     this.nr_Page = nr_Page
     this.onPageChange.emit(nr_Page)
   }
+
 }

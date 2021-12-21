@@ -5,7 +5,7 @@
 
 		<aside class="scrollbar-hide overflow-y-auto w-full pl-4 flex-col relative">
 
-			<div class="icone-unimed-acima">
+			<div class="icone-unimed-acima" (click)="Limpar_Filtros()">
 				<img src="assets/imagens/logo-Unimed.svg">
 			</div>
 
@@ -65,7 +65,8 @@
 
 			<div>
 				<app-listagem [objArrayCampos]="objArrayCampos" [objArrayItems]="objArrayDocumentos"
-					(onPageChange)="Mudar_Pagina($event)" (onClickRow)="Buscar_Arquivo($event)">
+					(onPageChange)="Mudar_Pagina($event)" (onClickRow)="Buscar_Arquivo($event)"
+					[nr_Registros]="nr_Registros" [nr_Page_Length]="nr_Page_Length" [nr_Page]="nr_Page">
 				</app-listagem>
 			</div>
 		</ng-template>
@@ -82,7 +83,7 @@
 	<div class="flex flex-row gap-4 md:gap-6 mx-4 lg:mb-4">
 
 		<button class="transform cursor-pointer active:scale-90 transition duration-300"
-			(click)="b_Mostrar_Modal=false">
+			(click)="b_Mostrar_Modal = false">
 
 			<img class="relative w-8 h-8 md:w-9 md:h-9 md:ml-4 top-2 md:top-6"
 				src="assets/imagens/arrow-left-green.svg">
@@ -99,25 +100,23 @@
 		<ul class="relative bg-white rounded-2xl shadow-lg w-full md:text-lg md:w-3/4 md:mx-auto"
 			*ngFor="let pai of objArrayGrupoCEQ">
 
-			<itens-ceq class="font-medium " (onClick)="pai._open= $event" [subgrupos]="pai.subgrupos"
+			<itens-ceq class="font-medium" (onClick)="Fechar_Menu(pai, true)" [subgrupos]="pai.subgrupos"
 				[nm_Item]="pai.nm_Grupo_CEQ">
 
 			</itens-ceq>
 
 			<div *ngIf="pai._open">
 
-				<div class="pt-2 pl-5 overflow-hidden" *ngFor="let filho of pai.subgrupos">
-
-					<itens-ceq (onClick)="filho._open = $event" [subgrupos]="filho.subgrupos"
+				<div class="pt-2 pl-5 max-h-40 overflow-y-auto" *ngFor="let filho of pai.subgrupos">
+					<itens-ceq (onClick)="Fechar_Menu(filho, false)" [subgrupos]="filho.subgrupos"
 						[nm_Item]="filho.nm_Grupo_CEQ">
 					</itens-ceq>
 
 					<ng-container *ngIf="filho._open">
 
-						<div class="pt-2 pl-5" *ngFor="let neto of filho.subgrupos">
+						<div class="pt-2 pl-5 max-h-40 overflow-y-auto" *ngFor="let neto of filho.subgrupos">
 							<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ"
-								(click)="b_Mostrar_Modal=false; Filter_Menu(neto)">
-
+								(click)="b_Mostrar_Modal = false; Filter_Menu(neto)">
 							</itens-ceq>
 						</div>
 
@@ -125,5 +124,15 @@
 				</div>
 			</div>
 		</ul>
+
+		<div
+			class="absolute flex bottom-5 w-7/12 h-12 rounded-full bg-white shadow-lg transform -translate-x-1/2 left-1/2 active:scale-95 duration-300" (click)="Limpar_Filtros()">
+			<div class="w-12 h-14 mb-4 ml-3.5">
+				<img src="assets/icons/lixeira.svg">
+			</div>
+			<div class="my-auto ml-1 font-semibold">
+				Limpar Filtros
+			</div>
+		</div>
 	</div>
 </div>

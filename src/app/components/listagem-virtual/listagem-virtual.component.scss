@@ -1,13 +1,16 @@
 .cdk-listagem-items{
     height: calc(100vh - 6rem);
-    @apply xl:text-sm w-full overflow-y-auto rounded-lg;
+    @apply w-full overflow-y-auto rounded-lg;
 
     @screen md{
         height: calc(100vh - 6rem);
-        @apply md:pt-12;   
+        @apply md:mt-16;   
     }
     @screen lg{
         @apply lg:text-sm lg:bg-white;
+    }
+    @screen xl{
+        @apply xl:text-sm
     }
 }
 

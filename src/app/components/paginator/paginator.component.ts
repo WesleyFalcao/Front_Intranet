@@ -40,6 +40,7 @@ export class PaginatorComponent implements OnInit, OnChanges {
     ngOnChanges(changes: SimpleChanges): void {
         this.Fabricar_Array_Paginas()
         this.objArrayPaginas = Array.from({ length: Math.ceil(this.nr_Registros / this.nr_Por_Pagina) }, (_, i) => i + 1)
+        
     }
 
     @HostListener("document:keydown.arrowleft", ["$event"])

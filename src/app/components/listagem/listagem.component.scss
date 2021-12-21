@@ -31,7 +31,7 @@
     @apply pl-2 font-semibold overflow-hidden overflow-ellipsis whitespace-nowrap transform active:scale-95 duration-300;
 
     @screen lg{
-        @apply lg:font-medium lg:w-5/12;
+        @apply lg:w-5/12;
     }
 }
 
@@ -47,7 +47,7 @@
     @apply pl-2 overflow-hidden overflow-ellipsis whitespace-nowrap transform active:scale-95 duration-300;
 
     @screen lg{
-        @apply lg:pl-0 lg:w-2/12 lg:text-center
+        @apply lg:pl-0 lg:w-2/12 lg:text-center font-normal pl-2
     }
 }
 

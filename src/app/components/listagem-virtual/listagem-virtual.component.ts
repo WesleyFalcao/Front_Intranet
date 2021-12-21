@@ -36,6 +36,7 @@ export class ListagemVirtualComponent implements OnInit {
   }
 
   Get_Card(item: any){
-    this.onClickRow.emit(item)
+    this.onClickRow.emit(item.cd_Documento)
+    this.nr_Page = 1
   }
 }

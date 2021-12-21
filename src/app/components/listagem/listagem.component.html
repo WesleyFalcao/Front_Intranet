@@ -18,14 +18,13 @@
             </div>
         </li>
     </ul>
-
-    <div class="mx-auto pt-11 lg:pt-0 w-6/12 h-6/12 lg:w-4/12 lg:h-4/12" *ngIf="objArrayItems.length == 0">
+    <div class="mx-auto pt-11 lg:pt-0 w-6/12 h-6/12 lg:w-3/12 lg:h-3/12" *ngIf="objArrayItems.length == 0">
         <img src="assets/imagens/table-empty-nada-encontrado.svg">
-        <div class="text-center text-lg pt-9">Nenhum item foi encontrado</div>
+        <div class="text-center text-lg pt-9 whitespace-nowrap">Nenhum item foi encontrado</div>
     </div>
 
     <uni-paginator class="mb-2 md:mb-10 md:mt-5 lg:mb-0" [nr_Pagina]="nr_Page" [nr_Registros]="nr_Registros"
-        [nr_Por_Pagina]="nr_Page_Length" (onPageChange)="Mudar_Pagina($event)">
+        [nr_Por_Pagina]="nr_Page_Length" (onPageChange)="Mudar_Pagina($event)" *ngIf="objArrayItems.length > 0">
     </uni-paginator>
 
 </div>
