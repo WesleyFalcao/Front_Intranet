@@ -1,32 +1,31 @@
-<div class="main-items w-full flex relative">
-    <div class="w-full flex flex-col">
+<div class="relative w-full flex flex-col">
 
-        <!-- titulo dos items -->
-        <ul class="w-full relative">
-            <li class="hidden md:mb-4 lg:flex">
-                <div class="font-semibold text-base text-center pt-10 xl:block {{objeto.nm_Classe}}"
-                    *ngFor="let objeto of objArrayCampos">
-                    {{objeto.nm_Exibicao}}
-                </div>
-            </li>
-        </ul>
+    <!-- titulo dos items -->
+    <ul class="w-full relative">
+        <li class="hidden md:mb-4 lg:flex">
+            <div class="font-semibold text-base text-center pt-10 xl:block {{objeto.nm_Classe}}"
+                *ngFor="let objeto of objArrayCampos">
+                {{objeto.nm_Exibicao}}
+            </div>
+        </li>
+    </ul>
 
-        <!-- listagem items -->
-        <ul class="pai-listagem-items">
-            <li class="li-pai-listagem" (click)="Get_Card(item)"
-                *ngFor="let item of objArrayItems">
-               
-                <div [title]="item[campo.nm_Atibruto]" [class]="campo.nm_Classe" *ngFor="let campo of objArrayCampos">
-                    {{item[campo.nm_Atibruto] | camelcase}}
-                </div>
-            </li>
-        </ul>
-        <div class="mx-auto pt-11 lg:pt-0 w-6/12 h-6/12 lg:w-4/12 lg:h-4/12"
-            *ngIf="objArrayItems.length == 0">
-            <img src="assets/imagens/table-empty-nada-encontrado.svg">
-            <div class="text-center text-lg pt-9">Nenhum item foi encontrado</div>
-        </div>
-        <uni-paginator class="mb-2 md:mb-10 md:mt-5 lg:mb-0" [nr_Pagina]="nr_Page" [nr_Registros]="nr_Registros"
-		[nr_Por_Pagina]="nr_Page_Length" (onPageChange)="Mudar_Pagina($event)"></uni-paginator> 
+    <!-- listagem items -->
+    <ul class="pai-listagem-items">
+        <li class="li-pai-listagem" (click)="Get_Card(item)" *ngFor="let item of objArrayItems">
+            <div [title]="item[campo.nm_Atibruto]" [class]="campo.nm_Classe" *ngFor="let campo of objArrayCampos">
+                {{item[campo.nm_Atibruto]}}
+            </div>
+        </li>
+    </ul>
+
+    <div class="mx-auto pt-11 lg:pt-0 w-6/12 h-6/12 lg:w-4/12 lg:h-4/12" *ngIf="objArrayItems.length == 0">
+        <img src="assets/imagens/table-empty-nada-encontrado.svg">
+        <div class="text-center text-lg pt-9">Nenhum item foi encontrado</div>
     </div>
+
+    <uni-paginator class="mb-2 md:mb-10 md:mt-5 lg:mb-0" [nr_Pagina]="nr_Page" [nr_Registros]="nr_Registros"
+        [nr_Por_Pagina]="nr_Page_Length" (onPageChange)="Mudar_Pagina($event)">
+    </uni-paginator>
+
 </div>

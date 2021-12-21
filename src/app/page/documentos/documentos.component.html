@@ -54,17 +54,21 @@
 			<uni-search-bar class="barra-pesquisa-fora-do-modal" [control]="modelChanged"></uni-search-bar>
 
 		</div>
-		
-		<app-listagem-virtual [objArrayCampos]="objArrayCampos" [objArrayItems]="objArrayDocumentos"
-			(onClickRow)="Buscar_Arquivo($event)">
-		</app-listagem-virtual>
 
-		<div *ngIf="b_Nao_Exibir">
-			<app-listagem [objArrayCampos]="objArrayCampos" [objArrayItems]="objArrayDocumentos"
+		<div *ngIf="!b_Exibir_Computador;else listagem ">
+			<app-listagem-virtual [objArrayCampos]="objArrayCampos" [objArrayItens]="objArrayDocumentos"
 				(onPageChange)="Mudar_Pagina($event)" (onClickRow)="Buscar_Arquivo($event)">
-			</app-listagem>
+			</app-listagem-virtual>
 		</div>
 
+		<ng-template #listagem>
+
+			<div>
+				<app-listagem [objArrayCampos]="objArrayCampos" [objArrayItems]="objArrayDocumentos"
+					(onPageChange)="Mudar_Pagina($event)" (onClickRow)="Buscar_Arquivo($event)">
+				</app-listagem>
+			</div>
+		</ng-template>
 	</main>
 </div>
 
@@ -92,17 +96,17 @@
 
 	<div class="div-lista-documento">
 
-		<ul class="relative bg-white rounded-2xl py-2 shadow-lg w-full md:text-lg md:w-3/4 md:mx-auto"
+		<ul class="relative bg-white rounded-2xl shadow-lg w-full md:text-lg md:w-3/4 md:mx-auto"
 			*ngFor="let pai of objArrayGrupoCEQ">
 
-			<itens-ceq class="font-medium" (onClick)="pai._open= $event" [subgrupos]="pai.subgrupos"
+			<itens-ceq class="font-medium " (onClick)="pai._open= $event" [subgrupos]="pai.subgrupos"
 				[nm_Item]="pai.nm_Grupo_CEQ">
 
 			</itens-ceq>
 
 			<div *ngIf="pai._open">
 
-				<div class="pt-2 pl-5" *ngFor="let filho of pai.subgrupos">
+				<div class="pt-2 pl-5 overflow-hidden" *ngFor="let filho of pai.subgrupos">
 
 					<itens-ceq (onClick)="filho._open = $event" [subgrupos]="filho.subgrupos"
 						[nm_Item]="filho.nm_Grupo_CEQ">
@@ -110,7 +114,7 @@
 
 					<ng-container *ngIf="filho._open">
 
-						<div class="pl-5 pt-2" *ngFor="let neto of filho.subgrupos">
+						<div class="pt-2 pl-5" *ngFor="let neto of filho.subgrupos">
 							<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ"
 								(click)="b_Mostrar_Modal=false; Filter_Menu(neto)">
 

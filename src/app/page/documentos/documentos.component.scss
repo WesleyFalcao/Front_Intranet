@@ -60,3 +60,11 @@
         @apply w-10/12
     }
 }
+
+.div-lista-documento{
+    @apply ml-6 mr-6 mt-10 space-y-5;
+
+    @screen md{
+        @apply mt-14 space-y-5;
+    }
+}

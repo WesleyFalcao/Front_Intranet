@@ -1,20 +1,13 @@
-<div class="main-documentos w-full flex relative">
-    <div class="w-full flex flex-col">
-
-        <!-- listagem documentos -->
-        <cdk-virtual-scroll-viewport [itemSize]="56" minBufferPx="700" maxBufferPx="700" class="pai-listagem-documentos">
-            <li class="li-pai-listagem" (click)="Get_Card(item)"
-                *cdkVirtualFor="let item of objArrayItems">
-                <div [title]="item[campo.nm_Atibruto]" [class]="campo.nm_Classe" *ngFor="let campo of objArrayCampos">
-                    {{item[campo.nm_Atibruto] | camelcase}}
-                </div>
-            </li>
-        </cdk-virtual-scroll-viewport>
-        <div class="mx-auto pt-11 lg:pt-0 w-6/12 h-6/12 lg:w-4/12 lg:h-4/12"
-            *ngIf="objArrayItems.length == 0">
-            <img src="assets/imagens/table-empty-nada-encontrado.svg">
-            <div class="text-center text-lg pt-9">Nenhum item foi encontrado</div>
+<cdk-virtual-scroll-viewport class="cdk-listagem-items" [itemSize]="144" minBufferPx="700" maxBufferPx="700">
+    <li class="li-pai-listagem list-style: none" (click)="Get_Card(item)" *cdkVirtualFor="let item of objArrayItens">
+        <div class="item-nm-item" [title]="item[campo.nm_Atibruto]" [class]="campo.nm_Classe"
+            *ngFor="let campo of objArrayCampos">
+            {{ item[campo.nm_Atibruto] }}
         </div>
-    </div>
-</div>
+    </li>
+</cdk-virtual-scroll-viewport>
 
+<div class="mx-auto pt-11 lg:pt-0 w-6/12 h-6/12 lg:w-4/12 lg:h-4/12" *ngIf="objArrayItens.length == 0">
+    <img src="assets/imagens/table-empty-nada-encontrado.svg">
+    <div class="text-center text-lg pt-9">Nenhum item foi encontrado</div>
+</div>

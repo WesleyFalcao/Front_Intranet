@@ -1,13 +1,15 @@
 .main-items {
     height: calc(100% - 7.5rem);
 
-    @screen md {
+    @screen md{
         height: calc(100% - 6rem);
     }
 }
 
 .pai-listagem-items{
-    @apply xl:text-sm ml-3.5 mr-2 overflow-y-auto rounded-lg;
+
+    height: calc(100% - 6rem);
+    @apply xl:text-sm w-full overflow-y-auto rounded-lg;
 
     @screen md{
         @apply md:pt-12;
@@ -18,7 +20,7 @@
 }
 
 .li-pai-listagem{
-    @apply relative mb-4 flex font-medium flex-col w-full transform cursor-pointer active:scale-95 transition duration-300 rounded-lg bg-white shadow-lg;
+    @apply relative mb-4 flex font-medium w-full transform cursor-pointer active:scale-95 transition duration-300 rounded-lg bg-white shadow-lg;
 
     @screen lg{
         @apply lg:flex-row lg:bg-transparent lg:shadow-none;
@@ -73,4 +75,8 @@
     @screen md{
         @apply md:pt-20;
     }
+}
+
+li{
+    list-style-type: none;
 }

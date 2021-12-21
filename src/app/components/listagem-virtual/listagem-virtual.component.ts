@@ -11,12 +11,12 @@ import { CamposListagem } from 'src/app/models/listagem/campos-listagem.model';
 
 export class ListagemVirtualComponent implements OnInit {
 
-  @ViewChild(CdkVirtualScrollViewport) scroller: CdkVirtualScrollViewport;
+  @ViewChild( CdkVirtualScrollViewport, {static: true}) scroller: CdkVirtualScrollViewport;
   @Input() objArrayCampos: CamposListagem[] = []
-  @Input() objArrayItems = []
-  @Input() nr_Page: number
+  @Input() objArrayItens = []
+  @Input() nr_Page: number = 1
   @Output() onClickRow = new EventEmitter()
-  @Output() onChangePage = new EventEmitter()
+  @Output() onPageChange = new EventEmitter()
 
   constructor(private ngZone: NgZone) { }
 
@@ -30,7 +30,7 @@ export class ListagemVirtualComponent implements OnInit {
     ).subscribe(() => {
       this.ngZone.run(async() => {
         this.nr_Page++
-        this.onChangePage.emit(this.nr_Page);  //sempre que atualizar a lista tem que retornar uma nova instancia da lista
+        this.onPageChange.emit(this.nr_Page);  //sempre que atualizar a lista tem que retornar uma nova instancia da lista
       });
     })
   }
@@ -38,5 +38,4 @@ export class ListagemVirtualComponent implements OnInit {
   Get_Card(item: any){
     this.onClickRow.emit(item)
   }
-
 }

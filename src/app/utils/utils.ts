@@ -161,3 +161,22 @@ export function Get_Invalid_Controls(resourceForm: FormGroup, tempo: number = 50
         console.log(invalid)
     }, tempo)
 }
+export function To_Capitalize(value: string) {
+
+
+    //value é o valor a ser passado e o args são os argumentos, que posso passar quantos quiser
+
+    if (value == null) {
+        return ""
+    }
+    let values = value?.split(' ')
+    let result = ' ';
+
+    for (let v of values) {
+        result += v?.substr(0, 1).toUpperCase() +
+            v?.substr(1).toLowerCase() + ' ';
+    }
+
+    return result;
+
+}
