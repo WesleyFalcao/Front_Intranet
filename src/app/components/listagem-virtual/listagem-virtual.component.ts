@@ -1,5 +1,5 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { Component, OnInit, ViewChild, NgZone, Input, EventEmitter, Output} from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone, Input, EventEmitter, Output, ElementRef} from '@angular/core';
 import { filter, map, pairwise, throttleTime } from 'rxjs/operators';
 import { CamposListagem } from 'src/app/models/listagem/campos-listagem.model';
 
@@ -18,7 +18,8 @@ export class ListagemVirtualComponent implements OnInit {
   @Output() onClickRow = new EventEmitter()
   @Output() onPageChange = new EventEmitter()
 
-  constructor(private ngZone: NgZone) { }
+
+  constructor( private ngZone: NgZone ) { }
 
   ngOnInit(): void {
 

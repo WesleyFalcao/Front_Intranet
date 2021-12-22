@@ -1,8 +1,9 @@
 import { transition } from '@angular/animations';
 import { importExpr } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit, Output, Input, ViewChild, EventEmitter, ElementRef } from '@angular/core';
+import { Component, OnInit, Output, Input, ViewChild, EventEmitter, ElementRef, ViewChildren } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounce, debounceTime, distinctUntilChanged, startWith, throttleTime } from 'rxjs/operators';
+import { ListagemVirtualComponent } from 'src/app/components/listagem-virtual/listagem-virtual.component';
 import { DocumentosParams } from 'src/app/models/documento/documento.params';
 import { PaginatedFormParams } from 'src/app/models/genericos/paginated.model';
 import { CamposListagem } from 'src/app/models/listagem/campos-listagem.model';
@@ -24,19 +25,19 @@ export class DocumentosComponent implements OnInit {
     objArrayRetorno = []
     objArrayCampos: CamposListagem[] = [
 
-        { nm_Exibicao: "Nome", nm_Classe: "w-80 md:w-5/12 lg:pl-2 overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Documento" },
-        { nm_Exibicao: "Código", nm_Classe: "w-80 w-2/12 lg:text-center ", nm_Atibruto: "cd_Qualidade" },
-        { nm_Exibicao: "Processos", nm_Classe: "w-80 w-2/12 lg:text-center", nm_Atibruto: "nm_Processo" },
+        { nm_Exibicao: "Nome", nm_Classe: "w-80 md:w-5/12 lg:pl-10 overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Documento" },
+        { nm_Exibicao: "Código", nm_Classe: "w-80 w-2/12 lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "cd_Qualidade" },
+        { nm_Exibicao: "Processos", nm_Classe: "w-80 w-2/12 lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Processo" },
         { nm_Exibicao: "Revisão", nm_Classe: "w-80 w-1/12 lg:text-center", nm_Atibruto: "nr_Revisao" },
         { nm_Exibicao: "Data", nm_Classe: "w-80 w-2/12 lg:text-center ", nm_Atibruto: "dt_Documento" },
     ]
 
+    @ViewChild(ListagemVirtualComponent)listagemVirtual:ListagemVirtualComponent  
     nr_Registros: number = 0
     nr_Page_Length: number = 9
     nr_Page: number = 1
     b_Open_Doc: boolean = true
-    nm_search: string
-    b_Mostrar_Modal: boolean = true
+    b_Mostrar_Modal: boolean = false
     nm_Search: string = ""
     modelChanged = new FormControl()
     cd_Setor_CEQ: number = 0
@@ -80,16 +81,20 @@ export class DocumentosComponent implements OnInit {
             this.objArrayDocumentos = objRetorno.data
         } else {
             this.objArrayDocumentos = [...this.objArrayDocumentos, ...objRetorno.data]
+            //reticencias retorna o conjunto de objetos do array, ele tira as colchetes do Json.
+
         }
         this.nr_Registros = objRetorno.nr_Registros
     }
 
     async Filter_Menu(objNeto: any) {
+        this.nm_Search = ""
+        this.nr_Page = 1
         this.cd_Setor_CEQ = objNeto.cd_Setor_CEQ
         if (!this.b_Exibir_Computador) {
-            this.objArrayDocumentos = []
+            this.objArrayDocumentos = []   
         }
-        this.Buscar_Documentos()
+        this.Buscar_Documentos()   
     }
 
     async Buscar_Arquivo(cd_Documento: number) {
@@ -130,29 +135,40 @@ export class DocumentosComponent implements OnInit {
             this.b_Exibir_Computador = true
         }
 
-        if (window.innerWidth >= 1300) {
+        if (window.innerWidth >= 1440) {
             this.nr_Page_Length = 17
         }
     }
 
     async Limpar_Filtros() {
+
         this.objArrayDocumentos = []
-        this.objArrayCampos = []
+        this.b_Mostrar_Modal = false
         this.nr_Page = 1
-        this.nm_Search = ""
-        this.Buscar_Documentos()
+        this.cd_Setor_CEQ = null
+        if(!this.b_Exibir_Computador){
+            this.listagemVirtual.scroller.scrollTo({top: 0})
+        }
         this.objArrayGrupoCEQ.forEach(f => { f._open = false
             f.subgrupos.forEach(g => g._open = false)
         })
+        this.Buscar_Documentos()
     }
 
     Fechar_Menu(item: any, b_Pai: boolean) {
+
         if (b_Pai) {
             this.objArrayGrupoCEQ.forEach(f => {
 
-                f._open = false
-                if (f.cd_Grupo_CEQ == item.cd_Grupo_CEQ) {
+                if(f.cd_Grupo_CEQ == item.cd_Grupo_CEQ && f._open == true){
+                    f._open = false
+
+                }
+                else if (f.cd_Grupo_CEQ == item.cd_Grupo_CEQ) {
                     f._open = true
+
+                }else{
+                    f._open = false
                 }
             })
         } else {
@@ -160,13 +176,21 @@ export class DocumentosComponent implements OnInit {
             this.objArrayGrupoCEQ.forEach(f => {
 
                 f.subgrupos.forEach(g => {
-                    g._open = false
 
-                    if (g.cd_Grupo_CEQ == item.cd_Grupo_CEQ) {
+                    if(g.cd_Grupo_CEQ == item.cd_Grupo_CEQ && g._open == true){
+                        g._open = false
+                    }
+                    else if (g.cd_Grupo_CEQ == item.cd_Grupo_CEQ) {
                         g._open = true
+                    }else{
+                        g._open = false
                     }
                 })
             })
         }
+    }
+
+    Scroll_Top(){
+       
     }
 }
