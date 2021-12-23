@@ -25,24 +25,24 @@ export class DocumentosComponent implements OnInit {
     objArrayRetorno = []
     objArrayCampos: CamposListagem[] = [
 
-        { nm_Exibicao: "Nome", nm_Classe: "w-80 md:w-5/12 lg:pl-10 overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Documento" },
+        { nm_Exibicao: "Nome", nm_Classe: "w-80 w-5/12 lg:pl-10 overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Documento" },
         { nm_Exibicao: "Código", nm_Classe: "w-80 w-2/12 lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "cd_Qualidade" },
         { nm_Exibicao: "Processos", nm_Classe: "w-80 w-2/12 lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Processo" },
         { nm_Exibicao: "Revisão", nm_Classe: "w-80 w-1/12 lg:text-center", nm_Atibruto: "nr_Revisao" },
         { nm_Exibicao: "Data", nm_Classe: "w-80 w-2/12 lg:text-center ", nm_Atibruto: "dt_Documento" },
     ]
 
-    @ViewChild(ListagemVirtualComponent)listagemVirtual:ListagemVirtualComponent  
+    @ViewChild(ListagemVirtualComponent) listagemVirtual: ListagemVirtualComponent
     nr_Registros: number = 0
     nr_Page_Length: number = 9
     nr_Page: number = 1
-    b_Open_Doc: boolean = true
     b_Mostrar_Modal: boolean = false
     nm_Search: string = ""
     modelChanged = new FormControl()
     cd_Setor_CEQ: number = 0
     b_Exibir_Computador: boolean = false
 
+    
     constructor(
         private documentosService: DocumentosService
     ) { }
@@ -88,18 +88,22 @@ export class DocumentosComponent implements OnInit {
     }
 
     async Filter_Menu(objNeto: any) {
+        this.objArrayGrupoCEQ.forEach(f => {
+            
+            f.subgrupos.forEach(g => g.subgrupos.forEach(h => h._open = false))
+        })
+        objNeto._open = true
         this.nm_Search = ""
         this.nr_Page = 1
         this.cd_Setor_CEQ = objNeto.cd_Setor_CEQ
         if (!this.b_Exibir_Computador) {
-            this.objArrayDocumentos = []   
+            this.objArrayDocumentos = []  
         }
-        this.Buscar_Documentos()   
+        this.Buscar_Documentos()
     }
 
     async Buscar_Arquivo(cd_Documento: number) {
         let token = await this.documentosService.Get_Token_Arquivo(cd_Documento)
-        console.log(token)
         window.open(environment.CONS_URL_APIBASE + "Documentos?token=" + token.ds_Token, '_blank')
     }
 
@@ -146,11 +150,13 @@ export class DocumentosComponent implements OnInit {
         this.b_Mostrar_Modal = false
         this.nr_Page = 1
         this.cd_Setor_CEQ = null
-        if(!this.b_Exibir_Computador){
-            this.listagemVirtual.scroller.scrollTo({top: 0})
+        if (!this.b_Exibir_Computador) {
+            this.listagemVirtual.scroller.scrollTo({ top: 0 })
         }
-        this.objArrayGrupoCEQ.forEach(f => { f._open = false
-            f.subgrupos.forEach(g => g._open = false)
+        this.objArrayGrupoCEQ.forEach(f => {
+            f._open = false
+            f.subgrupos.forEach(g => {g._open = false
+                g.subgrupos.forEach(h => h._open = false)})
         })
         this.Buscar_Documentos()
     }
@@ -160,14 +166,14 @@ export class DocumentosComponent implements OnInit {
         if (b_Pai) {
             this.objArrayGrupoCEQ.forEach(f => {
 
-                if(f.cd_Grupo_CEQ == item.cd_Grupo_CEQ && f._open == true){
+                if (f.cd_Grupo_CEQ == item.cd_Grupo_CEQ && f._open == true) {
                     f._open = false
 
                 }
                 else if (f.cd_Grupo_CEQ == item.cd_Grupo_CEQ) {
                     f._open = true
 
-                }else{
+                } else {
                     f._open = false
                 }
             })
@@ -177,20 +183,16 @@ export class DocumentosComponent implements OnInit {
 
                 f.subgrupos.forEach(g => {
 
-                    if(g.cd_Grupo_CEQ == item.cd_Grupo_CEQ && g._open == true){
+                    if (g.cd_Grupo_CEQ == item.cd_Grupo_CEQ && g._open == true) {
                         g._open = false
                     }
                     else if (g.cd_Grupo_CEQ == item.cd_Grupo_CEQ) {
                         g._open = true
-                    }else{
+                    } else {
                         g._open = false
                     }
                 })
             })
         }
-    }
-
-    Scroll_Top(){
-       
     }
 }

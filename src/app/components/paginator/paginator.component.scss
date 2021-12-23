@@ -16,8 +16,8 @@
         border-right: 1px solid var(--verde-unimed);
 
         &.selecionado {
-            color: var(--laranja-unimed);
-            font-weight: bold;
+            
+            @apply text-laranja font-bold
         }
     }
 

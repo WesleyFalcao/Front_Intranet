@@ -3,7 +3,7 @@
     @apply w-full overflow-y-auto rounded-lg;
 
     @screen md{
-        height: calc(100vh - 6rem);
+        height: calc(100vh - 8rem);
         @apply md:mt-16;   
     }
     @screen lg{
@@ -26,7 +26,7 @@
     @apply pl-2 w-80 overflow-hidden overflow-ellipsis whitespace-nowrap;
 
     @screen md{
-        @apply w-full text-left
+        @apply w-8/12 text-left whitespace-normal
     }
     @screen lg{
         @apply lg:font-medium flex flex-row;

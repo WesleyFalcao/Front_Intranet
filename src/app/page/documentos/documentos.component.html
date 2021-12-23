@@ -13,20 +13,20 @@
 
 				<li class="formatacao-menu-lateral" *ngFor="let pai of objArrayGrupoCEQ">
 
-					<itens-ceq class="font-semibold" [b_Open]="b_Open_Doc" [b_Nao_Fecha]="true"
-						[subgrupos]="pai.subgrupos" [nm_Item]="pai.nm_Grupo_CEQ">
+					<itens-ceq class="font-semibold" [b_Nao_Fecha]="true"
+						[subgrupos]="pai.subgrupos" [nm_Item]="pai.nm_Grupo_CEQ" [b_Open]="true">
 
 					</itens-ceq>
 
 					<div class="pt-2 py-2 pl-4 pb-3" *ngFor="let filho of pai.subgrupos">
 
-						<itens-ceq (onClick)="filho._open = $event" [subgrupos]="filho.subgrupos"
+						<itens-ceq (onClick)="filho._open = $event" [b_Open]="filho._open" [subgrupos]="filho.subgrupos"
 							[nm_Item]="filho.nm_Grupo_CEQ">
 
 						</itens-ceq>
 
 						<ng-container *ngIf="filho._open">
-							<div class="py-2 gap-y-3 pl-4" *ngFor="let neto of filho.subgrupos">
+							<div class="py-2 gap-y-3 pl-4 {{neto._open?'font-bold':''}}" *ngFor="let neto of filho.subgrupos">
 								<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ"
 									(click)="Filter_Menu(neto)">
 								</itens-ceq>
@@ -98,10 +98,10 @@
 			*ngFor="let pai of objArrayGrupoCEQ">
 
 			<itens-ceq class="font-medium" (onClick)="Fechar_Menu(pai, true)" [subgrupos]="pai.subgrupos"
-				[nm_Item]="pai.nm_Grupo_CEQ">
+				[nm_Item]="pai.nm_Grupo_CEQ" [b_Open]="true">
 			</itens-ceq>
 
-			<div class="max-h-40 overflow-y-auto" *ngIf="pai._open">
+			<div class="max-h-40 overflow-y-auto">
 
 				<div class="pt-2 pl-5" *ngFor="let filho of pai.subgrupos">
 
@@ -128,7 +128,7 @@
 				<img src="assets/icons/lixeira.svg">
 			</div>
 			<div class="my-auto ml-1 text-sm md:text-lg font-semibold md:ml-4">
-				Limpar Filtros
+				Limpar Filtro
 			</div>
 		</div>
 	</div>

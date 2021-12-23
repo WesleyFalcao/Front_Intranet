@@ -12,7 +12,7 @@
 
 .input-placeholder{
 
-    @apply w-full flex flex-grow rounded-full pl-6 h-12 border-2 border-gray-200 focus:ring-unimed-purpeconecta focus:border-transparent;
+    @apply w-full flex flex-grow rounded-full pl-6 h-12 border-2 border-gray-200 focus:ring-unimed-green focus:border-transparent;
 
     @screen lg{
         @apply lg:h-12;
@@ -23,9 +23,6 @@
 
     @apply absolute right-2 rounded-full w-9 h-9  top-1.5 bg-unimed-green transform active:scale-95 transition duration-300 cursor-pointer;
 
-    // @screen md {
-    //     @apply md:w-16 md:h-16 md:-top-2 md:-right-1;
-    // }
     @screen lg {
         @apply lg:w-9 lg:h-9 right-2.5 top-1.5
     }
