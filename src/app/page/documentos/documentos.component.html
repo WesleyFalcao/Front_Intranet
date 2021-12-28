@@ -13,23 +13,26 @@
 
 				<li class="formatacao-menu-lateral" *ngFor="let pai of objArrayGrupoCEQ">
 
-					<itens-ceq class="font-semibold" [b_Nao_Fecha]="true"
-						[subgrupos]="pai.subgrupos" [nm_Item]="pai.nm_Grupo_CEQ" [b_Open]="true">
+					<itens-ceq class="font-semibold" [b_Nao_Fecha]="true" [subgrupos]="pai.subgrupos"
+						[nm_Item]="pai.nm_Grupo_CEQ" [b_Open]="true">
 
 					</itens-ceq>
 
 					<div class="pt-2 py-2 pl-4 pb-3" *ngFor="let filho of pai.subgrupos">
 
 						<itens-ceq (onClick)="filho._open = $event" [b_Open]="filho._open" [subgrupos]="filho.subgrupos"
-							[nm_Item]="filho.nm_Grupo_CEQ">
+							[nm_Item]="filho.nm_Grupo_CEQ" (click)="Filter_Menu(filho)">
 
 						</itens-ceq>
 
 						<ng-container *ngIf="filho._open">
-							<div class="py-2 gap-y-3 pl-4 {{neto._open?'font-bold':''}}" *ngFor="let neto of filho.subgrupos">
-								<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ"
-									(click)="Filter_Menu(neto)">
-								</itens-ceq>
+							<div class="{{filho.subgrupos.lenght>0?'h-80 overflow-y-auto':'pl-4'}}">
+								<div class="py-2 gap-y-3 pl-4 {{neto._open?'font-bold':''}}"
+									*ngFor="let neto of filho.subgrupos">
+									<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ"
+										(click)="Filter_Menu(neto)">
+									</itens-ceq>
+								</div>
 							</div>
 						</ng-container>
 					</div>
@@ -101,34 +104,37 @@
 				[nm_Item]="pai.nm_Grupo_CEQ" [b_Open]="true">
 			</itens-ceq>
 
-			<div class="max-h-40 overflow-y-auto">
+			<div class="max-h-48 overflow-y-auto">
 
 				<div class="pt-2 pl-5" *ngFor="let filho of pai.subgrupos">
 
 					<itens-ceq (onClick)="Fechar_Menu(filho, false)" [subgrupos]="filho.subgrupos"
-						[nm_Item]="filho.nm_Grupo_CEQ">
+						[nm_Item]="filho.nm_Grupo_CEQ" (click)="Filter_Menu(filho)">
 					</itens-ceq>
 
 					<ng-container *ngIf="filho._open">
-						<div class="max-h-40 overflow-y-auto">
-							<div class="pt-2 pl-5" *ngFor="let neto of filho.subgrupos">
-								<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ"
-									(click)="b_Mostrar_Modal = false; Filter_Menu(neto)">
-								</itens-ceq>
+						<div class="overflow-y-scroll">
+							<div class="max-h-40">
+								<div class="pt-2 pl-5" *ngFor="let neto of filho.subgrupos">
+									<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ"
+										(click)="b_Mostrar_Modal = false; Filter_Menu(neto)">
+									</itens-ceq>
+								</div>
 							</div>
 						</div>
 					</ng-container>
 				</div>
 			</div>
 		</ul>
-
-		<div class="absolute flex bottom-5 w-7/12 md:w-4/12 md:bottom-7 h-12 rounded-full bg-white shadow-lg transform -translate-x-1/2 left-1/2 active:scale-95 duration-300"
-			(click)="Limpar_Filtros()">
-			<div class="w-12 h-14 mb-4 ml-3.5">
-				<img src="assets/icons/lixeira.svg">
-			</div>
-			<div class="my-auto ml-1 text-sm md:text-lg font-semibold md:ml-4">
-				Limpar Filtro
+		<div class="pt-8">
+			<div class="relative flex w-7/12 md:w-4/12 h-12 rounded-full bg-white shadow-lg transform -translate-x-1/2 left-1/2 active:scale-95 duration-300"
+				(click)="Limpar_Filtros()">
+				<div class="w-12 h-14 mb-4 ml-3.5">
+					<img src="assets/icons/lixeira.svg">
+				</div>
+				<div class="my-auto ml-1 text-sm md:text-lg font-semibold md:ml-4">
+					Limpar Filtro
+				</div>
 			</div>
 		</div>
 	</div>

@@ -11,6 +11,7 @@ import { RamaisParams } from 'src/app/models/ramais/ramais.params';
 import { DocumentosRepository } from 'src/app/repositories/documentos.repository';
 import { To_Capitalize } from 'src/app/utils/utils';
 import { environment } from 'src/environments/environment';
+import { fileURLToPath } from 'url';
 import { DocumentosService } from './documentos.service';
 
 @Component({
@@ -39,10 +40,9 @@ export class DocumentosComponent implements OnInit {
     b_Mostrar_Modal: boolean = false
     nm_Search: string = ""
     modelChanged = new FormControl()
-    cd_Setor_CEQ: number = 0
+    cd_Setor_CEQ: number
     b_Exibir_Computador: boolean = false
 
-    
     constructor(
         private documentosService: DocumentosService
     ) { }
@@ -87,15 +87,18 @@ export class DocumentosComponent implements OnInit {
         this.nr_Registros = objRetorno.nr_Registros
     }
 
-    async Filter_Menu(objNeto: any) {
+    async Filter_Menu(obj: any) {
+        const b_Status = obj._open
+
         this.objArrayGrupoCEQ.forEach(f => {
             
             f.subgrupos.forEach(g => g.subgrupos.forEach(h => h._open = false))
         })
-        objNeto._open = true
+        obj._open = !b_Status
         this.nm_Search = ""
         this.nr_Page = 1
-        this.cd_Setor_CEQ = objNeto.cd_Setor_CEQ
+        this.b_Mostrar_Modal = false
+        this.cd_Setor_CEQ = obj.cd_Setor_CEQ??0 //é um if encurtado
         if (!this.b_Exibir_Computador) {
             this.objArrayDocumentos = []  
         }
@@ -122,6 +125,7 @@ export class DocumentosComponent implements OnInit {
                 objArrayMenuCEQ.forEach(nomeNeto => nomeNeto.nm_Grupo_CEQ = nomeNeto.nm_Setor_CEQ)
                 neto.subgrupos.push(...objArrayMenuCEQ.filter(menu => menu.cd_Grupo_CEQ == neto.cd_Grupo_CEQ))
             });
+            
         })
         this.objArrayGrupoCEQ = objArrayAux
     }

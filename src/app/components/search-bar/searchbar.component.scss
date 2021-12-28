@@ -13,10 +13,6 @@
 .input-placeholder{
 
     @apply w-full flex flex-grow rounded-full pl-6 h-12 border-2 border-gray-200 focus:ring-unimed-green focus:border-transparent;
-
-    @screen lg{
-        @apply lg:h-12;
-    }
 }
 
 .circulo-pesquisa{
