@@ -4,6 +4,7 @@ import { Component, OnInit, Output, Input, ViewChild, EventEmitter, ElementRef, 
 import { FormControl } from '@angular/forms';
 import { debounce, debounceTime, distinctUntilChanged, startWith, throttleTime } from 'rxjs/operators';
 import { ListagemVirtualComponent } from 'src/app/components/listagem-virtual/listagem-virtual.component';
+import { Documento } from 'src/app/models/documento/documento.model';
 import { DocumentosParams } from 'src/app/models/documento/documento.params';
 import { PaginatedFormParams } from 'src/app/models/genericos/paginated.model';
 import { CamposListagem } from 'src/app/models/listagem/campos-listagem.model';
@@ -26,11 +27,12 @@ export class DocumentosComponent implements OnInit {
     objArrayRetorno = []
     objArrayCampos: CamposListagem[] = [
 
-        { nm_Exibicao: "Nome", nm_Classe: "w-80 w-5/12 lg:pl-10 overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Documento" },
+        { nm_Exibicao: "Nome", nm_Classe: "w-80 w-4/12 lg:pl-10 overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Documento" },
         { nm_Exibicao: "Código", nm_Classe: "w-80 w-2/12 lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "cd_Qualidade" },
         { nm_Exibicao: "Processos", nm_Classe: "w-80 w-2/12 lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Processo" },
         { nm_Exibicao: "Revisão", nm_Classe: "w-80 w-1/12 lg:text-center", nm_Atibruto: "nr_Revisao" },
         { nm_Exibicao: "Data", nm_Classe: "w-80 w-2/12 lg:text-center ", nm_Atibruto: "dt_Documento" },
+
     ]
 
     @ViewChild(ListagemVirtualComponent) listagemVirtual: ListagemVirtualComponent
@@ -82,27 +84,28 @@ export class DocumentosComponent implements OnInit {
         } else {
             this.objArrayDocumentos = [...this.objArrayDocumentos, ...objRetorno.data]
             //reticencias retorna o conjunto de objetos do array, ele tira as colchetes do Json.
-
+            
         }
         this.nr_Registros = objRetorno.nr_Registros
+        console.log(this.objArrayDocumentos)
     }
 
-    async Filter_Menu(obj: any) {
+    async Filter_Menu(obj: Documento, b_filho) {
+        
         const b_Status = obj._open
-
-        this.objArrayGrupoCEQ.forEach(f => {
-            
-            f.subgrupos.forEach(g => g.subgrupos.forEach(h => h._open = false))
-        })
-        obj._open = !b_Status
+        this.objArrayGrupoCEQ.forEach(f => { f.subgrupos.forEach(g => g.subgrupos.forEach(h => h._open = false)) })
         this.nm_Search = ""
         this.nr_Page = 1
         this.b_Mostrar_Modal = false
-        this.cd_Setor_CEQ = obj.cd_Setor_CEQ??0 //é um if encurtado
+        this.cd_Setor_CEQ = obj.cd_Setor_CEQ //é um if encurtado
+
         if (!this.b_Exibir_Computador) {
             this.objArrayDocumentos = []  
         }
-        this.Buscar_Documentos()
+
+        if(obj.cd_Setor_CEQ != 0 && b_filho == false){
+            this.Buscar_Documentos()
+        }
     }
 
     async Buscar_Arquivo(cd_Documento: number) {
@@ -110,7 +113,7 @@ export class DocumentosComponent implements OnInit {
         window.open(environment.CONS_URL_APIBASE + "Documentos?token=" + token.ds_Token, '_blank')
     }
 
-    async Buscar_GrupoCEQ() {
+    async Buscar_GrupoCEQ(){
 
         const [objArrayGrupoCEQ, objArrayMenuCEQ] = await this.documentosService.Get_GrupoCEQ()
 

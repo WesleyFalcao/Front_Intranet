@@ -15,26 +15,25 @@
 
 					<itens-ceq class="font-semibold" [b_Nao_Fecha]="true" [subgrupos]="pai.subgrupos"
 						[nm_Item]="pai.nm_Grupo_CEQ" [b_Open]="true">
-
 					</itens-ceq>
 
-					<div class="pt-2 py-2 pl-4 pb-3" *ngFor="let filho of pai.subgrupos">
+					<div class="pt-2 py-2 pl-4 pb-3 {{filho.subgrupos.length == 0?'pl-8':''}}" *ngFor="let filho of pai.subgrupos">
 
-						<itens-ceq (onClick)="filho._open = $event" [b_Open]="filho._open" [subgrupos]="filho.subgrupos"
-							[nm_Item]="filho.nm_Grupo_CEQ" (click)="Filter_Menu(filho)">
-
+						<itens-ceq (onClick)="filho._open=$event" [b_Open]="filho._open" [subgrupos]="filho.subgrupos"
+							[nm_Item]="filho.nm_Grupo_CEQ" (click)="Filter_Menu(filho, filho.b_filho=true)">
 						</itens-ceq>
 
-						<ng-container *ngIf="filho._open">
-							<div class="{{filho.subgrupos.lenght>0?'h-80 overflow-y-auto':'pl-4'}}">
-								<div class="py-2 gap-y-3 pl-4 {{neto._open?'font-bold':''}}"
+						<div *ngIf="filho._open">
+							<div
+								class="{{filho.subgrupos.length > 10?'h-72 overflow-y-auto':'h-20 overflow-y-auto'}}">
+								<div class="py-2 gap-y-3 pl-4 "
 									*ngFor="let neto of filho.subgrupos">
-									<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ"
-										(click)="Filter_Menu(neto)">
+									<itens-ceq class="{{neto._open?'text-laranja':''}}" [subgrupos]="neto.subgrupos" [b_Open]="neto._open" [nm_Item]="neto.nm_Grupo_CEQ"
+										(click)="Filter_Menu(neto, filho.b_filho=false)">
 									</itens-ceq>
 								</div>
 							</div>
-						</ng-container>
+						</div>
 					</div>
 				</li>
 			</ul>
@@ -56,7 +55,7 @@
 
 		</div>
 
-		<div *ngIf="!b_Exibir_Computador;else listagem ">
+		<div *ngIf="!b_Exibir_Computador; else listagem ">
 			<app-listagem-virtual [objArrayCampos]="objArrayCampos" [objArrayItens]="objArrayDocumentos"
 				(onPageChange)="Mudar_Pagina($event)" (onClickRow)="Buscar_Arquivo($event)">
 			</app-listagem-virtual>
@@ -109,7 +108,7 @@
 				<div class="pt-2 pl-5" *ngFor="let filho of pai.subgrupos">
 
 					<itens-ceq (onClick)="Fechar_Menu(filho, false)" [subgrupos]="filho.subgrupos"
-						[nm_Item]="filho.nm_Grupo_CEQ" (click)="Filter_Menu(filho)">
+						[nm_Item]="filho.nm_Grupo_CEQ" (click)="Filter_Menu(filho, filho.b_filho=true)">
 					</itens-ceq>
 
 					<ng-container *ngIf="filho._open">
@@ -117,7 +116,7 @@
 							<div class="max-h-40">
 								<div class="pt-2 pl-5" *ngFor="let neto of filho.subgrupos">
 									<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ"
-										(click)="b_Mostrar_Modal = false; Filter_Menu(neto)">
+										(click)="b_Mostrar_Modal = false; Filter_Menu(neto, filho.b_filho=false)">
 									</itens-ceq>
 								</div>
 							</div>
