@@ -1,8 +1,7 @@
 <div class="flex flex-row" (click)="Mudar_Estado()">
     <div class="pr-3">
-        <div *ngIf="subgrupos?.length > 0; else pad" style="transition-duration: 300ms; transition-timing-function: ease-out"
+        <div *ngIf="subgrupos?.length > 0" style="transition-duration: 300ms; transition-timing-function: ease-out"
             class="relative transition-all {{b_Open? '' : 'origin-center transform -rotate-90'}}">
-
             <svg class="w-4 h-4 mt-1" width="15" height="10" viewBox="0 0 90 46" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -10,7 +9,6 @@
                     fill="#000000" />
             </svg>
         </div>
-        <ng-template #pad class="m-4"></ng-template>
     </div>
     {{nm_Item}}
 </div>

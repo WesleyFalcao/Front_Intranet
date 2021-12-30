@@ -10,12 +10,23 @@
     }
 }
 
+.icone-unimed-acima-tela-grande{
+    @media(min-width: 1400px){
+        width: 145px;
+        height: 60px; 
+    }
+}
+
 .menu-lateral-pai{
-    @apply w-full flex flex-col space-y-10 pt-40 font-medium cursor-pointer;
+    @apply w-full flex flex-col space-y-10 pt-36 font-medium cursor-pointer;
 
     @screen lg {
         @apply lg:text-sm
     }
+    @media (min-width: 1400px) {
+        @apply pt-44
+    }
+    
 }
 
 .formatacao-menu-lateral{
@@ -57,7 +68,7 @@
 
 .resolucao-acima-notebook {
     @media (min-width: 1400px) {
-        @apply w-10/12
+        @apply w-10/12 
     }
 }
 
@@ -66,5 +77,29 @@
 
     @screen md{
         @apply mt-14 space-y-5;
+    }
+}
+
+.tela-grande-menu-lateral-pai{
+    @media(min-width: 1400px){
+        @apply text-lg font-semibold
+    }
+}
+
+.tela-grande-menu-lateral-filho{
+    @media(min-width: 1400px){
+        @apply text-base font-medium
+    }
+}
+
+.tela-grande-menu-lateral-neto{
+    @media(min-width: 1400px){
+        @apply text-base font-medium
+    }
+}
+
+.nome-listagem-tela-grande{
+    @media (min-width: 1400px){
+        @apply w-5/12 text-xl
     }
 }

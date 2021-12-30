@@ -6,20 +6,20 @@
 		<aside class="scrollbar-hide overflow-y-auto w-full pl-4 flex-col relative">
 
 			<div class="icone-unimed-acima" (click)="Limpar_Filtros()">
-				<img class="w-30 h-30" src="assets/imagens/logo-Unimed.svg">
+				<img class="icone-unimed-acima-tela-grande w-30 h-30" src="assets/imagens/logo-Unimed.svg">
 			</div>
 
 			<ul class="menu-lateral-pai">
 
 				<li class="formatacao-menu-lateral" *ngFor="let pai of objArrayGrupoCEQ">
 
-					<itens-ceq class="font-semibold" [b_Nao_Fecha]="true" [subgrupos]="pai.subgrupos"
+					<itens-ceq class="tela-grande-menu-lateral-pai font-semibold" [b_Nao_Fecha]="true" [subgrupos]="pai.subgrupos"
 						[nm_Item]="pai.nm_Grupo_CEQ" [b_Open]="true">
 					</itens-ceq>
 
 					<div class="pt-2 py-2 pl-4 pb-3 {{filho.subgrupos.length == 0?'pl-8':''}}" *ngFor="let filho of pai.subgrupos">
 
-						<itens-ceq (onClick)="filho._open=$event" [b_Open]="filho._open" [subgrupos]="filho.subgrupos"
+						<itens-ceq class="tela-grande-menu-lateral-filho" (onClick)="filho._open=$event" [b_Open]="filho._open" [subgrupos]="filho.subgrupos"
 							[nm_Item]="filho.nm_Grupo_CEQ" (click)="Filter_Menu(filho, filho.b_filho=true)">
 						</itens-ceq>
 
@@ -28,7 +28,7 @@
 								class="{{filho.subgrupos.length > 10?'h-72 overflow-y-auto':'h-20 overflow-y-auto'}}">
 								<div class="py-2 gap-y-3 pl-4 "
 									*ngFor="let neto of filho.subgrupos">
-									<itens-ceq class="{{neto._open?'text-laranja':''}}" [subgrupos]="neto.subgrupos" [b_Open]="neto._open" [nm_Item]="neto.nm_Grupo_CEQ"
+									<itens-ceq class="tela-grande-menu-lateral-neto {{neto._open?'text-laranja':''}}" [subgrupos]="neto.subgrupos" [b_Open]="neto._open" [nm_Item]="neto.nm_Grupo_CEQ"
 										(click)="Filter_Menu(neto, filho.b_filho=false)">
 									</itens-ceq>
 								</div>
@@ -84,7 +84,7 @@
 		<button class="transform cursor-pointer active:scale-90 transition duration-300"
 			(click)="b_Mostrar_Modal = false">
 
-			<img class="relative w-8 h-8 md:w-9 md:h-9 md:ml-4 top-2 md:top-6"
+			<img class="relative w-7 h-7 md:w-9 md:h-9 md:ml-4 top-2 md:top-6"
 				src="assets/imagens/arrow-left-green.svg">
 		</button>
 

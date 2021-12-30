@@ -15,12 +15,12 @@
         @apply md:pt-12;
     }
     @screen lg{
-        @apply lg:text-sm lg:bg-white;
+        @apply lg:text-sm lg:pt-8 lg:bg-white;
     }
 }
 
 .li-pai-listagem{
-    @apply relative mb-4 flex font-medium w-full transform hover:bg-gray-200 cursor-pointer active:scale-95 transition duration-300 rounded-lg bg-white shadow-lg;
+    @apply relative flex font-medium w-full transform hover:bg-gray-200 cursor-pointer active:scale-95 transition duration-300 rounded-lg bg-white shadow-lg;
 
     @screen lg{
         @apply lg:flex-row lg:bg-transparent lg:shadow-none;
@@ -79,4 +79,10 @@
 
 li{
     list-style-type: none;
+}
+
+.titulo-tela-grande{
+    @media (min-width: 1300px) {
+        @apply text-lg
+    }
 }

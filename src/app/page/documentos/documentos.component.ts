@@ -27,17 +27,17 @@ export class DocumentosComponent implements OnInit {
     objArrayRetorno = []
     objArrayCampos: CamposListagem[] = [
 
-        { nm_Exibicao: "Nome", nm_Classe: "w-80 w-4/12 lg:pl-10 overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Documento" },
-        { nm_Exibicao: "Código", nm_Classe: "w-80 w-2/12 lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "cd_Qualidade" },
-        { nm_Exibicao: "Processos", nm_Classe: "w-80 w-2/12 lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Processo" },
-        { nm_Exibicao: "Revisão", nm_Classe: "w-80 w-1/12 lg:text-center", nm_Atibruto: "nr_Revisao" },
-        { nm_Exibicao: "Data", nm_Classe: "w-80 w-2/12 lg:text-center ", nm_Atibruto: "dt_Documento" },
+        { nm_Exibicao: "Nome", nm_Classe:"nome-listagem-tela-grande w-80 w-4/12 my-auto lg:pl-10 overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Documento" },
+        { nm_Exibicao: "Código", nm_Classe:"codigo-listagem-tela-grande w-80 w-2/12 my-auto lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "cd_Qualidade" },
+        { nm_Exibicao: "Processos", nm_Classe:"processo-listagem-tela-grande w-80 w-2/12 my-auto lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Processo" },
+        { nm_Exibicao: "Revisão", nm_Classe:"revisao-listagem-tela-grande w-80 w-1/12 my-auto lg:text-center lg:pl-6", nm_Atibruto: "nr_Revisao" },
+        { nm_Exibicao: "Data", nm_Classe:"data-listagem-tela-grande w-80 w-2/12 my-auto lg:text-center", nm_Atibruto: "dt_Documento" },
 
     ]
 
     @ViewChild(ListagemVirtualComponent) listagemVirtual: ListagemVirtualComponent
     nr_Registros: number = 0
-    nr_Page_Length: number = 9
+    nr_Page_Length: number = 7
     nr_Page: number = 1
     b_Mostrar_Modal: boolean = false
     nm_Search: string = ""
@@ -147,7 +147,7 @@ export class DocumentosComponent implements OnInit {
         }
 
         if (window.innerWidth >= 1440) {
-            this.nr_Page_Length = 17
+            this.nr_Page_Length = 13
         }
     }
 
