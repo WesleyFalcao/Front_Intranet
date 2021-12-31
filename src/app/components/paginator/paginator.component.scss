@@ -15,8 +15,7 @@
         cursor: pointer;
         border-right: 1px solid var(--verde-unimed);
 
-        &.selecionado {
-            
+        &.selecionado { 
             @apply text-laranja font-bold
         }
     }
@@ -79,6 +78,8 @@
 }
 
 .voltar-todas-tela-grande{
-    
+    @media (min-width:1400px) {
+        @apply w-20 h-20
+    }
 }
 

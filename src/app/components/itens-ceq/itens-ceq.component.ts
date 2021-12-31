@@ -16,7 +16,7 @@ export class ItemsCEQComponent {
     @Input() b_Nao_Exibir
 
     Mudar_Estado(): void {
-        if (this.subgrupos?.length > 0 && !this.b_Nao_Fecha) {
+        if (this.subgrupos?.length >= 0 && !this.b_Nao_Fecha) {
             this.b_Open = !this.b_Open
             this.onClick.emit(this.b_Open)
         }

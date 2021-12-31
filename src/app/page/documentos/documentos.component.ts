@@ -27,14 +27,14 @@ export class DocumentosComponent implements OnInit {
     objArrayRetorno = []
     objArrayCampos: CamposListagem[] = [
 
-        { nm_Exibicao: "Nome", nm_Classe:"nome-listagem-tela-grande w-80 w-4/12 my-auto lg:pl-10 overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Documento" },
-        { nm_Exibicao: "Código", nm_Classe:"codigo-listagem-tela-grande w-80 w-2/12 my-auto lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "cd_Qualidade" },
-        { nm_Exibicao: "Processos", nm_Classe:"processo-listagem-tela-grande w-80 w-2/12 my-auto lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Processo" },
-        { nm_Exibicao: "Revisão", nm_Classe:"revisao-listagem-tela-grande w-80 w-1/12 my-auto lg:text-center lg:pl-6", nm_Atibruto: "nr_Revisao" },
-        { nm_Exibicao: "Data", nm_Classe:"data-listagem-tela-grande w-80 w-2/12 my-auto lg:text-center", nm_Atibruto: "dt_Documento" },
+        { nm_Exibicao: "Nome", nm_Classe: "nome-listagem-tela-grande w-80 w-4/12 my-auto lg:pl-10 overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Documento" },
+        { nm_Exibicao: "Código", nm_Classe: "codigo-listagem-tela-grande w-80 w-2/12 my-auto lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "cd_Qualidade" },
+        { nm_Exibicao: "Processos", nm_Classe: "processo-listagem-tela-grande w-80 w-2/12 my-auto lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Processo" },
+        { nm_Exibicao: "Revisão", nm_Classe: "revisao-listagem-tela-grande w-80 w-1/12 my-auto lg:text-center lg:pl-5", nm_Atibruto: "nr_Revisao" },
+        { nm_Exibicao: "Data", nm_Classe: "data-listagem-tela-grande w-80 w-2/12 my-auto lg:text-center", nm_Atibruto: "dt_Documento" },
 
     ]
-
+    
     @ViewChild(ListagemVirtualComponent) listagemVirtual: ListagemVirtualComponent
     nr_Registros: number = 0
     nr_Page_Length: number = 7
@@ -44,6 +44,7 @@ export class DocumentosComponent implements OnInit {
     modelChanged = new FormControl()
     cd_Setor_CEQ: number
     b_Exibir_Computador: boolean = false
+    b_Search_Focus: boolean = false
 
     constructor(
         private documentosService: DocumentosService
@@ -84,15 +85,14 @@ export class DocumentosComponent implements OnInit {
         } else {
             this.objArrayDocumentos = [...this.objArrayDocumentos, ...objRetorno.data]
             //reticencias retorna o conjunto de objetos do array, ele tira as colchetes do Json.
-            
+
         }
         this.nr_Registros = objRetorno.nr_Registros
         console.log(this.objArrayDocumentos)
     }
 
     async Filter_Menu(obj: Documento, b_filho) {
-        
-        const b_Status = obj._open
+
         this.objArrayGrupoCEQ.forEach(f => { f.subgrupos.forEach(g => g.subgrupos.forEach(h => h._open = false)) })
         this.nm_Search = ""
         this.nr_Page = 1
@@ -100,11 +100,12 @@ export class DocumentosComponent implements OnInit {
         this.cd_Setor_CEQ = obj.cd_Setor_CEQ //é um if encurtado
 
         if (!this.b_Exibir_Computador) {
-            this.objArrayDocumentos = []  
+            this.objArrayDocumentos = []
         }
 
-        if(obj.cd_Setor_CEQ != 0 && b_filho == false){
+        if (obj.cd_Setor_CEQ != 0 && b_filho == false) {
             this.Buscar_Documentos()
+            obj._open = true
         }
     }
 
@@ -113,7 +114,7 @@ export class DocumentosComponent implements OnInit {
         window.open(environment.CONS_URL_APIBASE + "Documentos?token=" + token.ds_Token, '_blank')
     }
 
-    async Buscar_GrupoCEQ(){
+    async Buscar_GrupoCEQ() {
 
         const [objArrayGrupoCEQ, objArrayMenuCEQ] = await this.documentosService.Get_GrupoCEQ()
 
@@ -128,7 +129,7 @@ export class DocumentosComponent implements OnInit {
                 objArrayMenuCEQ.forEach(nomeNeto => nomeNeto.nm_Grupo_CEQ = nomeNeto.nm_Setor_CEQ)
                 neto.subgrupos.push(...objArrayMenuCEQ.filter(menu => menu.cd_Grupo_CEQ == neto.cd_Grupo_CEQ))
             });
-            
+
         })
         this.objArrayGrupoCEQ = objArrayAux
     }
@@ -152,7 +153,9 @@ export class DocumentosComponent implements OnInit {
     }
 
     async Limpar_Filtros() {
-
+        this.b_Search_Focus = true
+        this.modelChanged.reset()
+        this.nm_Search = ""
         this.objArrayDocumentos = []
         this.b_Mostrar_Modal = false
         this.nr_Page = 1
@@ -162,13 +165,15 @@ export class DocumentosComponent implements OnInit {
         }
         this.objArrayGrupoCEQ.forEach(f => {
             f._open = false
-            f.subgrupos.forEach(g => {g._open = false
-                g.subgrupos.forEach(h => h._open = false)})
+            f.subgrupos.forEach(g => {
+                g._open = false
+                g.subgrupos.forEach(h => h._open = false)
+            })
         })
         this.Buscar_Documentos()
     }
 
-    Fechar_Menu(item: any, b_Pai: boolean) {
+    Fechar_Menu(item: Documento, b_Pai: boolean) {
 
         if (b_Pai) {
             this.objArrayGrupoCEQ.forEach(f => {

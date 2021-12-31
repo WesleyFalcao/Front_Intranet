@@ -1,6 +1,7 @@
 <div class="paginate-buttons">
-    <button type="button" title="Voltar todas as páginas" class="voltar-todas-tela-grande" (click)="Ir_Pagina(1)"><img
-            src="assets/icons/super-arrow-left.svg"></button>
+    <button type="button" title="Voltar todas as páginas" (click)="Ir_Pagina(1)">
+        <img class="voltar-todas-tela-grande" src="assets/icons/super-arrow-left.svg">
+    </button>
 
     <button type="button" title="Voltar uma página" [disabled]="nr_Pagina == 1" (click)="Voltar_Pagina()"><img
             src="assets/icons/arrow-left.svg"></button>

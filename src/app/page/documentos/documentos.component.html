@@ -13,23 +13,24 @@
 
 				<li class="formatacao-menu-lateral" *ngFor="let pai of objArrayGrupoCEQ">
 
-					<itens-ceq class="tela-grande-menu-lateral-pai font-semibold" [b_Nao_Fecha]="true" [subgrupos]="pai.subgrupos"
-						[nm_Item]="pai.nm_Grupo_CEQ" [b_Open]="true">
+					<itens-ceq class="tela-grande-menu-lateral-pai font-semibold" [b_Nao_Fecha]="false"
+						[subgrupos]="pai.subgrupos" [nm_Item]="pai.nm_Grupo_CEQ" [b_Open]="true">
 					</itens-ceq>
 
-					<div class="pt-2 py-2 pl-4 pb-3 {{filho.subgrupos.length == 0?'pl-8':''}}" *ngFor="let filho of pai.subgrupos">
+					<div class="pt-2 py-2 pl-4 pb-3 {{filho.subgrupos.length == 0?'pl-8':''}}"
+						*ngFor="let filho of pai.subgrupos">
 
-						<itens-ceq class="tela-grande-menu-lateral-filho" (onClick)="filho._open=$event" [b_Open]="filho._open" [subgrupos]="filho.subgrupos"
-							[nm_Item]="filho.nm_Grupo_CEQ" (click)="Filter_Menu(filho, filho.b_filho=true)">
+						<itens-ceq class="tela-grande-menu-lateral-filho" (onClick)="filho._open=$event"
+							[b_Open]="filho._open" [subgrupos]="filho.subgrupos" [nm_Item]="filho.nm_Grupo_CEQ"
+							(click)="Filter_Menu(filho, filho.b_filho=true)">
 						</itens-ceq>
 
 						<div *ngIf="filho._open">
-							<div
-								class="{{filho.subgrupos.length > 10?'h-72 overflow-y-auto':'h-20 overflow-y-auto'}}">
-								<div class="py-2 gap-y-3 pl-4 "
-									*ngFor="let neto of filho.subgrupos">
-									<itens-ceq class="tela-grande-menu-lateral-neto {{neto._open?'text-laranja':''}}" [subgrupos]="neto.subgrupos" [b_Open]="neto._open" [nm_Item]="neto.nm_Grupo_CEQ"
-										(click)="Filter_Menu(neto, filho.b_filho=false)">
+							<div class="{{filho.subgrupos.length >= 10?'h-72 overflow-y-auto':''}}">
+								<div class="py-2 gap-y-3 pl-4" *ngFor="let neto of filho.subgrupos">
+									<itens-ceq (onClick)="neto._open=$event" class="tela-grande-menu-lateral-neto {{neto._open?'text-laranja':''}}"
+										[subgrupos]="neto.subgrupos" [b_Open]="neto._open"
+										[nm_Item]="neto.nm_Grupo_CEQ" (click)="Filter_Menu(neto, filho.b_filho=false)">
 									</itens-ceq>
 								</div>
 							</div>
@@ -51,7 +52,7 @@
 			</div>
 
 			<!-- barra de pesquisa -->
-			<uni-search-bar class="barra-pesquisa-fora-do-modal" [control]="modelChanged"></uni-search-bar>
+			<uni-search-bar class="barra-pesquisa-fora-do-modal" [b_Focus]="b_Search_Focus" [control]="modelChanged"></uni-search-bar>
 
 		</div>
 
@@ -108,7 +109,7 @@
 				<div class="pt-2 pl-5" *ngFor="let filho of pai.subgrupos">
 
 					<itens-ceq (onClick)="Fechar_Menu(filho, false)" [subgrupos]="filho.subgrupos"
-						[nm_Item]="filho.nm_Grupo_CEQ" (click)="Filter_Menu(filho, filho.b_filho=true)">
+						[nm_Item]="filho.nm_Grupo_CEQ" (click)="Filter_Menu(filho, filho.b_filho=false)">
 					</itens-ceq>
 
 					<ng-container *ngIf="filho._open">
@@ -131,6 +132,7 @@
 				<div class="w-12 h-14 mb-4 ml-3.5">
 					<img src="assets/icons/lixeira.svg">
 				</div>
+				
 				<div class="my-auto ml-1 text-sm md:text-lg font-semibold md:ml-4">
 					Limpar Filtro
 				</div>
