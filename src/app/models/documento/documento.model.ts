@@ -13,6 +13,6 @@ export class Documento{
     nr_Grupo: number
     nr_Revisao: number
     _open: boolean
-
+    subgrupos: Documento[]
 
 }

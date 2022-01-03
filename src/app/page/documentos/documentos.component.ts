@@ -4,6 +4,7 @@ import { Component, OnInit, Output, Input, ViewChild, EventEmitter, ElementRef, 
 import { FormControl } from '@angular/forms';
 import { debounce, debounceTime, distinctUntilChanged, startWith, throttleTime } from 'rxjs/operators';
 import { ListagemVirtualComponent } from 'src/app/components/listagem-virtual/listagem-virtual.component';
+import { SearchBarComponent } from 'src/app/components/search-bar/searchbar.component';
 import { Documento } from 'src/app/models/documento/documento.model';
 import { DocumentosParams } from 'src/app/models/documento/documento.params';
 import { PaginatedFormParams } from 'src/app/models/genericos/paginated.model';
@@ -27,15 +28,16 @@ export class DocumentosComponent implements OnInit {
     objArrayRetorno = []
     objArrayCampos: CamposListagem[] = [
 
-        { nm_Exibicao: "Nome", nm_Classe: "nome-listagem-tela-grande w-80 w-4/12 my-auto lg:pl-10 overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Documento" },
-        { nm_Exibicao: "Código", nm_Classe: "codigo-listagem-tela-grande w-80 w-2/12 my-auto lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "cd_Qualidade" },
-        { nm_Exibicao: "Processos", nm_Classe: "processo-listagem-tela-grande w-80 w-2/12 my-auto lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Processo" },
-        { nm_Exibicao: "Revisão", nm_Classe: "revisao-listagem-tela-grande w-80 w-1/12 my-auto lg:text-center lg:pl-5", nm_Atibruto: "nr_Revisao" },
-        { nm_Exibicao: "Data", nm_Classe: "data-listagem-tela-grande w-80 w-2/12 my-auto lg:text-center", nm_Atibruto: "dt_Documento" },
+        { nm_Exibicao: "Nome", nm_Classe: "nome-listagem-tela-grande w-4/12 my-auto lg:pl-10 overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Documento" },
+        { nm_Exibicao: "Código", nm_Classe: "codigo-listagem-tela-grande w-2/12 my-auto lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "cd_Qualidade" },
+        { nm_Exibicao: "Processos", nm_Classe: "processo-listagem-tela-grande w-2/12 my-auto lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Processo" },
+        { nm_Exibicao: "Revisão", nm_Classe: "revisao-listagem-tela-grande lg:pl-6 w-1/12 my-auto lg:text-center", nm_Atibruto: "nr_Revisao" },
+        { nm_Exibicao: "Data", nm_Classe: "data-listagem-tela-grande w-2/12 my-auto lg:text-center", nm_Atibruto: "dt_Documento" },
 
     ]
-    
+
     @ViewChild(ListagemVirtualComponent) listagemVirtual: ListagemVirtualComponent
+    @ViewChild(SearchBarComponent) searchFocus: SearchBarComponent
     nr_Registros: number = 0
     nr_Page_Length: number = 7
     nr_Page: number = 1
@@ -45,6 +47,7 @@ export class DocumentosComponent implements OnInit {
     cd_Setor_CEQ: number
     b_Exibir_Computador: boolean = false
     b_Search_Focus: boolean = false
+    b_Requisicao: boolean
 
     constructor(
         private documentosService: DocumentosService
@@ -77,6 +80,7 @@ export class DocumentosComponent implements OnInit {
     }
 
     async Buscar_Documentos() {
+
         const objParams: DocumentosParams = { nr_Page: this.nr_Page, nr_Page_Length: this.nr_Page_Length, nm_Search: this.nm_Search, cd_Setor_CEQ: this.cd_Setor_CEQ }
         const objRetorno = await this.documentosService.Get_Documentos(objParams)
         objRetorno.data.forEach(f => f.nm_Documento = To_Capitalize(f.nm_Documento))
@@ -88,24 +92,27 @@ export class DocumentosComponent implements OnInit {
 
         }
         this.nr_Registros = objRetorno.nr_Registros
-        console.log(this.objArrayDocumentos)
+
     }
 
-    async Filter_Menu(obj: Documento, b_filho) {
+    async Filter_Menu(obj: Documento, b_Filho: boolean) {
 
         this.objArrayGrupoCEQ.forEach(f => { f.subgrupos.forEach(g => g.subgrupos.forEach(h => h._open = false)) })
-        this.nm_Search = ""
+        this.modelChanged.reset()
         this.nr_Page = 1
         this.b_Mostrar_Modal = false
-        this.cd_Setor_CEQ = obj.cd_Setor_CEQ //é um if encurtado
+        this.cd_Setor_CEQ = obj.cd_Setor_CEQ
 
         if (!this.b_Exibir_Computador) {
             this.objArrayDocumentos = []
         }
 
-        if (obj.cd_Setor_CEQ != 0 && b_filho == false) {
+        if (obj.cd_Setor_CEQ != 0 && !b_Filho) {
             this.Buscar_Documentos()
             obj._open = true
+            
+        }else if(obj.subgrupos?.length == 0){
+            this.objArrayDocumentos = []
         }
     }
 
@@ -135,6 +142,7 @@ export class DocumentosComponent implements OnInit {
     }
 
     Mostrar_Modal() {
+
         this.b_Mostrar_Modal = true
         this.objArrayGrupoCEQ.forEach(f => {
             f._open = false
@@ -153,7 +161,8 @@ export class DocumentosComponent implements OnInit {
     }
 
     async Limpar_Filtros() {
-        this.b_Search_Focus = true
+
+        this.searchFocus.searchElement.nativeElement.focus()
         this.modelChanged.reset()
         this.nm_Search = ""
         this.objArrayDocumentos = []
