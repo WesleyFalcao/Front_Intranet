@@ -17,21 +17,6 @@
     }
 }
 
-.menu-lateral-pai{
-    @apply w-full flex flex-col space-y-10 pt-36 font-medium cursor-pointer;
-
-    @screen lg {
-        @apply lg:text-sm
-    }
-    @media (min-width: 1400px) {
-        @apply pt-44
-    }
-    
-}
-
-.formatacao-menu-lateral{
-    @apply flex flex-col w-full justify-start;
-}
 
 .filtro {
    @apply mb-2 transform relative cursor-pointer active:scale-90 transition duration-300 top-6 md:top-9;
@@ -42,8 +27,8 @@
    }
 }
 
-.barra-pesquisa-fora-do-modal{
-    @apply flex flex-grow;
+.barra-pesquisa{
+    @apply flex flex-grow w-full;
 
     @screen md{
         @apply md:w-11/12 md:mr-5;
@@ -72,13 +57,6 @@
     }
 }
 
-.div-lista-documento{
-    @apply pl-6 pr-6 pt-10 space-y-5;
-
-    @screen md{
-        @apply mt-14 space-y-5;
-    }
-}
 
 .tela-grande-menu-lateral-pai{
     @media(min-width: 1400px){
@@ -100,6 +78,54 @@
 
 .nome-listagem-tela-grande{
     @media (min-width: 1400px){
-        @apply lg:pl-40
+        @apply lg:pl-0
+    }
+}
+
+
+.div-lista-documento-modal{
+    @apply pl-6 pr-6 pt-10 space-y-5;
+
+    @screen md{
+        @apply mt-14 space-y-5;
+    }
+}
+
+.menu-lateral-pai{
+    @apply pl-6 pr-6 pt-10 space-y-5 w-full flex flex-col font-medium cursor-pointer;   //relação com div-lista-documento-modal
+
+    @screen lg {
+        @apply text-sm space-y-10 pt-36 pl-0 pr-0
+    }
+    @media (min-width: 1400px) {
+        @apply pt-44
+    }
+    
+}
+
+.formatacao-menu-lateral{
+
+    @apply space-y-10 pt-36 font-medium cursor-pointer relative bg-white rounded-2xl shadow-lg w-full;
+
+    @screen md{
+        @apply text-base font-normal rounded-none shadow-none bg-transparent
+    }
+
+    @screen lg {
+        @apply justify-start pt-1 space-y-0;
+    }
+}
+
+
+.div-background{
+
+    background-image: url('../../../assets/imagens/SVG_Background_White_Green.svg'); transition: all 0.15s easy 0s;
+
+    @apply scrollbar-hide overflow-y-auto pl-4 flex-col bg-cover bg-center absolute top-0 left-0 z-30 w-full h-screen ;
+
+    @screen lg{
+        @apply flex w-3/12 relative;
+        
+        background-image: none;
     }
 }

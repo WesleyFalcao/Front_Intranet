@@ -105,12 +105,15 @@ export class DocumentosComponent implements OnInit {
 
         if (!this.b_Exibir_Computador) {
             this.objArrayDocumentos = []
+
+        }else{
+            this.searchFocus.searchElement.nativeElement.focus()
         }
 
         if (obj.cd_Setor_CEQ != 0 && !b_Filho) {
             this.Buscar_Documentos()
             obj._open = true
-            
+
         }else if(obj.subgrupos?.length == 0){
             this.objArrayDocumentos = []
         }
@@ -142,7 +145,6 @@ export class DocumentosComponent implements OnInit {
     }
 
     Mostrar_Modal() {
-
         this.b_Mostrar_Modal = true
         this.objArrayGrupoCEQ.forEach(f => {
             f._open = false
