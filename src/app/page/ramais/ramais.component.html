@@ -136,61 +136,32 @@
 
     </div>
 
-    <!-- Todo o resto -->
+    <!-- Listagem dos Ramais com a barra de pesquisa -->
     <div class="w-screen lg:px-8">
 
         <!-- barra de pesquisa -->
-        <header class="relative md:pt-4 lg:pt-6 mb-4 h-14 md:h-24 lg:h-16 items-center px-5">
 
-            <div class="flex flex-row pt-4 md:pt-6 lg:pt-4 items-center">
+        <div class="barra-pesquisa-icone-menu">
 
-                <div class="w-full md:px-14 mx-auto md:full lg:w-10/12">
+            <div class="header-itens">
 
-                    <div class="flex-grow relative rounded-full shadow-lg">
+                <input [formControl]="modelChanged" class="input-class" placeholder="Pesquise...">
 
-                        <input [formControl]="modelChanged"
-                            class="relative w-full flex rounded-full pl-16 md:pl-20 py-3 border-2 md:py-4 lg:py-6 lg:pl-28 xl:py-3.5 xl:pl-12 border-gray-200 focus:ring-unimed-purpeconecta focus:border-transparent"
-                            placeholder="Pesquise...">
-
-                        <!-- icone de filtro -->
-
-                        <div class="absolute top-0 md:-top-0.5 left-2 transform active:scale-90 duration-300"
-                            (click)="Buscar_Ramais()">
-                            <svg class="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:hidden" viewBox="0 0 128 128"
-                                fill="none" xmlns="http://www.w3.org/2000/svg" (click)="Mostrar_Modal()">
-                                <path
-                                    d="M34.4954 51H92.5046C93.3146 51 94 49.8542 94 48.5C94 47.1458 93.3146 46 92.5046 46H34.4954C33.6854 46 33 47.1458 33 48.5C33 49.8542 33.6854 51 34.4954 51Z"
-                                    fill="black" />
-                                <path
-                                    d="M92.5008 61H34.4953C33.6853 61 33 62.1458 33 63.5C33 64.8542 33.6853 66 34.4953 66H92.5008C93.3107 66 93.9961 64.8542 93.9961 63.5C94.0584 62.1458 93.373 61 92.5008 61Z"
-                                    fill="black" />
-                                <mask id="path-3-inside-1" fill="white">
-                                    <path
-                                        d="M92.5046 76H34.4954C33.6854 76 33 77.1458 33 78.5C33 79.8542 33.6854 81 34.4954 81H92.5046C93.3146 81 94 79.8542 94 78.5C94 77.1458 93.3769 76 92.5046 76Z" />
-                                </mask>
-                                <path
-                                    d="M92.5046 76H34.4954C33.6854 76 33 77.1458 33 78.5C33 79.8542 33.6854 81 34.4954 81H92.5046C93.3146 81 94 79.8542 94 78.5C94 77.1458 93.3769 76 92.5046 76Z"
-                                    fill="black" />
-                                <path
-                                    d="M92.5046 67H34.4954V85H92.5046V67ZM34.4954 67C29.5653 67 26.7711 70.3653 25.7203 72.1222C24.5081 74.1486 24 76.4118 24 78.5H42C42 79.2341 41.8345 80.2473 41.1676 81.3622C40.662 82.2076 38.6155 85 34.4954 85V67ZM24 78.5C24 80.5882 24.5081 82.8514 25.7202 84.8778C26.7711 86.6346 29.5653 90 34.4954 90V72C38.6155 72 40.662 74.7924 41.1676 75.6378C41.8346 76.7527 42 77.7659 42 78.5H24ZM34.4954 90H92.5046V72H34.4954V90ZM92.5046 90C97.4347 90 100.229 86.6346 101.28 84.8778C102.492 82.8514 103 80.5882 103 78.5H85C85 77.7659 85.1655 76.7527 85.8324 75.6378C86.338 74.7924 88.3845 72 92.5046 72V90ZM103 78.5C103 76.5715 102.578 74.3142 101.361 72.2205C100.202 70.225 97.3548 67 92.5046 67V85C88.5267 85 86.4276 82.3479 85.7978 81.2639C85.1108 80.0817 85 79.0743 85 78.5H103Z"
-                                    fill="black" mask="url(#path-3-inside-1)" />
-                            </svg>
-                        </div>
-
-                        <!-- icone pesquisa-->
-                        <div
-                            class="absolute right-2 top-2 rounded-full w-9 h-9 md:w-12 md:h-12 md:top-1.5 lg:w-14 lg:h-14 lg:top-2.5 lg:right-2.5 xl:w-11 xl:h-11 xl:top-1.5 xl:right-2 bg-unimed-green transform cursor-pointer active:scale-90 transition duration-300 ">
-                            <svg class="w-5 h-5 relative top-2 left-2 md:w-7 md:h-7 md:left-2.5 md:top-2.5 lg:w-8 lg:h-8 lg:left-3 xl:w-6 xl:h-6 xl:left-2.5 xl:top-2.5"
-                                viewBox="0 0 43 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d=" M30.5044 25.9043H28.6179L27.9492 25.2791C30.2895 22.6393 31.6984 19.2122 31.6984 15.4841C31.6984 7.17107 24.7492 0.432648 16.1761 0.432648C7.60303 0.432648 0.653809 7.17107 0.653809 15.4841C0.653809 23.7971 7.60303 30.5356 16.1761 30.5356C20.0209 30.5356 23.5552 29.1694 26.2776 26.9001L26.9223 27.5484V29.3778L38.8626 40.9326L42.4208 37.4824L30.5044 25.9043V25.9043ZM16.1761 25.9043C10.2299 25.9043 5.42991 21.25 5.42991 15.4841C5.42991 9.71824 10.2299 5.06387 16.1761 5.06387C22.1224 5.06387 26.9223 9.71824 26.9223 15.4841C26.9223 21.25 22.1224 25.9043 16.1761 25.9043Z"
-                                    fill="white " />
-                            </svg>
-                        </div>
+                <div class="absolute top-0 md:-top-0.5 left-2 transform active:scale-90 duration-300"
+                    (click)="Buscar_Ramais()">
+                    <div class="w-7 h-7 pt-4 ml-2 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:hidden">
+                        <img src="assets/icons/filter-three-lines.svg" (click)="Mostrar_Modal()">
+                    </div>
+                </div>
+                <div
+                    class="absolute right-2 top-2 rounded-full w-9 h-9 md:w-12 md:h-12 md:top-1.5 lg:w-14 lg:h-14 lg:top-2.5 lg:right-2.5 xl:w-11 xl:h-11 xl:top-1.5 xl:right-2 bg-unimed-green transform cursor-pointer active:scale-90 transition duration-300 ">
+                    <div
+                        class="w-6 h-6 ml-0.5 relative top-2.5 left-2 md:w-7 md:h-7 md:left-2.5 md:top-2.5 lg:w-8 lg:h-8 lg:left-3 xl:w-6 xl:h-6 xl:left-2.5 xl:top-2.5">
+                        <img src="assets/icons/icone-lupa.svg">
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
 
         <!-- iniciais acima -->
         <!-- <div class="xl:mt-10">
@@ -247,8 +218,8 @@
                             class="w-11/12 lg:w-full overflow-x-hidden text-sm lg:text-xl xl:text-base flex my-auto gap-y-2 flex-col xl:flex-row">
 
                             <div [title]="pessoa.nm_Pessoa | camelcase"
-                                    class="lg:text-center lg:pl-4 lg:w-4/12 overflow-hidden overflow-ellipsis whitespace-nowrap">
-                                    {{pessoa.nm_Pessoa | camelcase}}
+                                class="lg:text-center lg:pl-4 lg:w-4/12 overflow-hidden overflow-ellipsis whitespace-nowrap">
+                                {{pessoa.nm_Pessoa | camelcase}}
                             </div>
 
                             <ng-container class="items-center" *ngIf="pessoa.open ">
@@ -269,7 +240,7 @@
                                     <b class="xl:hidden">Email:</b>
                                     {{pessoa.ds_Email}}
                                 </span>
-                                
+
                             </ng-container>
                         </div>
                     </div>

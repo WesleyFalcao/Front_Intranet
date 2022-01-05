@@ -40,16 +40,11 @@
     @screen md{
         width: 100%
     }
-
 }
 
 .cdk-virtual-scroll-content-wrapper {
     position: relative !important;
 }
-
-// .virtual-scroll{
-//     width: calc(100% - 1rem);
-// }
 
 .largura-menu-laral{
     @media (min-width: 1400px) {
@@ -63,5 +58,36 @@
     @media (min-width: 1400px) {
         display: flexbox;
         
+    }
+}
+
+.barra-pesquisa-icone-menu{
+    
+    @apply relative mx-auto w-full flex flex-row mb-4 pt-4 items-center px-5 h-14;
+
+    @screen md {
+        @apply pt-6 px-14 h-24 w-full;
+    }
+    @screen lg {
+        @apply w-10/12 pt-6 h-16;
+    }
+}
+
+.header-itens{
+    @apply flex flex-grow relative rounded-full shadow-lg;
+}
+
+.input-class{
+    @apply relative w-full flex rounded-full pl-16 py-3 border-gray-200 focus:ring-unimed-green focus:border-transparent border-2;
+    
+    @screen md{
+        @apply py-4 pl-20;
+    }
+
+    @screen lg{
+        @apply py-6 pl-28; 
+    }
+    @media (min-width: 1400px) {
+        @apply pl-12 py-3.5;
     }
 }

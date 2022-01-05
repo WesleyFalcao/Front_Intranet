@@ -100,7 +100,6 @@ export class DocumentosComponent implements OnInit {
         this.objArrayGrupoCEQ.forEach(f => { f.subgrupos.forEach(g => g.subgrupos.forEach(h => h._open = false)) })
         this.modelChanged.reset()
         this.nr_Page = 1
-        this.b_Mostrar_Modal = false
         this.cd_Setor_CEQ = obj.cd_Setor_CEQ
 
         if (!this.b_Exibir_Computador) {
@@ -112,10 +111,12 @@ export class DocumentosComponent implements OnInit {
 
         if (obj.cd_Setor_CEQ != 0 && !b_Filho) {
             this.Buscar_Documentos()
+            this.b_Mostrar_Modal = false
             obj._open = true
 
         }else if(obj.subgrupos?.length == 0){
             this.objArrayDocumentos = []
+            this.b_Mostrar_Modal = false
         }
     }
 
@@ -164,7 +165,6 @@ export class DocumentosComponent implements OnInit {
 
     async Limpar_Filtros() {
 
-        this.searchFocus.searchElement.nativeElement.focus()
         this.modelChanged.reset()
         this.nm_Search = ""
         this.objArrayDocumentos = []
@@ -173,6 +173,8 @@ export class DocumentosComponent implements OnInit {
         this.cd_Setor_CEQ = null
         if (!this.b_Exibir_Computador) {
             this.listagemVirtual.scroller.scrollTo({ top: 0 })
+        }else{
+            this.searchFocus.searchElement.nativeElement.focus()
         }
         this.objArrayGrupoCEQ.forEach(f => {
             f._open = false
@@ -189,12 +191,8 @@ export class DocumentosComponent implements OnInit {
         if (b_Pai) {
             this.objArrayGrupoCEQ.forEach(f => {
 
-                if (f.cd_Grupo_CEQ == item.cd_Grupo_CEQ && f._open == true) {
-                    f._open = false
-
-                }
-                else if (f.cd_Grupo_CEQ == item.cd_Grupo_CEQ) {
-                    f._open = true
+                if (f.cd_Grupo_CEQ == item.cd_Grupo_CEQ) {
+                    f._open = !f._open
 
                 } else {
                     f._open = false
@@ -206,11 +204,9 @@ export class DocumentosComponent implements OnInit {
 
                 f.subgrupos.forEach(g => {
 
-                    if (g.cd_Grupo_CEQ == item.cd_Grupo_CEQ && g._open == true) {
-                        g._open = false
-                    }
-                    else if (g.cd_Grupo_CEQ == item.cd_Grupo_CEQ) {
-                        g._open = true
+                    if (g.cd_Grupo_CEQ == item.cd_Grupo_CEQ){
+                        g._open = !g._open
+
                     } else {
                         g._open = false
                     }

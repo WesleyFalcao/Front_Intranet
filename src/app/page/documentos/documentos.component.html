@@ -1,92 +1,76 @@
 <div class="reset-browser flex flex-row">
 
-		<aside class="div-background" *ngIf="(!b_Exibir_Computador && b_Mostrar_Modal)|| b_Exibir_Computador ">
+	<aside class="div-background" *ngIf="(!b_Exibir_Computador && b_Mostrar_Modal)|| b_Exibir_Computador ">
 
-			<div *ngIf="!b_Mostrar_Modal">
-				<div class="icone-unimed-acima" (click)="Limpar_Filtros()">
-					<img class="icone-unimed-acima-tela-grande w-30 h-30" src="assets/imagens/logo-Unimed.svg">
-				</div>
+		<div *ngIf="!b_Mostrar_Modal">
+			<div class="icone-unimed-acima" (click)="Limpar_Filtros()">
+				<img class="icone-unimed-acima-tela-grande w-30 h-30" src="assets/imagens/logo-Unimed.svg">
 			</div>
+		</div>
 
-			<div class="flex flex-row gap-4 md:gap-6 mx-4 mb-8 lg:mb-4" *ngIf="b_Mostrar_Modal">
+		<div class="flex flex-row gap-4 md:gap-6 mx-4 mb-8 lg:mb-4" *ngIf="b_Mostrar_Modal">
 
-				<div *ngIf="b_Mostrar_Modal">
-					<div class="flex flex-row gap-4">
-						<button class="transform cursor-pointer active:scale-90 transition duration-300"
-							(click)="!b_Mostrar_Modal">
+			<div *ngIf="b_Mostrar_Modal">
+				<div class="flex flex-row gap-4">
+					<button class="transform cursor-pointer active:scale-90 transition duration-300"
+						(click)="b_Mostrar_Modal = false">
 
-							<img class="relative w-7 h-7 md:w-8 md:h-8 md:ml-4 top-2 md:top-6"
-								src="assets/imagens/arrow-left-green.svg">
-						</button>
-					</div>
-				</div>
-
-				<div *ngIf="b_Mostrar_Modal">
-					<div class="pt-8">
-						<div class="relative flex w-7/12 md:w-4/12 h-12 rounded-full bg-white shadow-lg transform -translate-x-1/2 left-1/2 active:scale-95 duration-300"
+						<img class="relative w-7 h-7 md:w-8 md:h-8 md:ml-4 right-2 top-2 md:top-6"
+							src="assets/imagens/arrow-left-green.svg">
+					</button>
+					<div class="pt-3 mx-auto">
+						<div class="relative ml-2 flex w-48 md:w-4/12 h-12 rounded-full bg-white shadow-lg transform -translate-x-1/2 left-1/2 active:scale-95 duration-300"
 							(click)="Limpar_Filtros()">
 							<div class="w-12 h-14 mb-4 ml-3.5">
 								<img src="assets/icons/lixeira.svg">
 							</div>
 
-							<div class="my-auto ml-1 text-sm md:text-lg font-semibold md:ml-4">
+							<div class="text-sm my-auto md:text-lg font-semibold md:ml-4">
 								Limpar Filtro
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			
-			<ul class="menu-lateral-pai">
+		</div>
 
-				<li class="formatacao-menu-lateral" *ngFor="let pai of objArrayGrupoCEQ">
+		<ul class="menu-lateral-pai">
 
-					<itens-ceq class="tela-grande-menu-lateral-pai font-medium lg:text-base lg:font-semibold w-20"
+			<li class="formatacao-menu-lateral" *ngFor="let pai of objArrayGrupoCEQ">
+				<div class=" largura-titulo-pai">
+					<itens-ceq class="tela-grande-menu-lateral-pai font-medium lg:text-base lg:font-semibold"
 						[b_Nao_Fecha]="false" [subgrupos]="pai.subgrupos" [nm_Item]="pai.nm_Grupo_CEQ" [b_Open]="true"
 						(onClick)="Fechar_Menu(pai, true)">
 					</itens-ceq>
+				</div>
 
-					<div class="max-h-48 overflow-y-auto lg:max-h-full lg:overscroll-y-none">
+				<div class="max-h-48 overflow-y-auto lg:max-h-full lg:overscroll-y-none">
 
-						<div class="pt-1 pl-4 pb-2 {{filho.subgrupos.length == 0?'pl-8':''}}"
-							*ngFor="let filho of pai.subgrupos">
+					<div class="pl-4 pb-2 {{filho.subgrupos.length == 0?'pl-8':''}}"
+						*ngFor="let filho of pai.subgrupos">
 
-							<itens-ceq class="tela-grande-menu-lateral-filho" (onClick)="filho._open=$event"
-								[b_Open]="filho._open" [subgrupos]="filho.subgrupos" [nm_Item]="filho.nm_Grupo_CEQ"
-								(click)="Filter_Menu(filho, filho.b_Filho=true)">
-							</itens-ceq>
+						<itens-ceq class="tela-grande-menu-lateral-filho" (onClick)="filho._open=$event"
+							[b_Open]="filho._open" [subgrupos]="filho.subgrupos" [nm_Item]="filho.nm_Grupo_CEQ"
+							(click)="Filter_Menu(filho, filho.b_Filho=true)">
+						</itens-ceq>
 
-							<ng-container *ngIf="filho._open">
-								<div class="{{filho.subgrupos.length >= 10?'h-72 overflow-y-auto':''}}">
-
-									<div class="py-2 gap-y-3 pl-4 max-h-40 lg:gap-y-1 lg:py-1"
-										*ngFor="let neto of filho.subgrupos">
-										<itens-ceq (onClick)="neto._open=$event"
-											class="tela-grande-menu-lateral-neto {{neto._open?'text-laranja':''}}"
-											[subgrupos]="neto.subgrupos" [b_Open]="neto._open"
-											[nm_Item]="neto.nm_Grupo_CEQ"
-											(click)="Filter_Menu(neto, filho.b_Filho=false); b_Mostrar_Modal = false ">
-										</itens-ceq>
-									</div>
-								</div>
-							</ng-container>
-
-							<div *ngIf="b_Mostrar_Modal">
-								<div class="flex flex-row gap-4 z-50">
-									<button class="transform cursor-pointer active:scale-90 transition duration-300"
-										(click)="!b_Mostrar_Modal">
-
-										<img class="relative w-7 h-7 md:w-8 md:h-8 md:ml-4 top-2 md:top-6"
-											src="assets/imagens/arrow-left-green.svg">
-									</button>
+						<ng-container *ngIf="filho._open">
+							<div class="{{filho.subgrupos.length >= 10?'h-72 overflow-y-auto':''}}">
+								<div class="py-2 gap-y-3 pl-4 max-h-40 lg:gap-y-1 lg:py-1"
+									*ngFor="let neto of filho.subgrupos">
+									<itens-ceq (onClick)="neto._open=$event"
+										class="menu-lateral-neto {{neto._open?'text-laranja':''}}"
+										[subgrupos]="neto.subgrupos" [b_Open]="neto._open" [nm_Item]="neto.nm_Grupo_CEQ"
+										(click)="Filter_Menu(neto, filho.b_Filho = false); b_Mostrar_Modal = false ">
+									</itens-ceq>
 								</div>
 							</div>
-						</div>
+						</ng-container>
 					</div>
-				</li>
-			</ul>
-		</aside>
-
+				</div>
+			</li>
+		</ul>
+	</aside>
 
 	<main class="h-screen w-full xl:w-9/12 resolucao-acima-notebook">
 
@@ -121,42 +105,3 @@
 		</ng-template>
 	</main>
 </div>
-
-<!-- modal -->
-
-<!-- <div style="background-image: url('assets/imagens/SVG_Background_White_Green.svg'); transition: all 0.15s easy 0s;"
-	class="bg-cover bg-center w-full h-screen absolute top-0 left-0 z-30" *ngIf="b_Mostrar_Modal" (click)="b_Mostrar_Modal = false">
-	
-	 <div class="div-lista-documento-modal">
-
-		<ul class="relative bg-white rounded-2xl shadow-lg w-full md:text-lg md:w-3/4 md:mx-auto"
-			*ngFor="let pai of objArrayGrupoCEQ">
-
-			<itens-ceq class="font-medium" (onClick)="Fechar_Menu(pai, true)" [subgrupos]="pai.subgrupos"
-				[nm_Item]="pai.nm_Grupo_CEQ" [b_Open]="true">
-			</itens-ceq>
-
-			<div class="max-h-48 overflow-y-auto">
-
-				<div class="pt-2 pl-5" *ngFor="let filho of pai.subgrupos">
-
-					<itens-ceq (onClick)="Fechar_Menu(filho, false)" [subgrupos]="filho.subgrupos"
-						[nm_Item]="filho.nm_Grupo_CEQ">
-					</itens-ceq>
-
-					<ng-container *ngIf="filho._open">
-						<div class="overflow-y-scroll">
-							<div class="max-h-40">
-								<div class="pt-2 pl-5" *ngFor="let neto of filho.subgrupos">
-									<itens-ceq [subgrupos]="neto.subgrupos" [nm_Item]="neto.nm_Grupo_CEQ"
-										(click)="b_Mostrar_Modal = false; Filter_Menu(neto, filho.b_Filho=false)">
-									</itens-ceq>
-								</div>
-							</div>
-						</div>
-					</ng-container>
-				</div>
-			</div>
-		</ul>
-	</div>
-</div> -->
