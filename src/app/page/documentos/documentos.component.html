@@ -1,20 +1,15 @@
 <div class="reset-browser flex flex-row">
-
-	<aside class="div-background" *ngIf="(!b_Exibir_Computador && b_Mostrar_Modal)|| b_Exibir_Computador ">
-
+	<aside class="div-background" *ngIf="(!b_Exibir_Computador && b_Mostrar_Modal)||b_Exibir_Computador">
 		<div *ngIf="!b_Mostrar_Modal">
 			<div class="icone-unimed-acima" (click)="Limpar_Filtros()">
 				<img class="icone-unimed-acima-tela-grande w-30 h-30" src="assets/imagens/logo-Unimed.svg">
 			</div>
 		</div>
-
 		<div class="flex flex-row gap-4 md:gap-6 mx-4 mb-8 lg:mb-4" *ngIf="b_Mostrar_Modal">
-
 			<div *ngIf="b_Mostrar_Modal">
 				<div class="flex flex-row gap-4">
 					<button class="transform cursor-pointer active:scale-90 transition duration-300"
 						(click)="b_Mostrar_Modal = false">
-
 						<img class="relative w-7 h-7 md:w-8 md:h-8 md:ml-4 right-2 top-2 md:top-6"
 							src="assets/imagens/arrow-left-green.svg">
 					</button>
@@ -24,7 +19,6 @@
 							<div class="w-12 h-14 mb-4 ml-3.5">
 								<img src="assets/icons/lixeira.svg">
 							</div>
-
 							<div class="text-sm my-auto md:text-lg font-semibold md:ml-4">
 								Limpar Filtro
 							</div>
@@ -33,9 +27,7 @@
 				</div>
 			</div>
 		</div>
-
 		<ul class="menu-lateral-pai">
-
 			<li class="formatacao-menu-lateral" *ngFor="let pai of objArrayGrupoCEQ">
 				<div class=" largura-titulo-pai">
 					<itens-ceq class="tela-grande-menu-lateral-pai font-medium lg:text-base lg:font-semibold"
@@ -43,17 +35,13 @@
 						(onClick)="Fechar_Menu(pai, true)">
 					</itens-ceq>
 				</div>
-
 				<div class="max-h-48 overflow-y-auto lg:max-h-full lg:overscroll-y-none">
-
 					<div class="pl-4 pb-2 {{filho.subgrupos.length == 0?'pl-8':''}}"
 						*ngFor="let filho of pai.subgrupos">
-
 						<itens-ceq class="tela-grande-menu-lateral-filho" (onClick)="filho._open=$event"
 							[b_Open]="filho._open" [subgrupos]="filho.subgrupos" [nm_Item]="filho.nm_Grupo_CEQ"
 							(click)="Filter_Menu(filho, filho.b_Filho=true)">
 						</itens-ceq>
-
 						<ng-container *ngIf="filho._open">
 							<div class="{{filho.subgrupos.length >= 10?'h-72 overflow-y-auto':''}}">
 								<div class="py-2 gap-y-3 pl-4 max-h-40 lg:gap-y-1 lg:py-1"
@@ -71,30 +59,24 @@
 			</li>
 		</ul>
 	</aside>
-
 	<main class="h-screen w-full xl:w-9/12 resolucao-acima-notebook">
-
 		<div class="flex flex-row gap-3 mx-4 pb-7">
-
 			<!-- Filtro-->
 			<div *ngIf="!b_Mostrar_Modal">
 				<div class="filtro" (click)="Mostrar_Modal()">
 					<img class="w-8 h-8 md:w-9 md:h-9 md:ml-4" src="assets/icons/filter-three-lines.svg">
 				</div>
 			</div>
-
-			<!-- barra de pesquisa -->
+			<!-- Barra de pesquisa -->
 			<ng-container *ngIf="!b_Mostrar_Modal">
 				<uni-search-bar class="barra-pesquisa" [control]="modelChanged"></uni-search-bar>
 			</ng-container>
 		</div>
-
 		<div *ngIf="!b_Exibir_Computador; else listagem">
 			<app-listagem-virtual [objArrayCampos]="objArrayCampos" [objArrayItens]="objArrayDocumentos"
 				(onPageChange)="Mudar_Pagina($event)" (onClickRow)="Buscar_Arquivo($event)">
 			</app-listagem-virtual>
 		</div>
-
 		<ng-template #listagem>
 			<div class="mr-10">
 				<app-listagem [objArrayCampos]="objArrayCampos" [objArrayItems]="objArrayDocumentos"
