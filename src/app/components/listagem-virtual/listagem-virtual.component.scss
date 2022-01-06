@@ -3,7 +3,7 @@
     @apply w-full overflow-y-auto rounded-lg;
 
     @screen md{
-        height: calc(100vh - 8rem);
+        height: calc(100vh - 10rem);
         @apply md:mt-16;   
     }
     @screen lg{

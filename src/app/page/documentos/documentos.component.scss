@@ -6,11 +6,17 @@
     @apply absolute transform -translate-x-1/2 left-1/2 top-10 hidden cursor-pointer;
 
     @screen lg {
-        @apply lg:flex
+        @apply lg:flex lg:top-7
     }
 
     @media (min-width: 1400px) {
         @apply top-5
+    }
+}
+
+.calculo-altura-pagina{
+    @screen md{
+        height: calc(100% - 5rem)
     }
 }
 
@@ -22,19 +28,21 @@
 }
 
 .filtro {
-   @apply mb-2 transform relative cursor-pointer active:scale-90 transition duration-300 top-6 md:top-9;
+   @apply mb-2 transform relative cursor-pointer active:scale-90 transition duration-300 left-3 top-6 md:top-9;
 
+   @screen md{
+        @apply left-2
+   }
    @screen lg {
-
-    @apply lg:hidden;
+        @apply lg:hidden;
    }
 }
 
 .barra-pesquisa{
-    @apply flex flex-grow w-full;
+    @apply flex flex-grow w-full pl-4 pr-2;
 
     @screen md{
-        @apply md:w-11/12 md:mr-5;
+        @apply md:w-11/12 md:mr-5 pl-5 pr-0;
     }
     @screen lg{
         @apply lg:w-full lg:mx-8;
@@ -60,20 +68,47 @@
     }
 }
 
+.menu-lateral-pai{
+    @apply font-medium;
 
-.tela-grande-menu-lateral-pai{
+    @screen md{
+        @apply font-semibold text-2xl;
+    }
+    @screen lg{
+        @apply text-base font-semibold;
+    }
     @media(min-width: 1400px){
-        @apply text-lg font-semibold
+        @apply text-lg font-semibold;
     }
 }
 
-.tela-grande-menu-lateral-filho{
+.formatacao-filho-neto{
+    @apply max-h-48 overflow-y-auto;
+
+    @screen md{
+        @apply max-h-80;
+    }
+
+    @screen lg{
+        @apply max-h-full overscroll-y-none;
+    }
+}
+
+.menu-lateral-filho{
+
+    @screen lg{
+        @apply text-base
+    }
     @media(min-width: 1400px){
-        @apply text-base font-medium
+        @apply text-base font-medium;
     }
 }
 
 .menu-lateral-neto{
+    @screen md{
+        @apply text-xl
+    }
+
     @screen lg{
         @apply text-sm pb-2 
     }
@@ -96,9 +131,12 @@
     }
 }
 
-.menu-lateral-pai{
-    @apply pl-2.5 pr-6 pt-5 space-y-5 w-full flex flex-col font-medium cursor-pointer;   //relação com div-lista-documento-modal
+.menu-lateral{
+    @apply pl-2.5 pr-6 pt-10 space-y-5 w-full flex flex-col font-medium cursor-pointer;   //relação com div-lista-documento-modal
 
+    @screen md{
+        @apply pt-28
+    }
     @screen lg {
         @apply text-sm pl-0 pr-0 pt-36
     }
@@ -112,11 +150,11 @@
 
     @apply space-y-3 font-medium cursor-pointer relative bg-white rounded-2xl shadow-lg w-full;
 
-    @screen md{
-        @apply text-base font-normal rounded-none shadow-none bg-transparent
+    @screen md {
+        @apply text-2xl font-medium shadow-none w-3/4 bg-transparent transform relative -translate-x-1/2 left-1/2;
     }
     @screen lg {
-        @apply justify-start space-y-3;
+        @apply justify-start space-y-3 text-lg items-start w-full left-0 -translate-x-0;
     }
 }
 
@@ -140,4 +178,13 @@
     @media (min-width: 1400px) {
         @apply w-96
     }
+}
+
+.limpar-filtro-button{
+    @apply top-3 absolute transform -translate-x-1/2 left-1/2;
+
+    @screen md{
+        @apply top-6 transform -translate-x-1/2 left-1/2;
+    }
+
 }

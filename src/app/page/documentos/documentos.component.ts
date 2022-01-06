@@ -92,7 +92,6 @@ export class DocumentosComponent implements OnInit {
 
         }
         this.nr_Registros = objRetorno.nr_Registros
-
     }
 
     async Filter_Menu(obj: Documento, b_Filho: boolean) {
@@ -105,22 +104,22 @@ export class DocumentosComponent implements OnInit {
         if (!this.b_Exibir_Computador) {
             this.objArrayDocumentos = []
 
-        }else{
+        } else {
             this.searchFocus.searchElement.nativeElement.focus()
         }
 
         if (obj.cd_Setor_CEQ != 0 && !b_Filho) {
             this.Buscar_Documentos()
-            this.b_Mostrar_Modal = false
             obj._open = true
 
-        }else if(obj.subgrupos?.length == 0){
+        } else if (obj.subgrupos?.length == 0) {
             this.objArrayDocumentos = []
-            this.b_Mostrar_Modal = false
+
         }
     }
 
     async Buscar_Arquivo(cd_Documento: number) {
+
         let token = await this.documentosService.Get_Token_Arquivo(cd_Documento)
         window.open(environment.CONS_URL_APIBASE + "Documentos?token=" + token.ds_Token, '_blank')
     }
@@ -145,8 +144,8 @@ export class DocumentosComponent implements OnInit {
         this.objArrayGrupoCEQ = objArrayAux
     }
 
-      
     Mostrar_Modal() {
+
         this.b_Mostrar_Modal = true
         this.objArrayGrupoCEQ.forEach(f => {
             f._open = false
@@ -155,10 +154,13 @@ export class DocumentosComponent implements OnInit {
     }
 
     Exibir_Listagem() {
+        this.nr_Page_Length = 13
+
         if (window.innerWidth > 1024) {
             this.b_Exibir_Computador = true
+            this.b_Mostrar_Modal = !this.b_Mostrar_Modal
+            this.nr_Page_Length = 7
         }
-
         if (window.innerWidth >= 1440) {
             this.nr_Page_Length = 13
         }
@@ -174,8 +176,9 @@ export class DocumentosComponent implements OnInit {
         this.cd_Setor_CEQ = null
         if (!this.b_Exibir_Computador) {
             this.listagemVirtual.scroller.scrollTo({ top: 0 })
-        }else{
+        } else {
             this.searchFocus.searchElement.nativeElement.focus()
+            this.b_Mostrar_Modal = true
         }
         this.objArrayGrupoCEQ.forEach(f => {
             f._open = false
@@ -205,7 +208,7 @@ export class DocumentosComponent implements OnInit {
 
                 f.subgrupos.forEach(g => {
 
-                    if (g.cd_Grupo_CEQ == item.cd_Grupo_CEQ){
+                    if (g.cd_Grupo_CEQ == item.cd_Grupo_CEQ) {
                         g._open = !g._open
 
                     } else {

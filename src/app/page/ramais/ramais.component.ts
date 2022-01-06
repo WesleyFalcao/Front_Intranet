@@ -54,6 +54,7 @@ export class RamaisComponent implements OnInit {
   cd_Origem: number = 3
   nm_Inicial: String
   dt_Ultima_Pesquisa = new Date()
+  b_Computador: boolean = false
 
   nr_Page: number = 1
   nr_Page_Length: number = 100
@@ -64,6 +65,7 @@ export class RamaisComponent implements OnInit {
 
   async ngOnInit() {
 
+    this.Exibir_Computador()
     this.Buscar_Ramais()
     this.modelChanged.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async (input) => {
       this.nr_Page = 1
@@ -151,6 +153,12 @@ export class RamaisComponent implements OnInit {
     this.nm_Inicial_Selecionada = objInicial.inicial
     this.modelChanged.setValue("")
     this.Buscar_Ramais()
+  }
+
+  Exibir_Computador(){
+    if(window.innerWidth > 1280){
+      this.b_Computador = !this.b_Computador
+    }
   }
 }
 
