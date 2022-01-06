@@ -18,7 +18,6 @@ export class ListagemVirtualComponent implements OnInit {
   @Output() onClickRow = new EventEmitter()
   @Output() onPageChange = new EventEmitter()
 
-
   constructor( private ngZone: NgZone ) { }
 
   ngOnInit(): void {

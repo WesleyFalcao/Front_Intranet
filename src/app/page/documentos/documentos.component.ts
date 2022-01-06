@@ -2,7 +2,7 @@ import { transition } from '@angular/animations';
 import { importExpr } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, Output, Input, ViewChild, EventEmitter, ElementRef, ViewChildren } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounce, debounceTime, distinctUntilChanged, startWith, throttleTime } from 'rxjs/operators';
+import { debounce, debounceTime, distinctUntilChanged, startWith, throttleTime, filter } from 'rxjs/operators';
 import { ListagemVirtualComponent } from 'src/app/components/listagem-virtual/listagem-virtual.component';
 import { SearchBarComponent } from 'src/app/components/search-bar/searchbar.component';
 import { Documento } from 'src/app/models/documento/documento.model';
@@ -145,6 +145,7 @@ export class DocumentosComponent implements OnInit {
         this.objArrayGrupoCEQ = objArrayAux
     }
 
+      
     Mostrar_Modal() {
         this.b_Mostrar_Modal = true
         this.objArrayGrupoCEQ.forEach(f => {

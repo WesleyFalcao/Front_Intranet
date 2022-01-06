@@ -91,3 +91,36 @@
         @apply pl-12 py-3.5;
     }
 }
+
+.formatacao-botao-logo-unimed{
+    @apply absolute hidden transform -translate-x-1/2 left-1/2 top-10;
+
+    @screen lg{
+        @apply flex
+    }
+}
+
+.modal-icones{
+    transition: all 2s ease;
+
+    @apply absolute left-0 bg-white z-30 w-60 h-full;
+
+    @screen md{
+        @apply w-96;
+    }
+    @screen lg{
+        @apply relative h-auto w-full  bg-transparent;
+    }
+
+}
+
+.li-hospital-icone{
+    @apply flex pt-4 transform active:scale-95 cursor-pointer duration-300;
+
+    @screen md{
+        @apply pt-2;
+    }
+    @screen lg {
+        @apply mt-36
+    }
+}
