@@ -6,13 +6,12 @@
         <!-- Icone Unimed-->
 
         <div class="formatacao-botao-logo-unimed">
-            <img src="assets/imagens/logo-Unimed.svg"> 
+            <img class="position-logo-unimed" src="assets/imagens/logo-Unimed.svg">
         </div>
 
         <ul class="modal-icones" *ngIf="b_Mostrar_Modal">
 
-            <li class="li-hospital-icone"
-                (click)="Get_Filtro_Page_Ramais(2)">
+            <li class="li-hospital-icone" (click)="Get_Filtro_Page_Ramais(2)">
 
                 <div class="pl-4 md:pl-5 md:pt-8">
 
@@ -33,7 +32,8 @@
                     </svg>
 
                 </div>
-                <div class="relative pl-4 top-4 text-sm md:text-lg md:top-16 lg:top-14 focus:bold whitespace-nowrap {{cd_Origem == 2? 'font-bold': ''}}">
+                <div
+                    class="relative pl-4 top-4 text-sm md:text-lg md:top-16 lg:top-14 whitespace-nowrap {{cd_Origem == 2? nm_Text_Orange: ''}}">
                     Hospital Unimed
                 </div>
             </li>
@@ -64,7 +64,7 @@
                     </svg>
                 </div>
                 <div
-                    class="relative pl-4 top-8 text-sm md:top-10 md:text-lg lg:top-14 {{cd_Origem == 1? 'font-bold': ''}}">
+                    class="relative pl-4 top-8 text-sm md:top-10 md:text-lg lg:top-14 {{cd_Origem == 1? nm_Text_Orange: ''}}">
                     Operadora</div>
             </li>
 
@@ -95,8 +95,8 @@
                     </svg>
                 </div>
                 <div
-                    class="relative pl-4 top-8 text-sm md:top-10 md:text-lg lg:top-14 whitespace-nowrap {{cd_Origem == 0? 'font-bold': ''}}">
-                    Contatos Úteis
+                    class="relative pl-4 top-8 text-sm md:top-10 md:text-lg lg:top-14 whitespace-nowrap {{cd_Origem == 0? nm_Text_Orange: ''}}">
+                    Contatos úteis
                 </div>
             </li>
 
@@ -110,11 +110,10 @@
                     </svg>
                 </div>
                 <div class="relative pl-4 top-8 md:top-10 text-sm md:text-lg lg:top-14 whitespace-nowrap">
-                    Filtrar Todos
+                    Filtrar todos
                 </div>
             </li>
         </ul>
-
     </div>
 
     <!-- Listagem dos Ramais com a barra de pesquisa -->
@@ -130,16 +129,13 @@
 
                 <div class="absolute top-0 md:-top-0.5 left-2 transform active:scale-90 duration-300"
                     (click)="Buscar_Ramais()">
-                    <div class="w-7 h-7 pt-4 ml-2 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:hidden">
+                    <div
+                        class="w-7 h-7 pt-4 ml-2 md:w-9 md:h-9 md:left-2 md:absolute md:top-1 lg:w-20 lg:h-20 lg:hidden">
                         <img src="assets/icons/filter-three-lines.svg" (click)="Mostrar_Modal()">
                     </div>
                 </div>
-                <div
-                    class="absolute right-2 top-2 rounded-full w-9 h-9 md:w-12 md:h-12 md:top-1.5 lg:w-14 lg:h-14 lg:top-2.5 lg:right-2.5 xl:w-11 xl:h-11 xl:top-1.5 xl:right-2 bg-unimed-green transform cursor-pointer active:scale-90 transition duration-300 ">
-                    <div
-                        class="w-6 h-6 ml-0.5 relative top-2.5 left-2 md:w-7 md:h-7 md:left-2.5 md:top-2.5 lg:w-8 lg:h-8 lg:left-3 xl:w-6 xl:h-6 xl:left-2.5 xl:top-2.5">
-                        <img src="assets/icons/icone-lupa.svg">
-                    </div>
+                <div class="circulo-lupa">
+                    <img class="lupa-icon-pesquisa" src="assets/icons/icone-lupa.svg">
                 </div>
             </div>
         </div>
@@ -175,7 +171,7 @@
 
         <!-- Body -->
 
-        <div #listaRamais class="lg:mt-14 overflow-y-auto body-documentos">
+        <div #listaRamais class="overflow-y-auto body-documentos">
 
             <cdk-virtual-scroll-viewport [itemSize]="56" minBufferPx="700" maxBufferPx="700"
                 class="virtual-scroll md:mx-20 pl-2 lg:mx-0 h-full pt-4">
@@ -199,7 +195,7 @@
                             class="w-11/12 lg:w-full overflow-x-hidden text-sm lg:text-xl xl:text-base flex my-auto gap-y-2 flex-col xl:flex-row">
 
                             <div [title]="pessoa.nm_Pessoa | camelcase"
-                                class="lg:text-center lg:pl-4 lg:w-4/12 overflow-hidden overflow-ellipsis whitespace-nowrap">
+                                class="lg:pl-4 lg:w-4/12 overflow-hidden overflow-ellipsis whitespace-nowrap">
                                 {{pessoa.nm_Pessoa | camelcase}}
                             </div>
 
@@ -211,7 +207,7 @@
                                     {{pessoa.nm_Departamento | camelcase}}
                                 </span>
 
-                                <span class=" lg:text-center lg:w-2/12 lg:pl-0 lg:whitespace-nowrap">
+                                <span class=" lg:text-center lg:w-2/12 lg:pl-0 lg:whitespace-nowrap overflow-hidden overflow-ellipsis whitespace-nowrap">
                                     <b class="xl:hidden">Contato(s):</b>
                                     {{pessoa.nr_Ramal}}<br>{{pessoa.nr_Telefone}}
                                 </span>

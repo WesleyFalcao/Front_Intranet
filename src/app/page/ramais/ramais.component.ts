@@ -1,14 +1,10 @@
-import { fn, THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, ElementRef, EventEmitter, NgZone, OnInit, Output, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
-import { interval, timer } from 'rxjs';
-import { ScrollDirective } from 'src/app/directives/scroll/scroll.directive';
-import { RamaisService } from './ramais.service';
-import { Subject, Subscription } from "rxjs";
-import { debounceTime, distinctUntilChanged, filter, map, pairwise, throttleTime } from "rxjs/operators";
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { Component, ElementRef, NgZone, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, filter, map, pairwise, throttleTime } from "rxjs/operators";
 import { RamaisParams } from 'src/app/models/ramais/ramais.params';
 import { SubjectService } from 'src/app/services/subject.service';
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { RamaisService } from './ramais.service';
 
 @Component({
   selector: 'app-ramais',
@@ -31,16 +27,16 @@ export class RamaisComponent implements OnInit {
 
   objArrayTitulos = [
 
-    { nm_titulo: "Nome", nm_Classe: "lg:w-4/12 text-center"         },
-    { nm_titulo: "Setor", nm_Classe: "lg:w-3/12 text-center"        },
-    { nm_titulo: "Contato(s)", nm_Classe: "lg:w-2/12 text-center"   },
-    { nm_titulo: "Email", nm_Classe: "lg:w-3/12 text-center"        }
+    { nm_titulo: "Nome", nm_Classe: "lg:w-4/12 text-center"},
+    { nm_titulo: "Setor", nm_Classe: "lg:w-3/12 text-center"},
+    { nm_titulo: "Contato(s)", nm_Classe: "lg:w-2/12 text-center"},
+    { nm_titulo: "E-mail", nm_Classe: "lg:w-3/12 text-center"}
   ]
 
   // @ViewChildren(ScrollDirective)
   // scroll: QueryList<ScrollDirective>;
 
-  @ViewChild( CdkVirtualScrollViewport, {static: true}) scroller: CdkVirtualScrollViewport;
+  @ViewChild(CdkVirtualScrollViewport, { static: true }) scroller: CdkVirtualScrollViewport;
   @ViewChildren('variavelLocal') objArrayItemLista: QueryList<ElementRef>
   @ViewChild('listaRamais') listaRamais: ElementRef
   @ViewChildren('letras') objArrayLetras: QueryList<ElementRef>
@@ -55,6 +51,7 @@ export class RamaisComponent implements OnInit {
   nm_Inicial: String
   dt_Ultima_Pesquisa = new Date()
   b_Computador: boolean = false
+  nm_Text_Orange: string = "text-laranja"
 
   nr_Page: number = 1
   nr_Page_Length: number = 100
@@ -76,7 +73,7 @@ export class RamaisComponent implements OnInit {
       }
       await this.Buscar_Ramais()
     })
-    
+
     this.scroller.elementScrolled().pipe(
       map(() => this.scroller.measureScrollOffset('bottom')),
       filter((epic) => (new Date().getTime() - this.dt_Ultima_Pesquisa.getTime()) > 300),
@@ -84,7 +81,7 @@ export class RamaisComponent implements OnInit {
       filter(([y1, y2]) => (y2 < y1 && y2 < 140)),
       throttleTime(200)
     ).subscribe(() => {
-      this.ngZone.run(async() => {
+      this.ngZone.run(async () => {
         this.dt_Ultima_Pesquisa = new Date()
         this.nr_Page++
         await this.Buscar_Ramais();
@@ -114,7 +111,7 @@ export class RamaisComponent implements OnInit {
     }
   }
 
-  async Buscar_Ramais(){
+  async Buscar_Ramais() {
     const objParams: RamaisParams = { nr_Page: this.nr_Page = 1, nr_Page_Length: this.nr_Page_Length, nm_Search: this.nm_Search, cd_Origem: this.cd_Origem, nm_Inicial_Selecionada: this.nm_Inicial_Selecionada }
     this.objArrayRamais = [...this.objArrayRamais, ...await this.ramaisService.Get_Ramais(objParams)]
     this.Redefinir()
@@ -124,7 +121,7 @@ export class RamaisComponent implements OnInit {
     this.listaRamais.nativeElement.scrollTo(0, 0)
   }
 
-  async Get_Filtro_Page_Ramais(cd_Origem: number, b_Letra: boolean = true) { 
+  async Get_Filtro_Page_Ramais(cd_Origem: number, b_Letra: boolean = true) {
     this.objArrayRamais = []
     this.nr_Page = 1
     this.cd_Origem = cd_Origem
@@ -155,8 +152,8 @@ export class RamaisComponent implements OnInit {
     this.Buscar_Ramais()
   }
 
-  Exibir_Computador(){
-    if(window.innerWidth > 1280){
+  Exibir_Computador() {
+    if (window.innerWidth > 1280) {
       this.b_Computador = !this.b_Computador
     }
   }
