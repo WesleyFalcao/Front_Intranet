@@ -8,7 +8,7 @@ import { RamaisComponent } from './page/ramais/ramais.component';
 const routes: Routes = [
 
   {
-    path: '',
+    path: 'documentos',
     component: DocumentosComponent
   },
   {

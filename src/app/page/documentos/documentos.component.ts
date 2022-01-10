@@ -22,7 +22,7 @@ export class DocumentosComponent implements OnInit {
     objArrayRetorno = []
     objArrayCampos: CamposListagem[] = [
 
-        { nm_Exibicao: "Nome", nm_Classe: "nome-listagem-tela-grande w-4/12 my-auto lg:pl-10 overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Documento" },
+        { nm_Exibicao: "Nome", nm_Classe: "nome-listagem-tela-grande w-5/12 my-auto lg:pl-14 overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Documento" },
         { nm_Exibicao: "Código", nm_Classe: "codigo-listagem-tela-grande w-2/12 my-auto lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "cd_Qualidade" },
         { nm_Exibicao: "Processos", nm_Classe: "processo-listagem-tela-grande w-2/12 my-auto lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Processo" },
         { nm_Exibicao: "Revisão", nm_Classe: "revisao-listagem-tela-grande lg:pl-6 w-1/12 my-auto lg:text-center", nm_Atibruto: "nr_Revisao" },
@@ -38,6 +38,7 @@ export class DocumentosComponent implements OnInit {
     b_Mostrar_Modal: boolean = false
     nm_Search: string = ""
     modelChanged = new FormControl()
+    b_Exibir_Listagem: boolean = false
     cd_Setor_CEQ: number
     b_Exibir_Computador: boolean = false
     b_Search_Focus: boolean = false
@@ -60,6 +61,7 @@ export class DocumentosComponent implements OnInit {
                 this.objArrayDocumentos = []
             }
             this.Buscar_Documentos()
+    
         })
 
         if (!this.b_Exibir_Computador) {
@@ -91,13 +93,13 @@ export class DocumentosComponent implements OnInit {
     async Filter_Menu(obj: Documento, b_Filho: boolean) {
 
         this.objArrayGrupoCEQ.forEach(f => { f.subgrupos.forEach(g => g.subgrupos.forEach(h => h._open = false)) })
-        this.modelChanged.reset()
+        //this.modelChanged.reset()
         this.nr_Page = 1
         this.cd_Setor_CEQ = obj.cd_Setor_CEQ
 
         if (!this.b_Exibir_Computador) {
             this.objArrayDocumentos = []
-
+            
         } else {
             this.searchFocus.searchElement.nativeElement.focus()
         }
@@ -105,11 +107,16 @@ export class DocumentosComponent implements OnInit {
         if (obj.cd_Setor_CEQ != 0 && !b_Filho) {
             this.Buscar_Documentos()
             obj._open = true
+            if(!this.b_Exibir_Computador){
+                this.b_Mostrar_Modal = !this.b_Mostrar_Modal
+            }else{
+                this.b_Mostrar_Modal = this.b_Mostrar_Modal
+            }
 
         } else if (obj.subgrupos?.length == 0) {
             this.objArrayDocumentos = []
-
-        }
+            this.b_Mostrar_Modal = !this.b_Mostrar_Modal
+        } 
     }
 
     async Buscar_Arquivo(cd_Documento: number) {
@@ -140,7 +147,7 @@ export class DocumentosComponent implements OnInit {
 
     Mostrar_Modal() {
 
-        this.b_Mostrar_Modal = true
+        this.b_Mostrar_Modal = !this.b_Mostrar_Modal
         this.objArrayGrupoCEQ.forEach(f => {
             f._open = false
             f.subgrupos.forEach(g => g._open = false)
@@ -152,7 +159,6 @@ export class DocumentosComponent implements OnInit {
 
         if (window.innerWidth > 1024) {
             this.b_Exibir_Computador = true
-            this.b_Mostrar_Modal = !this.b_Mostrar_Modal
             this.nr_Page_Length = 7
         }
         if (window.innerWidth >= 1440) {
@@ -160,7 +166,7 @@ export class DocumentosComponent implements OnInit {
         }
     }
 
-    async Limpar_Filtros() {
+    Limpar_Filtros() {
 
         this.modelChanged.reset()
         this.nm_Search = ""
@@ -172,7 +178,6 @@ export class DocumentosComponent implements OnInit {
             this.listagemVirtual.scroller.scrollTo({ top: 0 })
         } else {
             this.searchFocus.searchElement.nativeElement.focus()
-            this.b_Mostrar_Modal = true
         }
         this.objArrayGrupoCEQ.forEach(f => {
             f._open = false

@@ -27,10 +27,10 @@ export class RamaisComponent implements OnInit {
 
   objArrayTitulos = [
 
-    { nm_titulo: "Nome", nm_Classe: "lg:w-4/12 text-center"},
-    { nm_titulo: "Setor", nm_Classe: "lg:w-3/12 text-center"},
-    { nm_titulo: "Contato(s)", nm_Classe: "lg:w-2/12 text-center"},
-    { nm_titulo: "E-mail", nm_Classe: "lg:w-3/12 text-center"}
+    { nm_titulo: "Nome", nm_Classe: "lg:w-4/12 text-center" },
+    { nm_titulo: "Setor", nm_Classe: "lg:w-3/12 text-center" },
+    { nm_titulo: "Contato(s)", nm_Classe: "lg:w-2/12 text-center" },
+    { nm_titulo: "E-mail", nm_Classe: "lg:w-3/12 text-center" }
   ]
 
   // @ViewChildren(ScrollDirective)
@@ -40,6 +40,7 @@ export class RamaisComponent implements OnInit {
   @ViewChildren('variavelLocal') objArrayItemLista: QueryList<ElementRef>
   @ViewChild('listaRamais') listaRamais: ElementRef
   @ViewChildren('letras') objArrayLetras: QueryList<ElementRef>
+  @ViewChild('search', { static: true }) search_element: ElementRef
 
   b_Mostrar_Modal: boolean = false
   b_Text_Row_Lg: boolean = false
@@ -54,7 +55,7 @@ export class RamaisComponent implements OnInit {
   nm_Text_Orange: string = "text-laranja"
 
   nr_Page: number = 1
-  nr_Page_Length: number = 100
+  nr_Page_Length: number = 80
 
   modelChanged = new FormControl()
 
@@ -89,10 +90,16 @@ export class RamaisComponent implements OnInit {
     })
   }
 
-  expandir(documento: any): void {
+  Exibir_Computador() {
+    if (window.innerWidth > 1280) {
+      this.b_Computador = !this.b_Computador
+      this.search_element.nativeElement.focus()
+    }
+  }
+
+  Expandir(documento: any): void {
     if (window.innerWidth < 1280) {
       documento.open = !documento.open
-      // this.scroll.first.reset()
     }
   }
 
@@ -136,6 +143,7 @@ export class RamaisComponent implements OnInit {
     this.objArrayRamais = []
     this.nr_Page = 1
     this.cd_Origem = 3
+    this.search_element.nativeElement.focus()
     if (window.innerWidth < 1024) {
       this.b_Mostrar_Modal = false
     }
@@ -150,12 +158,6 @@ export class RamaisComponent implements OnInit {
     this.nm_Inicial_Selecionada = objInicial.inicial
     this.modelChanged.setValue("")
     this.Buscar_Ramais()
-  }
-
-  Exibir_Computador() {
-    if (window.innerWidth > 1280) {
-      this.b_Computador = !this.b_Computador
-    }
   }
 }
 

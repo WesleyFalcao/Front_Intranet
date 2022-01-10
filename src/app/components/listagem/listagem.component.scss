@@ -15,12 +15,12 @@
         @apply md:pt-12;
     }
     @screen lg{
-        @apply lg:text-sm lg:pt-8 lg:bg-white;
+        @apply lg:text-sm lg:pt-2 lg:bg-white shadow-lg;
     }
 }
 
 .li-pai-listagem{
-    @apply relative flex font-medium w-full transform hover:bg-gray-200 cursor-pointer active:scale-95 transition duration-300 rounded-lg bg-white shadow-lg;
+    @apply relative h-12 flex font-medium w-full transform hover:bg-gray-200 cursor-pointer active:scale-95 transition duration-300 rounded-lg bg-white shadow-lg;
 
     @screen lg{
         @apply lg:flex-row lg:bg-transparent lg:shadow-none;
@@ -33,6 +33,7 @@
     @screen lg{
         @apply lg:w-5/12;
     }
+
 }
 
 .item-cd-qualidade{
@@ -49,6 +50,8 @@
     @screen lg{
         @apply lg:pl-0 lg:w-2/12 lg:text-center font-normal pl-2
     }
+    
+
 }
 
 .item-nr-revisao{
@@ -84,11 +87,5 @@ li{
 .titulo-tela-grande{
     @media (min-width: 1300px) {
         @apply text-lg
-    }
-}
-
-.icone-download-tela-grande{
-    @media (min-width: 1400px) {
-       
     }
 }

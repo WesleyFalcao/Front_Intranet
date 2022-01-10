@@ -2,27 +2,30 @@
     display: none;
 }
 
-.icone-unimed-acima{
-    @apply absolute transform -translate-x-1/2 left-1/2 top-10 hidden cursor-pointer;
-
-    @screen lg {
-        @apply lg:flex lg:top-7
-    }
-
-    @media (min-width: 1400px) {
-        @apply top-5
-    }
-}
-
 .calculo-altura-pagina{
     @screen md{
         height: calc(100% - 5rem)
     }
 }
 
+.icone-unimed-acima{
+    @apply absolute transform -translate-x-1/2 left-1/2 top-10 hidden cursor-pointer;
+
+    @screen lg {
+        @apply flex top-3;
+    }
+
+    @media (min-width: 1400px) {
+        @apply top-5;
+    }
+}
+
 .icone-unimed-acima-tela-grande{
+
+    @apply w-20 h-20;
+
     @media(min-width: 1400px){
-        width: 145px;
+        width: 145px; 
         height: 60px; 
     }
 }
@@ -30,12 +33,10 @@
 .filtro {
    @apply mb-2 transform relative cursor-pointer active:scale-90 transition duration-300 left-3 top-6 md:top-9;
 
-   @screen md{
+    @screen md{
         @apply left-2
-   }
-   @screen lg {
-        @apply lg:hidden;
-   }
+    }
+   
 }
 
 .barra-pesquisa{
@@ -72,7 +73,7 @@
     @apply font-medium;
 
     @screen md{
-        @apply font-semibold text-2xl;
+        @apply font-semibold text-2xl mt-2;
     }
     @screen lg{
         @apply text-base font-semibold;
@@ -135,10 +136,10 @@
     @apply pl-2.5 pr-6 pt-10 space-y-5 w-full flex flex-col font-medium cursor-pointer;   //relação com div-lista-documento-modal
 
     @screen md{
-        @apply pt-28
+        @apply pt-24;
     }
     @screen lg {
-        @apply text-sm pl-0 pr-0 pt-36
+        @apply text-sm pl-0 pr-0 pt-28;
     }
     @media (min-width: 1400px) {
         @apply pt-44
@@ -151,29 +152,39 @@
     @apply space-y-3 font-medium cursor-pointer relative bg-white rounded-2xl shadow-lg w-full;
 
     @screen md {
-        @apply text-2xl font-medium shadow-none w-3/4 bg-transparent transform relative -translate-x-1/2 left-1/2;
+        @apply text-2xl font-medium shadow-none w-3/4 transform relative -translate-x-1/2 left-1/2;
     }
     @screen lg {
-        @apply justify-start space-y-3 text-lg items-start w-full left-0 -translate-x-0;
+        @apply justify-start space-y-3 bg-transparent text-lg items-start w-full left-0 -translate-x-0;
+    }
+    @media (min-width: 1400px) {
+        @apply bg-transparent;
     }
 }
 
 .div-background{
 
-    background-image: url('../../../assets/imagens/SVG_Background_White_Green.svg'); transition: all 0.15s easy 0s;
+    //background-image: url('../../../assets/imagens/SVG_Background_White_Green.svg'); transition: all 0.15s easy 0s;
 
     @apply scrollbar-hide overflow-y-auto pl-4 flex-col bg-cover bg-center absolute top-0 left-0 z-30 w-full h-screen ;
 
     @screen lg{
-        @apply flex w-3/12 relative;
+        @apply flex w-4/12 relative;
         
         background-image: none;
     }
 }
 
 .largura-titulo-pai{
+    
+    @apply pt-2;
+
+    @screen md{
+        @apply pt-4; 
+    }
+    
     @screen lg {
-        @apply w-72
+        @apply w-72 pt-0;
     }
     @media (min-width: 1400px) {
         @apply w-96

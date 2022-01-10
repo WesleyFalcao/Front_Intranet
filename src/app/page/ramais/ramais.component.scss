@@ -78,7 +78,7 @@
 }
 
 .input-class{
-    @apply relative w-full flex rounded-full pl-16 py-3 border-gray-200 focus:ring-unimed-green focus:border-transparent border-2;
+    @apply relative w-full flex rounded-full pl-16 py-3 border-2 border-gray-200 focus:ring-unimed-green focus:border-transparent;
     
     @screen md{
         @apply py-4 pl-24;

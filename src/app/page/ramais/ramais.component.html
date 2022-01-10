@@ -125,7 +125,7 @@
 
             <div class="header-itens">
 
-                <input [formControl]="modelChanged" class="input-class" placeholder="Pesquise...">
+                <input autofocus #search [formControl]="modelChanged" class="input-class" placeholder="Pesquise...">
 
                 <div class="absolute top-0 md:-top-0.5 left-2 transform active:scale-90 duration-300"
                     (click)="Buscar_Ramais()">
@@ -158,9 +158,9 @@
         </div> -->
 
         <!-- titulos dos documentos -->
-        <div class="relative mx-auto top-11 mb-4 pr-2">
+        <div class="relative mx-auto mb-4 pr-2">
             <ul class="flex mb-4">
-                <li class="text-center hidden xl:block font-medium text-lg {{documento.nm_Classe}}"
+                <li class="text-center hidden lg:flex font-medium text-lg {{documento.nm_Classe}}"
                     *ngFor="let documento of objArrayTitulos">
                     <div>
                         {{documento.nm_titulo}}
@@ -174,15 +174,17 @@
         <div #listaRamais class="overflow-y-auto body-documentos">
 
             <cdk-virtual-scroll-viewport [itemSize]="56" minBufferPx="700" maxBufferPx="700"
-                class="virtual-scroll md:mx-20 pl-2 lg:mx-0 h-full pt-4">
+                class="virtual-scroll md:mx-20 pl-2 lg:mx-0 h-full">
 
-                <div class=" bg-unimed-white py-2 mb-4 md:py-2.5 md:mb-6 lg:pb-4 rounded-lg shadow-lg font-medium transform cursor-pointer active:scale-95 transition duration-300 "
-                    (click)="expandir(pessoa)" *cdkVirtualFor="let pessoa of objArrayRamais " #variavelLocal>
+                <div class="bg-unimed-white py-2 mb-4 md:py-2.5 md:mb-6 lg:pb-4 rounded-lg shadow-lg font-medium transform cursor-pointer active:scale-95 transition duration-300 "
+                    (click)="Expandir(pessoa)" *cdkVirtualFor="let pessoa of objArrayRamais " #variavelLocal>
 
                     <!-- essa div está estilizando os nomes que estão vindo do cdkVirtualFor -->
 
                     <div class=" flex flex-row gap-x-8 md:text-lg lg:text-base lg:pl-0 lg:pt-1.5">
-                        <div class="w-1/12 xl:hidden pl-3">
+
+                        <!-- circulo com as inicias mobile -->
+                        <div class="w-1/12 lg:hidden pl-3">
                             <div
                                 class="rounded-full xl:hidden bg-unimed-green w-8 h-8 md:w-9 md:h-9 md:top-1 lg:w-11 lg:h-11 ">
                                 <div class="pt-1 md:pt-1 text-center md:text-xl lg:text-2xl lg:pt-1.5 text-white">
@@ -190,12 +192,11 @@
                                 </div>
                             </div>
                         </div>
-
                         <div
-                            class="w-11/12 lg:w-full overflow-x-hidden text-sm lg:text-xl xl:text-base flex my-auto gap-y-2 flex-col xl:flex-row">
+                            class="w-11/12 lg:w-full overflow-x-hidden text-sm lg:text-xl xl:text-base flex my-auto gap-y-2 flex-col lg:flex-row">
 
                             <div [title]="pessoa.nm_Pessoa | camelcase"
-                                class="lg:pl-4 lg:w-4/12 overflow-hidden overflow-ellipsis whitespace-nowrap">
+                                class="lg:pl-4 lg:w-4/12 overflow-hidden overflow-ellipsis whitespace-nowrap ">
                                 {{pessoa.nm_Pessoa | camelcase}}
                             </div>
 
@@ -203,18 +204,18 @@
 
                                 <span [title]="pessoa.nm_Departamento | camelcase"
                                     class=" pt-2 mt-3 lg:mt-0 md:pt-3 lg:w-3/12 lg:text-center xl:pt-0 overflow-hidden overflow-ellipsis whitespace-nowrap">
-                                    <b class="xl:hidden"> Setor:</b>
+                                    <b class="lg:hidden"> Setor:</b>
                                     {{pessoa.nm_Departamento | camelcase}}
                                 </span>
 
-                                <span class=" lg:text-center lg:w-2/12 lg:pl-0 lg:whitespace-nowrap overflow-hidden overflow-ellipsis whitespace-nowrap">
-                                    <b class="xl:hidden">Contato(s):</b>
+                                <div class="lg:text-center lg:w-2/12 lg:pl-0 lg:whitespace-nowrap overflow-hidden overflow-ellipsis whitespace-nowrap {{pessoa.nr_Ramal == ''? 'justify-items-start': ''}}">
+                                    <b class="lg:hidden">Contato(s):</b>
                                     {{pessoa.nr_Ramal}}<br>{{pessoa.nr_Telefone}}
-                                </span>
+                                </div>
 
                                 <span [title]="pessoa.ds_Email"
                                     class=" lg:w-3/12 lg:text-center mb-4.5 overflow-hidden overflow-ellipsis whitespace-nowrap">
-                                    <b class="xl:hidden">Email:</b>
+                                    <b class="lg:hidden">Email:</b>
                                     {{pessoa.ds_Email}}
                                 </span>
 

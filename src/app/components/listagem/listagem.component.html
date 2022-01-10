@@ -1,32 +1,27 @@
 <div class="relative w-full flex flex-col">
-
     <!-- titulo dos items -->
-    <ul class="w-full relative">
-        <li class="hidden md:mb-4 lg:flex">
-            <div class="font-semibold titulo-tela-grande text-base text-center pt-10 xl:block {{objeto.nm_Classe}}"
+    <ul class="w-full relative pb-10">
+        <li class="hidden md:mb-2 lg:flex">
+            <div class="font-semibold titulo-tela-grande text-base text-center pt-10 lg:block {{objeto.nm_Classe}}"
                 *ngFor="let objeto of objArrayCampos">
                 {{objeto.nm_Exibicao}}
             </div>
         </li>
     </ul>
-
     <!-- listagem items -->
-    <ul class="pai-listagem-items">
+    <ul class="pai-listagem-items {{objArrayItems.length ==0?'hidden':''}}">
         <li class="li-pai-listagem" (click)="Get_Card(item)" *ngFor="let item of objArrayItems">
             <div [title]="item[campo.nm_Atibruto]" [class]="campo.nm_Classe" *ngFor="let campo of objArrayCampos">
                 {{item[campo.nm_Atibruto]}}
             </div>
-            <img class="icone-download-tela-grande w-12 h-12 relative my-auto" src="assets/icons/icon-download.svg">
+            <!-- <img class="icone-download-tela-grande w-12 h-12 relative my-auto" src="assets/icons/icon-download.svg"> -->
         </li>
     </ul>
-    
     <div class="mx-auto pt-11 lg:pt-0 w-6/12 h-6/12 lg:w-3/12 lg:h-3/12" *ngIf="objArrayItems.length == 0">
         <img src="assets/imagens/table-empty-nada-encontrado.svg">
         <div class="text-center text-lg pt-9 whitespace-nowrap">Nenhum item foi encontrado</div>
     </div>
-
     <uni-paginator class="mb-2 md:mb-10 md:mt-5 lg:mb-0" [nr_Pagina]="nr_Page" [nr_Registros]="nr_Registros"
         [nr_Por_Pagina]="nr_Page_Length" (onPageChange)="Mudar_Pagina($event)" *ngIf="objArrayItems.length > 0">
     </uni-paginator>
-
 </div>

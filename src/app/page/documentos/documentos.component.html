@@ -1,10 +1,10 @@
 <div class="reset-browser flex flex-row">
 
-	<aside class="div-background" *ngIf="(!b_Exibir_Computador && b_Mostrar_Modal)|| b_Exibir_Computador ">
+	<aside class="div-background bg-yellow-100" *ngIf="b_Mostrar_Modal">
 
 		<div *ngIf="b_Exibir_Computador || b_Mostrar_Modal">
 			<div class="icone-unimed-acima" (click)="Limpar_Filtros()">
-				<img class="icone-unimed-acima-tela-grande w-30 h-30" src="assets/imagens/logo-Unimed.svg">
+				<img class="icone-unimed-acima-tela-grande" src="assets/imagens/logo-Unimed.svg">
 			</div>
 		</div>
 
@@ -38,9 +38,8 @@
 
 			<li class="formatacao-menu-lateral" *ngFor="let pai of objArrayGrupoCEQ">
 				<div class="largura-titulo-pai">
-					<itens-ceq class="menu-lateral-pai"
-						[b_Nao_Fecha]="false" [subgrupos]="pai.subgrupos" [nm_Item]="pai.nm_Grupo_CEQ" [b_Open]="true"
-						(onClick)="Fechar_Menu(pai, true)">
+					<itens-ceq class="menu-lateral-pai" [b_Nao_Fecha]="false" [subgrupos]="pai.subgrupos"
+						[nm_Item]="pai.nm_Grupo_CEQ" [b_Open]="true" (onClick)="Fechar_Menu(pai, true)">
 					</itens-ceq>
 				</div>
 
@@ -49,19 +48,18 @@
 					<div class="pl-4 pb-2 {{filho.subgrupos.length == 0?'pl-8':''}}"
 						*ngFor="let filho of pai.subgrupos">
 
-						<itens-ceq class="menu-lateral-filho" (onClick)="filho._open=$event"
-							[b_Open]="filho._open" [subgrupos]="filho.subgrupos" [nm_Item]="filho.nm_Grupo_CEQ"
-							(click)="Filter_Menu(filho, filho.b_Filho=true)">
+						<itens-ceq class="menu-lateral-filho" (onClick)="filho._open=$event" [b_Open]="filho._open"
+							[subgrupos]="filho.subgrupos" [nm_Item]="filho.nm_Grupo_CEQ"
+							(click)="Filter_Menu(filho, filho._b_Filho = true)">
 						</itens-ceq>
 
 						<ng-container *ngIf="filho._open">
 							<div class="{{filho.subgrupos.length >= 10?'h-72 overflow-y-auto':''}}">
-								<div class="py-3 pl-4 max-h-48 lg:gap-y-1 lg:py-1"
-									*ngFor="let neto of filho.subgrupos">
+								<div class="py-3 pl-4 max-h-48 lg:gap-y-1 lg:py-1" *ngFor="let neto of filho.subgrupos">
 									<itens-ceq (onClick)="neto._open=$event"
 										class="menu-lateral-neto {{neto._open?'text-laranja':''}}"
 										[subgrupos]="neto.subgrupos" [b_Open]="neto._open" [nm_Item]="neto.nm_Grupo_CEQ"
-										(click)="Filter_Menu(neto, filho.b_Filho = false); b_Mostrar_Modal = false">
+										(click)="Filter_Menu(neto, filho._b_Filho = false)">
 									</itens-ceq>
 								</div>
 							</div>
@@ -72,15 +70,13 @@
 		</ul>
 	</aside>
 
-	<main class="calculo-altura-pagina h-screen w-full xl:w-9/12">
+	<main class="calculo-altura-pagina h-screen w-full">
 
 		<div class="flex flex-row gap-3 mx-4 pb-7">
 
 			<!-- Filtro-->
-			<div *ngIf="!b_Mostrar_Modal">
-				<div class="filtro" (click)="Mostrar_Modal()">
-					<img class="w-8 h-8 md:w-9 md:h-9 md:ml-4" src="assets/icons/filter-three-lines.svg">
-				</div>
+			<div class="filtro" (click)="Mostrar_Modal()">
+				<img class="w-8 h-8 md:w-9 md:h-9 md:ml-4 lg:ml-12" src="assets/icons/filter-three-lines.svg">
 			</div>
 
 			<!-- barra de pesquisa -->
@@ -96,7 +92,7 @@
 		</div>
 
 		<ng-template #listagem>
-			<div class="mr-10">
+			<div class="mr-10 {{!b_Mostrar_Modal?'mx-10':''}}">
 				<app-listagem [objArrayCampos]="objArrayCampos" [objArrayItems]="objArrayDocumentos"
 					(onPageChange)="Mudar_Pagina($event)" (onClickRow)="Buscar_Arquivo($event)"
 					[nr_Registros]="nr_Registros" [nr_Page_Length]="nr_Page_Length" [nr_Page]="nr_Page">

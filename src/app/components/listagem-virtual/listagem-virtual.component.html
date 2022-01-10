@@ -5,8 +5,8 @@
             {{ item[campo.nm_Atibruto] }}
         </div>
     </li>
-    <div class="mx-auto pt-11 lg:pt-0 w-6/12 h-6/12 lg:w-4/12 lg:h-4/12" *ngIf="objArrayItens.length == 0">
+    <div class="mx-auto pt-11 lg:pt-0 w-6/12  h-6/12 lg:w-4/12 lg:h-4/12" *ngIf="objArrayItens.length == 0">
         <img src="assets/imagens/table-empty-nada-encontrado.svg">
-        <div class="inline-block text-center w-1/2 mx-auto text-sm pt-9 whitespace-nowrap left-10">Nenhum item foi encontrado</div>
+        <div class="text-center w-1/2 md:w-96 md:text-base md:left-0 text-sm pt-9 whitespace-nowrap left-10">Nenhum item foi encontrado</div>
     </div>
 </cdk-virtual-scroll-viewport>

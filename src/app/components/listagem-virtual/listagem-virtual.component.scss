@@ -4,7 +4,7 @@
 
     @screen md{
         height: calc(100vh - 10rem);
-        @apply md:mt-16;   
+        @apply md:mt-12;   
     }
     @screen lg{
         @apply lg:text-sm lg:bg-white;
