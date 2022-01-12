@@ -2,6 +2,7 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { Component, ElementRef, NgZone, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, filter, map, pairwise, throttleTime } from "rxjs/operators";
+import { SearchBarComponent } from 'src/app/components/search-bar/searchbar.component';
 import { RamaisParams } from 'src/app/models/ramais/ramais.params';
 import { SubjectService } from 'src/app/services/subject.service';
 import { RamaisService } from './ramais.service';
@@ -40,7 +41,7 @@ export class RamaisComponent implements OnInit {
   @ViewChildren('variavelLocal') objArrayItemLista: QueryList<ElementRef>
   @ViewChild('listaRamais') listaRamais: ElementRef
   @ViewChildren('letras') objArrayLetras: QueryList<ElementRef>
-  @ViewChild('search', { static: true }) search_element: ElementRef
+  @ViewChild('search', { static: true }) search_element: SearchBarComponent
 
   b_Mostrar_Modal: boolean = false
   b_Text_Row_Lg: boolean = false
@@ -53,10 +54,8 @@ export class RamaisComponent implements OnInit {
   dt_Ultima_Pesquisa = new Date()
   b_Computador: boolean = false
   nm_Text_Orange: string = "text-laranja"
-
   nr_Page: number = 1
   nr_Page_Length: number = 80
-
   modelChanged = new FormControl()
 
   constructor(private ramaisService: RamaisService, private subjectService: SubjectService, private ngZone: NgZone) { }
@@ -93,7 +92,13 @@ export class RamaisComponent implements OnInit {
   Exibir_Computador() {
     if (window.innerWidth > 1280) {
       this.b_Computador = !this.b_Computador
-      this.search_element.nativeElement.focus()
+      if (this.b_Computador) {
+        this.objArrayRamais.forEach(a => a.open = true)
+        this.b_Mostrar_Modal = true
+      } else {
+        this.objArrayRamais.forEach(a => a.open = false)
+        this.search_element.searchElement.nativeElement.focus()
+      }
     }
   }
 
@@ -108,7 +113,7 @@ export class RamaisComponent implements OnInit {
   }
 
   Redefinir() {
-    if (window.innerWidth > 1024) {
+    if (this.b_Computador) {
 
       this.objArrayRamais.forEach(a => a.open = true)
       this.b_Mostrar_Modal = true
@@ -140,12 +145,14 @@ export class RamaisComponent implements OnInit {
   }
 
   async Trazer_Todos() {
+
     this.objArrayRamais = []
     this.nr_Page = 1
     this.cd_Origem = 3
-    this.search_element.nativeElement.focus()
-    if (window.innerWidth < 1024) {
+    if (this.b_Computador) {
       this.b_Mostrar_Modal = false
+    }else{
+      this.search_element.searchElement.nativeElement.focus()
     }
     this.nm_Inicial_Selecionada = ""
     this.modelChanged.setValue(this.nm_Inicial_Selecionada)

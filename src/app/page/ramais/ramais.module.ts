@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FirstLetterNamePipe } from 'src/app/pipes/first-letter-name.pipe';
+import { SearchBarModule } from 'src/app/components/search-bar/searchbar.module';
 
 @NgModule({
   declarations: [RamaisComponent, ScrollDirective,],
@@ -16,6 +17,7 @@ import { FirstLetterNamePipe } from 'src/app/pipes/first-letter-name.pipe';
     ReactiveFormsModule,
     PipesModule,
     ScrollingModule,
+    SearchBarModule,
 
   ],
   exports: [

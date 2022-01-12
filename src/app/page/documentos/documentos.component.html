@@ -1,6 +1,6 @@
 <div class="reset-browser flex flex-row">
 
-	<aside class="div-background bg-yellow-100" *ngIf="b_Mostrar_Modal">
+	<aside class="div-menu-lateral-principal" *ngIf="b_Mostrar_Modal">
 
 		<div *ngIf="b_Exibir_Computador || b_Mostrar_Modal">
 			<div class="icone-unimed-acima" (click)="Limpar_Filtros()">
@@ -70,7 +70,7 @@
 		</ul>
 	</aside>
 
-	<main class="calculo-altura-pagina h-screen w-full">
+	<main class="calculo-altura-pagina h-screen {{b_Mostrar_Modal? 'largura-listagem-menu-aberto':'w-full'}}">
 
 		<div class="flex flex-row gap-3 mx-4 pb-7">
 

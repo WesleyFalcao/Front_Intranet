@@ -9,10 +9,9 @@ input {
 }
 body{
     // background-image: url("assets/imagens/SVG_Background_White_Green.svg");
-    @apply bg-cover bg-center bg-yellow-100;
+    @apply bg-cover bg-center bg-gray-200;
 
 }
-
   ::-webkit-scrollbar {
       width: 10px;
   }

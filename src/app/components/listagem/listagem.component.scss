@@ -6,6 +6,11 @@
     }
 }
 
+li{
+    list-style-type: none;
+}
+
+
 .pai-listagem-items{
 
     height: calc(100% - 6rem);
@@ -20,53 +25,10 @@
 }
 
 .li-pai-listagem{
-    @apply relative h-12 flex font-medium w-full transform hover:bg-gray-200 cursor-pointer active:scale-95 transition duration-300 rounded-lg bg-white shadow-lg;
+    @apply relative h-12 flex font-medium transform hover:bg-gray-200 cursor-pointer active:scale-95 transition duration-300 rounded-lg bg-white shadow-lg;
 
     @screen lg{
         @apply lg:flex-row lg:bg-transparent lg:shadow-none;
-    }
-}
-
-.item-nm-item{
-    @apply pl-2 font-semibold overflow-hidden overflow-ellipsis whitespace-nowrap transform active:scale-95 duration-300;
-
-    @screen lg{
-        @apply lg:w-5/12;
-    }
-
-}
-
-.item-cd-qualidade{
-    @apply pl-2 transform active:scale-95 duration-300;
-
-    @screen lg{
-        @apply lg:pl-0 lg:w-2/12 lg:text-center;
-    }
-}
-
-.item-nm-processo{
-    @apply pl-2 overflow-hidden overflow-ellipsis whitespace-nowrap transform active:scale-95 duration-300;
-
-    @screen lg{
-        @apply lg:pl-0 lg:w-2/12 lg:text-center font-normal pl-2
-    }
-    
-
-}
-
-.item-nr-revisao{
-    @apply pl-2 w-1/12 transform active:scale-95 duration-300;
-
-    @screen lg{
-        @apply lg:pl-0 lg:text-center
-    }
-}
-
-.item-dt-item{
-    @apply pl-2 pb-2 transform active:scale-95 duration-300;
-
-    @screen lg{
-        @apply lg:pl-0 lg:pb-0 lg:w-2/12 lg:text-center
     }
 }
 
@@ -78,10 +40,6 @@
     @screen md{
         @apply md:pt-20;
     }
-}
-
-li{
-    list-style-type: none;
 }
 
 .titulo-tela-grande{

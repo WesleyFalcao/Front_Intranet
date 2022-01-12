@@ -22,11 +22,11 @@ export class DocumentosComponent implements OnInit {
     objArrayRetorno = []
     objArrayCampos: CamposListagem[] = [
 
-        { nm_Exibicao: "Nome", nm_Classe: "nome-listagem-tela-grande w-5/12 my-auto lg:pl-14 overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Documento" },
-        { nm_Exibicao: "Código", nm_Classe: "codigo-listagem-tela-grande w-2/12 my-auto lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "cd_Qualidade" },
-        { nm_Exibicao: "Processos", nm_Classe: "processo-listagem-tela-grande w-2/12 my-auto lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Processo" },
-        { nm_Exibicao: "Revisão", nm_Classe: "revisao-listagem-tela-grande lg:pl-6 w-1/12 my-auto lg:text-center", nm_Atibruto: "nr_Revisao" },
-        { nm_Exibicao: "Data", nm_Classe: "data-listagem-tela-grande w-2/12 my-auto lg:text-center", nm_Atibruto: "dt_Documento" },
+        { nm_Exibicao: "Nome", nm_Classe: "w-5/12 my-auto lg:pl-14 overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Documento" },
+        { nm_Exibicao: "Código", nm_Classe: "w-2/12 my-auto lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "cd_Qualidade" },
+        { nm_Exibicao: "Processos", nm_Classe: "w-2/12 my-auto lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Processo" },
+        { nm_Exibicao: "Revisão", nm_Classe: "lg:pl-6 w-1/12 my-auto lg:text-center", nm_Atibruto: "nr_Revisao" },
+        { nm_Exibicao: "Data", nm_Classe: "w-2/12 my-auto lg:text-center", nm_Atibruto: "dt_Documento" },
 
     ]
 
@@ -61,7 +61,6 @@ export class DocumentosComponent implements OnInit {
                 this.objArrayDocumentos = []
             }
             this.Buscar_Documentos()
-    
         })
 
         if (!this.b_Exibir_Computador) {
