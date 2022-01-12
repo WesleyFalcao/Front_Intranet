@@ -54,13 +54,6 @@
     }
 }
 
-.acima-xl{
-    @media (min-width: 1400px) {
-        display: flexbox;
-        
-    }
-}
-
 .filtro {
     @apply mb-2 transform relative cursor-pointer active:scale-90 transition duration-300 left-3 top-6 md:top-9;
  
@@ -176,5 +169,36 @@
     @media (min-width: 1400px) {
         @apply w-11 h-11 top-1.5 right-2;
     }
+}
+
+.icone-hospital{
+    @apply relative pl-4 top-4 text-sm whitespace-nowrap;
+
+    @screen md {
+        @apply top-16 text-lg;
+    }
+    @screen lg {
+        @apply top-14;
+    }
+}
+
+.formatacao-menu{
+    @apply relative pl-4 top-8 text-sm whitespace-nowrap;
+
+    @screen md {
+        @apply top-10 text-lg;
+    }
+    @screen lg {
+        @apply top-14 hidden;
+    }
+}
+
+.largura-texto-menu{
+    width: 25%;
+}
+.largura-barra{
+    transition-duration: 200ms; transition-timing-function: ease-out;
+    //width: calc(25% - 16px);
+    width: 25%;
 }
 

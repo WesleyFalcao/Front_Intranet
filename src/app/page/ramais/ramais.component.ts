@@ -41,7 +41,7 @@ export class RamaisComponent implements OnInit {
   @ViewChildren('variavelLocal') objArrayItemLista: QueryList<ElementRef>
   @ViewChild('listaRamais') listaRamais: ElementRef
   @ViewChildren('letras') objArrayLetras: QueryList<ElementRef>
-  @ViewChild('search', { static: true }) search_element: SearchBarComponent
+  @ViewChild('search', {static: true}) search_element: SearchBarComponent
 
   b_Mostrar_Modal: boolean = false
   b_Text_Row_Lg: boolean = false
@@ -57,6 +57,8 @@ export class RamaisComponent implements OnInit {
   nr_Page: number = 1
   nr_Page_Length: number = 80
   modelChanged = new FormControl()
+  nr_Posicao: number
+  b_Exibir: boolean = false
 
   constructor(private ramaisService: RamaisService, private subjectService: SubjectService, private ngZone: NgZone) { }
 
@@ -94,10 +96,9 @@ export class RamaisComponent implements OnInit {
       this.b_Computador = !this.b_Computador
       if (this.b_Computador) {
         this.objArrayRamais.forEach(a => a.open = true)
-        this.b_Mostrar_Modal = true
+        //this.search_element.searchElement.nativeElement.focus()
       } else {
         this.objArrayRamais.forEach(a => a.open = false)
-        this.search_element.searchElement.nativeElement.focus()
       }
     }
   }
@@ -135,6 +136,7 @@ export class RamaisComponent implements OnInit {
 
   async Get_Filtro_Page_Ramais(cd_Origem: number, b_Letra: boolean = true) {
     this.objArrayRamais = []
+    this.b_Exibir = true
     this.nr_Page = 1
     this.cd_Origem = cd_Origem
     this.Buscar_Ramais()
@@ -145,26 +147,18 @@ export class RamaisComponent implements OnInit {
   }
 
   async Trazer_Todos() {
-
+    this.b_Exibir = true
     this.objArrayRamais = []
     this.nr_Page = 1
     this.cd_Origem = 3
-    if (this.b_Computador) {
+    if (!this.b_Computador) {
       this.b_Mostrar_Modal = false
     }else{
-      this.search_element.searchElement.nativeElement.focus()
+      //this.search_element.searchElement.nativeElement.focus()
     }
     this.nm_Inicial_Selecionada = ""
     this.modelChanged.setValue(this.nm_Inicial_Selecionada)
     await this.Buscar_Ramais()
-  }
-
-  async Clickar_Inicial_Acima(objInicial: any, nr_Index: number) {
-    this.objArrayRamais = []
-    this.nr_Page = 1
-    this.nm_Inicial_Selecionada = objInicial.inicial
-    this.modelChanged.setValue("")
-    this.Buscar_Ramais()
   }
 }
 
