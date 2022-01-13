@@ -2,7 +2,7 @@
     height: 100%;
     
     @screen lg{
-        height: calc(100% - 9rem);
+        height: calc(100% - 8rem);
     }
 }
 
@@ -86,11 +86,11 @@
     @apply relative w-full flex rounded-full pl-16 py-3 border-2 border-gray-200;
     
     @screen md{
-        @apply py-4 pl-24;
+        @apply py-4 pl-20;
     }
 
     @screen lg{
-        @apply py-3 pl-12; 
+        @apply py-6 pl-28; 
     }
     @media (min-width: 1400px) {
         @apply pl-12 py-3.5;
@@ -98,12 +98,10 @@
 }
 
 .formatacao-botao-logo-unimed{
-    @apply absolute hidden transform -translate-x-1/2 left-1/2 lg:flex;
-}
+    @apply absolute hidden transform -translate-x-1/2 left-1/2 top-10;
 
-.position-logo-unimed{
     @screen lg{
-        @apply block w-24 h-24 ml-10;
+        @apply flex
     }
 }
 
@@ -167,7 +165,7 @@
     @apply relative pl-4 top-4 text-sm whitespace-nowrap;
 
     @screen md {
-        @apply top-16 text-lg;
+        @apply top-16 text-lg pl-6;
     }
     @screen lg {
         @apply top-14;
@@ -175,7 +173,7 @@
 }
 
 .formatacao-menu{
-    @apply relative pl-4 top-8 text-sm whitespace-nowrap;
+    @apply relative pl-4 top-8 text-sm;
 
     @screen md {
         @apply top-10 text-lg;

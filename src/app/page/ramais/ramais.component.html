@@ -4,14 +4,14 @@
     <div class="largura-menu-laral lg:hidden relative">
 
         <!-- Icone Unimed-->
-
         <div class="formatacao-botao-logo-unimed">
-            <img class="position-logo-unimed" src="assets/imagens/logo-Unimed.svg">
+            <img src="assets/imagens/logo-Unimed.svg"> 
         </div>
 
         <ul class="modal-icones" *ngIf="b_Mostrar_Modal">
 
-            <li class="li-hospital-icone" (click)="Get_Filtro_Page_Ramais(2)">
+            <li class="li-hospital-icone"
+                (click)="Get_Filtro_Page_Ramais(2)">
 
                 <div class="pl-4 md:pl-5 md:pt-8">
                     <img class="w-12 h-12 md:w-20 md:h-20 lg:hidden lg:w-20 lg:h-20 xl:w-16 xl:h-16 "
@@ -27,7 +27,7 @@
                     <img class="w-12 h-12 md:w-20 md:h-20 lg:hidden lg:w-20 lg:h-20 xl:w-16 xl:h-16"
                         src="assets/imagens/operadora.svg">
                 </div>
-                <div class="formatacao-menu {{cd_Origem == 1? nm_Text_Orange: ''}}">
+                <div class="relative pl-6 top-8 text-sm md:top-10 md:text-lg lg:top-14 lg:hidden {{cd_Origem == 1? nm_Text_Orange: ''}}">
                     Operadora
                 </div>
             </li>
@@ -36,20 +36,21 @@
                 <div class="pt-4 pl-4 md:pl-5 lg:pt-8">
                     <img class="w-12 h-12 md:w-20 md:h-20 xl:w-16 xl:h-16" src="assets/imagens/contatos-uteis.svg">
                 </div>
-                <div class="formatacao-menu{{cd_Origem == 0? nm_Text_Orange: ''}}">
+                <div class="relative pl-6 top-8 text-sm md:top-10 md:text-lg lg:top-14 lg:hidden {{cd_Origem == 0? nm_Text_Orange: ''}}">
                     Contatos úteis
                 </div>
             </li>
 
             <li class="flex transform active:scale-95 cursor-pointer duration-300" (click)="Trazer_Todos()">
-                <div class="pt-4 pl-4 md:pl-5 lg:pt-8">
+                <div class="pt-4 pl-3 md:pl-4 lg:pt-8">
                     <img class="trazer-tudo w-14 h-14 md:w-24 md:h-24" src="assets/imagens/trazer-todos.svg">
                 </div>
-                <div class="formatacao-menu">
+                <div class="relative pl-3 top-8 text-sm md:top-10 md:text-lg lg:top-14 lg:hidden">
                     Filtrar todos
                 </div>
             </li>
         </ul>
+
     </div>
 
     <!-- Listagem dos Ramais com a barra de pesquisa -->
@@ -61,7 +62,7 @@
 
             <!-- Filtro-->
             <div class="filtro" (click)="Mostrar_Modal()">
-                <img class="w-9 h-9 md:ml-4 lg:ml-16 lg:hidden" src="assets/icons/filter-three-lines.svg">
+                <img class="w-9 h-9 md:ml-8 lg:ml-16 lg:hidden" src="assets/icons/filter-three-lines.svg">
             </div>
 
             <!-- barra de pesquisa -->
@@ -97,16 +98,17 @@
                 </div>
             </div>
         </div>
-
-        <div class="calculo-largura relative rounded-lg z-10 w-full ml-20 mr-24">
-            <ul class="hidden md:mb-2 bg-white lg:flex">
-                <li class="text-center pt-6 pb-3 font-medium text-lg lg:block {{documento.nm_Classe}}"
-                    *ngFor="let documento of objArrayTitulos">
-                    <div>
-                        {{documento.nm_titulo}}
-                    </div>
-                </li>
-            </ul>
+        <div class="rounded-lg">
+            <div class="calculo-largura relative z-10 w-full ml-20 mr-24">
+                <ul class="hidden md:mb-2 bg-white lg:flex">
+                    <li class="text-center pt-6 pb-3 font-medium text-lg lg:block {{documento.nm_Classe}}"
+                        *ngFor="let documento of objArrayTitulos">
+                        <div>
+                            {{documento.nm_titulo}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div #listaRamais class="body-documentos">
             <cdk-virtual-scroll-viewport [itemSize]="56" minBufferPx="700" maxBufferPx="700"
@@ -115,7 +117,7 @@
                     (click)="Expandir(pessoa)" *cdkVirtualFor="let pessoa of objArrayRamais ">
 
                     <!-- essa div está estilizando os nomes que estão vindo do cdkVirtualFor -->
-                    <div class="flex flex-row gap-x-8 md:text-lg lg:text-base lg:pl-0 lg:pt-1.5">
+                    <div class="flex flex-row md:text-lg lg:text-base lg:pl-0 lg:pt-1.5">
                         <!-- circulo com as inicias mobile -->
                         <div class="w-1/12 lg:hidden pl-3">
                             <div
@@ -129,11 +131,11 @@
                             class="w-11/12 lg:w-full overflow-x-hidden text-sm lg:text-xl xl:text-base flex my-auto gap-y-2 flex-col lg:flex-row">
 
                             <div [title]="pessoa.nm_Pessoa | camelcase"
-                                class="lg:pl-4 lg:w-4/12 overflow-hidden overflow-ellipsis whitespace-nowrap ">
+                                class="lg:pl-4 lg:w-4/12 pl-9 overflow-hidden overflow-ellipsis whitespace-nowrap ">
                                 {{pessoa.nm_Pessoa | camelcase}}
                             </div>
 
-                            <ng-container class="items-center" *ngIf="pessoa.open ">
+                            <ng-container class="items-center" *ngIf="pessoa.open">
                                 <span [title]="pessoa.nm_Departamento | camelcase"
                                     class=" pt-2 mt-3 lg:mt-0 md:pt-3 lg:w-3/12 lg:text-center xl:pt-0 overflow-hidden overflow-ellipsis whitespace-nowrap">
                                     <b class="lg:hidden"> Setor:</b>
@@ -147,7 +149,7 @@
                                 </div>
 
                                 <span [title]="pessoa.ds_Email"
-                                    class=" lg:w-3/12 lg:text-center mb-4.5 overflow-hidden overflow-ellipsis whitespace-nowrap">
+                                    class="lg:w-3/12 lg:text-center mb-4.5 overflow-hidden overflow-ellipsis whitespace-nowrap">
                                     <b class="lg:hidden">Email:</b>
                                     {{pessoa.ds_Email}}
                                 </span>

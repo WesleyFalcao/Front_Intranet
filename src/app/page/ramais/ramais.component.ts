@@ -1,11 +1,15 @@
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { Component, ElementRef, NgZone, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { fn, THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Component, ElementRef, EventEmitter, NgZone, OnInit, Output, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
+import { interval, timer } from 'rxjs';
+import { ScrollDirective } from 'src/app/directives/scroll/scroll.directive';
+import { RamaisService } from './ramais.service';
+import { Subject, Subscription } from "rxjs";
 import { debounceTime, distinctUntilChanged, filter, map, pairwise, throttleTime } from "rxjs/operators";
 import { SearchBarComponent } from 'src/app/components/search-bar/searchbar.component';
 import { RamaisParams } from 'src/app/models/ramais/ramais.params';
 import { SubjectService } from 'src/app/services/subject.service';
-import { RamaisService } from './ramais.service';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-ramais',
@@ -36,7 +40,6 @@ export class RamaisComponent implements OnInit {
 
   // @ViewChildren(ScrollDirective)
   // scroll: QueryList<ScrollDirective>;
-
   @ViewChild(CdkVirtualScrollViewport, { static: true }) scroller: CdkVirtualScrollViewport;
   @ViewChildren('variavelLocal') objArrayItemLista: QueryList<ElementRef>
   @ViewChild('listaRamais') listaRamais: ElementRef

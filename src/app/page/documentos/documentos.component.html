@@ -15,7 +15,7 @@
 					<button class="transform cursor-pointer active:scale-90 transition duration-300"
 						(click)="b_Mostrar_Modal = false">
 
-						<img class="relative w-7 h-7 md:w-8 md:h-8 md:ml-4 right-2 top-6 md:top-9 lg:hidden"
+						<img class="relative ml-2 w-7 h-7 md:w-8 md:h-8 md:ml-4 right-2 top-6 md:top-9 lg:hidden"
 							src="assets/imagens/arrow-left-green.svg">
 					</button>
 					<div class="limpar-filtro-button">
@@ -34,9 +34,9 @@
 			</div>
 		</div>
 
-		<ul class="menu-lateral">
+		<div class="menu-lateral">
 
-			<li class="formatacao-menu-lateral" *ngFor="let pai of objArrayGrupoCEQ">
+			<div class="formatacao-menu-lateral" *ngFor="let pai of objArrayGrupoCEQ">
 				<div class="largura-titulo-pai">
 					<itens-ceq class="menu-lateral-pai" [b_Nao_Fecha]="false" [subgrupos]="pai.subgrupos"
 						[nm_Item]="pai.nm_Grupo_CEQ" [b_Open]="true" (onClick)="Fechar_Menu(pai, true)">
@@ -66,13 +66,13 @@
 						</ng-container>
 					</div>
 				</div>
-			</li>
-		</ul>
+			</div>
+		</div>
 	</aside>
 
 	<main class="calculo-altura-pagina h-screen {{b_Mostrar_Modal? 'largura-listagem-menu-aberto':'w-full'}}">
 
-		<div class="flex flex-row gap-3 mx-4 pb-7 lg:pb-2">
+		<div class="flex flex-row gap-3 mx-4 pb-7">
 
 			<!-- Filtro-->
 			<div class="filtro" (click)="Mostrar_Modal()">

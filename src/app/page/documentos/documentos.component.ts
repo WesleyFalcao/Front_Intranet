@@ -1,13 +1,19 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { transition } from '@angular/animations';
+import { importExpr } from '@angular/compiler/src/output/output_ast';
+import { Component, OnInit, Output, Input, ViewChild, EventEmitter, ElementRef, ViewChildren } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounce, debounceTime, distinctUntilChanged, startWith, throttleTime, filter } from 'rxjs/operators';
 import { ListagemVirtualComponent } from 'src/app/components/listagem-virtual/listagem-virtual.component';
 import { SearchBarComponent } from 'src/app/components/search-bar/searchbar.component';
 import { Documento } from 'src/app/models/documento/documento.model';
 import { DocumentosParams } from 'src/app/models/documento/documento.params';
+import { PaginatedFormParams } from 'src/app/models/genericos/paginated.model';
 import { CamposListagem } from 'src/app/models/listagem/campos-listagem.model';
+import { RamaisParams } from 'src/app/models/ramais/ramais.params';
+import { DocumentosRepository } from 'src/app/repositories/documentos.repository';
 import { To_Capitalize } from 'src/app/utils/utils';
 import { environment } from 'src/environments/environment';
+import { fileURLToPath } from 'url';
 import { DocumentosService } from './documentos.service';
 
 @Component({
@@ -33,7 +39,7 @@ export class DocumentosComponent implements OnInit {
     @ViewChild(ListagemVirtualComponent) listagemVirtual: ListagemVirtualComponent
     @ViewChild(SearchBarComponent) searchFocus: SearchBarComponent
     nr_Registros: number = 0
-    nr_Page_Length: number = 0
+    nr_Page_Length: number = 7
     nr_Page: number = 1
     b_Mostrar_Modal: boolean = false
     nm_Search: string = ""
@@ -154,7 +160,7 @@ export class DocumentosComponent implements OnInit {
     }
 
     Exibir_Listagem() {
-        this.nr_Page_Length = 14
+        this.nr_Page_Length = 13
 
         if (window.innerWidth > 1024) {
             this.b_Exibir_Computador = true
