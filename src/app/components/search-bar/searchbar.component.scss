@@ -3,11 +3,11 @@
     @apply mt-4 w-full flex flex-grow relative rounded-full shadow-lg;
 
     @screen md{
-        @apply md:top-3;
+        @apply top-3;
     }
 
     @screen lg{
-        @apply lg:flex-grow-0;
+        @apply flex-grow-0 top-2;
     }
 }
 

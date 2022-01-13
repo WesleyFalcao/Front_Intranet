@@ -54,10 +54,10 @@
 
     <!-- Listagem dos Ramais com a barra de pesquisa -->
 
-    <div class="w-screen lg:px-8">
+    <div class="w-full body-documentos">
 
         <!-- barra de pesquisa -->
-        <div class="flex flex-row gap-5 md:mx-20 mx-3 md:pb-10 pb-7">
+        <div class="flex pb-7 flex-row gap-5 md:ml-12 md:mr-20 mx-3 md:pb-10 lg:pb-6">
 
             <!-- Filtro-->
             <div class="filtro" (click)="Mostrar_Modal()">
@@ -70,11 +70,11 @@
             </ng-container>
         </div>
 
-        <div class="relative w-10/12 mx-auto ">
+        <div class="relative w-9/12 mx-auto ">
             <div class="w-full mx-auto">
             </div>
             <div
-                class="hidden h-12 lg:flex items-center text-center shadow-lg mx-auto mb-14 bg-white rounded-full transform cursor-pointer duration-300">
+                class="hidden h-12 lg:flex items-center text-center shadow-lg mx-auto mb-10 bg-white rounded-full transform cursor-pointer duration-300">
                 <div *ngIf="b_Exibir" class="hidden lg:flex fixed z-10 h-12 largura-barra rounded-full bg-unimed-green"
                     [style.transform]="'translate('+ nr_Posicao * 100 +'%)'">
                 </div>
@@ -98,26 +98,24 @@
             </div>
         </div>
 
-        <div #listaRamais class=" body-documentos">
+        <div class="calculo-largura relative rounded-lg z-10 w-full ml-20 mr-24">
+            <ul class="hidden md:mb-2 bg-white lg:flex">
+                <li class="text-center pt-6 pb-3 font-medium text-lg lg:block {{documento.nm_Classe}}"
+                    *ngFor="let documento of objArrayTitulos">
+                    <div>
+                        {{documento.nm_titulo}}
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div #listaRamais class="body-documentos">
             <cdk-virtual-scroll-viewport [itemSize]="56" minBufferPx="700" maxBufferPx="700"
-                class="virtual-scroll md:mx-20 pl-2 lg:mx-0 rounded-lg h-full lg:bg-white lg:shadow-none">
-                <div class="relative w-full">
-                    <ul class="hidden md:mb-2 lg:flex">
-                        <li class="text-center pt-10 font-medium text-lg lg:block {{documento.nm_Classe}}"
-                            *ngFor="let documento of objArrayTitulos">
-                            <div>
-                                {{documento.nm_titulo}}
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                class="virtual-scroll md:mx-20 pl-2 lg:pl-0 lg:-top-14 lg:mx-20 lg:pt-12 rounded-lg h-full lg:bg-white shadow-lg">
                 <div class="bg-unimed-white overflow-y-auto py-2 mb-4 md:py-2.5 md:mb-6 lg:pb-4 rounded-lg shadow-lg lg:shadow-none lg:hover:bg-gray-200 font-medium transform cursor-pointer active:scale-95 transition duration-300 "
                     (click)="Expandir(pessoa)" *cdkVirtualFor="let pessoa of objArrayRamais ">
 
                     <!-- essa div está estilizando os nomes que estão vindo do cdkVirtualFor -->
-
-                    <div class=" flex flex-row gap-x-8 md:text-lg lg:text-base lg:pl-0 lg:pt-1.5">
-
+                    <div class="flex flex-row gap-x-8 md:text-lg lg:text-base lg:pl-0 lg:pt-1.5">
                         <!-- circulo com as inicias mobile -->
                         <div class="w-1/12 lg:hidden pl-3">
                             <div
@@ -136,7 +134,6 @@
                             </div>
 
                             <ng-container class="items-center" *ngIf="pessoa.open ">
-
                                 <span [title]="pessoa.nm_Departamento | camelcase"
                                     class=" pt-2 mt-3 lg:mt-0 md:pt-3 lg:w-3/12 lg:text-center xl:pt-0 overflow-hidden overflow-ellipsis whitespace-nowrap">
                                     <b class="lg:hidden"> Setor:</b>
@@ -154,7 +151,6 @@
                                     <b class="lg:hidden">Email:</b>
                                     {{pessoa.ds_Email}}
                                 </span>
-
                             </ng-container>
                         </div>
                     </div>
@@ -165,7 +161,8 @@
                     <div class="mx-auto pt-11 lg:pt-0 w-6/12 h-6/12 lg:w-3/12 lg:h-3/12">
                         <img src="assets/imagens/table-empty-nada-encontrado.svg" alt="">
                     </div>
-                    <div class="text-sm text-center mt-4 md:text-lg md:font-normal"> Os contatos não foram encontrados
+                    <div class="text-sm text-center mt-4 md:text-lg md:font-normal"> Os contatos não foram
+                        encontrados
                     </div>
                 </div>
             </cdk-virtual-scroll-viewport>

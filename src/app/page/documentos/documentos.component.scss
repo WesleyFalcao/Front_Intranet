@@ -60,10 +60,10 @@
     @apply flex flex-grow w-full pl-4 pr-2;
 
     @screen md{
-        @apply md:w-11/12 md:mr-5 pl-5 pr-0;
+        @apply w-11/12 mr-5 pl-5 pr-0;
     }
     @screen lg{
-        @apply lg:w-full lg:mx-8;
+        @apply w-full mx-8;
     }
 }
 

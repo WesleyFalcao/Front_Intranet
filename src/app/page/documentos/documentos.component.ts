@@ -33,7 +33,7 @@ export class DocumentosComponent implements OnInit {
     @ViewChild(ListagemVirtualComponent) listagemVirtual: ListagemVirtualComponent
     @ViewChild(SearchBarComponent) searchFocus: SearchBarComponent
     nr_Registros: number = 0
-    nr_Page_Length: number = 7
+    nr_Page_Length: number = 0
     nr_Page: number = 1
     b_Mostrar_Modal: boolean = false
     nm_Search: string = ""
@@ -154,14 +154,14 @@ export class DocumentosComponent implements OnInit {
     }
 
     Exibir_Listagem() {
-        this.nr_Page_Length = 13
+        this.nr_Page_Length = 14
 
         if (window.innerWidth > 1024) {
             this.b_Exibir_Computador = true
-            this.nr_Page_Length = 7
+            this.nr_Page_Length = 8
         }
         if (window.innerWidth >= 1440) {
-            this.nr_Page_Length = 13
+            this.nr_Page_Length = 14
         }
     }
 
