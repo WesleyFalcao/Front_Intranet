@@ -44,7 +44,7 @@ export class RamaisComponent implements OnInit {
   @ViewChildren('variavelLocal') objArrayItemLista: QueryList<ElementRef>
   @ViewChild('listaRamais') listaRamais: ElementRef
   @ViewChildren('letras') objArrayLetras: QueryList<ElementRef>
-  @ViewChild('search', {static: true}) search_element: SearchBarComponent
+  @ViewChild(SearchBarComponent, {static: true}) search_element: SearchBarComponent
 
   b_Mostrar_Modal: boolean = false
   b_Text_Row_Lg: boolean = false
@@ -66,7 +66,6 @@ export class RamaisComponent implements OnInit {
   constructor(private ramaisService: RamaisService, private subjectService: SubjectService, private ngZone: NgZone) { }
 
   async ngOnInit() {
-
     this.Exibir_Computador()
     this.Buscar_Ramais()
     this.modelChanged.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async (input) => {
@@ -99,7 +98,12 @@ export class RamaisComponent implements OnInit {
       this.b_Computador = !this.b_Computador
       if (this.b_Computador) {
         this.objArrayRamais.forEach(a => a.open = true)
-        //this.search_element.searchElement.nativeElement.focus()
+        this.nr_Posicao = 3
+        this.b_Exibir = true
+        setTimeout(() => {
+          this.search_element.searchElement.nativeElement.focus()
+        }, 0);
+        this.Trazer_Todos()
       } else {
         this.objArrayRamais.forEach(a => a.open = false)
       }
@@ -143,8 +147,10 @@ export class RamaisComponent implements OnInit {
     this.nr_Page = 1
     this.cd_Origem = cd_Origem
     this.Buscar_Ramais()
-    if (window.innerWidth < 1024) {
+    if (!this.b_Computador) {
       this.b_Mostrar_Modal = false
+    }else{
+      this.search_element.searchElement.nativeElement.focus()
     }
     this.Rollar_Topo()
   }
@@ -157,9 +163,8 @@ export class RamaisComponent implements OnInit {
     if (!this.b_Computador) {
       this.b_Mostrar_Modal = false
     }else{
-      //this.search_element.searchElement.nativeElement.focus()
+      this.search_element.searchElement.nativeElement.focus()
     }
-    this.nm_Inicial_Selecionada = ""
     this.modelChanged.setValue(this.nm_Inicial_Selecionada)
     await this.Buscar_Ramais()
   }

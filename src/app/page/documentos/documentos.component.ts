@@ -39,7 +39,7 @@ export class DocumentosComponent implements OnInit {
     @ViewChild(ListagemVirtualComponent) listagemVirtual: ListagemVirtualComponent
     @ViewChild(SearchBarComponent) searchFocus: SearchBarComponent
     nr_Registros: number = 0
-    nr_Page_Length: number = 7
+    nr_Page_Length: number = 8
     nr_Page: number = 1
     b_Mostrar_Modal: boolean = false
     nm_Search: string = ""
@@ -103,8 +103,7 @@ export class DocumentosComponent implements OnInit {
         this.cd_Setor_CEQ = obj.cd_Setor_CEQ
 
         if (!this.b_Exibir_Computador) {
-            this.objArrayDocumentos = []
-            
+            this.objArrayDocumentos = []   
         } else {
             this.searchFocus.searchElement.nativeElement.focus()
         }
@@ -160,14 +159,23 @@ export class DocumentosComponent implements OnInit {
     }
 
     Exibir_Listagem() {
-        this.nr_Page_Length = 13
 
-        if (window.innerWidth > 1024) {
+        if (window.innerWidth > 1000) {
             this.b_Exibir_Computador = true
             this.nr_Page_Length = 8
+            setTimeout(() => {
+                this.searchFocus.searchElement.nativeElement.focus()
+            }, 0);
+        }else{
+            this.nr_Page_Length = 30
         }
-        if (window.innerWidth >= 1440) {
-            this.nr_Page_Length = 14
+        
+        let valor = window.innerHeight * this.nr_Page_Length
+        let resultado = Math.floor((valor / 625 ))
+        this.nr_Page_Length = resultado
+
+        if(window.innerWidth > 1900){
+            this.nr_Page_Length = 16
         }
     }
 

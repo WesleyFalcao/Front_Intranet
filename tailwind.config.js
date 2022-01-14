@@ -71,6 +71,8 @@ module.exports = {
 
           verdeclaro: '#9DFFA5',
 
+          verde_background: '#62B054',
+
         },
       },
 

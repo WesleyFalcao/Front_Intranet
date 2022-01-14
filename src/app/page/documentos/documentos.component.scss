@@ -42,12 +42,15 @@
     @screen md{
         @apply left-2
     }
+    @screen lg{
+        @apply top-8; 
+    }
    
 }
 
 .div-menu-lateral-principal{
     
-    @apply scrollbar-hide overflow-y-auto pl-4 flex-col bg-cover bg-center absolute w-full z-30 top-0 left-0 h-screen bg-gray-200;
+    @apply scrollbar-hide overflow-y-auto pl-4 flex-col bg-cover bg-center absolute w-full z-30 top-0 left-0 h-screen bg-gray-300;
 
     @screen lg{
         width: 25%;
@@ -178,10 +181,9 @@
 }
 
 .limpar-filtro-button{
-    @apply top-3 absolute transform -translate-x-1/2 left-1/2;
+    @apply top-4 absolute transform -translate-x-1/2 left-1/2;
 
     @screen md{
-        @apply top-6 transform -translate-x-1/2 left-1/2;
+        @apply top-6;
     }
-
 }

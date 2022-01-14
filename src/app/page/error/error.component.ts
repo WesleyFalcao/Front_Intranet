@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ErrorComponent implements OnInit {
 
-    constructor(private router: Router) { }
+    constructor(private router: Router, private location:Location) { }
 
     ngOnInit() {
     }
@@ -19,6 +19,7 @@ export class ErrorComponent implements OnInit {
     };
 
     Voltar() {
-        this.router.navigate([""])
+        this.location.back()
+        
     }
 }

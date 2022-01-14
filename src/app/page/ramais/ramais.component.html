@@ -27,7 +27,7 @@
                     <img class="w-12 h-12 md:w-20 md:h-20 lg:hidden lg:w-20 lg:h-20 xl:w-16 xl:h-16"
                         src="assets/imagens/operadora.svg">
                 </div>
-                <div class="relative pl-6 top-8 text-sm md:top-10 md:text-lg lg:top-14 lg:hidden {{cd_Origem == 1? nm_Text_Orange: ''}}">
+                <div class="relative pl-4 top-8 text-sm md:top-10 md:text-lg lg:top-14 lg:hidden {{cd_Origem == 1? nm_Text_Orange: ''}}">
                     Operadora
                 </div>
             </li>
@@ -36,7 +36,7 @@
                 <div class="pt-4 pl-4 md:pl-5 lg:pt-8">
                     <img class="w-12 h-12 md:w-20 md:h-20 xl:w-16 xl:h-16" src="assets/imagens/contatos-uteis.svg">
                 </div>
-                <div class="relative pl-6 top-8 text-sm md:top-10 md:text-lg lg:top-14 lg:hidden {{cd_Origem == 0? nm_Text_Orange: ''}}">
+                <div class="relative pl-4 top-8 text-sm md:top-10 md:text-lg lg:top-14 lg:hidden {{cd_Origem == 0? nm_Text_Orange: ''}}">
                     Contatos úteis
                 </div>
             </li>
@@ -45,7 +45,7 @@
                 <div class="pt-4 pl-3 md:pl-4 lg:pt-8">
                     <img class="trazer-tudo w-14 h-14 md:w-24 md:h-24" src="assets/imagens/trazer-todos.svg">
                 </div>
-                <div class="relative pl-3 top-8 text-sm md:top-10 md:text-lg lg:top-14 lg:hidden">
+                <div class="relative pl-4 top-8 text-sm md:top-10 md:text-lg lg:top-14 lg:hidden">
                     Filtrar todos
                 </div>
             </li>
@@ -100,7 +100,7 @@
         </div>
         <div class="rounded-lg">
             <div class="calculo-largura relative z-10 w-full ml-20 mr-24">
-                <ul class="hidden md:mb-2 bg-white lg:flex">
+                <ul class="hidden md:mb-2 bg-white lg:flex rounded-lg">
                     <li class="text-center pt-6 pb-3 font-medium text-lg lg:block {{documento.nm_Classe}}"
                         *ngFor="let documento of objArrayTitulos">
                         <div>
@@ -112,8 +112,8 @@
         </div>
         <div #listaRamais class="body-documentos">
             <cdk-virtual-scroll-viewport [itemSize]="56" minBufferPx="700" maxBufferPx="700"
-                class="virtual-scroll md:mx-20 pl-2 lg:pl-0 lg:-top-14 lg:mx-20 lg:pt-12 rounded-lg h-full lg:bg-white shadow-lg">
-                <div class="bg-unimed-white overflow-y-auto py-2 mb-4 md:py-2.5 md:mb-6 lg:pb-4 rounded-lg shadow-lg lg:shadow-none lg:hover:bg-gray-200 font-medium transform cursor-pointer active:scale-95 transition duration-300 "
+                class="virtual-scroll shadow-lg md:shadow-none lg:shadow-lg md:mx-20 pl-2 lg:pl-0 lg:-top-14 lg:mx-20 lg:pt-12 rounded-lg h-full lg:bg-white">
+                <div class="bg-unimed-white overflow-y-auto py-2 mb-4 md:py-2.5 md:mb-6 lg:pb-0 lg:py-1 lg:mb-3 rounded-lg shadow-lg md:shadow-none lg:hover:bg-gray-200 font-medium transform cursor-pointer active:scale-95 transition duration-300 "
                     (click)="Expandir(pessoa)" *cdkVirtualFor="let pessoa of objArrayRamais ">
 
                     <!-- essa div está estilizando os nomes que estão vindo do cdkVirtualFor -->
@@ -128,7 +128,7 @@
                             </div>
                         </div>
                         <div
-                            class="w-11/12 lg:w-full overflow-x-hidden text-sm lg:text-xl xl:text-base flex my-auto gap-y-2 flex-col lg:flex-row">
+                            class="w-11/12 lg:w-full overflow-x-hidden text-sm lg:text-xl xl:text-base flex flex-col gap-y-2 my-auto lg:flex-row">
 
                             <div [title]="pessoa.nm_Pessoa | camelcase"
                                 class="lg:pl-4 lg:w-4/12 pl-9 overflow-hidden overflow-ellipsis whitespace-nowrap ">
@@ -137,7 +137,7 @@
 
                             <ng-container class="items-center" *ngIf="pessoa.open">
                                 <span [title]="pessoa.nm_Departamento | camelcase"
-                                    class=" pt-2 mt-3 lg:mt-0 md:pt-3 lg:w-3/12 lg:text-center xl:pt-0 overflow-hidden overflow-ellipsis whitespace-nowrap">
+                                    class=" pt-2 mt-3 lg:mt-0 md:pt-3 lg:w-3/12 lg:text-center lg:pt-0 overflow-hidden overflow-ellipsis whitespace-nowrap">
                                     <b class="lg:hidden"> Setor:</b>
                                     {{pessoa.nm_Departamento | camelcase}}
                                 </span>
