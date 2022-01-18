@@ -1,15 +1,11 @@
-import { fn, THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, ElementRef, EventEmitter, NgZone, OnInit, Output, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
-import { interval, timer } from 'rxjs';
-import { ScrollDirective } from 'src/app/directives/scroll/scroll.directive';
-import { RamaisService } from './ramais.service';
-import { Subject, Subscription } from "rxjs";
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { Component, ElementRef, HostListener, NgZone, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, filter, map, pairwise, throttleTime } from "rxjs/operators";
 import { SearchBarComponent } from 'src/app/components/search-bar/searchbar.component';
 import { RamaisParams } from 'src/app/models/ramais/ramais.params';
 import { SubjectService } from 'src/app/services/subject.service';
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { FormControl } from '@angular/forms';
+import { RamaisService } from './ramais.service';
 
 @Component({
   selector: 'app-ramais',
@@ -44,7 +40,7 @@ export class RamaisComponent implements OnInit {
   @ViewChildren('variavelLocal') objArrayItemLista: QueryList<ElementRef>
   @ViewChild('listaRamais') listaRamais: ElementRef
   @ViewChildren('letras') objArrayLetras: QueryList<ElementRef>
-  @ViewChild(SearchBarComponent, {static: true}) search_element: SearchBarComponent
+  @ViewChild(SearchBarComponent, { static: true }) search_element: SearchBarComponent
 
   b_Mostrar_Modal: boolean = false
   b_Text_Row_Lg: boolean = false
@@ -62,8 +58,16 @@ export class RamaisComponent implements OnInit {
   modelChanged = new FormControl()
   nr_Posicao: number
   b_Exibir: boolean = false
+  nr_width: number
 
   constructor(private ramaisService: RamaisService, private subjectService: SubjectService, private ngZone: NgZone) { }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.nr_width = event.target.innerWidth;
+    
+    
+  }
 
   async ngOnInit() {
     this.Exibir_Computador()
@@ -110,11 +114,11 @@ export class RamaisComponent implements OnInit {
     }
   }
 
-  Expandir(documento: any): void {
-    if (window.innerWidth < 1280) {
-      documento.open = !documento.open
-    }
-  }
+  // Expandir(documento: any): void {
+  //   if (window.innerWidth < 1280) {
+  //     documento.open = !documento.open
+  //   }
+  // }
 
   Mostrar_Modal() {
     this.b_Mostrar_Modal = true
@@ -122,11 +126,10 @@ export class RamaisComponent implements OnInit {
 
   Redefinir() {
     if (this.b_Computador) {
-
       this.objArrayRamais.forEach(a => a.open = true)
-      this.b_Mostrar_Modal = true
+      this.b_Mostrar_Modal = false
       // this.b_Text_Row_Lg = true
-    } else {
+    } else{
       this.objArrayRamais.forEach(a => a.open = false)
     }
   }
@@ -149,7 +152,7 @@ export class RamaisComponent implements OnInit {
     this.Buscar_Ramais()
     if (!this.b_Computador) {
       this.b_Mostrar_Modal = false
-    }else{
+    } else {
       this.search_element.searchElement.nativeElement.focus()
     }
     this.Rollar_Topo()
@@ -162,7 +165,7 @@ export class RamaisComponent implements OnInit {
     this.cd_Origem = 3
     if (!this.b_Computador) {
       this.b_Mostrar_Modal = false
-    }else{
+    } else {
       this.search_element.searchElement.nativeElement.focus()
     }
     this.modelChanged.setValue(this.nm_Inicial_Selecionada)

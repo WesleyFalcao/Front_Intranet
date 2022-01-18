@@ -85,7 +85,7 @@
 			</ng-container>
 		</div>
 
-		<div *ngIf="!b_Exibir_Computador; else listagem">
+		<div *ngIf="nr_width <= 1029; else listagem">
 			<app-listagem-virtual [objArrayCampos]="objArrayCampos" [objArrayItens]="objArrayDocumentos"
 				(onPageChange)="Mudar_Pagina($event)" (onClickRow)="Buscar_Arquivo($event)">
 			</app-listagem-virtual>

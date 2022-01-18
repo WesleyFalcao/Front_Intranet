@@ -1,19 +1,13 @@
-import { transition } from '@angular/animations';
-import { importExpr } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit, Output, Input, ViewChild, EventEmitter, ElementRef, ViewChildren } from '@angular/core';
+import { Component, HostListener, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounce, debounceTime, distinctUntilChanged, startWith, throttleTime, filter } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ListagemVirtualComponent } from 'src/app/components/listagem-virtual/listagem-virtual.component';
 import { SearchBarComponent } from 'src/app/components/search-bar/searchbar.component';
 import { Documento } from 'src/app/models/documento/documento.model';
 import { DocumentosParams } from 'src/app/models/documento/documento.params';
-import { PaginatedFormParams } from 'src/app/models/genericos/paginated.model';
 import { CamposListagem } from 'src/app/models/listagem/campos-listagem.model';
-import { RamaisParams } from 'src/app/models/ramais/ramais.params';
-import { DocumentosRepository } from 'src/app/repositories/documentos.repository';
 import { To_Capitalize } from 'src/app/utils/utils';
 import { environment } from 'src/environments/environment';
-import { fileURLToPath } from 'url';
 import { DocumentosService } from './documentos.service';
 
 @Component({
@@ -21,7 +15,7 @@ import { DocumentosService } from './documentos.service';
     templateUrl: './documentos.component.html',
     styleUrls: ['./documentos.component.scss']
 })
-export class DocumentosComponent implements OnInit {
+export class DocumentosComponent implements OnInit, OnChanges {
 
     objArrayDocumentos = []
     objArrayGrupoCEQ = []
@@ -49,10 +43,30 @@ export class DocumentosComponent implements OnInit {
     b_Exibir_Computador: boolean = false
     b_Search_Focus: boolean = false
     b_Requisicao: boolean
+    nr_width: number = window.innerWidth
+    nr_heigth: number
+    b_Mudar_Listagem: any
+
+    @HostListener('window:resize', ['$event'])
+    onResize(event){
+        this.nr_width = event.target.innerWidth;
+        this.nr_heigth = event.target.innerHeight;
+        if(this.nr_heigth >= 930){
+            this.nr_Page_Length = 16
+        } else if(this.nr_heigth >= 900){
+            this.nr_Page_Length = 12
+        }
+    }
 
     constructor(
         private documentosService: DocumentosService
     ) { }
+
+    ngOnChanges(changes: SimpleChanges) {
+        if (this.b_Mudar_Listagem.currentValue) {
+            window.location.reload()
+        }
+    }
 
     async ngOnInit() {
 
@@ -80,6 +94,29 @@ export class DocumentosComponent implements OnInit {
         this.Buscar_Documentos()
     }
 
+    Exibir_Listagem() {
+
+        if (window.innerWidth >= 1030) {
+            this.b_Exibir_Computador = true
+            this.b_Mudar_Listagem = true
+            this.nr_Page_Length = 8
+            setTimeout(() => {
+                this.searchFocus.searchElement.nativeElement.focus()
+            }, 0);
+        } else if (window.innerWidth <= 1029) {
+            this.nr_Page_Length = 30
+            this.b_Mudar_Listagem = false
+        }
+
+        
+        let valor = window.innerHeight * this.nr_Page_Length
+        let resultado = Math.floor((valor / 625))
+        this.nr_Page_Length = resultado
+
+        if (window.innerWidth > 1900) {
+            this.nr_Page_Length = 14
+        }
+    }
     async Buscar_Documentos() {
 
         const objParams: DocumentosParams = { nr_Page: this.nr_Page, nr_Page_Length: this.nr_Page_Length, nm_Search: this.nm_Search, cd_Setor_CEQ: this.cd_Setor_CEQ }
@@ -103,7 +140,7 @@ export class DocumentosComponent implements OnInit {
         this.cd_Setor_CEQ = obj.cd_Setor_CEQ
 
         if (!this.b_Exibir_Computador) {
-            this.objArrayDocumentos = []   
+            this.objArrayDocumentos = []
         } else {
             this.searchFocus.searchElement.nativeElement.focus()
         }
@@ -111,16 +148,16 @@ export class DocumentosComponent implements OnInit {
         if (obj.cd_Setor_CEQ != 0 && !b_Filho) {
             this.Buscar_Documentos()
             obj._open = true
-            if(!this.b_Exibir_Computador){
+            if (!this.b_Exibir_Computador) {
                 this.b_Mostrar_Modal = !this.b_Mostrar_Modal
-            }else{
+            } else {
                 this.b_Mostrar_Modal = this.b_Mostrar_Modal
             }
 
         } else if (obj.subgrupos?.length == 0) {
             this.objArrayDocumentos = []
             this.b_Mostrar_Modal = !this.b_Mostrar_Modal
-        } 
+        }
     }
 
     async Buscar_Arquivo(cd_Documento: number) {
@@ -158,26 +195,7 @@ export class DocumentosComponent implements OnInit {
         })
     }
 
-    Exibir_Listagem() {
 
-        if (window.innerWidth > 1000) {
-            this.b_Exibir_Computador = true
-            this.nr_Page_Length = 8
-            setTimeout(() => {
-                this.searchFocus.searchElement.nativeElement.focus()
-            }, 0);
-        }else{
-            this.nr_Page_Length = 30
-        }
-        
-        let valor = window.innerHeight * this.nr_Page_Length
-        let resultado = Math.floor((valor / 625 ))
-        this.nr_Page_Length = resultado
-
-        if(window.innerWidth > 1900){
-            this.nr_Page_Length = 16
-        }
-    }
 
     Limpar_Filtros() {
 
