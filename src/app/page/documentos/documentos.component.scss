@@ -95,7 +95,7 @@
 
 .formatacao-menu-lateral{
 
-    @apply space-y-3 font-medium cursor-pointer relative bg-white rounded-2xl shadow-lg w-full;
+    @apply space-y-3 font-medium cursor-pointer pl-1 relative bg-white rounded-2xl shadow-lg w-full;
 
     @screen md {
         @apply text-2xl font-medium shadow-none transform relative -translate-x-1/2 left-1/2;

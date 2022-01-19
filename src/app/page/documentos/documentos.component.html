@@ -85,7 +85,7 @@
 			</ng-container>
 		</div>
 
-		<div *ngIf="nr_width <= 1029; else listagem">
+		<div *ngIf="b_Mudar_Listagem == false, else listagem">
 			<app-listagem-virtual [objArrayCampos]="objArrayCampos" [objArrayItens]="objArrayDocumentos"
 				(onPageChange)="Mudar_Pagina($event)" (onClickRow)="Buscar_Arquivo($event)">
 			</app-listagem-virtual>
@@ -93,7 +93,7 @@
 
 		<ng-template #listagem>
 			<div class="mr-10 {{!b_Mostrar_Modal?'mx-10':''}}">
-				<app-listagem [objArrayCampos]="objArrayCampos" [objArrayItems]="objArrayDocumentos"
+				<app-listagem [objArrayCampos]="objArrayCamposDesktop" [objArrayItems]="objArrayDocumentos"
 					(onPageChange)="Mudar_Pagina($event)" (onClickRow)="Buscar_Arquivo($event)"
 					[nr_Registros]="nr_Registros" [nr_Page_Length]="nr_Page_Length" [nr_Page]="nr_Page">
 				</app-listagem>

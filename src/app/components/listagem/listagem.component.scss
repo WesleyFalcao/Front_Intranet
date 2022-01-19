@@ -47,3 +47,15 @@ li{
         @apply text-lg
     }
 }
+
+.exibir-titulo{
+    @apply hidden;
+
+    @screen md{
+        @apply md:mb-2
+    }
+    @screen lg{
+        @apply flex
+    }
+    
+}

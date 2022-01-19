@@ -1,7 +1,7 @@
 <div class="relative w-full flex flex-col">
     <!-- titulo dos items -->
     <ul class="w-full relative pb-5">
-        <li class="hidden md:mb-2 lg:flex">
+        <li class="exibir-titulo">
             <div class="font-semibold titulo-tela-grande text-base text-center pt-10 lg:pt-2 lg:block {{objeto.nm_Classe}}"
                 *ngFor="let objeto of objArrayCampos">
                 {{objeto.nm_Exibicao}}
@@ -9,9 +9,9 @@
         </li>
     </ul>
     <!-- listagem items -->
-    <ul class="pai-listagem-items {{objArrayItems.length ==0?'hidden':''}}">
+    <ul class="pai-listagem-items {{objArrayItems.length == 0?'hidden':''}}">
         <li class="li-pai-listagem" (click)="Get_Card(item)" *ngFor="let item of objArrayItems">
-            <div [title]="item[campo.nm_Atibruto]" [class]="campo.nm_Classe" *ngFor="let campo of objArrayCampos">
+            <div class="classe-listagem" [title]="item[campo.nm_Atibruto]" [class]="campo.nm_Classe" *ngFor="let campo of objArrayCampos">
                 {{item[campo.nm_Atibruto]}}
             </div>
             <!-- <img class="icone-download-tela-grande w-12 h-12 relative my-auto" src="assets/icons/icon-download.svg"> -->

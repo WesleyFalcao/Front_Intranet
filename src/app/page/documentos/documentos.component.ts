@@ -1,4 +1,4 @@
-import { Component, HostListener, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ListagemVirtualComponent } from 'src/app/components/listagem-virtual/listagem-virtual.component';
@@ -15,19 +15,24 @@ import { DocumentosService } from './documentos.service';
     templateUrl: './documentos.component.html',
     styleUrls: ['./documentos.component.scss']
 })
-export class DocumentosComponent implements OnInit, OnChanges {
+export class DocumentosComponent implements OnInit, OnDestroy{
 
     objArrayDocumentos = []
     objArrayGrupoCEQ = []
     objArrayRetorno = []
     objArrayCampos: CamposListagem[] = [
-
         { nm_Exibicao: "Nome", nm_Classe: "w-5/12 my-auto lg:pl-14 overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Documento" },
         { nm_Exibicao: "Código", nm_Classe: "w-2/12 my-auto lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "cd_Qualidade" },
         { nm_Exibicao: "Processos", nm_Classe: "w-2/12 my-auto lg:text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Processo" },
-        { nm_Exibicao: "Revisão", nm_Classe: "lg:pl-6 w-1/12 my-auto lg:text-center", nm_Atibruto: "nr_Revisao" },
+        { nm_Exibicao: "Revisão", nm_Classe: "w-1/12 lg:pl-6 my-auto lg:text-center", nm_Atibruto: "nr_Revisao" },
         { nm_Exibicao: "Data", nm_Classe: "w-2/12 my-auto lg:text-center", nm_Atibruto: "dt_Documento" },
-
+    ]
+    objArrayCamposDesktop: CamposListagem[] = [
+        { nm_Exibicao: "Nome", nm_Classe: "w-5/12 my-auto pl-14 overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Documento" },
+        { nm_Exibicao: "Código", nm_Classe: "w-2/12 my-auto text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "cd_Qualidade" },
+        { nm_Exibicao: "Processos", nm_Classe: "w-2/12 my-auto text-center overflow-hidden overflow-ellipsis whitespace-nowrap", nm_Atibruto: "nm_Processo" },
+        { nm_Exibicao: "Revisão", nm_Classe: "lg:pl-6 w-1/12 my-auto text-center", nm_Atibruto: "nr_Revisao" },
+        { nm_Exibicao: "Data", nm_Classe: "w-2/12 my-auto text-center", nm_Atibruto: "dt_Documento" },
     ]
 
     @ViewChild(ListagemVirtualComponent) listagemVirtual: ListagemVirtualComponent
@@ -45,32 +50,128 @@ export class DocumentosComponent implements OnInit, OnChanges {
     b_Requisicao: boolean
     nr_width: number = window.innerWidth
     nr_heigth: number
-    b_Mudar_Listagem: any
+    b_Mudar_Listagem: boolean = false
 
     @HostListener('window:resize', ['$event'])
-    onResize(event){
-        this.nr_width = event.target.innerWidth;
-        this.nr_heigth = event.target.innerHeight;
-        if(this.nr_heigth >= 930){
-            this.nr_Page_Length = 16
-        } else if(this.nr_heigth >= 900){
-            this.nr_Page_Length = 12
+    onResize() {
+        this.nr_width = window.innerWidth;
+        this.nr_heigth = window.innerHeight;
+        if (this.nr_width >= 1024) {
+            this.b_Exibir_Computador = true
+            this.b_Mudar_Listagem = !this.b_Mudar_Listagem
+            this.nr_Page = 1
+            if (this.b_Mudar_Listagem == true){
+
+                this.nr_Page_Length = 10
+            }
+        } else {
+
+            this.b_Mudar_Listagem = !this.b_Mudar_Listagem
+            this.nr_Page = 1
+            this.nr_Page_Length = 40
+            this.Buscar_Documentos()
+
         }
     }
+
+    // onResize() {
+
+    //     this.nr_width = window.innerWidth;
+    //     this.nr_heigth = window.innerHeight;
+    //     if (this.nr_width <= 1023) {
+    //         setTimeout(() => {
+    //             this.objArrayDocumentos = []
+    //             this.nr_Page = 1
+    //             this.Buscar_Documentos()
+    //         }, 0);
+
+    //     }
+    //     if (this.nr_width >= 1024) {
+    //         setTimeout(() => {
+    //             this.nr_Page = 1
+    //             this.objArrayDocumentos = []
+    //             this.nr_Page_Length = 8
+    //             let valor = window.innerHeight * this.nr_Page_Length
+    //             let resultado = Math.floor((valor / 625))
+    //             this.nr_Page_Length = resultado
+    //             this.Buscar_Documentos()
+    //         }, 0);
+
+    //     }
+    //     if(this.nr_width >= 1600){
+    //         this.nr_Page_Length = 13
+    //         this.Buscar_Documentos()
+    //     }
+
+    //     else{
+    //         setTimeout(() => {
+    //             this.nr_Page = 1
+    //             this.objArrayDocumentos = []
+    //             this.nr_Page_Length = 30
+    //             this.Buscar_Documentos()
+    //         }, 0);
+    //     }
+    //     if(this.nr_heigth >= 300 && this.nr_heigth <= 500){
+    //         setTimeout(() => {
+    //             this.nr_Page_Length = 2
+
+    //         }, 0);
+    //     }
+    //     else if(this.nr_heigth >= 501 && this.nr_heigth <= 700){
+    //         setTimeout(() => {
+    //             this.nr_Page_Length = 6
+
+    //         }, 0);
+    //     }
+    //     else if(this.nr_heigth >= 701 && this.nr_heigth <= 900){
+    //         setTimeout(() => {
+    //             this.nr_Page_Length = 10
+
+    //         }, 0);
+    //     }
+    //     else if (this.nr_heigth >= 901 && this.nr_heigth <= 1100) {
+    //         setTimeout(() => {
+    //             this.nr_Page_Length = 14
+
+    //         }, 0);
+    //     }
+    // }
+
+    // Exibir_Listagem() {
+
+    //     if (window.innerWidth >= 1024) {
+    //         this.b_Exibir_Computador = true
+    //         this.b_Mudar_Listagem = true
+    //         this.nr_Page_Length = 8
+    //         setTimeout(() => {
+    //             this.searchFocus.searchElement.nativeElement.focus()
+    //         }, 0);
+    //         this.Buscar_Documentos()
+    //     } else if (window.innerWidth <= 1029) {
+    //         this.b_Mudar_Listagem = false
+    //         this.Buscar_Documentos()
+
+    //     }
+
+
+    //     let valor = window.innerHeight * this.nr_Page_Length
+    //     let resultado = Math.floor((valor / 625))
+    //     this.nr_Page_Length = resultado
+
+    //     if (window.innerWidth > 1900) {
+    //         this.nr_Page_Length = 14
+    //     }
+    // }
+
 
     constructor(
         private documentosService: DocumentosService
     ) { }
 
-    ngOnChanges(changes: SimpleChanges) {
-        if (this.b_Mudar_Listagem.currentValue) {
-            window.location.reload()
-        }
-    }
-
     async ngOnInit() {
 
-        this.Exibir_Listagem()
+        this.onResize()
+        //this.Exibir_Listagem()
         this.Buscar_GrupoCEQ()
         this.Buscar_Documentos()
         this.modelChanged.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async (input) => {
@@ -87,6 +188,9 @@ export class DocumentosComponent implements OnInit, OnChanges {
             this.objArrayCampos[0].nm_Classe = "font-semibold"
         }
     }
+    ngOnDestroy() {
+        console.log('Adeus, componente destruído!');
+      }
 
     /** @description Avança uma pagina */
     Mudar_Pagina(nr_Page: number) {
@@ -94,31 +198,7 @@ export class DocumentosComponent implements OnInit, OnChanges {
         this.Buscar_Documentos()
     }
 
-    Exibir_Listagem() {
-
-        if (window.innerWidth >= 1030) {
-            this.b_Exibir_Computador = true
-            this.b_Mudar_Listagem = true
-            this.nr_Page_Length = 8
-            setTimeout(() => {
-                this.searchFocus.searchElement.nativeElement.focus()
-            }, 0);
-        } else if (window.innerWidth <= 1029) {
-            this.nr_Page_Length = 30
-            this.b_Mudar_Listagem = false
-        }
-
-        
-        let valor = window.innerHeight * this.nr_Page_Length
-        let resultado = Math.floor((valor / 625))
-        this.nr_Page_Length = resultado
-
-        if (window.innerWidth > 1900) {
-            this.nr_Page_Length = 14
-        }
-    }
     async Buscar_Documentos() {
-
         const objParams: DocumentosParams = { nr_Page: this.nr_Page, nr_Page_Length: this.nr_Page_Length, nm_Search: this.nm_Search, cd_Setor_CEQ: this.cd_Setor_CEQ }
         const objRetorno = await this.documentosService.Get_Documentos(objParams)
         objRetorno.data.forEach(f => f.nm_Documento = To_Capitalize(f.nm_Documento))
@@ -160,6 +240,7 @@ export class DocumentosComponent implements OnInit, OnChanges {
         }
     }
 
+
     async Buscar_Arquivo(cd_Documento: number) {
 
         let token = await this.documentosService.Get_Token_Arquivo(cd_Documento)
@@ -194,8 +275,6 @@ export class DocumentosComponent implements OnInit, OnChanges {
             f.subgrupos.forEach(g => g._open = false)
         })
     }
-
-
 
     Limpar_Filtros() {
 
