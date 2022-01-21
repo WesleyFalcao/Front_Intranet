@@ -125,7 +125,7 @@
 }
 
 .menu-lateral-pai{
-    @apply font-medium w-80;
+    @apply font-medium w-full;
 
     @screen md{
         @apply font-semibold text-2xl mt-2;
@@ -139,13 +139,10 @@
 }
 
 .formatacao-filho-neto{
-    @apply max-h-48 overflow-y-auto;
+    @apply overflow-y-auto;
 
-    @screen md{
-        @apply max-h-80;
-    }
     @screen lg{
-        @apply max-h-full overscroll-y-none;
+        @apply h-full overscroll-y-none;
     }
 }
 
@@ -161,9 +158,8 @@
 
 .menu-lateral-neto{
     @screen md{
-        @apply text-xl
+        @apply text-xl 
     }
-
     @screen lg{
         @apply text-sm pb-2 
     }

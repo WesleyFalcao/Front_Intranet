@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, HostListener, OnChanges, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ListagemVirtualComponent } from 'src/app/components/listagem-virtual/listagem-virtual.component';
@@ -13,9 +13,9 @@ import { DocumentosService } from './documentos.service';
 @Component({
     selector: 'app-documentos',
     templateUrl: './documentos.component.html',
-    styleUrls: ['./documentos.component.scss']
+    styleUrls: ['./documentos.component.scss'],
 })
-export class DocumentosComponent implements OnInit, OnDestroy{
+export class DocumentosComponent implements OnInit, AfterViewInit, DoCheck, OnChanges, OnDestroy, AfterContentInit, AfterContentChecked, AfterViewChecked {
 
     objArrayDocumentos = []
     objArrayGrupoCEQ = []
@@ -48,94 +48,116 @@ export class DocumentosComponent implements OnInit, OnDestroy{
     b_Exibir_Computador: boolean = false
     b_Search_Focus: boolean = false
     b_Requisicao: boolean
-    nr_width: number = window.innerWidth
-    nr_heigth: number
-    b_Mudar_Listagem: boolean = false
-
-    @HostListener('window:resize', ['$event'])
-    onResize() {
-        this.nr_width = window.innerWidth;
-        this.nr_heigth = window.innerHeight;
-        if (this.nr_width >= 1024) {
-            this.b_Exibir_Computador = true
-            this.b_Mudar_Listagem = !this.b_Mudar_Listagem
-            this.nr_Page = 1
-            if (this.b_Mudar_Listagem == true){
-
-                this.nr_Page_Length = 10
-            }
-        } else {
-
-            this.b_Mudar_Listagem = !this.b_Mudar_Listagem
-            this.nr_Page = 1
-            this.nr_Page_Length = 40
-            this.Buscar_Documentos()
-
-        }
-    }
+    nr_Width: number = window.innerWidth
+    nr_Heigth: number = window.innerHeight
+    nr_Width_Screen: number
+    nr_Heigth_Screen: number
+    b_Mudar_Listagem: boolean
+    event: any
 
     // onResize() {
+    //     this.nr_Width = window.innerWidth;
+    //     this.nr_Heigth = window.innerHeight;
+    //     if (this.nr_Width >= 1024) {
+    //         this.b_Exibir_Computador = true
+    //         this.b_Mudar_Listagem = !this.b_Mudar_Listagem
 
-    //     this.nr_width = window.innerWidth;
-    //     this.nr_heigth = window.innerHeight;
-    //     if (this.nr_width <= 1023) {
-    //         setTimeout(() => {
-    //             this.objArrayDocumentos = []
-    //             this.nr_Page = 1
-    //             this.Buscar_Documentos()
-    //         }, 0);
 
-    //     }
-    //     if (this.nr_width >= 1024) {
-    //         setTimeout(() => {
-    //             this.nr_Page = 1
-    //             this.objArrayDocumentos = []
-    //             this.nr_Page_Length = 8
-    //             let valor = window.innerHeight * this.nr_Page_Length
-    //             let resultado = Math.floor((valor / 625))
-    //             this.nr_Page_Length = resultado
-    //             this.Buscar_Documentos()
-    //         }, 0);
-
-    //     }
-    //     if(this.nr_width >= 1600){
-    //         this.nr_Page_Length = 13
+    //     } else {
+    //         this.b_Mudar_Listagem = false
+    //         this.nr_Page_Length = 40
     //         this.Buscar_Documentos()
     //     }
-
-    //     else{
-    //         setTimeout(() => {
-    //             this.nr_Page = 1
-    //             this.objArrayDocumentos = []
-    //             this.nr_Page_Length = 30
-    //             this.Buscar_Documentos()
-    //         }, 0);
-    //     }
-    //     if(this.nr_heigth >= 300 && this.nr_heigth <= 500){
-    //         setTimeout(() => {
-    //             this.nr_Page_Length = 2
-
-    //         }, 0);
-    //     }
-    //     else if(this.nr_heigth >= 501 && this.nr_heigth <= 700){
-    //         setTimeout(() => {
-    //             this.nr_Page_Length = 6
-
-    //         }, 0);
-    //     }
-    //     else if(this.nr_heigth >= 701 && this.nr_heigth <= 900){
-    //         setTimeout(() => {
-    //             this.nr_Page_Length = 10
-
-    //         }, 0);
-    //     }
-    //     else if (this.nr_heigth >= 901 && this.nr_heigth <= 1100) {
-    //         setTimeout(() => {
-    //             this.nr_Page_Length = 14
-
-    //         }, 0);
-    //     }
     // }
+
+    ngAfterViewInit() {
+        console.log('ngAfterViewInit');
+    }
+
+    ngDoCheck() {
+        console.log('ngDoCheck');
+    }
+
+    ngOnChanges() {
+        console.log('ngOnChanges');
+    }
+
+    ngOnDestroy() {
+        console.log('ngOnDestroy');
+    }
+
+    ngAfterContentInit() {
+        console.log('ngAfterContentInit');
+    }
+
+    ngAfterContentChecked() {
+        console.log('ngAfterContentChecked');
+    }
+
+    ngAfterViewChecked() {
+        console.log('ngAfterViewChecked');
+    }
+
+    @HostListener('window:resize')
+    onResize(event: any) {
+        this.event = event
+        console.log(event)
+        this.nr_Width = window.innerWidth;
+        this.nr_Heigth = window.innerHeight;
+
+        if (this.nr_Width >= 1024) {
+
+            this.b_Exibir_Computador = true
+            this.b_Mudar_Listagem = true
+            this.nr_Page_Length = 8
+            let valor = window.innerHeight * this.nr_Page_Length
+            let resultado = Math.floor((valor / 625))
+            this.nr_Page_Length = resultado
+            //this.Buscar_Documentos()
+        }
+        else {
+
+            this.nr_Page_Length = 30
+            //this.Buscar_Documentos()
+        }
+        // if(this.nr_Width >= 1600){
+        //     this.nr_Page_Length = 13
+        //     this.Buscar_Documentos()
+        // }
+
+        // else if {
+        //     setTimeout(() => {
+        //         this.nr_Page = 1
+        //         this.objArrayDocumentos = []
+        //         this.nr_Page_Length = 30
+        //         this.Buscar_Documentos()
+        //     }, 0);
+        // }
+        // if(this.nr_Heigth >= 300 && this.nr_Heigth <= 500){
+        //     setTimeout(() => {
+        //         this.nr_Page_Length = 2
+        //         this.Buscar_Documentos()
+        //     }, 0);
+        // }
+        // else if(this.nr_Heigth >= 501 && this.nr_Heigth <= 700){
+        //     setTimeout(() => {
+        //         this.nr_Page_Length = 6
+
+        //     }, 0);
+        // }
+        // else if(this.nr_Heigth >= 701 && this.nr_Heigth <= 900){
+        //     setTimeout(() => {
+        //         this.nr_Page_Length = 10
+
+        //     }, 0);
+        // }
+        // else if (this.nr_Heigth >= 901 && this.nr_Heigth <= 1100) {
+        //     setTimeout(() => {
+        //         this.nr_Page_Length = 14
+
+        //     }, 0);
+        // }
+    }
 
     // Exibir_Listagem() {
 
@@ -169,8 +191,8 @@ export class DocumentosComponent implements OnInit, OnDestroy{
     ) { }
 
     async ngOnInit() {
-
-        this.onResize()
+        console.log('ngOnInit')
+        this.onResize(this.event)
         //this.Exibir_Listagem()
         this.Buscar_GrupoCEQ()
         this.Buscar_Documentos()
@@ -188,9 +210,6 @@ export class DocumentosComponent implements OnInit, OnDestroy{
             this.objArrayCampos[0].nm_Classe = "font-semibold"
         }
     }
-    ngOnDestroy() {
-        console.log('Adeus, componente destruído!');
-      }
 
     /** @description Avança uma pagina */
     Mudar_Pagina(nr_Page: number) {

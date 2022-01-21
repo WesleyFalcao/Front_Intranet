@@ -12,14 +12,14 @@
 
 			<div *ngIf="b_Mostrar_Modal">
 				<div class="flex flex-row gap-4 md:mx-auto">
-					<button class="transform cursor-pointer active:scale-90 transition duration-300"
+					<button class="transform cursor-pointer active:scale-90  duration-300"
 						(click)="b_Mostrar_Modal = false">
 
 						<img class="relative ml-2 w-7 h-7 md:w-8 md:h-8 md:ml-4 right-2 top-6 md:top-9 lg:hidden"
 							src="assets/imagens/arrow-left-green.svg">
 					</button>
 					<div class="limpar-filtro-button">
-						<div class="relative flex w-48 md:w-full h-12 lg:hidden rounded-full bg-unimed-white shadow-lg active:scale-95 duration-300"
+						<div class="relative flex w-48 md:w-full h-12 lg:hidden rounded-full bg-unimed-white shadow-lg transform cursor-pointer active:scale-95 transition duration-300"
 							(click)="Limpar_Filtros()">
 							<div class="w-12 h-14 mb-4 ml-3.5">
 								<img src="assets/icons/lixeira.svg">
@@ -85,7 +85,7 @@
 			</ng-container>
 		</div>
 
-		<div *ngIf="b_Mudar_Listagem == false, else listagem">
+		<div *ngIf="nr_Width <= 1023, else listagem">
 			<app-listagem-virtual [objArrayCampos]="objArrayCampos" [objArrayItens]="objArrayDocumentos"
 				(onPageChange)="Mudar_Pagina($event)" (onClickRow)="Buscar_Arquivo($event)">
 			</app-listagem-virtual>
