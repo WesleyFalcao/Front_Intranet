@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, HostListener, OnChanges, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ListagemVirtualComponent } from 'src/app/components/listagem-virtual/listagem-virtual.component';
@@ -15,7 +15,7 @@ import { DocumentosService } from './documentos.service';
     templateUrl: './documentos.component.html',
     styleUrls: ['./documentos.component.scss'],
 })
-export class DocumentosComponent implements OnInit, AfterViewInit, DoCheck, OnChanges, OnDestroy, AfterContentInit, AfterContentChecked, AfterViewChecked {
+export class DocumentosComponent implements OnInit {
 
     objArrayDocumentos = []
     objArrayGrupoCEQ = []
@@ -55,53 +55,8 @@ export class DocumentosComponent implements OnInit, AfterViewInit, DoCheck, OnCh
     b_Mudar_Listagem: boolean
     event: any
 
-    // onResize() {
-    //     this.nr_Width = window.innerWidth;
-    //     this.nr_Heigth = window.innerHeight;
-    //     if (this.nr_Width >= 1024) {
-    //         this.b_Exibir_Computador = true
-    //         this.b_Mudar_Listagem = !this.b_Mudar_Listagem
-
-
-    //     } else {
-    //         this.b_Mudar_Listagem = false
-    //         this.nr_Page_Length = 40
-    //         this.Buscar_Documentos()
-    //     }
-    // }
-
-    ngAfterViewInit() {
-        console.log('ngAfterViewInit');
-    }
-
-    ngDoCheck() {
-        console.log('ngDoCheck');
-    }
-
-    ngOnChanges() {
-        console.log('ngOnChanges');
-    }
-
-    ngOnDestroy() {
-        console.log('ngOnDestroy');
-    }
-
-    ngAfterContentInit() {
-        console.log('ngAfterContentInit');
-    }
-
-    ngAfterContentChecked() {
-        console.log('ngAfterContentChecked');
-    }
-
-    ngAfterViewChecked() {
-        console.log('ngAfterViewChecked');
-    }
-
     @HostListener('window:resize')
-    onResize(event: any) {
-        this.event = event
-        console.log(event)
+    onResize() {
         this.nr_Width = window.innerWidth;
         this.nr_Heigth = window.innerHeight;
 
@@ -113,87 +68,19 @@ export class DocumentosComponent implements OnInit, AfterViewInit, DoCheck, OnCh
             let valor = window.innerHeight * this.nr_Page_Length
             let resultado = Math.floor((valor / 625))
             this.nr_Page_Length = resultado
-            //this.Buscar_Documentos()
         }
         else {
 
             this.nr_Page_Length = 30
-            //this.Buscar_Documentos()
         }
-        // if(this.nr_Width >= 1600){
-        //     this.nr_Page_Length = 13
-        //     this.Buscar_Documentos()
-        // }
-
-        // else if {
-        //     setTimeout(() => {
-        //         this.nr_Page = 1
-        //         this.objArrayDocumentos = []
-        //         this.nr_Page_Length = 30
-        //         this.Buscar_Documentos()
-        //     }, 0);
-        // }
-        // if(this.nr_Heigth >= 300 && this.nr_Heigth <= 500){
-        //     setTimeout(() => {
-        //         this.nr_Page_Length = 2
-        //         this.Buscar_Documentos()
-        //     }, 0);
-        // }
-        // else if(this.nr_Heigth >= 501 && this.nr_Heigth <= 700){
-        //     setTimeout(() => {
-        //         this.nr_Page_Length = 6
-
-        //     }, 0);
-        // }
-        // else if(this.nr_Heigth >= 701 && this.nr_Heigth <= 900){
-        //     setTimeout(() => {
-        //         this.nr_Page_Length = 10
-
-        //     }, 0);
-        // }
-        // else if (this.nr_Heigth >= 901 && this.nr_Heigth <= 1100) {
-        //     setTimeout(() => {
-        //         this.nr_Page_Length = 14
-
-        //     }, 0);
-        // }
     }
-
-    // Exibir_Listagem() {
-
-    //     if (window.innerWidth >= 1024) {
-    //         this.b_Exibir_Computador = true
-    //         this.b_Mudar_Listagem = true
-    //         this.nr_Page_Length = 8
-    //         setTimeout(() => {
-    //             this.searchFocus.searchElement.nativeElement.focus()
-    //         }, 0);
-    //         this.Buscar_Documentos()
-    //     } else if (window.innerWidth <= 1029) {
-    //         this.b_Mudar_Listagem = false
-    //         this.Buscar_Documentos()
-
-    //     }
-
-
-    //     let valor = window.innerHeight * this.nr_Page_Length
-    //     let resultado = Math.floor((valor / 625))
-    //     this.nr_Page_Length = resultado
-
-    //     if (window.innerWidth > 1900) {
-    //         this.nr_Page_Length = 14
-    //     }
-    // }
-
 
     constructor(
         private documentosService: DocumentosService
     ) { }
 
     async ngOnInit() {
-        console.log('ngOnInit')
-        this.onResize(this.event)
-        //this.Exibir_Listagem()
+        this.onResize()
         this.Buscar_GrupoCEQ()
         this.Buscar_Documentos()
         this.modelChanged.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async (input) => {

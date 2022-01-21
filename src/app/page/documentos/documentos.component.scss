@@ -48,16 +48,7 @@
    
 }
 
-.div-menu-lateral-principal{
-    
-    @apply scrollbar-hide overflow-y-auto pl-4 flex-col bg-cover bg-center absolute w-full z-30 top-0 left-0 h-screen bg-gray-300;
 
-    @screen lg{
-        width: 25%;
-        @apply flex relative;
-    }
-
-}
 
 .barra-pesquisa{
     @apply flex flex-grow w-full pl-4 pr-2;
@@ -79,18 +70,32 @@
 
 /////////////////////// MENU LATERAL ///////////////////////
 
+.menu-lateral-principal{
+    
+    @apply scrollbar-hide overflow-y-auto pl-4 flex-col bg-cover bg-center absolute w-full z-30 top-0 left-0 h-screen bg-gray-300;
+
+    @screen lg{
+        width: 25%;
+        @apply flex relative;
+    }
+}
+
 .menu-lateral{
-    @apply pl-2.5 pr-6 pt-10 space-y-5 w-full flex flex-col font-medium cursor-pointer;   //relação com div-lista-documento-modal
+    @apply pl-2.5 pr-6 pt-10 space-y-5 w-full flex flex-col flex-grow font-medium cursor-pointer;   //relação com div-lista-documento-modal
 
     @screen md{
         @apply pt-24;
     }
+    @media (min-width: 1150px) {
+        @apply pt-44 
+    }
     @screen lg {
-        @apply text-sm pl-0 pr-0 w-80 pt-28;
+        @apply text-sm pl-0 pr-0 pt-28;
     }
     @media (min-width: 1400px) {
-        @apply pt-44
-    } 
+      
+        @apply pt-36 
+    }
 }
 
 .formatacao-menu-lateral{
@@ -120,7 +125,7 @@
         @apply pt-0;
     }
     @media (min-width: 1400px) {
-        @apply w-96
+        @apply w-full
     }
 }
 
