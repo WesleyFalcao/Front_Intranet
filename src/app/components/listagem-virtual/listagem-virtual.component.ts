@@ -11,7 +11,7 @@ import { CamposListagem } from 'src/app/models/listagem/campos-listagem.model';
 
 export class ListagemVirtualComponent implements OnInit {
 
-  @ViewChild( CdkVirtualScrollViewport, {static: true}) scroller: CdkVirtualScrollViewport;
+  @ViewChild( CdkVirtualScrollViewport, {static: true}) scroller: CdkVirtualScrollViewport
   @Input() objArrayCampos: CamposListagem[] = []
   @Input() objArrayItens = []
   @Input() nr_Page: number = 1

@@ -22,27 +22,27 @@ export class SnackbarComponent implements OnInit {
 
     ngOnInit() { }
 
-    show(message: string) {
-        var check = document.querySelector(".snackbar.show");
+    // show(message: string) {
+    //     var check = document.querySelector(".snackbar.show");
 
-        if (!check) {
-            var div = document.getElementsByClassName("snackbar");
+    //     if (!check) {
+    //         var div = document.getElementsByClassName("snackbar");
 
 
 
-            // Places a size class according to the size of the string
-            if (message.length > 28) {
-                if (message.length <= 35) {
-                    div[0].className += " snackbar-md";
-                } else {
-                    div[0].className += " snackbar-lg";
-                }
-            }
+    //         // Places a size class according to the size of the string
+    //         if (message.length > 28) {
+    //             if (message.length <= 35) {
+    //                 div[0].className += " snackbar-md";
+    //             } else {
+    //                 div[0].className += " snackbar-lg";
+    //             }
+    //         }
 
-            div[0].className += " show";
-            this.ds_Mensagem = message;
-        }
-    }
+    //         div[0].className += " show";
+    //         this.ds_Mensagem = message;
+    //     }
+    // }
 
     hide(time: number) {
         var div = document.querySelector(".snackbar.show");
@@ -64,7 +64,7 @@ export class SnackbarComponent implements OnInit {
         setTimeout(() => {
             let t = this;
 
-            this.show(message);
+            // this.show(message);
 
             setTimeout(function () {
                 t.hide(milliseconds);

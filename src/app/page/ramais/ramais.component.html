@@ -5,13 +5,12 @@
 
         <!-- Icone Unimed-->
         <div class="formatacao-botao-logo-unimed">
-            <img src="assets/imagens/logo-Unimed.svg"> 
+            <img src="assets/imagens/logo-Unimed.svg">
         </div>
 
         <ul class="modal-icones" *ngIf="b_Mostrar_Modal">
 
-            <li class="li-hospital-icone"
-                (click)="Get_Filtro_Page_Ramais(2)">
+            <li class="li-hospital-icone" (click)="Get_Filtro_Page_Ramais(2)">
 
                 <div class="pl-4 md:pl-5 md:pt-8">
                     <img class="w-12 h-12 md:w-20 md:h-20 lg:hidden lg:w-20 lg:h-20 xl:w-16 xl:h-16 "
@@ -27,7 +26,8 @@
                     <img class="w-12 h-12 md:w-20 md:h-20 lg:hidden lg:w-20 lg:h-20 xl:w-16 xl:h-16"
                         src="assets/imagens/operadora.svg">
                 </div>
-                <div class="relative pl-4 top-8 text-sm md:top-10 md:text-lg lg:top-14 lg:hidden {{cd_Origem == 1? nm_Text_Orange: ''}}">
+                <div
+                    class="relative pl-4 top-8 text-sm md:top-10 md:text-lg lg:top-14 lg:hidden {{cd_Origem == 1? nm_Text_Orange: ''}}">
                     Operadora
                 </div>
             </li>
@@ -36,7 +36,8 @@
                 <div class="pt-4 pl-4 md:pl-5 lg:pt-8">
                     <img class="w-12 h-12 md:w-20 md:h-20 xl:w-16 xl:h-16" src="assets/imagens/contatos-uteis.svg">
                 </div>
-                <div class="relative pl-4 top-8 text-sm md:top-10 md:text-lg lg:top-14 lg:hidden {{cd_Origem == 0? nm_Text_Orange: ''}}">
+                <div
+                    class="relative pl-4 top-8 text-sm md:top-10 md:text-lg lg:top-14 lg:hidden {{cd_Origem == 0? nm_Text_Orange: ''}}">
                     Contatos úteis
                 </div>
             </li>
@@ -76,7 +77,8 @@
             </div>
             <div
                 class="hidden h-12 lg:flex items-center text-center shadow-lg mx-auto mb-10 bg-white rounded-full transform cursor-pointer duration-300">
-                <div *ngIf="b_Exibir" class="hidden lg:flex fixed z-10 h-12 largura-barra rounded-full bg-unimed-green"
+                <div *ngIf="b_Exibir_Rolagem_Verde_Menu"
+                    class="hidden lg:flex fixed z-10 h-12 largura-barra rounded-full bg-unimed-green"
                     [style.transform]="'translate('+ nr_Posicao * 100 +'%)'">
                 </div>
                 <div class="largura-texto-menu" (click)="nr_Posicao = 0; Get_Filtro_Page_Ramais(2)">
@@ -99,9 +101,9 @@
             </div>
         </div>
         <div class="rounded-lg">
-            <div class="calculo-largura relative z-10 w-full ml-20 mr-24">
+            <div class="calculo-largura relative z-10 w-full mx-40">
                 <ul class="hidden md:mb-2 bg-white lg:flex rounded-lg">
-                    <li class="text-center pt-6 pb-3 font-medium text-lg lg:block {{documento.nm_Classe}}"
+                    <li class="text-center pt-6 pb-4 font-medium text-lg lg:block {{documento.nm_Classe}}"
                         *ngFor="let documento of objArrayTitulos">
                         <div>
                             {{documento.nm_titulo}}
@@ -111,13 +113,15 @@
             </div>
         </div>
         <div #listaRamais class="body-documentos">
-            <cdk-virtual-scroll-viewport [itemSize]="56" minBufferPx="700" maxBufferPx="700"
-                class="virtual-scroll shadow-lg md:shadow-none lg:shadow-lg md:mx-20 pl-2 lg:pl-0 lg:-top-14 lg:mx-20 lg:pt-12 rounded-lg h-full lg:bg-white">
-                <div class="bg-unimed-white overflow-y-auto py-2 mb-4 md:py-2.5 md:mb-6 lg:pb-0 lg:py-1 lg:mb-3 rounded-lg shadow-lg md:shadow-none lg:hover:bg-gray-200 font-medium transform cursor-pointer active:scale-95 transition duration-300 "
-                    *cdkVirtualFor="let pessoa of objArrayRamais ">
+            <cdk-virtual-scroll-viewport [itemSize]="10" minBufferPx="700" maxBufferPx="700"
+                class="virtual-scroll shadow-lg md:shadow-none lg:shadow-lg md:mx-20 pl-2 lg:pl-0 lg:-top-14 lg:mx-40 lg:pt-12 rounded-lg h-full lg:bg-white">
+
+                <div class="bg-unimed-white overflow-y-auto py-2 mb-4 md:py-2.5 md:mb-6 lg:ml-3 lg:py-1 lg:mb-3 rounded-lg shadow-lg md:shadow-none lg:hover:bg-gray-200 
+                font-medium transform cursor-pointer active:scale-95 transition duration-300"
+                (click)="Expandir_Card(pessoa)" *cdkVirtualFor="let pessoa of objArrayRamais ">
 
                     <!-- essa div está estilizando os nomes que estão vindo do cdkVirtualFor -->
-                    <div class="flex flex-row md:text-lg lg:text-base lg:pl-0 lg:pt-1.5">
+                    <div class="flex flex-row md:text-lg lg:text-base lg:pl-0 lg:pt-1.5 {{objArrayRamais.length <= 6?'mr-10':''}}" >
                         <!-- circulo com as inicias mobile -->
                         <div class="w-1/12 lg:hidden pl-3">
                             <div
@@ -131,7 +135,7 @@
                             class="w-11/12 lg:w-full overflow-x-hidden text-sm lg:text-xl xl:text-base flex flex-col gap-y-2 my-auto lg:flex-row">
 
                             <div [title]="pessoa.nm_Pessoa | camelcase"
-                                class="lg:pl-4 lg:w-4/12 pl-9 overflow-hidden overflow-ellipsis whitespace-nowrap ">
+                                class="lg:pl-4 lg:w-4/12 pl-6 overflow-hidden overflow-ellipsis whitespace-nowrap ">
                                 {{pessoa.nm_Pessoa | camelcase}}
                             </div>
 

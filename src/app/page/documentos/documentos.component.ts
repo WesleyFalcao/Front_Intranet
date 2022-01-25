@@ -1,5 +1,6 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { fromEvent, Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ListagemVirtualComponent } from 'src/app/components/listagem-virtual/listagem-virtual.component';
 import { SearchBarComponent } from 'src/app/components/search-bar/searchbar.component';
@@ -15,7 +16,7 @@ import { DocumentosService } from './documentos.service';
     templateUrl: './documentos.component.html',
     styleUrls: ['./documentos.component.scss'],
 })
-export class DocumentosComponent implements OnInit {
+export class DocumentosComponent implements OnInit, OnDestroy, AfterViewInit {
 
     objArrayDocumentos = []
     objArrayGrupoCEQ = []
@@ -53,7 +54,8 @@ export class DocumentosComponent implements OnInit {
     nr_Width_Screen: number
     nr_Heigth_Screen: number
     b_Mudar_Listagem: boolean
-    event: any
+    resize_Obervable$: Observable<Event>
+    resize_Subscription$: Subscription
 
     @HostListener('window:resize')
     onResize() {
@@ -70,8 +72,8 @@ export class DocumentosComponent implements OnInit {
             this.nr_Page_Length = resultado
         }
         else {
-
-            this.nr_Page_Length = 30
+            this.b_Exibir_Computador = false
+            this.listagemVirtual.scroller.scrollToIndex(0)
         }
     }
 
@@ -80,9 +82,33 @@ export class DocumentosComponent implements OnInit {
     ) { }
 
     async ngOnInit() {
+
         this.onResize()
         this.Buscar_GrupoCEQ()
         this.Buscar_Documentos()
+
+        this.resize_Obervable$ = fromEvent(window, 'resize')
+        this.resize_Subscription$ = this.resize_Obervable$.subscribe(event => {
+
+            console.log(event)
+            this.nr_Width = window.innerWidth;
+            this.nr_Heigth = window.innerHeight;
+
+            if (this.nr_Width >= 1024){
+
+                this.b_Exibir_Computador = true
+                this.b_Mudar_Listagem = true
+                this.nr_Page_Length = 8
+                let valor = window.innerHeight * this.nr_Page_Length
+                let resultado = Math.floor((valor / 625))
+                this.nr_Page_Length = resultado
+            }
+            else {
+
+                this.nr_Page_Length = 30
+            }
+        })
+
         this.modelChanged.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async (input) => {
             this.nr_Page = 1
             this.nm_Search = input
@@ -96,6 +122,14 @@ export class DocumentosComponent implements OnInit {
         if (!this.b_Exibir_Computador) {
             this.objArrayCampos[0].nm_Classe = "font-semibold"
         }
+    }
+
+    ngAfterViewInit() {
+
+    }
+
+    ngOnDestroy() {
+        this.resize_Subscription$.unsubscribe()
     }
 
     /** @description Avança uma pagina */

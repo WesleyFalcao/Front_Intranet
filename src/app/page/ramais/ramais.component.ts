@@ -57,19 +57,40 @@ export class RamaisComponent implements OnInit {
   nr_Page_Length: number = 80
   modelChanged = new FormControl()
   nr_Posicao: number
-  b_Exibir: boolean = false
+  b_Exibir_Rolagem_Verde_Menu: boolean = false
   nr_width: number
 
   constructor(private ramaisService: RamaisService, private subjectService: SubjectService, private ngZone: NgZone) { }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.nr_width = event.target.innerWidth;
-    
-    
+  @HostListener('window:resize')
+  onResize() {
+    this.nr_width = window.innerWidth;
+    if (this.nr_width >= 1024) {
+      this.objArrayRamais.forEach(a => a.open = true)
+      this.b_Computador = !this.b_Computador
+    }
+    else {
+      this.objArrayRamais.forEach(a => a.open = false)
+    }
   }
 
+  // @HostListener('window:resize')
+  // onResize() {
+  //   this.nr_width = window.innerWidth;
+  //   if (this.nr_width >= 1024) {
+  //     this.objArrayRamais.forEach(a => a.open = true)
+  //     this.b_Computador = !this.b_Computador
+  //     if (this.b_Computador) {
+  //       this.objArrayRamais.forEach(a => a.open = true)
+  //     }
+  //   }
+  //   else {
+  //     this.objArrayRamais.forEach(a => a.open = false)
+  //   }
+  // }
+
   async ngOnInit() {
+    //this.onResize()
     this.Exibir_Computador()
     this.Buscar_Ramais()
     this.modelChanged.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async (input) => {
@@ -98,19 +119,15 @@ export class RamaisComponent implements OnInit {
   }
 
   Exibir_Computador() {
-    if (window.innerWidth > 1280) {
-      this.b_Computador = !this.b_Computador
-      if (this.b_Computador) {
-        this.objArrayRamais.forEach(a => a.open = true)
-        this.nr_Posicao = 3
-        this.b_Exibir = true
-        setTimeout(() => {
-          this.search_element.searchElement.nativeElement.focus()
-        }, 0);
-        this.Trazer_Todos()
-      } else {
-        this.objArrayRamais.forEach(a => a.open = false)
-      }
+    if (window.innerWidth >= 1024) {
+      this.b_Computador = true
+      this.objArrayRamais.forEach(a => a.open = true)
+      this.nr_Posicao = 3
+      this.b_Exibir_Rolagem_Verde_Menu = true
+      setTimeout(() => {
+        this.search_element.searchElement.nativeElement.focus()
+      }, 0);
+      this.Trazer_Todos()
     }
   }
 
@@ -119,60 +136,70 @@ export class RamaisComponent implements OnInit {
   //     documento.open = !documento.open
   //   }
   // }
+  Redefinir() {
+
+    if (this.b_Computador) {
+      this.objArrayRamais.forEach(a => a.open = true)
+      this.b_Mostrar_Modal = false
+      // this.b_Text_Row_Lg = true
+    } else {
+      this.objArrayRamais.forEach(a => a.open = false)
+    }
+  }
 
   Mostrar_Modal() {
     this.b_Mostrar_Modal = true
   }
 
-  Redefinir() {
-    if (this.b_Computador) {
-      this.objArrayRamais.forEach(a => a.open = true)
-      this.b_Mostrar_Modal = false
-      // this.b_Text_Row_Lg = true
-    } else{
-      this.objArrayRamais.forEach(a => a.open = false)
-    }
-  }
-
   async Buscar_Ramais() {
+
     const objParams: RamaisParams = { nr_Page: this.nr_Page = 1, nr_Page_Length: this.nr_Page_Length, nm_Search: this.nm_Search, cd_Origem: this.cd_Origem, nm_Inicial_Selecionada: this.nm_Inicial_Selecionada }
     this.objArrayRamais = [...this.objArrayRamais, ...await this.ramaisService.Get_Ramais(objParams)]
     this.Redefinir()
   }
 
-  Rollar_Topo() {
-    this.listaRamais.nativeElement.scrollTo(0, 0)
-  }
+  
 
   async Get_Filtro_Page_Ramais(cd_Origem: number, b_Letra: boolean = true) {
+
     this.objArrayRamais = []
-    this.b_Exibir = true
     this.nr_Page = 1
     this.cd_Origem = cd_Origem
-    this.Buscar_Ramais()
-    if (!this.b_Computador) {
+    if (window.innerWidth <= 1023) {
       this.b_Mostrar_Modal = false
+      this.objArrayRamais.forEach(a => a.open = false)
     } else {
+      this.objArrayRamais.forEach(a => a.open = true)
+      this.b_Exibir_Rolagem_Verde_Menu = true
       this.search_element.searchElement.nativeElement.focus()
     }
-    this.Rollar_Topo()
+    this.Buscar_Ramais()
+    
   }
 
   async Trazer_Todos() {
-    this.b_Exibir = true
+
+    this.b_Exibir_Rolagem_Verde_Menu = true
     this.objArrayRamais = []
     this.nr_Page = 1
     this.cd_Origem = 3
     if (!this.b_Computador) {
       this.b_Mostrar_Modal = false
+      this.objArrayRamais.forEach(a => a.open = false)
     } else {
       this.search_element.searchElement.nativeElement.focus()
+      this.objArrayRamais.forEach(a => a.open = true)
     }
     this.modelChanged.setValue(this.nm_Inicial_Selecionada)
     await this.Buscar_Ramais()
   }
+
+  Expandir_Card(obj: any) {
+    if (window.innerWidth < 1280) {
+      obj.open = !obj.open
+    }
+  }
+
 }
-
-
 
 
