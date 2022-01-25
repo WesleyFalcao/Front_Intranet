@@ -11,10 +11,10 @@ export class PaginatorComponent implements OnInit, OnChanges {
     @Input() nr_Pagina = 1
 
     /** @description Variavel para guardar a quantidade de registros */
-    @Input() nr_Registros = 0
+    @Input() nr_Registros = 10
 
     /** @description Variavel para guardar quantas linhas irão exibir na página */
-    @Input() nr_Por_Pagina = 10
+    @Input() nr_Por_Pagina = 0
 
     /** @description Evento para retornar se o botão de paginação foi apertado */
     @Output() onPageChange = new EventEmitter();
@@ -39,8 +39,8 @@ export class PaginatorComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes: SimpleChanges): void {
         this.Fabricar_Array_Paginas()
+
         this.objArrayPaginas = Array.from({ length: Math.ceil(this.nr_Registros / this.nr_Por_Pagina) }, (_, i) => i + 1)
-        
     }
 
     @HostListener("document:keydown.arrowleft", ["$event"])

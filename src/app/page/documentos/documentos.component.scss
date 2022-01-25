@@ -72,7 +72,8 @@
 
 .menu-lateral-principal{
     
-    @apply scrollbar-hide overflow-y-auto pl-4 flex-col bg-cover bg-center absolute w-full z-30 top-0 left-0 h-screen bg-gray-300;
+    background-color: #B6DBCA;
+    @apply scrollbar-hide overflow-y-auto pl-4 flex-col bg-cover bg-center absolute w-full z-30 top-0 left-0 h-screen;
 
     @screen lg{
         width: 25%;
@@ -100,10 +101,10 @@
 
 .formatacao-menu-lateral{
 
-    @apply space-y-3 font-medium cursor-pointer pl-1 relative bg-white rounded-2xl shadow-lg w-full;
+    @apply space-y-3 font-medium cursor-pointer pl-1 relative bg-white rounded-2xl shadow-xl w-full;
 
     @screen md {
-        @apply text-2xl font-medium shadow-none transform relative -translate-x-1/2 left-1/2;
+        @apply text-xl font-medium shadow-none transform relative -translate-x-1/2 left-1/2;
     }
     @screen lg {
         @apply justify-start space-y-3 bg-transparent text-lg items-start left-0 -translate-x-0;
@@ -133,7 +134,7 @@
     @apply font-medium w-full;
 
     @screen md{
-        @apply font-semibold text-2xl mt-2;
+        @apply font-semibold text-xl mt-2;
     }
     @screen lg{
         @apply text-base font-semibold;
@@ -163,7 +164,7 @@
 
 .menu-lateral-neto{
     @screen md{
-        @apply text-xl 
+        @apply text-lg 
     }
     @screen lg{
         @apply text-sm pb-2 

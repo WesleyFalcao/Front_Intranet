@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -16,7 +16,7 @@ import { DocumentosService } from './documentos.service';
     templateUrl: './documentos.component.html',
     styleUrls: ['./documentos.component.scss'],
 })
-export class DocumentosComponent implements OnInit, OnDestroy, AfterViewInit {
+export class DocumentosComponent implements OnInit {
 
     objArrayDocumentos = []
     objArrayGrupoCEQ = []
@@ -45,7 +45,7 @@ export class DocumentosComponent implements OnInit, OnDestroy, AfterViewInit {
     nm_Search: string = ""
     modelChanged = new FormControl()
     b_Exibir_Listagem: boolean = false
-    cd_Setor_CEQ: number
+    cd_Setor_CEQ: number 
     b_Exibir_Computador: boolean = false
     b_Search_Focus: boolean = false
     b_Requisicao: boolean
@@ -54,8 +54,6 @@ export class DocumentosComponent implements OnInit, OnDestroy, AfterViewInit {
     nr_Width_Screen: number
     nr_Heigth_Screen: number
     b_Mudar_Listagem: boolean
-    resize_Obervable$: Observable<Event>
-    resize_Subscription$: Subscription
 
     @HostListener('window:resize')
     onResize() {
@@ -69,46 +67,26 @@ export class DocumentosComponent implements OnInit, OnDestroy, AfterViewInit {
             this.nr_Page_Length = 8
             let valor = window.innerHeight * this.nr_Page_Length
             let resultado = Math.floor((valor / 625))
-            this.nr_Page_Length = resultado
+            this.nr_Page_Length = resultado  
+            setTimeout(() => {
+                this.Buscar_Documentos()
+                this.searchFocus.searchElement.nativeElement.focus()
+            }, 1500);
         }
         else {
+            this.nr_Page_Length = 30
             this.b_Exibir_Computador = false
-            this.listagemVirtual.scroller.scrollToIndex(0)
         }
+       
     }
 
-    constructor(
-        private documentosService: DocumentosService
-    ) { }
+    constructor( private documentosService: DocumentosService ) { }
 
     async ngOnInit() {
 
         this.onResize()
         this.Buscar_GrupoCEQ()
         this.Buscar_Documentos()
-
-        this.resize_Obervable$ = fromEvent(window, 'resize')
-        this.resize_Subscription$ = this.resize_Obervable$.subscribe(event => {
-
-            console.log(event)
-            this.nr_Width = window.innerWidth;
-            this.nr_Heigth = window.innerHeight;
-
-            if (this.nr_Width >= 1024){
-
-                this.b_Exibir_Computador = true
-                this.b_Mudar_Listagem = true
-                this.nr_Page_Length = 8
-                let valor = window.innerHeight * this.nr_Page_Length
-                let resultado = Math.floor((valor / 625))
-                this.nr_Page_Length = resultado
-            }
-            else {
-
-                this.nr_Page_Length = 30
-            }
-        })
-
         this.modelChanged.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async (input) => {
             this.nr_Page = 1
             this.nm_Search = input
@@ -124,14 +102,6 @@ export class DocumentosComponent implements OnInit, OnDestroy, AfterViewInit {
         }
     }
 
-    ngAfterViewInit() {
-
-    }
-
-    ngOnDestroy() {
-        this.resize_Subscription$.unsubscribe()
-    }
-
     /** @description Avança uma pagina */
     Mudar_Pagina(nr_Page: number) {
         this.nr_Page = nr_Page
@@ -142,6 +112,7 @@ export class DocumentosComponent implements OnInit, OnDestroy, AfterViewInit {
         const objParams: DocumentosParams = { nr_Page: this.nr_Page, nr_Page_Length: this.nr_Page_Length, nm_Search: this.nm_Search, cd_Setor_CEQ: this.cd_Setor_CEQ }
         const objRetorno = await this.documentosService.Get_Documentos(objParams)
         objRetorno.data.forEach(f => f.nm_Documento = To_Capitalize(f.nm_Documento))
+
         if (this.b_Exibir_Computador) {
             this.objArrayDocumentos = objRetorno.data
         } else {
@@ -165,7 +136,7 @@ export class DocumentosComponent implements OnInit, OnDestroy, AfterViewInit {
             this.searchFocus.searchElement.nativeElement.focus()
         }
 
-        if (obj.cd_Setor_CEQ != 0 && !b_Filho) {
+        if (obj.cd_Setor_CEQ != 0 && b_Filho == false) {
             this.Buscar_Documentos()
             obj._open = true
             if (!this.b_Exibir_Computador) {
@@ -174,12 +145,17 @@ export class DocumentosComponent implements OnInit, OnDestroy, AfterViewInit {
                 this.b_Mostrar_Modal = this.b_Mostrar_Modal
             }
 
-        } else if (obj.subgrupos?.length == 0) {
+        }else if(obj.cd_Setor_CEQ != 0 && b_Filho == true && !this.b_Exibir_Computador){
+            this.cd_Setor_CEQ = obj.cd_Setor_CEQ
+            this.b_Mostrar_Modal = true
+            this.Buscar_Documentos()
+            obj._open = true
+        }
+         else if (obj.subgrupos?.length == 0) {
             this.objArrayDocumentos = []
             this.b_Mostrar_Modal = !this.b_Mostrar_Modal
         }
     }
-
 
     async Buscar_Arquivo(cd_Documento: number) {
 
@@ -202,7 +178,6 @@ export class DocumentosComponent implements OnInit, OnDestroy, AfterViewInit {
                 objArrayMenuCEQ.forEach(nomeNeto => nomeNeto.nm_Grupo_CEQ = nomeNeto.nm_Setor_CEQ)
                 neto.subgrupos.push(...objArrayMenuCEQ.filter(menu => menu.cd_Grupo_CEQ == neto.cd_Grupo_CEQ))
             });
-
         })
         this.objArrayGrupoCEQ = objArrayAux
     }
@@ -217,7 +192,6 @@ export class DocumentosComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     Limpar_Filtros() {
-
         this.modelChanged.reset()
         this.nm_Search = ""
         this.objArrayDocumentos = []

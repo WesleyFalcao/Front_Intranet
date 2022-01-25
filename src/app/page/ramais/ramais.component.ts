@@ -68,26 +68,14 @@ export class RamaisComponent implements OnInit {
     if (this.nr_width >= 1024) {
       this.objArrayRamais.forEach(a => a.open = true)
       this.b_Computador = !this.b_Computador
+      this.b_Exibir_Rolagem_Verde_Menu = true
+      this.search_element.searchElement.nativeElement.focus()
     }
     else {
+      this.b_Mostrar_Modal = false
       this.objArrayRamais.forEach(a => a.open = false)
     }
   }
-
-  // @HostListener('window:resize')
-  // onResize() {
-  //   this.nr_width = window.innerWidth;
-  //   if (this.nr_width >= 1024) {
-  //     this.objArrayRamais.forEach(a => a.open = true)
-  //     this.b_Computador = !this.b_Computador
-  //     if (this.b_Computador) {
-  //       this.objArrayRamais.forEach(a => a.open = true)
-  //     }
-  //   }
-  //   else {
-  //     this.objArrayRamais.forEach(a => a.open = false)
-  //   }
-  // }
 
   async ngOnInit() {
     //this.onResize()
@@ -131,21 +119,6 @@ export class RamaisComponent implements OnInit {
     }
   }
 
-  // Expandir(documento: any): void {
-  //   if (window.innerWidth < 1280) {
-  //     documento.open = !documento.open
-  //   }
-  // }
-  Redefinir() {
-
-    if (this.b_Computador) {
-      this.objArrayRamais.forEach(a => a.open = true)
-      this.b_Mostrar_Modal = false
-      // this.b_Text_Row_Lg = true
-    } else {
-      this.objArrayRamais.forEach(a => a.open = false)
-    }
-  }
 
   Mostrar_Modal() {
     this.b_Mostrar_Modal = true
@@ -155,26 +128,13 @@ export class RamaisComponent implements OnInit {
 
     const objParams: RamaisParams = { nr_Page: this.nr_Page = 1, nr_Page_Length: this.nr_Page_Length, nm_Search: this.nm_Search, cd_Origem: this.cd_Origem, nm_Inicial_Selecionada: this.nm_Inicial_Selecionada }
     this.objArrayRamais = [...this.objArrayRamais, ...await this.ramaisService.Get_Ramais(objParams)]
-    this.Redefinir()
+    this.onResize()
   }
 
-  
-
   async Get_Filtro_Page_Ramais(cd_Origem: number, b_Letra: boolean = true) {
-
-    this.objArrayRamais = []
     this.nr_Page = 1
     this.cd_Origem = cd_Origem
-    if (window.innerWidth <= 1023) {
-      this.b_Mostrar_Modal = false
-      this.objArrayRamais.forEach(a => a.open = false)
-    } else {
-      this.objArrayRamais.forEach(a => a.open = true)
-      this.b_Exibir_Rolagem_Verde_Menu = true
-      this.search_element.searchElement.nativeElement.focus()
-    }
-    this.Buscar_Ramais()
-    
+    this.Buscar_Ramais() 
   }
 
   async Trazer_Todos() {
