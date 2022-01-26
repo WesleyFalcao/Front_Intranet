@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, HostListener, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { fromEvent, Observable, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, startWith, takeUntil } from 'rxjs/operators';
 import { ListagemVirtualComponent } from 'src/app/components/listagem-virtual/listagem-virtual.component';
 import { SearchBarComponent } from 'src/app/components/search-bar/searchbar.component';
 import { Documento } from 'src/app/models/documento/documento.model';
@@ -16,7 +16,7 @@ import { DocumentosService } from './documentos.service';
     templateUrl: './documentos.component.html',
     styleUrls: ['./documentos.component.scss'],
 })
-export class DocumentosComponent implements OnInit {
+export class DocumentosComponent implements OnInit, OnDestroy {
 
     objArrayDocumentos = []
     objArrayGrupoCEQ = []
@@ -38,23 +38,29 @@ export class DocumentosComponent implements OnInit {
 
     @ViewChild(ListagemVirtualComponent) listagemVirtual: ListagemVirtualComponent
     @ViewChild(SearchBarComponent) searchFocus: SearchBarComponent
+
+    nr_Input_Page_Length = new FormControl()
+    modelChanged = new FormControl()
+
     nr_Registros: number = 0
     nr_Page_Length: number = 8
     nr_Page: number = 1
-    b_Mostrar_Modal: boolean = false
-    nm_Search: string = ""
-    modelChanged = new FormControl()
-    b_Exibir_Listagem: boolean = false
     cd_Setor_CEQ: number 
-    b_Exibir_Computador: boolean = false
-    b_Search_Focus: boolean = false
-    b_Requisicao: boolean
     nr_Width: number = window.innerWidth
     nr_Heigth: number = window.innerHeight
     nr_Width_Screen: number
     nr_Heigth_Screen: number
+
+    b_Exibir_Listagem: boolean = false
+    b_Exibir_Computador: boolean = false
+    b_Mostrar_Modal: boolean = false
+    b_Search_Focus: boolean = false
+    b_Requisicao: boolean
     b_Mudar_Listagem: boolean
 
+    inputcontrol: number = 2
+    nm_Search: string = ""
+    
     @HostListener('window:resize')
     onResize() {
         this.nr_Width = window.innerWidth;
@@ -77,7 +83,6 @@ export class DocumentosComponent implements OnInit {
             this.nr_Page_Length = 30
             this.b_Exibir_Computador = false
         }
-       
     }
 
     constructor( private documentosService: DocumentosService ) { }
@@ -97,6 +102,11 @@ export class DocumentosComponent implements OnInit {
             this.Buscar_Documentos()
         })
 
+        // this.nr_Input_Page_Length.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async () =>{
+            
+        //     this.Buscar_Documentos()
+        // })
+
         if (!this.b_Exibir_Computador) {
             this.objArrayCampos[0].nm_Classe = "font-semibold"
         }
@@ -106,6 +116,10 @@ export class DocumentosComponent implements OnInit {
     Mudar_Pagina(nr_Page: number) {
         this.nr_Page = nr_Page
         this.Buscar_Documentos()
+    }
+
+    ngOnDestroy() {
+        
     }
 
     async Buscar_Documentos() {
@@ -120,7 +134,11 @@ export class DocumentosComponent implements OnInit {
             //reticencias retorna o conjunto de objetos do array, ele tira as colchetes do Json.
 
         }
-        this.nr_Registros = objRetorno.nr_Registros
+    }
+    onSubmit(form){
+        this.nr_Page_Length = parseInt(form.value.length)
+        this.Buscar_Documentos()
+        console.log(form)
     }
 
     async Filter_Menu(obj: Documento, b_Filho: boolean) {
@@ -192,6 +210,7 @@ export class DocumentosComponent implements OnInit {
     }
 
     Limpar_Filtros() {
+        this.nr_Input_Page_Length.reset()
         this.modelChanged.reset()
         this.nm_Search = ""
         this.objArrayDocumentos = []

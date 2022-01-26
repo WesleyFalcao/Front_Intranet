@@ -10,13 +10,17 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
 import { ListagemModule } from 'src/app/components/listagem/listagem.module';
 import { DocumentosComponent } from './documentos.component';
 import { ListagemVirtualModule } from 'src/app/components/listagem-virtual/listagem-virtual.module';
+import { InputLengthModule } from 'src/app/components/input-length/input-length.module';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [DocumentosComponent],
   imports: [
+    BrowserModule,
     CommonModule,
     FormsModule,
     HttpClientModule,
+    InputLengthModule,
     AngularSvgIconModule.forRoot(),
     ReactiveFormsModule,
     SearchBarModule,

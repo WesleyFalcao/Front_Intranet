@@ -11,5 +11,4 @@ export class SearchBarComponent {
 
     @ViewChild('search') searchElement: ElementRef
     @Input() control = new FormControl()
-
 }

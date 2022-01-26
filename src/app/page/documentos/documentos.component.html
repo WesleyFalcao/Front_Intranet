@@ -36,6 +36,15 @@
 
 		<div class="menu-lateral">
 
+			<form #f="ngForm" (ngSubmit)="onSubmit(f)" class="hidden lg:flex gap-2">
+				<div>
+					Quantidade por página:
+				</div>
+				<div class="pb-8">
+					<input ngModel name="length" class="w-14 h-4 pl-2 rounded-md shadow-lg focus:border-unimed-orange">
+				</div>
+			</form>
+			
 			<div class="formatacao-menu-lateral" *ngFor="let pai of objArrayGrupoCEQ">
 				<div class="largura-titulo-pai">
 					<itens-ceq class="menu-lateral-pai" [b_Nao_Fecha]="false" [subgrupos]="pai.subgrupos"
