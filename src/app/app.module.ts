@@ -21,7 +21,6 @@ import { PipesModule } from './pipes/pipes.module';
 import { ListagemModule } from './components/listagem/listagem.module';
 import { DocumentosModule } from './page/documentos/documentos.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InputLengthModule } from './components/input-length/input-length.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +30,6 @@ import { InputLengthModule } from './components/input-length/input-length.module
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
-    InputLengthModule,
     BrowserAnimationsModule,
     AvisoCriticaModule,
     AppRoutingModule,
