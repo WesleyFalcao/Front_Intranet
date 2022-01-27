@@ -17,8 +17,11 @@
     "strictNullChecks": false,
     "target": "es2017",
     "module": "es2020",
+    "resolveJsonModule": true,
     "strictPropertyInitialization": false,
     "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "lib": [
       "es2018",
       "dom"
@@ -29,5 +32,5 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
 }

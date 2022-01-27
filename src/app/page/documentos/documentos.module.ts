@@ -11,6 +11,8 @@ import { ListagemModule } from 'src/app/components/listagem/listagem.module';
 import { DocumentosComponent } from './documentos.component';
 import { ListagemVirtualModule } from 'src/app/components/listagem-virtual/listagem-virtual.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { VersionComponent } from 'src/app/components/version/version.component';
+import { VersionModule } from 'src/app/components/version/version.module';
 
 @NgModule({
   declarations: [DocumentosComponent],
@@ -26,7 +28,8 @@ import { BrowserModule } from '@angular/platform-browser';
     PaginatorModule,
     PipesModule,
     ListagemModule,
-    ListagemVirtualModule
+    ListagemVirtualModule,
+    VersionModule
   ],
   exports: [
     DocumentosComponent 

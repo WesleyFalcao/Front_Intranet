@@ -1,5 +1,5 @@
 <div class="reset-browser flex flex-row">
-
+	
 	<aside class="menu-lateral-principal" *ngIf="b_Mostrar_Modal">
 
 		<div *ngIf="b_Exibir_Computador || b_Mostrar_Modal">
@@ -41,7 +41,7 @@
 					Quantidade por página:
 				</div>
 				<div class="pb-8">
-					<input ngModel name="length" class="relative w-10 h-5 pl-2 border-unimed-black rounded-md shadow-lg">
+					<input [(ngModel)]="nr_Page_Length" name="length" class="relative w-10 h-5 pl-2 border-unimed-black rounded-md shadow-lg">
 				</div>
 			</form>
 			
@@ -87,7 +87,9 @@
 			<div class="filtro" (click)="Mostrar_Modal()">
 				<img class="w-8 h-8 md:w-9 md:h-9 md:ml-4 lg:ml-12" src="assets/icons/filter-three-lines.svg">
 			</div>
-
+			<div class="hidden lg:flex text-white absolute transform -translate-x-0 left-1/2 top-0">
+				<app-version></app-version>
+			</div>
 			<!-- barra de pesquisa -->
 			<ng-container>
 				<uni-search-bar class="barra-pesquisa" [control]="modelChanged"></uni-search-bar>

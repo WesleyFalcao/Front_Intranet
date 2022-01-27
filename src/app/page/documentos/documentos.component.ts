@@ -41,6 +41,8 @@ export class DocumentosComponent implements OnInit {
     nr_Input_Page_Length = new FormControl()
     modelChanged = new FormControl()
 
+    appVersion: string
+
     nr_Registros: number = 0
     nr_Page_Length: number = 8
     nr_Page: number = 1
@@ -72,7 +74,7 @@ export class DocumentosComponent implements OnInit {
             this.nr_Page_Length = 8
             let valor = window.innerHeight * this.nr_Page_Length
             let resultado = Math.floor((valor / 625))
-            this.nr_Page_Length = resultado  
+            this.nr_Page_Length = resultado
             setTimeout(() => {
                 this.searchFocus.searchElement.nativeElement.focus()
             }, 1500);
@@ -81,10 +83,10 @@ export class DocumentosComponent implements OnInit {
             this.nr_Page_Length = 30
             this.b_Exibir_Computador = false
         }
-       
+
     }
 
-    constructor( private documentosService: DocumentosService ) { }
+    constructor(private documentosService: DocumentosService) { }
 
     async ngOnInit() {
 
@@ -104,6 +106,7 @@ export class DocumentosComponent implements OnInit {
         if (!this.b_Exibir_Computador) {
             this.objArrayCampos[0].nm_Classe = "font-semibold"
         }
+
     }
 
     /** @description Avança uma pagina */
@@ -149,13 +152,13 @@ export class DocumentosComponent implements OnInit {
                 this.b_Mostrar_Modal = this.b_Mostrar_Modal
             }
 
-        }else if(obj.cd_Setor_CEQ != 0 && b_Filho == true && !this.b_Exibir_Computador){
+        } else if (obj.cd_Setor_CEQ != 0 && b_Filho == true && !this.b_Exibir_Computador) {
             this.cd_Setor_CEQ = obj.cd_Setor_CEQ
             this.b_Mostrar_Modal = true
             this.Buscar_Documentos()
             obj._open = true
         }
-         else if (obj.subgrupos?.length == 0) {
+        else if (obj.subgrupos?.length == 0) {
             this.objArrayDocumentos = []
             this.b_Mostrar_Modal = !this.b_Mostrar_Modal
         }
@@ -196,9 +199,13 @@ export class DocumentosComponent implements OnInit {
     }
 
     onSubmit(form) {
-        this.nr_Page_Length = parseInt(form.value.length)
-        this.Buscar_Documentos()
-        console.log(form)
+        if (parseInt(form.value.length) == 0) {
+            this.objArrayDocumentos = []
+        } else {
+            this.nr_Page_Length = parseInt(form.value.length)
+            this.Buscar_Documentos()
+            console.log(form)
+        }
     }
 
     Limpar_Filtros() {
