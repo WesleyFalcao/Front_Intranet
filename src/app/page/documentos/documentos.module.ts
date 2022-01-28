@@ -32,7 +32,7 @@ import { VersionModule } from 'src/app/components/version/version.module';
     VersionModule
   ],
   exports: [
-    DocumentosComponent 
+    DocumentosComponent
   ]
 })
 export class DocumentosModule { }
