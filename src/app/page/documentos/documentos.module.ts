@@ -16,6 +16,7 @@ import { VersionModule } from 'src/app/components/version/version.module';
 
 @NgModule({
   declarations: [DocumentosComponent],
+  
   imports: [
     BrowserModule,
     CommonModule,

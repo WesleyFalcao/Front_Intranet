@@ -44,7 +44,7 @@ export class DocumentosComponent implements OnInit {
     appVersion: string
 
     nr_Registros: number = 0
-    nr_Page_Length: number = 8
+    nr_Page_Length: number = 10
     nr_Page: number = 1
     cd_Setor_CEQ: number
     nr_Width: number = window.innerWidth
@@ -71,16 +71,14 @@ export class DocumentosComponent implements OnInit {
 
             this.b_Exibir_Computador = true
             this.b_Mudar_Listagem = true
-            this.nr_Page_Length = 8
             let valor = window.innerHeight * this.nr_Page_Length
             let resultado = Math.floor((valor / 625))
             this.nr_Page_Length = resultado
             setTimeout(() => {
                 this.searchFocus.searchElement.nativeElement.focus()
-            }, 1500);
+            }, 0);
         }
         else {
-            this.nr_Page_Length = 30
             this.b_Exibir_Computador = false
         }
 
@@ -96,6 +94,7 @@ export class DocumentosComponent implements OnInit {
         this.modelChanged.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async (input) => {
             this.nr_Page = 1
             this.nm_Search = input
+            this.nr_Page_Length = 10
             if (this.nm_Search != null && this.nm_Search.length > 1) {
 
                 this.objArrayDocumentos = []
@@ -198,15 +197,15 @@ export class DocumentosComponent implements OnInit {
         })
     }
 
-    onSubmit(form) {
-        if (parseInt(form.value.length) == 0) {
-            this.objArrayDocumentos = []
-        } else {
-            this.nr_Page_Length = parseInt(form.value.length)
-            this.Buscar_Documentos()
-            console.log(form)
-        }
-    }
+    // onSubmit(form) {
+    //     if (parseInt(form.value.length) == 0) {
+    //         this.objArrayDocumentos = []
+    //     } else {
+    //         this.nr_Page_Length = parseInt(form.value.length)
+    //         this.Buscar_Documentos()
+    //         console.log(form)
+    //     }
+    // }
 
     Limpar_Filtros() {
         this.modelChanged.reset()
