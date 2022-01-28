@@ -1,9 +1,7 @@
 <main class="w-full h-screen flex">
 
-    <!-- Menu Lateral -->
     <div class="largura-menu-laral">
 
-        <!-- Icone Unimed-->
         <div class="formatacao-botao-logo-unimed">
             <img src="assets/imagens/logo-Unimed.svg">
         </div>
@@ -51,22 +49,17 @@
                 </div>
             </li>
         </ul>
-        
-    </div>
 
-    <!-- Listagem dos Ramais com a barra de pesquisa -->
+    </div>
 
     <div class="body-ramais">
 
-        <!-- barra de pesquisa -->
         <div class="header">
 
-            <!-- Filtro-->
             <div class="filtro" (click)="Mostrar_Modal()">
                 <img class="filtro-icone" src="assets/icons/filter-three-lines.svg">
             </div>
 
-            <!-- barra de pesquisa -->
             <ng-container>
                 <uni-search-bar class="barra-pesquisa" [control]="modelChanged"></uni-search-bar>
             </ng-container>
@@ -116,40 +109,37 @@
                 <div class="virtual-scroll-formatacao"
                 (click)="Expandir_Card(pessoa)" *cdkVirtualFor="let pessoa of objArrayRamais">
 
-                    <!-- essa div está estilizando os nomes que estão vindo do cdkVirtualFor -->
                     <div class="formatacao-ramais {{objArrayRamais.length <= 6?'mr-10':''}}" >
-                        <!-- circulo com as inicias mobile -->
-                        <div class="largura-pessoa">
-                            <div
-                                class="formatacao-pessoa">
-                                <div class="pt-1 md:pt-1 text-center md:text-xl lg:text-2xl lg:pt-1.5 text-white">
+
+                        <div class="largura-inicial-pessoa">
+                            <div class="formatacao-pessoa-circulo">
+                                <div class="pessoa-circulo-posicao">
                                     {{pessoa.nm_Pessoa | firstLetterName}}
                                 </div>
                             </div>
                         </div>
-                        <div
-                            class="w-11/12 lg:w-full overflow-x-hidden text-sm lg:text-base flex flex-col gap-y-2 my-auto lg:flex-row">
+                        <div class="campos-formatacao">
 
                             <div [title]="pessoa.nm_Pessoa | camelcase"
-                                class="lg:pl-4 lg:w-4/12 pl-6 overflow-hidden overflow-ellipsis whitespace-nowrap ">
+                                class="pessoa-formatacao">
                                 {{pessoa.nm_Pessoa | camelcase}}
                             </div>
 
                             <ng-container class="items-center" *ngIf="pessoa.open">
                                 <span [title]="pessoa.nm_Departamento | camelcase"
-                                    class=" pt-2 mt-3 lg:mt-0 md:pt-3 lg:w-3/12 lg:text-center lg:pt-0 overflow-hidden overflow-ellipsis whitespace-nowrap">
+                                    class="departamento-formatacao">
                                     <b class="lg:hidden"> Setor:</b>
                                     {{pessoa.nm_Departamento | camelcase}}
                                 </span>
 
                                 <div
-                                    class="lg:text-center lg:w-2/12 lg:pl-0 lg:whitespace-nowrap overflow-hidden overflow-ellipsis whitespace-nowrap {{pessoa.nr_Ramal == ''? 'justify-items-start': ''}}">
+                                    class="ramais-formatacao {{pessoa.nr_Ramal == ''? 'justify-items-start': ''}}">
                                     <b class="lg:hidden">Contato(s):</b>
                                     {{pessoa.nr_Ramal}}<br>{{pessoa.nr_Telefone}}
                                 </div>
 
                                 <span [title]="pessoa.ds_Email"
-                                    class="lg:w-3/12 lg:text-center mb-4.5 overflow-hidden overflow-ellipsis whitespace-nowrap">
+                                    class="email-formatacao">
                                     <b class="lg:hidden">Email:</b>
                                     {{pessoa.ds_Email}}
                                 </span>
@@ -158,12 +148,11 @@
                     </div>
                 </div>
 
-                <!-- SVG caso não tenha informação -->
                 <div *ngIf='objArrayRamais.length == 0'>
-                    <div class="mx-auto pt-11 lg:pt-0 w-6/12 h-6/12 lg:w-3/12 lg:h-3/12">
+                    <div class="formatacao-svg-nada-encontrado">
                         <img src="assets/imagens/table-empty-nada-encontrado.svg" alt="">
                     </div>
-                    <div class="text-sm text-center mt-4 md:text-lg md:font-normal"> Os contatos não foram
+                    <div class="texto-nada-encontrado"> Os contatos não foram
                         encontrados
                     </div>
                 </div>
@@ -171,8 +160,7 @@
         </div>
     </div>
 
-    <!-- Modal de Sobreposição -->
-    <div class="absolute inset-0 z-0 bg-black opacity-70 xl:hidden cursor-pointer" *ngIf="b_Mostrar_Modal"
+    <div class="modal-sobreposicao" *ngIf="b_Mostrar_Modal"
         (click)="b_Mostrar_Modal=false">
     </div>
 

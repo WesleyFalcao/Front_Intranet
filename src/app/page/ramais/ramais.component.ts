@@ -34,8 +34,6 @@ export class RamaisComponent implements OnInit {
     { nm_titulo: "E-mail", nm_Classe: "lg:w-3/12 text-center" }
   ]
 
-  // @ViewChildren(ScrollDirective)
-  // scroll: QueryList<ScrollDirective>;
   @ViewChild(CdkVirtualScrollViewport, { static: true }) scroller: CdkVirtualScrollViewport;
   @ViewChildren('variavelLocal') objArrayItemLista: QueryList<ElementRef>
   @ViewChild('listaRamais') listaRamais: ElementRef
@@ -64,6 +62,7 @@ export class RamaisComponent implements OnInit {
 
   @HostListener('window:resize')
   onResize() {
+    
     this.nr_width = window.innerWidth;
     if (this.nr_width >= 1024) {
       this.objArrayRamais.forEach(a => a.open = true)
@@ -78,7 +77,7 @@ export class RamaisComponent implements OnInit {
   }
 
   async ngOnInit() {
-    //this.onResize()
+
     this.Exibir_Computador()
     this.Buscar_Ramais()
     this.modelChanged.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(async (input) => {
@@ -159,7 +158,6 @@ export class RamaisComponent implements OnInit {
       obj.open = !obj.open
     }
   }
-
 }
 
 
