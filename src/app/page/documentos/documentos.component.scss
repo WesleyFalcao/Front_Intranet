@@ -1,3 +1,6 @@
+
+/////////////////////// BODY ///////////////////////
+
 .scrollbar-hide::-webkit-scrollbar{
     display: none;
 }
@@ -9,46 +12,53 @@
 }
 
 .calculo-altura-pagina{
+
+    @apply h-screen overflow-y-auto;
+
     @screen md{
-        height: calc(100% - 5rem)
+        height: calc(100% - 5rem);
     }
 }
 
-.icone-unimed-acima{
-    @apply absolute transform -translate-x-1/2 left-1/2 top-10 hidden cursor-pointer;
+.largura-listagem-menu-aberto{
 
-    @screen lg {
-        @apply flex top-3;
-    }
-
-    @media (min-width: 1400px) {
-        @apply top-5;
+    @screen lg{
+        width: 75%;
     }
 }
 
-.icone-unimed-acima-tela-grande{
-
-    @apply w-20 h-20;
-
-    @media(min-width: 1400px){
-        width: 145px; 
-        height: 60px; 
-    }
+.div-cabecalho-main{
+    @apply flex flex-row gap-3 mx-4 pb-7;
 }
 
 .filtro {
-   @apply mb-2 transform relative cursor-pointer active:scale-90 transition duration-300 left-3 top-6 md:top-9;
+    @apply mb-2 transform relative cursor-pointer active:scale-90 transition duration-300 left-3 top-6 md:top-9;
+ 
+     @screen md{
+        @apply left-2
+     }
+     @screen lg{
+        @apply top-8; 
+    } 
+ }
+.svg-filtro{
+    @apply w-8 h-8;
 
     @screen md{
-        @apply left-2
+        @apply w-9 h-9 ml-4;
     }
     @screen lg{
-        @apply top-8; 
-    }
-   
+        @apply ml-12; 
+    } 
 }
 
+.class-version{
+    @apply hidden text-white text-sm absolute transform -translate-x-0 right-1 top-0;
 
+    @screen lg{
+        @apply flex; 
+    } 
+}
 
 .barra-pesquisa{
     @apply flex flex-grow w-full pl-4 pr-2;
@@ -61,14 +71,8 @@
     }
 }
 
-.largura-listagem-menu-aberto{
-
-    @screen lg{
-        width: 75%;
-    }
-}
-
 /////////////////////// MENU LATERAL ///////////////////////
+
 
 .menu-lateral-principal{
     
@@ -79,6 +83,90 @@
         width: 25%;
         @apply flex relative;
     }
+}
+
+.cabecalho-modal{
+    @apply flex flex-row gap-4 mx-4 mb-8;
+
+    @screen md{
+        @apply gap-6;
+    }
+    @screen lg{
+        @apply mb-4;
+    }
+}
+
+.icone-unimed-acima{
+    @apply absolute transform -translate-x-1/2 left-1/2 top-10 hidden cursor-pointer;
+
+    @screen lg {
+        @apply flex top-3;
+    }
+
+    @media (min-width: 1400px) {
+        left: 25%;
+        @apply top-5 left-1/4;
+    }
+}
+
+.icone-unimed{
+
+    @apply w-20 h-20 transform active:scale-90 transition duration-300;
+
+    @media(min-width: 1400px){
+        width: 135px; 
+        height: 50px; 
+    }
+}
+
+.div-cabecalho{
+    @apply flex flex-row gap-4 md:mx-auto;
+
+    @screen md {
+        @apply mx-auto;
+    }
+}
+
+.class-button{
+    @apply transform cursor-pointer active:scale-90 duration-300;
+}
+
+.svg-arrow-left{
+    @apply relative ml-2 w-7 h-7 right-2 top-6;
+
+    @screen md{
+        @apply w-8 h-8 ml-4 top-9;
+    }
+    @screen lg{
+        @apply hidden;
+    }
+}
+
+.limpar-filtro-button{
+    @apply top-4 absolute transform -translate-x-1/2 left-1/2;
+
+    @screen md{
+        @apply top-6;
+    }
+}
+
+.div-limpar-filtro{
+    @apply relative flex w-48 h-12 rounded-full bg-unimed-white shadow-lg transform cursor-pointer active:scale-95 transition duration-300;
+
+    @screen md{
+        @apply w-full;
+    }
+    @screen lg{
+        @apply hidden;
+    }
+}
+.frase-limpar-filtro{
+    @apply text-sm my-auto font-semibold;
+
+    @screen md{
+        @apply text-lg ml-3 mr-6;
+    }
+    
 }
 
 .menu-lateral{
@@ -97,6 +185,23 @@
       
         @apply pt-36 
     }
+}
+
+.class-form{
+    @apply hidden gap-2;
+
+    @screen lg {
+        @apply flex;
+    }
+}
+
+.frase-quant-paginas{
+    @apply pl-8 font-semibold;
+}
+
+.input-form{
+    @apply relative w-10 h-5 pl-2 border-unimed-black rounded-md shadow-lg;
+
 }
 
 .formatacao-menu-lateral{
@@ -155,10 +260,18 @@
 .menu-lateral-filho{
 
     @screen lg{
-        @apply text-base
+        @apply text-base;
     }
     @media(min-width: 1400px){
         @apply text-base font-medium;
+    }
+}
+
+.div-formatacao-neto{
+    @apply py-3 pl-4 max-h-48 ;
+
+    @screen lg {
+        @apply gap-y-1 py-1;
     }
 }
 
@@ -182,18 +295,10 @@
     }
 }
 
-.limpar-filtro-button{
-    @apply top-4 absolute transform -translate-x-1/2 left-1/2;
-
-    @screen md{
-        @apply top-6;
-    }
-}
 
 
 input:focus{
-    border-color: orange;
-    border: 1rem;
-    outline: 0;
-    @apply shadow-xl
+    outline: none !important;
+    border:1px solid green;
+    box-shadow: 0 0 10px #719ECE;
 } 

@@ -1,11 +1,325 @@
-.body-documentos{
+.largura-menu-laral{
+    @apply relative;
+
+    @screen lg{
+       @apply hidden;
+    }
+
+    @media (min-width: 1400px) {
+        width: 16.666667%;
+    }
+}
+
+.formatacao-botao-logo-unimed{
+    @apply absolute hidden transform -translate-x-1/2 left-1/2 top-10;
+
+    @screen lg{
+        @apply flex
+    }
+}
+
+.modal-icones{
+    transition: all 2s ease;
+
+    @apply absolute left-0 bg-white z-30 w-60 h-full;
+
+    @screen md{
+        @apply w-96;
+    }
+    @screen lg{
+        @apply relative h-auto w-full bg-transparent;
+    }
+
+}
+
+.li-hospital-icone{
+    @apply flex pt-4 transform active:scale-95 cursor-pointer duration-300;
+
+    @screen md{
+        @apply pt-2;
+    }
+}
+
+.icone-hospital-formatacao{
+    @apply pl-4;
+
+    @screen md{
+        @apply pl-5 pt-8;
+    }
+}
+
+.icone-hospital{
+    @apply w-12 h-12;
+
+    @screen md{
+        @apply w-16 h-16;
+    }
+}
+
+.icone-hospital-texto{
+    @apply relative pl-4 top-4 text-sm whitespace-nowrap;
+
+    @screen md {
+        @apply top-14 text-lg pl-6;
+    }
+}
+
+.li-operadora-icone{
+    @apply flex transform active:scale-95 cursor-pointer duration-300;
+}
+
+.icone-operadora-formatacao{
+    @apply pt-4 pl-4;
+
+    @screen md{
+        @apply pl-5;
+    }
+}
+
+.icone-operadora{
+    @apply w-12 h-12;
+
+    @screen md{
+        @apply w-16 h-16;
+    }
+}
+
+.icone-operadora-texto{
+    @apply relative pl-4 top-8 text-sm;
+
+    @screen md{
+        @apply top-8 text-lg left-2;
+    }
+}
+
+.li-contatos-uteis-icone{
+    @apply flex transform active:scale-95 cursor-pointer duration-300;
+}
+
+.contatos-uteis-formatacao{
+    @apply pt-4 pl-4;
+
+    @screen md{
+        @apply pl-5;
+    }
+}
+
+.icone-contatos-uteis{
+    @apply w-12 h-12;
+
+    @screen md{
+        @apply w-16 h-16;
+    }
+}
+
+.icone-contatos-uteis-texto{
+    @apply relative pl-4 top-8 text-sm;
+
+    @screen md{
+        @apply text-lg left-2;
+    }
+} 
+
+.li-filtrar-todos{
+    @apply flex transform active:scale-95 cursor-pointer duration-300
+}
+
+.filtrar-todos-formatacao{
+    @apply pt-4 pl-3 ;
+
+}
+
+.icone-filtrar-todos{
+    @apply w-14 h-14 ;
+
+    @screen md{
+        @apply w-20 h-20;
+    }
+}
+
+.icone-filtrar-todos-texto{
+    @apply relative pl-4 top-8 text-sm;
+
+    @screen md{
+        @apply top-10 text-lg;
+    }
+}
+
+.body-ramais{
+    @apply w-full;
 
     height: calc(100% - 3rem);
     
     @screen lg{
-        height: calc(100% - 8.4rem);
+        height: calc(100% - 8.5rem);
     }
 }
+
+.cdk-ramais{
+    @apply w-full;
+
+    height: calc(100% - 3rem);
+    
+    @screen lg{
+        height: calc(100% - 7rem);
+    }
+}
+
+.header{
+    @apply flex pb-7 flex-row gap-5 mx-3;
+
+    @screen md{
+        @apply ml-12 mr-20 pb-10;
+    }
+
+    @screen lg{
+        @apply pb-6;
+    }
+}
+
+.filtro {
+    @apply mb-2 transform relative cursor-pointer active:scale-90 transition duration-300 left-3 top-6;
+ 
+     @screen md{
+        @apply left-2 top-9;
+    }
+}
+
+.filtro-icone{
+    @apply w-9 h-9;
+
+    @screen md{
+        @apply ml-8;
+    }
+
+    @screen lg{
+        @apply ml-16 hidden;
+    }
+}
+
+.barra-pesquisa{
+    @apply flex flex-grow w-full pl-4 pr-2;
+
+    @screen md{
+        @apply w-10/12 pb-5 mr-5 pr-0;
+    }
+    @screen lg{
+        @apply w-full mx-8;
+    }
+}
+
+.menu-rolagem{
+    @apply relative w-9/12 mx-auto;
+}
+
+.formatacao-menu-rolagem{
+    @apply hidden h-12 items-center text-center shadow-lg mx-auto mb-10 bg-white rounded-full transform cursor-pointer duration-300;
+
+    @screen lg{
+        @apply flex;
+    }
+}
+
+.barra-rolagem{
+
+    @apply hidden fixed z-10 h-12 largura-barra rounded-full bg-unimed-green;
+
+    @screen lg{
+        @apply flex;
+    }
+}
+
+.largura-texto-menu{
+    width: 25%;
+}
+
+.menu-rolagem{
+    @apply text-lg relative z-20;
+}
+
+.calculo-largura{
+    @apply relative z-10 mx-40;
+
+    width: calc(100% - 320px);
+    
+}
+
+.ul-formatacao-menu{
+    @apply hidden md:mb-2 bg-white rounded-lg;
+
+    @screen lg{
+        @apply flex;
+    }
+}
+
+.li-formatacao-titulo{
+    @apply text-center pt-6 pb-4 font-medium text-lg ;
+
+    @screen lg{
+        @apply block;
+    }
+}
+
+.cdk-virtual-scroll-content-wrapper {
+
+    position: relative !important;
+}
+
+.virtual-scroll{
+    @apply shadow-lg  pl-2 lg:pl-0  rounded-lg h-full;
+
+    @screen md{
+        @apply shadow-none mx-20;
+    }
+
+    @screen lg{
+        @apply shadow-lg -top-14 mx-40 pt-12 bg-white; 
+    }
+}
+
+.virtual-scroll-formatacao{
+    @apply bg-unimed-white overflow-y-auto py-2 rounded-lg shadow-lg font-medium transform cursor-pointer active:scale-95 transition duration-300;
+
+    @screen md{
+        @apply mb-4 md:py-2.5 shadow-none;
+    }
+
+    @screen lg{
+        @apply ml-3 py-1 mb-3 hover:bg-gray-300; 
+    }
+}
+
+.formatacao-ramais{
+    @apply flex flex-row;
+
+    @screen md{
+        @apply text-lg;
+    }
+
+    @screen lg{
+        @apply text-base pl-0 pt-1.5; 
+    }
+}
+
+.largura-pessoa{
+    @apply w-1/12 lg:hidden pl-3
+}
+
+.formatacao-pessoa{
+    @apply rounded-full  bg-unimed-green w-8 h-8;
+
+    @screen md{
+        @apply w-9 h-9 top-1;
+    }
+
+    @screen lg{
+        @apply w-11 h-11 hidden; 
+    }
+
+}
+
+
+
 
 .trazer-tudo{
     @screen lg {
@@ -35,37 +349,9 @@
     }
 }
 
-.cdk-virtual-scroll-content-wrapper {
-    position: relative !important;
-}
 
-.largura-menu-laral{
-    @media (min-width: 1400px) {
-        
-        width: 16.666667%;
-        
-    }
-}
 
-.filtro {
-    @apply mb-2 transform relative cursor-pointer active:scale-90 transition duration-300 left-3 top-6 md:top-9;
- 
-     @screen md{
-         @apply left-2
-     }
-    
- }
 
-.barra-pesquisa{
-    @apply flex flex-grow w-full pl-4 pr-2;
-
-    @screen md{
-        @apply w-10/12 pb-5 mr-5 pr-0;
-    }
-    @screen lg{
-        @apply w-full mx-8;
-    }
-}
 
 .barra-pesquisa-icone-menu{
     
@@ -98,38 +384,13 @@
     }
 }
 
-.formatacao-botao-logo-unimed{
-    @apply absolute hidden transform -translate-x-1/2 left-1/2 top-10;
 
-    @screen lg{
-        @apply flex
-    }
-}
 
-.modal-icones{
-    transition: all 2s ease;
 
-    @apply absolute left-0 bg-white z-30 w-60 h-full;
 
-    @screen md{
-        @apply w-96;
-    }
-    @screen lg{
-        @apply relative h-auto w-full bg-transparent;
-    }
 
-}
 
-.li-hospital-icone{
-    @apply flex pt-4 transform active:scale-95 cursor-pointer duration-300;
 
-    @screen md{
-        @apply pt-2;
-    }
-    @screen lg {
-        @apply mt-36
-    }
-}
 
 .lupa-icon-pesquisa{
 
@@ -162,16 +423,7 @@
     }
 }
 
-.icone-hospital{
-    @apply relative pl-4 top-4 text-sm whitespace-nowrap;
 
-    @screen md {
-        @apply top-16 text-lg pl-6;
-    }
-    @screen lg {
-        @apply top-14;
-    }
-}
 
 .formatacao-menu{
     @apply relative pl-4 top-8 text-sm;
@@ -184,16 +436,11 @@
     }
 }
 
-.largura-texto-menu{
-    width: 25%;
-}
+
 .largura-barra{
     transition-duration: 200ms; transition-timing-function: ease-out;
     //width: calc(25% - 16px);
     width: 25%;
 }
 
-.calculo-largura{
-    width: calc(100% - 320px);
-}
 
