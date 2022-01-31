@@ -11,10 +11,10 @@
 }
 
 .formatacao-botao-logo-unimed{
-    @apply absolute hidden transform -translate-x-1/2 left-1/2 top-10;
+    @apply absolute hidden transform -translate-x-0 left-1/2 top-10;
 
     @screen lg{
-        @apply flex
+        @apply flex;
     }
 }
 
@@ -121,16 +121,16 @@
 } 
 
 .li-filtrar-todos{
-    @apply flex transform active:scale-95 cursor-pointer duration-300
+    @apply flex transform active:scale-95 cursor-pointer duration-300;
 }
 
 .filtrar-todos-formatacao{
-    @apply pt-4 pl-3 ;
+    @apply pt-4 pl-3;
 
 }
 
 .icone-filtrar-todos{
-    @apply w-14 h-14 ;
+    @apply w-14 h-14;
 
     @screen md{
         @apply w-20 h-20;
@@ -222,7 +222,10 @@
 
 .barra-rolagem{
 
-    @apply hidden fixed z-10 h-12 largura-barra rounded-full bg-unimed-green;
+    transition-duration: 200ms; transition-timing-function: ease-out;
+    //width: calc(25% - 16px);
+    width: 25%;
+    @apply hidden fixed z-10 h-12 rounded-full bg-unimed-green;
 
     @screen lg{
         @apply flex;
@@ -266,7 +269,7 @@
 }
 
 .virtual-scroll{
-    @apply shadow-lg  pl-2 lg:pl-0  rounded-lg h-full;
+    @apply shadow-lg pl-2 lg:pl-0 rounded-lg h-full;
 
     @screen md{
         @apply shadow-none mx-20;
@@ -278,14 +281,14 @@
 }
 
 .virtual-scroll-formatacao{
-    @apply bg-unimed-white overflow-y-auto py-2 rounded-lg shadow-lg font-medium transform cursor-pointer active:scale-95 transition duration-300;
+    @apply bg-unimed-white overflow-y-auto py-2 mb-4 rounded-lg shadow-lg font-medium transform cursor-pointer active:scale-95 transition duration-300;
 
     @screen md{
-        @apply mb-4 md:py-2.5 shadow-none;
+        @apply py-2.5 shadow-none;
     }
 
     @screen lg{
-        @apply ml-3 py-1 mb-3 hover:bg-gray-300; 
+        @apply ml-3 py-1 mb-3 hover:bg-gray-200; 
     }
 }
 
@@ -370,20 +373,13 @@
 }
 
 .email-formatacao{
-    @apply mb-4.5 overflow-hidden overflow-ellipsis whitespace-nowrap;
+    @apply mb-4 overflow-hidden overflow-ellipsis whitespace-nowrap;
 
     @screen lg{
         @apply w-3/12 text-center;
     }
 }
 
-.formatacao-svg-nada-encontrado{
-    @apply mx-auto pt-11 w-6/12 h-6/12;
-
-    @screen lg{
-        @apply pt-0 w-3/12 h-3/12; 
-    }
-}
 
 .texto-nada-encontrado{
     @apply text-sm text-center mt-4;

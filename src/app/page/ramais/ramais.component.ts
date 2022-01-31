@@ -57,6 +57,7 @@ export class RamaisComponent implements OnInit {
   nr_Posicao: number
   b_Exibir_Rolagem_Verde_Menu: boolean = false
   nr_width: number
+  b_Sobreposicao: boolean = false
 
   constructor(private ramaisService: RamaisService, private subjectService: SubjectService, private ngZone: NgZone) { }
 
@@ -71,6 +72,7 @@ export class RamaisComponent implements OnInit {
       this.search_element.searchElement.nativeElement.focus()
     }
     else {
+      this.b_Sobreposicao = true
       this.b_Mostrar_Modal = false
       this.objArrayRamais.forEach(a => a.open = false)
     }
@@ -130,10 +132,11 @@ export class RamaisComponent implements OnInit {
     this.onResize()
   }
 
-  async Get_Filtro_Page_Ramais(cd_Origem: number, b_Letra: boolean = true) {
+  async Get_Filtro_Page_Ramais(cd_Origem: number) {
+    this.objArrayRamais = []
     this.nr_Page = 1
     this.cd_Origem = cd_Origem
-    this.Buscar_Ramais() 
+    await this.Buscar_Ramais() 
   }
 
   async Trazer_Todos() {

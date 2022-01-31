@@ -149,7 +149,7 @@
                 </div>
 
                 <div *ngIf='objArrayRamais.length == 0'>
-                    <div class="formatacao-svg-nada-encontrado">
+                    <div class="mx-auto pt-11 w-6/12 h-6/12 lg:pt-0 lg:w-3/12 lg:h-3/12">
                         <img src="assets/imagens/table-empty-nada-encontrado.svg" alt="">
                     </div>
                     <div class="texto-nada-encontrado"> Os contatos não foram
@@ -160,7 +160,7 @@
         </div>
     </div>
 
-    <div class="modal-sobreposicao" *ngIf="b_Mostrar_Modal"
+    <div class="modal-sobreposicao" *ngIf="b_Mostrar_Modal && b_Sobreposicao"
         (click)="b_Mostrar_Modal=false">
     </div>
 
